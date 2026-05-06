@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroCore Argentina — Sistema de Gestión Integral para el Campo</title>
+  <meta name="description" content="AgroCore Argentina es el sistema de gestión integral diseñado para empresas rurales y agropecuarias del país. Multi-empresa, multi-usuario, en la nube, con cotizaciones BCR Rosario en vivo.">
+  <meta name="keywords" content="sistema gestión rural, software agro, facturación ARCA, agro Argentina, gestión campo">
+  <meta property="og:title" content="AgroCore Argentina — El corazón del negocio agrícola">
+  <meta property="og:description" content="Sistema integral para empresas rurales: facturación ARCA, stock, hacienda, finanzas y mucho más.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon: planta con corazón formado por hojas (SVG vectorial) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/web/img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/web/img/apple-touch-icon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            agro: {
+              50:  '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            gold: {
+              400: '#fbbf24',
+              500: '#eab308',
+              600: '#ca8a04',
+            }
+          },
+          fontFamily: {
+            display: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* Hero gradient */
+    .hero-bg {
+      background:
+        radial-gradient(ellipse at top, rgba(34,197,94,.18), transparent 60%),
+        linear-gradient(180deg, #14532d 0%, #166534 100%);
+    }
+
+    /* Subtle pattern overlay on hero */
+    .hero-pattern {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Animated underline for nav */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; height: 2px; width: 0;
+      background: #eab308; transition: width .25s;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Card hover */
+    .feature-card { transition: transform .25s, box-shadow .25s, border-color .25s; }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px -10px rgba(20, 83, 45, .25);
+      border-color: #16a34a;
+    }
+
+    /* Pricing highlight */
+    .price-card-highlight {
+      background: linear-gradient(180deg, #166534 0%, #14532d 100%);
+      box-shadow: 0 20px 50px -15px rgba(21, 128, 61, .5);
+    }
+
+    /* Logo wheat animation (subtle) */
+    @keyframes sway {
+      0%, 100% { transform: rotate(-1deg); }
+      50% { transform: rotate(1deg); }
+    }
+    .wheat-anim { transform-origin: 50% 100%; animation: sway 4s ease-in-out infinite; }
+
+    /* Mobile menu */
+    .mobile-hidden { display: none; }
+    @media (min-width: 768px) {
+      .mobile-only { display: none; }
+    }
+
+    /* Smooth fade-in on scroll */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+  <!-- ============== NAVBAR ============== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo: planta con corazón -->
+        <a href="#hero" class="flex items-center gap-2.5">
+          <img src="/web/img/logo-icon-128.png" srcset="/web/img/logo-icon-128.png 1x, /web/img/logo-icon-256.png 2x" alt="AgroCore Argentina" class="w-12 h-12 object-contain" loading="eager"/>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <div class="text-xl font-extrabold text-agro-900 leading-none tracking-tight">AgroCore</div>
+              <div class="text-[10px] font-bold text-gold-600 uppercase tracking-wider leading-none">Argentina</div>
+            </div>
+            <div class="text-[10px] text-slate-500 leading-tight mt-0.5">El corazón del negocio agrícola</div>
+          </div>
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+          <a href="#features" class="nav-link">Funcionalidades</a>
+          <a href="#how" class="nav-link">Cómo funciona</a>
+          <a href="#pricing" class="nav-link">Precio</a>
+          <a href="#faq" class="nav-link">Preguntas</a>
+          <a href="#contacto" class="nav-link">Contacto</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="flex items-center gap-2">
+          <a href="#contacto" class="hidden sm:inline-block px-4 py-2 text-sm font-semibold text-agro-700 hover:text-agro-900">
+            Hablemos
+          </a>
+          <a href="https://wa.me/5493582408884" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 px-4 py-2 bg-agro-700 hover:bg-agro-800 text-white text-sm font-semibold rounded-lg shadow-sm transition">
+            <span>Solicitar demo</span>
+            <span>→</span>
+          </a>
+          <button id="menuBtn" class="md:hidden p-2 text-slate-700">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="md:hidden border-t border-slate-200 mobile-hidden">
+        <div class="px-2 py-3 space-y-1 text-sm font-medium">
+          <a href="#features" class="block px-3 py-2 rounded hover:bg-slate-100">Funcionalidades</a>
+          <a href="#how" class="block px-3 py-2 rounded hover:bg-slate-100">Cómo funciona</a>
+          <a href="#pricing" class="block px-3 py-2 rounded hover:bg-slate-100">Precio</a>
+          <a href="#faq" class="block px-3 py-2 rounded hover:bg-slate-100">Preguntas</a>
+          <a href="#contacto" class="block px-3 py-2 rounded hover:bg-slate-100">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============== HERO ============== -->
+  <section id="hero" class="hero-bg pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+    <div class="hero-pattern absolute inset-0 opacity-50"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Big logo en caja blanca centrada -->
+      <div class="flex justify-center mb-8">
+        <div class="bg-white/95 rounded-3xl p-8 md:p-10 shadow-2xl backdrop-blur flex items-center justify-center relative">
+          <img src="/web/img/logo-full-512.png" srcset="/web/img/logo-full-512.png 1x, /web/img/logo-full-1024.png 2x" alt="AgroCore Argentina - El corazón del negocio agrícola" class="w-56 md:w-72 h-auto object-contain mx-auto block" loading="eager"/>
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-gold-500 text-agro-900 text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-md">Argentina</div>
+        </div>
+      </div>
+
+      <!-- Pre-title pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-medium text-agro-100 mb-6 backdrop-blur">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        Hecho en Argentina · Para el campo argentino
+      </div>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6">
+        El sistema integral<br/>
+        <span class="text-gold-400">para tu empresa rural</span>
+      </h1>
+
+      <p class="text-base md:text-xl text-agro-100 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Facturación ARCA, stock, hacienda, finanzas y empleados — todo en una sola plataforma
+        multi-empresa, en la nube y con cotizaciones BCR en vivo. Sin instalaciones complicadas.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+        <a href="https://wa.me/5493582408884?text=Hola!%20Me%20interesa%20conocer%20AgroCore." target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg shadow-xl transition">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
+          Solicitar demo por WhatsApp
+        </a>
+        <a href="#pricing" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold rounded-lg transition backdrop-blur">
+          Ver precio
+        </a>
+      </div>
+
+      <!-- Trust bar -->
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-agro-100/80 font-medium">
+        <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Multi-empresa · Multi-usuario</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Cloud sobre AWS</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Sin contrato de permanencia</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Garantía 30 días</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== DIFERENCIADORES ============== -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-3">¿Por qué AgroCore?</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">Pensado por y para el agro argentino. No es un ERP genérico adaptado a la fuerza.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="feature-card p-6 bg-white border border-slate-200 rounded-xl">
+          <div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">🏢</div>
+          <h3 class="font-bold text-agro-900 mb-1">Multi-empresa</h3>
+          <p class="text-sm text-slate-600">Gestioná varias empresas o establecimientos con datos totalmente aislados. Cada una con su logo y color.</p>
+        </div>
+        <div class="feature-card p-6 bg-white border border-slate-200 rounded-xl">
+          <div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">👥</div>
+          <h3 class="font-bold text-agro-900 mb-1">Roles y permisos</h3>
+          <p class="text-sm text-slate-600">Cada empleado ve y modifica solo lo que su rol le permite. Granularidad por módulo.</p>
+        </div>
+        <div class="feature-card p-6 bg-white border border-slate-200 rounded-xl">
+          <div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">💱</div>
+          <h3 class="font-bold text-agro-900 mb-1">Cotizaciones en vivo</h3>
+          <p class="text-sm text-slate-600">Dólar (todas las variantes) y granos BCR Rosario actualizados solos cada pocos minutos.</p>
+        </div>
+        <div class="feature-card p-6 bg-white border border-slate-200 rounded-xl">
+          <div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">🌎</div>
+          <h3 class="font-bold text-agro-900 mb-1">Acceso desde cualquier lugar</h3>
+          <p class="text-sm text-slate-600">Funciona en oficina, campo o celular. URL pública con HTTPS incluida.</p>
+        </div>
+        <div class="feature-card p-6 bg-white border border-slate-200 rounded-xl">
+          <div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">📊</div>
+          <h3 class="font-bold text-agro-900 mb-1">Reportes profesionales</h3>
+          <p class="text-sm text-slate-600">Libro IVA, márgenes, dashboards. Exportables a Excel y PDF para tu contador.</p>
+        </div>
+        <div class="feature-card p-6 bg-white border border-slate-200 rounded-xl">
+          <div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">🔒</div>
+          <h3 class="font-bold text-agro-900 mb-1">Datos seguros</h3>
+          <p class="text-sm text-slate-600">HTTPS/TLS, AES-256, backups diarios y auditoría completa. Cumple OWASP Top 10.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FEATURES DETALLE ============== -->
+  <section id="features" class="py-16 md:py-20 bg-agro-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Funcionalidades</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-3">Todo lo que necesita tu empresa rural</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">8 módulos integrados, sin necesidad de conectar sistemas externos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">💰</div>
+          <h3 class="font-bold text-agro-900 mb-2">Comercial y Financiero</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Facturación de Ventas (A, B, C, E con CAE)</li>
+            <li>• Facturas de Compra de proveedores</li>
+            <li>• Libro IVA Ventas y Compras (Excel/PDF)</li>
+            <li>• Cheques propios y de terceros</li>
+            <li>• Cuentas Corrientes</li>
+            <li>• Flujo de Caja · Control de Efectivo</li>
+            <li>• Arrendamientos con vencimientos</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🌾</div>
+          <h3 class="font-bold text-agro-900 mb-2">Producción Agropecuaria</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Stock unificado con catálogo</li>
+            <li>• Movimientos automáticos al facturar</li>
+            <li>• Validación de stock al vender</li>
+            <li>• Reporte de Margen (compras vs ventas)</li>
+            <li>• Campañas agrícolas y costos</li>
+            <li>• Campos y lotes</li>
+            <li>• Insumos y labores · Hacienda</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🚚</div>
+          <h3 class="font-bold text-agro-900 mb-2">Logística y RRHH</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Empleados con foto y legajo</li>
+            <li>• Viajes y fletes</li>
+            <li>• Notificaciones de vencimientos</li>
+            <li>• Asignación de tareas</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">📚</div>
+          <h3 class="font-bold text-agro-900 mb-2">Catálogos y Maestros</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Clientes y Proveedores</li>
+            <li>• Productos por categoría</li>
+            <li>• Bancos y Cuentas Bancarias</li>
+            <li>• Geografía: País → Provincia → Ciudad</li>
+            <li>• Cereales, insumos y labores precargados</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">💱</div>
+          <h3 class="font-bold text-agro-900 mb-2">Información en Vivo</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Dólar oficial, blue, MEP, CCL, cripto, tarjeta</li>
+            <li>• Granos BCR Rosario (soja, maíz, trigo, sorgo, girasol)</li>
+            <li>• Tendencia visual ▲▼ por cotización</li>
+            <li>• Noticias del agro (Infocampo, Valor Soja, Agritotal)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">📊</div>
+          <h3 class="font-bold text-agro-900 mb-2">Dashboard e Inteligencia</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• 5 solapas: Resumen, Finanzas, Stock, Producción, Patrimonial</li>
+            <li>• Gráficos interactivos</li>
+            <li>• KPIs en tiempo real</li>
+            <li>• Buscador global</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🔐</div>
+          <h3 class="font-bold text-agro-900 mb-2">Administración y Seguridad</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Roles y permisos granulares</li>
+            <li>• Auditoría de acciones</li>
+            <li>• HTTPS/TLS · Encriptación AES-256</li>
+            <li>• Hash bcrypt para contraseñas</li>
+            <li>• Backups diarios automáticos</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200">
+          <div class="text-2xl mb-2">🌐</div>
+          <h3 class="font-bold text-agro-900 mb-2">Acceso y Deployment</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• 100% responsive (celular, tablet, PC)</li>
+            <li>• Acceso desde internet con HTTPS</li>
+            <li>• Acceso LAN para la oficina</li>
+            <li>• Auto-inicio en Windows</li>
+            <li>• Compartir con QR code</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== HOW IT WORKS ============== -->
+  <section id="how" class="py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Cómo funciona</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-3">De la consulta a operar — en 4 a 6 semanas</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">1</div>
+          <h3 class="font-bold text-agro-900 mb-1">Charlamos</h3>
+          <p class="text-sm text-slate-600">Entendemos tu operatoria, tus particularidades y qué módulos priorizar.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
+          <h3 class="font-bold text-agro-900 mb-1">Configuramos</h3>
+          <p class="text-sm text-slate-600">Levantamos tu cuenta AWS, configuramos backups y cargamos los catálogos iniciales.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
+          <h3 class="font-bold text-agro-900 mb-1">Capacitamos</h3>
+          <p class="text-sm text-slate-600">Manual de usuario sectorizado por módulo, entregado en PDF a cada usuario según su rol.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">4</div>
+          <h3 class="font-bold text-agro-900 mb-1">Operás</h3>
+          <p class="text-sm text-slate-600">Día 1 con todo cargado y listo. Garantía de 30 días post-implementación incluida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PRICING ============== -->
+  <section id="pricing" class="py-16 md:py-20 bg-agro-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Precio</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-3">Una inversión, sin sorpresas</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">Pago único por el sistema completo. El mantenimiento mensual es <b>opcional</b> y cancelable cuando quieras.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+        <!-- Card 1: Desarrollo -->
+        <div class="price-card-highlight rounded-2xl p-8 text-white relative lg:scale-105">
+          <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold rounded-full">PRINCIPAL</div>
+          <div class="text-xs uppercase tracking-wider text-agro-200 font-semibold mb-2">Desarrollo + Implementación</div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-5xl font-extrabold">USD</span>
+            <span class="text-6xl font-extrabold text-gold-400">999<span class="text-2xl">,99</span></span>
+          </div>
+          <div class="text-sm text-agro-200 mb-6">pago único · al finalizar la implementación</div>
+          <ul class="space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Sistema completo con todos los módulos</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Implementación Cloud sobre tu cuenta AWS</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Carga inicial de datos maestros</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Manual de usuario sectorizado por módulo</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> URL pública con HTTPS</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Garantía 30 días</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Acuerdo de Confidencialidad (NDA)</li>
+          </ul>
+          <a href="#contacto" class="block mt-6 px-5 py-3 bg-gold-500 hover:bg-gold-600 text-agro-900 text-center font-bold rounded-lg transition">
+            Empezar
+          </a>
+        </div>
+
+        <!-- Card 2: Mantenimiento -->
+        <div class="bg-white border-2 border-slate-200 rounded-2xl p-8 relative">
+          <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full border border-amber-200">OPCIONAL</div>
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-2">Mantenimiento Mensual</div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-3xl font-extrabold text-agro-900">USD</span>
+            <span class="text-5xl font-extrabold text-agro-700">100</span>
+            <span class="text-base text-slate-500">/mes</span>
+          </div>
+          <div class="text-sm text-slate-500 mb-6">cancelable cuando quieras</div>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Soporte técnico (WhatsApp/mail)</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Corrección de bugs sin costo</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Actualizaciones legales ARCA</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Resguardo de backups</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Monitoreo del servidor 24/7</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> 3 hs/mes de ajustes menores</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Actualización de cotizaciones</li>
+          </ul>
+          <div class="mt-6 px-5 py-3 bg-slate-100 text-slate-600 text-center text-sm rounded-lg">
+            Lo tomás, lo dejás, lo retomás
+          </div>
+        </div>
+
+        <!-- Card 3: AWS -->
+        <div class="bg-white border-2 border-slate-200 rounded-2xl p-8 relative">
+          <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full border border-blue-200">DIRECTO A AWS</div>
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-2">Infraestructura Cloud</div>
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-3xl font-extrabold text-agro-900">USD</span>
+            <span class="text-5xl font-extrabold text-blue-700">20–40</span>
+            <span class="text-base text-slate-500">/mes</span>
+          </div>
+          <div class="text-sm text-slate-500 mb-6">pagado directo a Amazon · estimado</div>
+          <ul class="space-y-2 text-sm text-slate-700">
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Cuenta AWS a tu nombre</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Backups diarios automáticos</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Encriptación AES-256</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Certificado SSL/HTTPS</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Alertas de presupuesto</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Costo variable según uso</li>
+          </ul>
+          <div class="mt-6 px-5 py-3 bg-slate-100 text-slate-600 text-center text-sm rounded-lg">
+            Vos tenés el control total
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-center text-xs text-slate-500 mt-8 max-w-2xl mx-auto">
+        💡 Inversión inicial estimada: <b>USD 999,99</b> (pago único) + <b>USD 20-40/mes</b> de AWS + <b>USD 100/mes</b> de mantenimiento si lo tomás. Si no querés mantenimiento, el sistema sigue funcionando perfectamente.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== FAQ ============== -->
+  <section id="faq" class="py-16 md:py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Preguntas frecuentes</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900">Lo que más nos preguntan</h2>
+      </div>
+
+      <div class="space-y-3">
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Mi negocio puede usar AgroCore?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            Sí. AgroCore está pensado para productores agropecuarios, empresas familiares del campo, contratistas rurales, acopiadores y feedlots. Si tu negocio es del agro, AgroCore aplica. En la primera conversación validamos juntos los detalles de tu operatoria.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Y si en algún momento no quiero pagar mantenimiento?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            <b>Lo dejás cuando quieras</b>. El sistema sigue funcionando con normalidad. Si más adelante necesitás soporte o un cambio, lo retomás sin penalidad. No hay contrato de permanencia.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Cómo accedo desde mi celular o desde otro lugar?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            Con la URL pública que recibís al implementar. Funciona desde cualquier dispositivo con internet — celular, tablet, PC. La interfaz es 100% responsive y se adapta sola.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Mis datos están seguros?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            Aplicamos los mismos estándares que usan los bancos: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups diarios con retención de 30 días, auditoría completa, y cumplimos OWASP Top 10. Firmamos NDA y los datos nunca salen de tu cuenta AWS.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Cuánto tarda la implementación?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            Entre 4 y 6 semanas desde la confirmación, dependiendo del volumen de datos a migrar de tus sistemas actuales y la cantidad de usuarios.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿De quién es el código? ¿Qué pasa si me peleo con el desarrollador?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            <b>El código fuente y la cuenta AWS son tuyos</b>. Si en algún momento decidís cambiar de proveedor, te llevás todo intacto. Sin lock-in, sin sorpresas.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 hover:bg-slate-100 rounded-xl p-5 transition cursor-pointer">
+          <summary class="font-semibold text-agro-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Puedo pedir nuevas funcionalidades a futuro?
+            <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
+          </summary>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            Sí. Funcionalidades nuevas (app móvil, integraciones, módulos a medida) se presupuestan aparte. Cambios pequeños o reportes simples están cubiertos por el mantenimiento mensual (3 hs/mes).
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CONTACTO ============== -->
+  <section id="contacto" class="py-16 md:py-20 bg-agro-900 hero-pattern">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Hablemos</h2>
+        <p class="text-agro-100">Te respondemos el mismo día. Sin compromiso, sin presión de venta.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/5493582408884?text=Hola!%20Me%20interesa%20conocer%20m%C3%A1s%20de%20AgroCore."
+           target="_blank" rel="noopener"
+           class="group bg-gold-500 hover:bg-gold-400 rounded-xl p-6 text-agro-900 text-center transition shadow-xl">
+          <div class="text-4xl mb-2">💬</div>
+          <h3 class="font-extrabold text-xl mb-1">WhatsApp</h3>
+          <p class="text-sm font-medium">Chateá con nosotros ahora</p>
+          <p class="text-xs opacity-75 mt-2 group-hover:underline">Tocá para abrir el chat →</p>
+        </a>
+
+        <!-- Form trigger -->
+        <button onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth'})"
+                class="group bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl p-6 text-white text-center transition backdrop-blur">
+          <div class="text-4xl mb-2">✉️</div>
+          <h3 class="font-extrabold text-xl mb-1">Formulario</h3>
+          <p class="text-sm font-medium opacity-90">Dejanos tus datos</p>
+          <p class="text-xs opacity-75 mt-2">Te respondemos por mail en menos de 24 hs</p>
+        </button>
+      </div>
+
+      <!-- Contact form -->
+      <form id="contactForm" onsubmit="return enviarFormulario(event)"
+            class="bg-white rounded-xl p-6 md:p-8 shadow-2xl">
+        <h3 class="text-xl font-bold text-agro-900 mb-1">Contanos qué necesitás</h3>
+        <p class="text-sm text-slate-500 mb-5">Completá los datos y te respondemos por mail.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Nombre *</label>
+            <input name="nombre" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agro-500 focus:border-agro-500" placeholder="Tu nombre"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Email *</label>
+            <input name="email" type="email" required class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agro-500 focus:border-agro-500" placeholder="tu@email.com"/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Teléfono / WhatsApp</label>
+            <input name="telefono" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agro-500 focus:border-agro-500" placeholder="+54 9 ..."/>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Empresa / Establecimiento</label>
+            <input name="empresa" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agro-500 focus:border-agro-500" placeholder="Nombre del campo / empresa"/>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Contanos qué te interesa *</label>
+          <textarea name="mensaje" required rows="4"
+                    class="w-full px-3 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agro-500 focus:border-agro-500"
+                    placeholder="Ej: Tengo 200 has en Río Cuarto y quiero ordenar facturación + stock de insumos."></textarea>
+        </div>
+
+        <!-- Honeypot anti-spam -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+
+        <button type="submit"
+                class="w-full px-6 py-3 bg-agro-700 hover:bg-agro-800 text-white font-bold rounded-lg transition shadow-md disabled:opacity-50">
+          Enviar consulta →
+        </button>
+
+        <p id="formStatus" class="mt-3 text-sm text-center"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="bg-agro-900 border-t border-agro-700 text-agro-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="flex items-center gap-3">
+          <img src="/web/img/logo-white-96.png" srcset="/web/img/logo-white-96.png 1x, /web/img/logo-white-192.png 2x" alt="AgroCore Argentina" class="w-12 h-12 object-contain" loading="lazy"/>
+          <div>
+            <div class="flex items-baseline gap-1.5">
+              <div class="text-xl font-extrabold text-white tracking-tight">AgroCore</div>
+              <div class="text-[10px] font-bold text-gold-400 uppercase tracking-wider leading-none">Argentina</div>
+            </div>
+            <div class="text-xs text-agro-200 mt-0.5">El corazón del negocio agrícola</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <a href="#features" class="hover:text-gold-400">Funcionalidades</a>
+          <a href="#how" class="hover:text-gold-400">Cómo funciona</a>
+          <a href="#pricing" class="hover:text-gold-400">Precio</a>
+          <a href="#faq" class="hover:text-gold-400">FAQ</a>
+          <a href="#contacto" class="hover:text-gold-400">Contacto</a>
+        </div>
+      </div>
+
+      <hr class="my-6 border-agro-700"/>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-agro-300">
+        <p>© <span id="yr"></span> AgroCore Argentina · agrocore.ar — Hecho en Argentina con ❤️ para el campo.</p>
+        <p>Sistema de gestión integral · Multi-empresa · Multi-usuario · Cloud</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('mobile-hidden');
+    });
+    // Close mobile menu when link clicked
+    mobileMenu?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.add('mobile-hidden'));
+    });
+
+    // Contact form: enviarFormulario
+    // El formulario se envía vía Web3Forms (gratis hasta 250 emails/mes).
+    // Para activarlo en producción, hay que registrarse en https://web3forms.com (1 min,
+    // sólo confirmar email) y reemplazar WEB3FORMS_KEY abajo por la access_key real.
+    // Mientras tanto, simula envío y muestra confirmación.
+    const WEB3FORMS_KEY = 'CAMBIAR-POR-ACCESS-KEY-DE-WEB3FORMS';
+
+    async function enviarFormulario(e) {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById('formStatus');
+      const btn = form.querySelector('button[type=submit]');
+
+      // Honeypot anti-spam
+      if (form.botcheck.checked) {
+        status.innerHTML = '<span class="text-red-600">Detectamos actividad sospechosa.</span>';
+        return false;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      status.innerHTML = '';
+
+      const data = {
+        access_key: WEB3FORMS_KEY,
+        subject: 'Nueva consulta desde AgroCore.ar',
+        from_name: 'Web AgroCore Argentina',
+        nombre:    form.nombre.value,
+        email:     form.email.value,
+        telefono:  form.telefono.value,
+        empresa:   form.empresa.value,
+        mensaje:   form.mensaje.value,
+      };
+
+      // Si todavía no configuraron Web3Forms, abrir WhatsApp como fallback.
+      if (WEB3FORMS_KEY === 'CAMBIAR-POR-ACCESS-KEY-DE-WEB3FORMS') {
+        const text = `Hola! Soy ${data.nombre}.\nEmpresa: ${data.empresa || '-'}\nEmail: ${data.email}\nTel: ${data.telefono || '-'}\n\n${data.mensaje}`;
+        window.open('https://wa.me/5493582408884?text=' + encodeURIComponent(text), '_blank');
+        status.innerHTML = '<span class="text-agro-700 font-medium">✓ Te abrimos WhatsApp para que mandes el mensaje. (El formulario por email se activa cuando configuremos Web3Forms).</span>';
+        btn.disabled = false;
+        btn.textContent = 'Enviar consulta →';
+        return false;
+      }
+
+      try {
+        const r = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const j = await r.json();
+        if (j.success) {
+          status.innerHTML = '<span class="text-agro-700 font-medium">✓ ¡Mensaje enviado! Te respondemos en menos de 24 hs.</span>';
+          form.reset();
+        } else {
+          throw new Error(j.message || 'Error desconocido');
+        }
+      } catch (err) {
+        status.innerHTML = `<span class="text-red-600">No pudimos enviar el mensaje. Probá por <a href="https://wa.me/5493582408884" class="underline">WhatsApp</a>.</span>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar consulta →';
+      }
+      return false;
+    }
+
+    // Smooth fade-in on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
