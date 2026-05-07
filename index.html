@@ -204,7 +204,7 @@
       <!-- Trust bar -->
       <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-agro-100/80 font-medium">
         <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Multi-empresa · Multi-usuario</span>
-        <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Cloud sobre AWS</span>
+        <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Cloud o servidor propio</span>
         <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Sin contrato de permanencia</span>
         <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Garantía 30 días</span>
       </div>
@@ -382,7 +382,7 @@
         <div class="text-center">
           <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
           <h3 class="font-bold text-agro-900 mb-1">Configuramos</h3>
-          <p class="text-sm text-slate-600">Levantamos tu cuenta AWS, configuramos backups y cargamos los catálogos iniciales.</p>
+          <p class="text-sm text-slate-600">Levantamos tu infraestructura (Cloud AWS o servidor propio), configuramos backups y cargamos los catálogos iniciales.</p>
         </div>
         <div class="text-center">
           <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
@@ -420,7 +420,7 @@
           <div class="text-sm text-agro-200 mb-6">pago único · al finalizar la implementación</div>
           <ul class="space-y-2 text-sm">
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Sistema completo con todos los módulos</li>
-            <li class="flex gap-2"><span class="text-gold-400">✓</span> Implementación Cloud sobre tu cuenta AWS</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Implementación Cloud (AWS) o Local en servidor propio</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Carga inicial de datos maestros</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Manual de usuario sectorizado por módulo</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> URL pública con HTTPS</li>
@@ -456,33 +456,50 @@
           </div>
         </div>
 
-        <!-- Card 3: AWS -->
+        <!-- Card 3: Infraestructura (Cloud o Local) -->
         <div class="bg-white border-2 border-slate-200 rounded-2xl p-8 relative">
-          <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full border border-blue-200">DIRECTO A AWS</div>
-          <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-2">Infraestructura Cloud</div>
-          <div class="flex items-baseline gap-1 mb-1">
-            <span class="text-3xl font-extrabold text-agro-900">USD</span>
-            <span class="text-5xl font-extrabold text-blue-700">20–40</span>
-            <span class="text-base text-slate-500">/mes</span>
+          <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full border border-blue-200">A ELECCIÓN</div>
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold mb-2">Infraestructura</div>
+          <div class="text-2xl font-extrabold text-agro-900 mb-1">Cloud o Servidor Propio</div>
+          <div class="text-sm text-slate-500 mb-5">elegís dónde corre tu sistema</div>
+
+          <!-- Opción A: Cloud AWS -->
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
+            <div class="flex justify-between items-center mb-2">
+              <div class="text-sm font-bold text-blue-900">☁️ Cloud (AWS)</div>
+              <div class="text-sm font-bold text-blue-700">USD 20–40/mes</div>
+            </div>
+            <ul class="space-y-1 text-xs text-slate-700">
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Cuenta AWS a tu nombre</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Backups automáticos diarios</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Acceso desde cualquier lugar</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Pago directo a Amazon</li>
+            </ul>
           </div>
-          <div class="text-sm text-slate-500 mb-6">pagado directo a Amazon · estimado</div>
-          <ul class="space-y-2 text-sm text-slate-700">
-            <li class="flex gap-2"><span class="text-agro-600">✓</span> Cuenta AWS a tu nombre</li>
-            <li class="flex gap-2"><span class="text-agro-600">✓</span> Backups diarios automáticos</li>
-            <li class="flex gap-2"><span class="text-agro-600">✓</span> Encriptación AES-256</li>
-            <li class="flex gap-2"><span class="text-agro-600">✓</span> Certificado SSL/HTTPS</li>
-            <li class="flex gap-2"><span class="text-agro-600">✓</span> Alertas de presupuesto</li>
-            <li class="flex gap-2"><span class="text-agro-600">✓</span> Costo variable según uso</li>
-          </ul>
-          <div class="mt-6 px-5 py-3 bg-slate-100 text-slate-600 text-center text-sm rounded-lg">
-            Vos tenés el control total
+
+          <!-- Opción B: Servidor Propio -->
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
+            <div class="flex justify-between items-center mb-2">
+              <div class="text-sm font-bold text-amber-900">🖥️ Servidor Propio</div>
+              <div class="text-sm font-bold text-amber-700">sin costo recurrente</div>
+            </div>
+            <ul class="space-y-1 text-xs text-slate-700">
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Instalación on-premise</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Datos siempre en tu oficina</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Funciona sin internet</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Backups a tu cargo</li>
+            </ul>
+          </div>
+
+          <div class="mt-5 px-5 py-3 bg-slate-100 text-slate-600 text-center text-sm rounded-lg">
+            Vos elegís dónde corre el sistema
           </div>
         </div>
 
       </div>
 
       <p class="text-center text-xs text-slate-500 mt-8 max-w-2xl mx-auto">
-        💡 Inversión inicial estimada: <b>USD 999,99</b> (pago único) + <b>USD 20-40/mes</b> de AWS + <b>USD 100/mes</b> de mantenimiento si lo tomás. Si no querés mantenimiento, el sistema sigue funcionando perfectamente.
+        💡 Inversión inicial estimada: <b>USD 999,99</b> (pago único) + infraestructura a elección (<b>USD 20-40/mes</b> en Cloud AWS o <b>sin costo recurrente</b> en servidor propio) + <b>USD 100/mes</b> de mantenimiento si lo tomás. Si no querés mantenimiento, el sistema sigue funcionando perfectamente.
       </p>
     </div>
   </section>
@@ -532,7 +549,7 @@
             <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
           </summary>
           <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-            Aplicamos los mismos estándares que usan los bancos: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups diarios con retención de 30 días, auditoría completa, y cumplimos OWASP Top 10. Firmamos NDA y los datos nunca salen de tu cuenta AWS.
+            Aplicamos los mismos estándares que usan los bancos: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups diarios con retención de 30 días, auditoría completa, y cumplimos OWASP Top 10. Firmamos NDA y los datos nunca salen de tu infraestructura (sea tu cuenta AWS o tu servidor propio).
           </p>
         </details>
 
@@ -552,7 +569,7 @@
             <span class="text-agro-700 group-open:rotate-180 transition">⌄</span>
           </summary>
           <p class="mt-3 text-sm text-slate-600 leading-relaxed">
-            <b>El código fuente y la cuenta AWS son tuyos</b>. Si en algún momento decidís cambiar de proveedor, te llevás todo intacto. Sin lock-in, sin sorpresas.
+            <b>El código fuente y la infraestructura (cuenta AWS o servidor propio) son tuyos</b>. Si en algún momento decidís cambiar de proveedor, te llevás todo intacto. Sin lock-in, sin sorpresas.
           </p>
         </details>
 
@@ -671,7 +688,7 @@
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-agro-300">
         <p>© <span id="yr"></span> AgroCore Argentina · agrocore.ar — Hecho en Argentina con ❤️ para el campo.</p>
-        <p>Sistema de gestión integral · Multi-empresa · Multi-usuario · Cloud</p>
+        <p>Sistema de gestión integral · Multi-empresa · Multi-usuario · Cloud o Local</p>
       </div>
     </div>
   </footer>
