@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presupuesto — AgroCore Argentina</title>
+  <meta name="description" content="Presupuesto detallado del sistema de gestión integral AgroCore. Desarrollo + implementación, mantenimiento opcional, infraestructura Cloud o Servidor Propio.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            agro: {
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0',
+              500: '#22c55e', 600: '#16a34a', 700: '#15803d',
+              800: '#166534', 900: '#14532d',
+            },
+            gold: { 400: '#fbbf24', 500: '#eab308', 600: '#ca8a04' }
+          },
+          fontFamily: { display: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    .price-card-highlight {
+      background: linear-gradient(180deg, #166534 0%, #14532d 100%);
+      box-shadow: 0 20px 50px -15px rgba(21, 128, 61, .5);
+    }
+
+    /* Print styles */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; }
+      .page-break { page-break-before: always; }
+      .price-card-highlight { background: #14532d !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .bg-blue-50, .bg-amber-50, .bg-agro-50, .bg-agro-100 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: inherit; text-decoration: none; }
+      @page { margin: 1.5cm; size: A4; }
+      .doc-section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- ============== HEADER ============== -->
+  <header class="bg-agro-900 text-white shadow-lg no-print sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition">
+        <img src="img/logo-icon-64.png" srcset="img/logo-icon-64.png 1x, img/logo-icon-128.png 2x" alt="AgroCore" class="w-9 h-9 object-contain"/>
+        <div>
+          <div class="font-extrabold text-lg leading-tight">AgroCore <span class="text-gold-400 text-xs">ARGENTINA</span></div>
+          <div class="text-xs text-agro-200">Presupuesto</div>
+        </div>
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden sm:inline-block text-sm text-agro-100 hover:text-white">← Volver al sitio</a>
+        <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg text-sm transition">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+          Imprimir / PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== HOJA DEL DOCUMENTO ============== -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- DOCUMENT HEADER -->
+    <div class="bg-white rounded-2xl shadow-md p-8 md:p-12 mb-6 doc-section">
+      <div class="flex items-start justify-between flex-wrap gap-4 mb-8">
+        <div class="flex items-center gap-4">
+          <img src="img/logo-icon-128.png" srcset="img/logo-icon-128.png 1x, img/logo-icon-256.png 2x" alt="AgroCore" class="w-16 h-16 object-contain"/>
+          <div>
+            <h1 class="text-2xl font-extrabold text-agro-900">AgroCore Argentina</h1>
+            <p class="text-sm text-slate-500">El corazón del negocio agrícola</p>
+            <p class="text-xs text-slate-400 mt-1">agrocore.ar · sergiodbilbao@gmail.com</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-xs uppercase tracking-wider text-slate-500 font-semibold">Presupuesto</div>
+          <div class="text-sm text-slate-700 font-mono mt-1" id="presupuesto-numero">N° AC-2026-XXXX</div>
+          <div class="text-xs text-slate-500 mt-1" id="presupuesto-fecha"></div>
+          <div class="text-xs text-slate-500">Válido por 30 días</div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-200 pt-6">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-2">Sistema integral de gestión rural</h2>
+        <p class="text-slate-600 text-lg">Desarrollo, implementación, capacitación y soporte. Multi-empresa, multi-usuario, en la nube o en servidor propio.</p>
+      </div>
+    </div>
+
+    <!-- RESUMEN EJECUTIVO -->
+    <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10 mb-6 doc-section">
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-4">Resumen ejecutivo</h2>
+      <p class="text-slate-700 leading-relaxed mb-4">AgroCore es un sistema integral de gestión <strong class="text-agro-900">diseñado específicamente para el agro argentino</strong>. Reemplaza planillas dispersas, sistemas antiguos y procesos manuales por una única plataforma que integra producción, stock, comercial, tesorería, hacienda y empleados.</p>
+      <p class="text-slate-700 leading-relaxed">Esta propuesta detalla la <strong>inversión única de desarrollo + implementación</strong>, junto con dos componentes opcionales: <strong>mantenimiento mensual</strong> y <strong>infraestructura</strong> (a elección entre Cloud sobre AWS o servidor propio en tu empresa).</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+        <div class="bg-agro-50 border border-agro-200 rounded-lg p-4 text-center">
+          <div class="text-3xl font-extrabold text-agro-700">USD 999,99</div>
+          <div class="text-xs text-slate-600 mt-1">Pago único · Desarrollo + Implementación</div>
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-center">
+          <div class="text-3xl font-extrabold text-amber-700">USD 100<span class="text-lg">/mes</span></div>
+          <div class="text-xs text-slate-600 mt-1">Mantenimiento opcional</div>
+        </div>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+          <div class="text-3xl font-extrabold text-blue-700">A elección</div>
+          <div class="text-xs text-slate-600 mt-1">Cloud (USD 20–40/mes) o Servidor propio (sin costo)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ¿QUÉ INCLUYE? -->
+    <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10 mb-6 doc-section">
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-4">¿Qué incluye el sistema?</h2>
+      <p class="text-slate-700 mb-6">10 módulos integrados, sin costos por usuario adicional ni por funcionalidad extra dentro del alcance.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">🌱</span> Producción</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Campos y lotes con ambientes</li>
+            <li>• Campañas (gruesa, fina, doble cultivo)</li>
+            <li>• Insumos y labores aplicadas</li>
+            <li>• Margen bruto en tiempo real</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">📦</span> Stock</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Inventario valorizado</li>
+            <li>• Movimientos con trazabilidad</li>
+            <li>• Reportes de margen</li>
+            <li>• Alertas de stock mínimo</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">📊</span> Comercial</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Clientes y proveedores</li>
+            <li>• Facturación electrónica ARCA (CAE)</li>
+            <li>• Compras (con importación masiva)</li>
+            <li>• Listas de precios</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">💰</span> Tesorería</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Cheques (ciclo completo)</li>
+            <li>• Cuentas corrientes con conciliación</li>
+            <li>• Caja efectivo</li>
+            <li>• Flujos de caja proyectados</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">🐂</span> Hacienda</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Categorías y movimientos</li>
+            <li>• Pesadas y curva de crecimiento</li>
+            <li>• Sanidad (vacunaciones, baños)</li>
+            <li>• Indicadores: GDP, carga animal</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">👷</span> Empleados</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Alta con datos previsionales</li>
+            <li>• Contratos (jornal, mensual, temporada)</li>
+            <li>• Recibos de sueldo automáticos</li>
+            <li>• Aguinaldo y vacaciones</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">📈</span> Dashboard + Reportes</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• KPIs en tiempo real</li>
+            <li>• Cotizaciones BCR en vivo</li>
+            <li>• Comparativas mes vs mes</li>
+            <li>• Exportación a Excel</li>
+          </ul>
+        </div>
+        <div class="border border-slate-200 rounded-lg p-4">
+          <h3 class="font-bold text-agro-800 mb-2 flex items-center gap-2"><span class="text-lg">⚙️</span> Configuración avanzada</h3>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li>• Multi-empresa (sin costo extra)</li>
+            <li>• Multi-usuario (sin tope)</li>
+            <li>• RBAC con roles a medida</li>
+            <li>• Auditoría completa de acciones</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETALLE DE LA INVERSIÓN -->
+    <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10 mb-6 doc-section">
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-2">Detalle de la inversión</h2>
+      <p class="text-slate-600 text-sm mb-6">Todos los precios en dólares estadounidenses (USD). Pago en pesos al tipo de cambio Banco Nación + 1% del día de pago, salvo acuerdo.</p>
+
+      <!-- Concepto 1: Desarrollo -->
+      <div class="price-card-highlight rounded-2xl p-8 text-white mb-6 doc-section">
+        <div class="flex items-baseline justify-between flex-wrap gap-2 mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-wider text-agro-200 font-semibold">Concepto 1 · Pago único</div>
+            <h3 class="text-2xl font-extrabold mt-1">Desarrollo + Implementación</h3>
+          </div>
+          <div class="text-right">
+            <div class="flex items-baseline gap-1 justify-end">
+              <span class="text-3xl font-extrabold">USD</span>
+              <span class="text-5xl font-extrabold text-gold-400">999<span class="text-2xl">,99</span></span>
+            </div>
+            <div class="text-xs text-agro-200">al finalizar la implementación</div>
+          </div>
+        </div>
+        <ul class="space-y-2 text-sm">
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Sistema completo con los 10 módulos integrados</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Implementación en infraestructura a elección (Cloud AWS o Local)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Carga inicial de catálogos maestros (productos, cultivos, bancos)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Migración de datos desde Excel o sistema previo (volumen razonable)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Capacitación remota inicial (3 sesiones de 1 hora vía Zoom/Meet)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Manual de usuario online + documentación de arquitectura</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> URL pública con HTTPS y SSL gratuito (Let's Encrypt o ACM)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Configuración de integración con ARCA (certificado y punto de venta)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Garantía de 30 días post-implementación (corrección de bugs sin costo)</li>
+          <li class="flex gap-2"><span class="text-gold-400">✓</span> Acuerdo de Confidencialidad (NDA) firmado</li>
+        </ul>
+      </div>
+
+      <!-- Concepto 2: Mantenimiento -->
+      <div class="bg-white border-2 border-amber-200 rounded-2xl p-8 mb-6 doc-section">
+        <div class="flex items-baseline justify-between flex-wrap gap-2 mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-wider text-amber-700 font-semibold">Concepto 2 · Opcional · Cancelable</div>
+            <h3 class="text-2xl font-extrabold text-agro-900 mt-1">Mantenimiento Mensual</h3>
+          </div>
+          <div class="text-right">
+            <div class="flex items-baseline gap-1 justify-end">
+              <span class="text-2xl font-extrabold text-agro-900">USD</span>
+              <span class="text-4xl font-extrabold text-agro-700">100</span>
+              <span class="text-base text-slate-500">/mes</span>
+            </div>
+            <div class="text-xs text-slate-500">cancelable cuando quieras</div>
+          </div>
+        </div>
+        <ul class="space-y-2 text-sm text-slate-700">
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Soporte técnico (WhatsApp y email, respuesta en 24 hs hábiles)</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Corrección de bugs sin costo</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Actualizaciones legales ARCA (cambios de alícuotas, nuevos comprobantes)</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Resguardo y verificación de backups</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Monitoreo del servidor 24/7 (con alerta proactiva)</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> 3 hs/mes de ajustes menores (campos extra, reportes a medida)</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Actualización de cotizaciones BCR (mantenimiento del feed)</li>
+          <li class="flex gap-2"><span class="text-agro-600">✓</span> Acceso a nuevas features publicadas en versiones menores</li>
+        </ul>
+        <div class="mt-4 p-3 bg-amber-50 rounded-lg text-xs text-amber-900">
+          <strong>"Lo tomás, lo dejás, lo retomás":</strong> el mantenimiento es 100% opcional. Si lo cancelás, el sistema sigue funcionando perfectamente. Si más adelante lo necesitás de nuevo, podés re-suscribirte sin penalidades.
+        </div>
+      </div>
+
+      <!-- Concepto 3: Infraestructura -->
+      <div class="bg-white border-2 border-blue-200 rounded-2xl p-8 mb-6 doc-section">
+        <div class="flex items-baseline justify-between flex-wrap gap-2 mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-wider text-blue-700 font-semibold">Concepto 3 · A elección del cliente</div>
+            <h3 class="text-2xl font-extrabold text-agro-900 mt-1">Infraestructura</h3>
+          </div>
+        </div>
+        <p class="text-slate-600 mb-6">Elegís dónde corre el sistema. En ambos casos los datos y el código son tuyos.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Opción A: Cloud -->
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-5">
+            <div class="flex items-baseline justify-between mb-3">
+              <h4 class="font-bold text-blue-900 flex items-center gap-2"><span class="text-xl">☁️</span> Cloud (AWS)</h4>
+              <div class="text-right">
+                <div class="text-lg font-extrabold text-blue-700">USD 20–40</div>
+                <div class="text-xs text-slate-500">/mes · estimado</div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-sm text-slate-700">
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Cuenta AWS a tu nombre</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Backups automáticos diarios (RDS)</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Acceso desde cualquier lugar con internet</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Encriptación AES-256, certificado SSL</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Alertas de presupuesto AWS</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Pago directo a Amazon (no nos paga a nosotros)</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Costo escala según uso real</li>
+            </ul>
+            <div class="mt-3 text-xs text-blue-900 italic">Recomendado para empresas con conectividad estable y múltiples sucursales o usuarios en distintos lugares.</div>
+          </div>
+
+          <!-- Opción B: Servidor Propio -->
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-5">
+            <div class="flex items-baseline justify-between mb-3">
+              <h4 class="font-bold text-amber-900 flex items-center gap-2"><span class="text-xl">🖥️</span> Servidor Propio</h4>
+              <div class="text-right">
+                <div class="text-lg font-extrabold text-amber-700">Sin costo</div>
+                <div class="text-xs text-slate-500">recurrente</div>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-sm text-slate-700">
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Instalación on-premise en tu servidor</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Datos siempre dentro de tu oficina/galpón</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Funciona sin internet (en LAN)</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Acceso remoto vía VPN (opcional)</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Backups a tu cargo (te ayudamos a configurarlos)</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Hardware mínimo: 8 GB RAM, 250 GB disco, Windows o Linux</li>
+              <li class="flex gap-1.5"><span class="text-amber-600">✓</span> Sin facturas mensuales de cloud</li>
+            </ul>
+            <div class="mt-3 text-xs text-amber-900 italic">Recomendado para empresas con un servidor disponible y preferencia por mantener los datos físicamente en sus instalaciones.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cálculo total estimado -->
+      <div class="bg-agro-900 text-white rounded-2xl p-6 md:p-8 doc-section">
+        <h3 class="text-lg font-bold text-gold-400 mb-3">Inversión total estimada</h3>
+
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between border-b border-agro-700 pb-2">
+            <span>Desarrollo + Implementación (pago único)</span>
+            <span class="font-semibold">USD 999,99</span>
+          </div>
+          <div class="flex justify-between border-b border-agro-700 pb-2">
+            <span>Infraestructura (mensual, opción Cloud)</span>
+            <span class="font-semibold">USD 20–40 / mes</span>
+          </div>
+          <div class="flex justify-between border-b border-agro-700 pb-2 text-agro-200">
+            <span>Infraestructura (mensual, opción Servidor Propio)</span>
+            <span class="font-semibold">Sin costo</span>
+          </div>
+          <div class="flex justify-between pb-2">
+            <span>Mantenimiento (mensual, opcional)</span>
+            <span class="font-semibold">USD 100 / mes</span>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-4 border-t border-agro-700 text-xs text-agro-200">
+          <p class="mb-2"><strong class="text-white">Ejemplo cliente A:</strong> Cloud + mantenimiento → primer pago USD 999,99 (única vez), luego ~USD 130/mes recurrente.</p>
+          <p><strong class="text-white">Ejemplo cliente B:</strong> Servidor propio sin mantenimiento → primer pago USD 999,99 (única vez), luego USD 0/mes recurrente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRONOGRAMA -->
+    <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10 mb-6 doc-section">
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-4">Cronograma de implementación</h2>
+      <p class="text-slate-600 mb-6">Entre 4 y 6 semanas desde la confirmación, dependiendo del volumen de datos a migrar.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div class="text-center p-4 bg-agro-50 border border-agro-200 rounded-lg">
+          <div class="w-10 h-10 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center font-bold mb-2">1</div>
+          <div class="font-bold text-agro-900 text-sm">Charlamos</div>
+          <div class="text-xs text-slate-600 mt-1">Semana 1<br/>Entendemos tu operatoria</div>
+        </div>
+        <div class="text-center p-4 bg-agro-50 border border-agro-200 rounded-lg">
+          <div class="w-10 h-10 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center font-bold mb-2">2</div>
+          <div class="font-bold text-agro-900 text-sm">Configuramos</div>
+          <div class="text-xs text-slate-600 mt-1">Semanas 2-3<br/>Infraestructura + carga inicial</div>
+        </div>
+        <div class="text-center p-4 bg-agro-50 border border-agro-200 rounded-lg">
+          <div class="w-10 h-10 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center font-bold mb-2">3</div>
+          <div class="font-bold text-agro-900 text-sm">Capacitamos</div>
+          <div class="text-xs text-slate-600 mt-1">Semana 4<br/>3 sesiones con tu equipo</div>
+        </div>
+        <div class="text-center p-4 bg-agro-50 border border-agro-200 rounded-lg">
+          <div class="w-10 h-10 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center font-bold mb-2">4</div>
+          <div class="font-bold text-agro-900 text-sm">Salimos en vivo</div>
+          <div class="text-xs text-slate-600 mt-1">Semanas 5-6<br/>Garantía 30 días incluida</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÉRMINOS -->
+    <div class="bg-white rounded-2xl shadow-sm p-8 md:p-10 mb-6 doc-section">
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-4">Términos y condiciones</h2>
+
+      <div class="space-y-4 text-sm text-slate-700">
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Forma de pago — Desarrollo + Implementación</h4>
+          <p>50% al inicio del proyecto (al firmar la propuesta). 50% al finalizar la implementación, una vez validado el sistema en uso real.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Forma de pago — Mantenimiento mensual</h4>
+          <p>Facturación mensual por adelantado, primer día hábil del mes. Pago vía transferencia bancaria.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Tipo de cambio</h4>
+          <p>Pago en pesos argentinos al tipo de cambio Banco Nación vendedor + 1% del día de pago, salvo acuerdo distinto.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Validez de la oferta</h4>
+          <p>Esta propuesta tiene una validez de 30 días corridos desde la fecha de emisión. Pasado ese plazo, los valores y plazos pueden ser revisados.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Confidencialidad</h4>
+          <p>Toda información del cliente está protegida por NDA mutuo. Los datos cargados en el sistema son propiedad exclusiva del cliente y nunca son utilizados con otro fin.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Propiedad del sistema</h4>
+          <p>El cliente recibe el código fuente y la infraestructura (cuenta AWS o servidor propio) a su nombre. Sin lock-in de proveedor: podés cambiar de implementador sin perder datos ni código.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Soporte fuera de horario</h4>
+          <p>El plan de mantenimiento incluye horario L-V 9 a 18 hs. Soporte 24/7 disponible bajo presupuesto adicional.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-agro-800 mb-1">Funcionalidades fuera de alcance</h4>
+          <p>Pedidos de módulos adicionales o integraciones específicas (con sistemas de terceros, IoT, balanzas, etc.) se cotizan por separado tras evaluación.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="bg-gradient-to-br from-agro-700 to-agro-900 text-white rounded-2xl p-8 md:p-12 text-center mb-6 no-print">
+      <h2 class="text-3xl font-extrabold mb-3">¿Hablamos?</h2>
+      <p class="text-agro-100 mb-6 max-w-xl mx-auto">Una primera charla de 30 minutos sin compromiso. Te mostramos el sistema, vemos si encaja con tu operatoria, y respondemos todas tus preguntas.</p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="index.html#contacto" class="inline-flex items-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg shadow-xl transition">
+          Solicitar contacto
+        </a>
+        <a href="https://demo.agrocore.ar" class="inline-flex items-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold rounded-lg transition backdrop-blur">
+          Probar el demo →
+        </a>
+      </div>
+      <p class="text-xs text-agro-200/70 mt-6">sergiodbilbao@gmail.com · Río Cuarto, Córdoba · Argentina</p>
+    </div>
+
+    <!-- VERSION INFO PARA PRINT -->
+    <div class="text-center text-xs text-slate-400 mb-4">
+      Documento generado por agrocore.ar/presupuesto · Actualizado mayo 2026
+    </div>
+
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="bg-agro-900 text-agro-100 py-8 mt-4 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+      <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
+      <div class="mt-3 space-x-4">
+        <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
+        <a href="manual.html" class="text-gold-400 hover:text-gold-300">Manual de Usuario</a>
+        <a href="https://demo.agrocore.ar" class="text-gold-400 hover:text-gold-300">Probar el demo →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Auto-fill fecha y numero
+    const hoy = new Date();
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+    const anio = hoy.getFullYear();
+    document.getElementById('presupuesto-fecha').textContent = `Emitido: ${dia}/${mes}/${anio}`;
+    // Numero correlativo placeholder (se reemplazaria con uno real en uso)
+    const num = String(Math.floor(Math.random() * 9000) + 1000);
+    document.getElementById('presupuesto-numero').textContent = `N° AC-${anio}-${num}`;
+  </script>
+
+</body>
+</html>
