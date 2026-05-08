@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual de Usuario — AgroCore Argentina</title>
-  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre todos los módulos: producción, stock, contactos, facturación, tesorería, hacienda y empleados.">
+  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre los 7 módulos: producción, stock, contactos, finanzas, logística y RRHH, administración.">
   <meta name="robots" content="index,follow">
 
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
@@ -34,7 +34,6 @@
     body { font-family: 'Inter', system-ui, sans-serif; }
     html { scroll-behavior: smooth; }
 
-    /* Tipografía del cuerpo del manual */
     .doc-content h2 { font-size: 1.875rem; font-weight: 800; color: #14532d; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 2px solid #dcfce7; }
     .doc-content h3 { font-size: 1.375rem; font-weight: 700; color: #15803d; margin-top: 2rem; margin-bottom: .75rem; }
     .doc-content h4 { font-size: 1.125rem; font-weight: 700; color: #166534; margin-top: 1.5rem; margin-bottom: .5rem; }
@@ -44,11 +43,8 @@
     .doc-content ol li { list-style: decimal; margin-bottom: .35rem; }
     .doc-content strong { color: #14532d; font-weight: 700; }
     .doc-content blockquote {
-      border-left: 4px solid #16a34a;
-      background: #f0fdf4;
-      padding: .75rem 1rem;
-      margin: 1rem 0;
-      color: #15803d;
+      border-left: 4px solid #16a34a; background: #f0fdf4;
+      padding: .75rem 1rem; margin: 1rem 0; color: #15803d;
       border-radius: 0 .5rem .5rem 0;
     }
     .doc-content code {
@@ -67,11 +63,9 @@
     }
     .doc-content table tr:nth-child(even) td { background: #f8fafc; }
 
-    /* TOC: scroll suave + estado activo */
     .toc-link.active { color: #16a34a; font-weight: 600; border-left-color: #16a34a; }
     .toc-link:hover { color: #16a34a; }
 
-    /* Print */
     @media print {
       .no-print { display: none !important; }
       .doc-content { max-width: none; padding: 0; }
@@ -85,7 +79,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-  <!-- ============== HEADER ============== -->
+  <!-- HEADER -->
   <header class="bg-agro-900 text-white shadow-lg no-print sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 hover:opacity-90 transition">
@@ -105,17 +99,16 @@
     </div>
   </header>
 
-  <!-- ============== HERO ============== -->
+  <!-- HERO -->
   <section class="bg-gradient-to-br from-agro-900 to-agro-700 text-white py-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
-      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Todos los módulos, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.0 · Mayo 2026 · Sistema AgroCore v0.2</p>
+      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 24 vistas, flujos típicos y respuestas a las preguntas más frecuentes.</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.1 · Mayo 2026 · Sistema AgroCore v0.2</p>
     </div>
   </section>
 
-  <!-- ============== LAYOUT: TOC + CONTENT ============== -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <div class="lg:grid lg:grid-cols-12 lg:gap-8">
 
@@ -127,7 +120,7 @@
             <a href="#bienvenida" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">1. Bienvenida</a>
             <a href="#acceso" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">2. Acceder al sistema</a>
             <a href="#login" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">3. Primer login</a>
-            <a href="#interfaz" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">4. Recorrido por la interfaz</a>
+            <a href="#interfaz" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">4. Interfaz</a>
             <a href="#multiempresa" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">5. Multi-empresa</a>
             <a href="#modulos" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600 font-semibold">6. Módulos del sistema</a>
             <a href="#mod-inicio" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.1 Inicio</a>
@@ -135,11 +128,9 @@
             <a href="#mod-produccion" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.3 Producción</a>
             <a href="#mod-stock" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.4 Stock</a>
             <a href="#mod-contactos" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.5 Contactos</a>
-            <a href="#mod-facturacion" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.6 Facturación</a>
-            <a href="#mod-tesoreria" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.7 Tesorería</a>
-            <a href="#mod-hacienda" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.8 Hacienda</a>
-            <a href="#mod-empleados" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.9 Empleados</a>
-            <a href="#mod-config" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.10 Configuración</a>
+            <a href="#mod-finanzas" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.6 Finanzas</a>
+            <a href="#mod-logistica" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.7 Logística y RRHH</a>
+            <a href="#mod-admin" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.8 Administración</a>
             <a href="#flujos" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">7. Flujos típicos</a>
             <a href="#faq" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">8. Preguntas frecuentes</a>
             <a href="#soporte" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">9. Soporte</a>
@@ -152,18 +143,17 @@
 
         <section id="bienvenida">
           <h2>1. Bienvenida</h2>
-          <p>AgroCore es un sistema integral pensado <strong>por y para el agro argentino</strong>. No es un ERP genérico adaptado a la fuerza: cada módulo se diseñó pensando en las particularidades del campo argentino — campañas de gruesa y fina, hacienda con destete y recría, facturación con ARCA, arrendamientos en quintales, cotizaciones de la BCR Rosario en vivo.</p>
+          <p>AgroCore es un sistema integral pensado <strong>por y para el agro argentino</strong>. No es un ERP genérico adaptado a la fuerza: cada módulo se diseñó pensando en las particularidades del campo argentino — campañas de gruesa y fina, arrendamientos en quintales, facturación con ARCA, libro IVA, cotizaciones de la BCR Rosario en vivo.</p>
           <p>El sistema te permite gestionar:</p>
           <ul>
             <li><strong>Producción:</strong> campos, lotes, campañas, insumos y labores aplicadas.</li>
-            <li><strong>Stock:</strong> granos, hacienda, productos en general, con trazabilidad.</li>
-            <li><strong>Comercial:</strong> clientes, proveedores, facturación con ARCA, compras.</li>
-            <li><strong>Tesorería:</strong> cheques, cuentas corrientes, efectivo, flujos de caja.</li>
-            <li><strong>Hacienda:</strong> control de cabezas, movimientos, categorías.</li>
-            <li><strong>Empleados:</strong> alta, contratos, recibos.</li>
-            <li><strong>Reportes:</strong> márgenes brutos, dashboards en tiempo real.</li>
+            <li><strong>Stock:</strong> granos y productos en general, con trazabilidad y reporte de margen.</li>
+            <li><strong>Contactos:</strong> clientes y proveedores, con cuentas corrientes integradas.</li>
+            <li><strong>Finanzas:</strong> flujo de caja, facturación electrónica ARCA, compras, libro IVA, cheques, cuentas corrientes, arrendamientos y control de efectivo.</li>
+            <li><strong>Logística y RRHH:</strong> viajes (cartas de porte) y empleados (contratos, recibos).</li>
+            <li><strong>Administración:</strong> catálogos, usuarios, roles y permisos, empresas.</li>
           </ul>
-          <p>Todo en una sola plataforma, con datos compartidos entre módulos. Si cargás una factura de venta, automáticamente se actualiza el stock, el flujo de caja proyectado, la cuenta corriente del cliente y los KPIs del dashboard.</p>
+          <p>Todo en una sola plataforma, con datos compartidos entre módulos. Si cargás una factura de venta, automáticamente se actualiza el stock, el flujo de caja proyectado, la cuenta corriente del cliente, el libro IVA y los KPIs del dashboard.</p>
         </section>
 
         <section id="acceso">
@@ -172,12 +162,11 @@
           <h3>Para el demo</h3>
           <p>Durante el período de prueba, accedé desde cualquier navegador (Chrome, Edge, Firefox o Safari) en computadora, tablet o celular:</p>
           <p><code>https://demo.agrocore.ar</code></p>
-          <p>El sistema te lleva automáticamente a la pantalla de login.</p>
 
           <h3>Para producción (cuenta propia)</h3>
           <p>Una vez contratado, AgroCore se instala sobre tu propia infraestructura, a elección:</p>
           <ul>
-            <li><strong>Cloud (AWS):</strong> sobre tu cuenta de Amazon Web Services. URL personalizada (por ejemplo <code>app.tuempresa.com.ar</code>). Acceso desde cualquier lugar con internet.</li>
+            <li><strong>Cloud (AWS):</strong> sobre tu cuenta de Amazon Web Services. URL personalizada (por ejemplo <code>app.tuempresa.com.ar</code>).</li>
             <li><strong>Servidor propio (on-premise):</strong> instalado en un servidor físico de tu empresa. Acceso desde la red interna o vía VPN.</li>
           </ul>
           <p>En ambos casos, el sistema y los datos son <strong>de tu propiedad</strong>.</p>
@@ -185,9 +174,9 @@
           <h3>Compatibilidad</h3>
           <ul>
             <li><strong>Navegadores:</strong> Chrome, Edge, Firefox, Safari (versiones de los últimos 2 años).</li>
-            <li><strong>Dispositivos:</strong> computadora de escritorio (recomendado), notebook, tablet, celular.</li>
-            <li><strong>Sin instalación:</strong> todo corre en el navegador. No hay que instalar programas.</li>
-            <li><strong>Modo offline:</strong> funciona como PWA (Progressive Web App), permitiendo seguir consultando información incluso sin internet temporalmente.</li>
+            <li><strong>Dispositivos:</strong> computadora, notebook, tablet, celular.</li>
+            <li><strong>Sin instalación:</strong> todo corre en el navegador.</li>
+            <li><strong>Modo offline:</strong> funciona como PWA (Progressive Web App).</li>
           </ul>
         </section>
 
@@ -217,25 +206,40 @@
           <h3>Conceptos fundamentales</h3>
 
           <h4>Empresa</h4>
-          <p>Cada empresa es una unidad independiente de datos: tiene sus campos, su stock, sus clientes, sus facturas. No se mezcla con otras. Una persona puede tener acceso a varias empresas (por ejemplo, un contador que lleva tres explotaciones).</p>
+          <p>Cada empresa es una unidad independiente de datos: tiene sus campos, su stock, sus clientes, sus facturas. No se mezcla con otras.</p>
 
           <h4>Usuario</h4>
           <p>La persona física que usa el sistema. Tiene un alias, email, foto opcional y contraseña encriptada.</p>
 
           <h4>Rol y permisos</h4>
-          <p>Cada usuario, en cada empresa donde tiene acceso, tiene un rol. Los roles definen qué puede hacer y qué no. Por ejemplo, "Operaciones" puede cargar movimientos de stock pero no emitir facturas; "Contable" puede facturar y ver reportes financieros pero no modificar campos. Los roles vienen pre-cargados con permisos típicos del agro y se pueden personalizar por empresa.</p>
+          <p>Cada usuario, en cada empresa, tiene un rol. Los permisos están agrupados por módulo (<code>produccion:read</code>, <code>stock:read</code>, <code>finanzas:read</code>, etc.) y los roles vienen pre-cargados con permisos típicos del agro, personalizables por empresa.</p>
         </section>
 
         <section id="interfaz">
           <h2>4. Recorrido por la interfaz</h2>
 
           <h3>El layout general</h3>
-          <p>Una vez adentro, vas a ver siempre tres zonas:</p>
           <ul>
             <li><strong>Barra lateral (izquierda):</strong> logo, selector de empresa activa, navegación entre módulos.</li>
             <li><strong>Barra superior:</strong> título de la pantalla, buscador global, notificaciones, ticker de cotizaciones BCR.</li>
             <li><strong>Área principal (centro):</strong> contenido del módulo actual.</li>
           </ul>
+
+          <h3>Las 7 secciones de la barra lateral</h3>
+          <table>
+            <thead>
+              <tr><th>Sección</th><th>Módulos que contiene</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>INICIO</strong></td><td>Inicio · Dashboard</td></tr>
+              <tr><td><strong>PRODUCCIÓN</strong></td><td>Campos y lotes · Campañas · Insumos y labores</td></tr>
+              <tr><td><strong>STOCK</strong></td><td>Stock · Movimientos · Reporte de margen</td></tr>
+              <tr><td><strong>CONTACTOS</strong></td><td>Clientes · Proveedores</td></tr>
+              <tr><td><strong>FINANZAS</strong></td><td>Flujo de caja · Facturación · Compras · Libro IVA · Cheques · Cuentas corrientes · Arrendamientos · Control de efectivo</td></tr>
+              <tr><td><strong>LOGÍSTICA Y RRHH</strong></td><td>Viajes · Empleados</td></tr>
+              <tr><td><strong>ADMINISTRACIÓN</strong></td><td>Catálogos · Usuarios · Roles y permisos · Empresas</td></tr>
+            </tbody>
+          </table>
 
           <h3>El ticker de cotizaciones BCR</h3>
           <table>
@@ -244,21 +248,20 @@
             </thead>
             <tbody>
               <tr><td><strong>Blue</strong></td><td>Cotización del dólar paralelo (ARS por USD).</td></tr>
-              <tr><td><strong>CCL</strong></td><td>Contado con liquidación (cotización financiera).</td></tr>
+              <tr><td><strong>CCL</strong></td><td>Contado con liquidación.</td></tr>
               <tr><td><strong>Cripto</strong></td><td>Promedio del USDT en exchanges argentinos.</td></tr>
-              <tr><td><strong>Tarjeta</strong></td><td>Dólar oficial + impuestos (consumo en moneda extranjera).</td></tr>
+              <tr><td><strong>Tarjeta</strong></td><td>Dólar oficial + impuestos.</td></tr>
               <tr><td><strong>Soja</strong></td><td>Precio Cámara Arbitral de Cereales BCR (USD/tonelada).</td></tr>
               <tr><td><strong>Maíz</strong></td><td>Ídem soja.</td></tr>
               <tr><td><strong>Trigo</strong></td><td>Ídem soja.</td></tr>
             </tbody>
           </table>
-          <p>La hora a la derecha muestra cuándo se actualizó por última vez. El sistema refresca automáticamente.</p>
 
           <h3>Notificaciones</h3>
-          <p>El icono de campanita arriba a la derecha muestra alertas: vencimientos de cheques, stock bajo, facturas vencidas, etc. El número rojo indica cuántas notificaciones nuevas hay.</p>
+          <p>El icono de campanita arriba a la derecha muestra alertas: vencimientos de cheques, stock bajo, facturas vencidas, vencimientos de arrendamientos.</p>
 
           <h3>Buscador global</h3>
-          <p>La barra de búsqueda al centro-arriba permite encontrar rápidamente clientes, productos o empleados sin entrar al módulo correspondiente.</p>
+          <p>La barra de búsqueda al centro-arriba permite encontrar rápidamente clientes, productos o empleados.</p>
         </section>
 
         <section id="multiempresa">
@@ -272,13 +275,15 @@
             <li>Clic en la empresa destino.</li>
             <li>La página se recarga mostrando los datos de la nueva empresa.</li>
           </ol>
-          <p>Al cambiar, <strong>todo el sistema cambia de contexto</strong>. Sin riesgo de mezcla de datos.</p>
+
+          <h3>Color institucional por empresa</h3>
+          <p>Cada empresa puede tener configurado un color hex propio. Al cambiar de empresa, el borde activo del menú lateral y otros acentos visuales toman ese color. Útil cuando un contador lleva varias explotaciones — el color te recuerda en cuál estás trabajando.</p>
 
           <h3>Permisos por empresa</h3>
           <p>Una persona puede ser "Admin" en la empresa A y "Solo lectura" en la empresa B. El sistema aplica el rol correspondiente al cambiar.</p>
 
           <h3>Para Super Admin</h3>
-          <p>Los usuarios con rol <code>super</code> pueden ver todas las empresas, crear/modificar/eliminar empresas y asignar usuarios. Generalmente reservado para el dueño del sistema o el contador externo.</p>
+          <p>Los usuarios con rol <code>super</code> pueden ver todas las empresas, crearlas/modificarlas/eliminarlas y asignar usuarios. Generalmente reservado para el dueño del sistema o el contador externo.</p>
         </section>
 
         <section id="modulos">
@@ -287,35 +292,36 @@
 
         <section id="mod-inicio">
           <h3>6.1 Inicio</h3>
-          <p>Punto de aterrizaje al entrar. Te muestra:</p>
+          <p>Punto de aterrizaje al entrar. Muestra:</p>
           <ul>
             <li><strong>Saludo personalizado</strong> con tu nombre, empresa activa y fecha.</li>
-            <li><strong>KPIs rápidos</strong>: Campañas activas, Stock granos, Cabezas.</li>
-            <li><strong>Accesos rápidos</strong>: tarjetas a los módulos más usados.</li>
-            <li><strong>Botón "Ir al Dashboard"</strong> para profundizar.</li>
+            <li><strong>KPIs rápidos</strong> (lado derecho): Campañas activas, Stock granos (kg), Cabezas.</li>
+            <li><strong>Accesos rápidos</strong>: tarjetas con link directo a Campañas, Stock, Movimientos, Margen, Facturación, Compras, Clientes, Proveedores, Dashboard.</li>
+            <li><strong>Botón "Ir al Dashboard"</strong> para profundizar en métricas.</li>
           </ul>
         </section>
 
         <section id="mod-dashboard">
           <h3>6.2 Dashboard</h3>
-          <p>Vista de control para dueño / gerente:</p>
+          <p>Vista de control para dueño / gerente. Tabs internas:</p>
           <ul>
-            <li><strong>Indicadores económicos:</strong> ventas del mes, compras del mes, resultado bruto, comparativa contra mes anterior.</li>
-            <li><strong>Indicadores productivos:</strong> hectáreas sembradas por cultivo, stock proyectado, margen estimado por campaña.</li>
-            <li><strong>Indicadores financieros:</strong> flujo proyectado a 30/60/90 días, cheques, saldos.</li>
-            <li><strong>Gráficos:</strong> evolución de ventas, distribución de stock, top clientes y proveedores.</li>
+            <li><strong>Resumen:</strong> indicadores económicos generales del mes vs mes anterior.</li>
+            <li><strong>Finanzas:</strong> ventas, compras, margen, cuentas corrientes, posición de cheques.</li>
+            <li><strong>Stock:</strong> valorización, productos con menor rotación, alertas de mínimo.</li>
+            <li><strong>Producción:</strong> campañas activas, hectáreas por cultivo, rinde estimado vs real.</li>
+            <li><strong>Evolución patrimonial:</strong> cómo evolucionó el stock + cuentas a lo largo del tiempo.</li>
           </ul>
-          <p>Cada gráfico se filtra por rango de fechas, campo, cultivo o moneda.</p>
+          <p>Cada tab tiene sus propios gráficos (Chart.js) y KPIs. Filtrable por rango de fechas y moneda (pesos / dólares).</p>
         </section>
 
         <section id="mod-produccion">
           <h3>6.3 Producción</h3>
-          <p>Agrupa la gestión de campos, lotes, campañas e insumos.</p>
+          <p>Sección que agrupa la gestión de campos, lotes, campañas e insumos.</p>
 
           <h4>Campos y lotes</h4>
           <p><strong>Qué hace:</strong> permite cargar las parcelas con sus datos catastrales, superficie y subdivisiones (lotes).</p>
           <p><strong>Datos típicos:</strong> nombre, localidad, superficie, tenencia (propio / arrendado / aparcería), lotes con su superficie y ambiente.</p>
-          <p><strong>Lotes y ambientes:</strong> cada lote puede tener un ambiente asociado (alto/medio/bajo, suelo arcilloso/franco/arenoso) usado para reportes de margen.</p>
+          <p><strong>Lotes y ambientes:</strong> cada lote puede tener un ambiente asociado (alto/medio/bajo, suelo arcilloso/franco/arenoso) usado después en reportes de margen por ambiente. Si el campo es arrendado, se vincula al contrato en Finanzas → Arrendamientos.</p>
 
           <h4>Campañas</h4>
           <p><strong>Qué hace:</strong> el ciclo productivo de un cultivo en uno o varios lotes durante una temporada. Núcleo de la planificación productiva.</p>
@@ -342,52 +348,65 @@
           <p>Cada vez que entra o sale algo del stock, se registra un movimiento. Trazabilidad completa.</p>
           <p><strong>Tipos:</strong> entrada por compra, entrada por cosecha, salida por venta, salida por consumo interno, ajuste de inventario, transferencia entre depósitos.</p>
           <p><strong>Cada movimiento registra:</strong> fecha, tipo, producto y cantidad, origen/destino, comprobante asociado, usuario.</p>
+          <p><strong>Integración:</strong> los movimientos generados por compras o ventas tienen un botón que abre la factura origen. En facturas de venta, el sistema avisa antes de vender más de lo que hay en stock.</p>
 
           <h4>Reporte de margen</h4>
-          <p>Análisis económico que cruza compras vs ventas (granos, hacienda u otros productos) calculando el margen bruto por producto, campaña, cliente/proveedor o período.</p>
+          <p>Análisis económico que cruza compras vs ventas calculando costo promedio, precio promedio, % de margen y ganancia. Filtros por producto, campaña, cliente / proveedor o período. Exportable a Excel.</p>
         </section>
 
         <section id="mod-contactos">
           <h3>6.5 Contactos</h3>
 
           <h4>Clientes</h4>
-          <p>Carga y gestión de clientes a quienes les vendés. Base para emitir facturas, llevar cuentas corrientes y reportes comerciales.</p>
+          <p>Carga y gestión de clientes a quienes les vendés.</p>
           <p><strong>Datos:</strong> razón social, CUIT, condición IVA, domicilio, contacto, condiciones comerciales, observaciones internas.</p>
           <p><strong>Información derivada:</strong> saldo cuenta corriente, última factura, total facturado en el año, cheques pendientes.</p>
 
           <h4>Proveedores</h4>
-          <p>Espejo de Clientes pero para vendedores de insumos, contratistas, transportistas, etc. Mismos campos, e información derivada de saldo a pagar y cheques entregados pendientes.</p>
+          <p>Espejo de Clientes pero para vendedores de insumos, contratistas, transportistas, etc. Mismos campos. Información derivada de saldo a pagar y cheques entregados pendientes.</p>
         </section>
 
-        <section id="mod-facturacion">
-          <h3>6.6 Facturación</h3>
+        <section id="mod-finanzas">
+          <h3>6.6 Finanzas</h3>
+          <p>La sección más amplia del sistema. Agrupa toda la gestión económica y financiera.</p>
 
-          <h4>Facturación (emisión)</h4>
-          <p>Emite facturas electrónicas (A, B, C, M) directamente vía web service de ARCA, con CAE en el momento.</p>
+          <h4>Flujo de caja</h4>
+          <p><strong>Qué hace:</strong> proyección financiera consolidada a partir de cobros esperados, pagos comprometidos, vencimientos de cheques, pagos de arrendamientos y otros compromisos cargados en el sistema.</p>
+          <p><strong>Salida:</strong> gráfico y tabla diaria/semanal/mensual con saldo proyectado a 30/60/90 días. Anticipa baches financieros antes de que ocurran.</p>
+
+          <h4>Facturación (ventas)</h4>
+          <p><strong>Qué hace:</strong> emite facturas electrónicas (A, B, C, M) directamente vía web service de ARCA, con CAE en el momento.</p>
           <p><strong>Cómo emitir:</strong></p>
           <ol>
-            <li><strong>Facturación → Nueva factura.</strong></li>
+            <li><strong>Finanzas → Facturación → Nueva factura.</strong></li>
             <li>Seleccionar cliente.</li>
             <li>El sistema sugiere el tipo de comprobante según condición IVA tuya/del cliente.</li>
-            <li>Cargar ítems (producto/servicio, cantidad, precio, IVA). Si es producto del stock, se descuenta automáticamente.</li>
+            <li>Cargar ítems (producto, cantidad, precio, IVA). Si es producto del stock, se descuenta automáticamente.</li>
+            <li>El dropdown muestra el stock disponible y avisa si querés vender más de lo que hay.</li>
             <li>Verificar total, agregar observaciones.</li>
             <li><strong>Emitir</strong> → conexión a ARCA, CAE, PDF generado.</li>
-            <li>Listo para enviar por email al cliente con un clic.</li>
+            <li>Listo para enviar por email al cliente.</li>
           </ol>
           <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
           <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
 
-          <h4>Compras (Facturas de proveedores)</h4>
-          <p>Registra las facturas que <strong>te emiten</strong> los proveedores, para control de gastos, IVA crédito fiscal, cuentas corrientes y vencimientos.</p>
+          <h4>Compras</h4>
+          <p><strong>Qué hace:</strong> registra las facturas que <strong>te emiten</strong> los proveedores, para control de gastos, IVA crédito fiscal, cuentas corrientes y vencimientos.</p>
           <p><strong>Datos:</strong> proveedor, tipo y número, fechas, ítems con cantidades/precios/IVA, forma de pago, adjunto del comprobante físico (opcional).</p>
           <p><strong>Importación masiva:</strong> desde Excel o desde el portal "Mis Comprobantes" de ARCA.</p>
-        </section>
 
-        <section id="mod-tesoreria">
-          <h3>6.7 Tesorería</h3>
+          <h4>Libro IVA</h4>
+          <p><strong>Qué hace:</strong> consolida todas las operaciones gravadas del período (ventas + compras) discriminadas por alícuota, listo para presentación de DDJJ de IVA.</p>
+          <p><strong>Vistas:</strong></p>
+          <ul>
+            <li><strong>Libro IVA Ventas:</strong> facturas emitidas del mes, con base imponible y débito fiscal por alícuota (10.5%, 21%, 27%, exento).</li>
+            <li><strong>Libro IVA Compras:</strong> facturas recibidas del mes, con base y crédito fiscal por alícuota.</li>
+            <li><strong>Resumen mensual:</strong> débito fiscal, crédito fiscal y saldo a pagar / favor.</li>
+          </ul>
+          <p><strong>Exportación:</strong> archivos compatibles con AFIP/ARCA (CITI o Mis Comprobantes), Excel, PDF.</p>
 
           <h4>Cheques</h4>
-          <p>Cheques recibidos y emitidos, con estados: <strong>En cartera → Endosado / Depositado → Acreditado / Rechazado</strong>.</p>
+          <p>Registra cheques recibidos y emitidos, con estados: <strong>En cartera → Endosado / Depositado → Acreditado / Rechazado</strong>.</p>
           <p><strong>Datos:</strong> número, banco, sucursal, importe, fechas, cliente/proveedor, cuenta corriente afectada, CUIT del librador.</p>
           <p><strong>Alertas:</strong> avisa cuando un cheque está próximo a vencer (3 días antes por defecto).</p>
 
@@ -395,54 +414,95 @@
           <p>Para cada cliente y proveedor, débitos y créditos con saldo actualizado.</p>
           <p><strong>Conciliación:</strong> permite "atar" un cobro a una factura específica, dejando claro qué está pago.</p>
 
-          <h4>Efectivo</h4>
-          <p>Registro de movimientos de caja chica: ingresos/egresos en efectivo con saldo actualizado.</p>
-
-          <h4>Flujos de caja</h4>
-          <p>Proyección financiera consolidada: cobros esperados, pagos comprometidos, saldo proyectado a 30/60/90 días. Anticipa baches financieros.</p>
-        </section>
-
-        <section id="mod-hacienda">
-          <h3>6.8 Hacienda</h3>
-          <p>Control de animales del establecimiento: categorías, movimientos, peso, sanidad.</p>
-          <p><strong>Categorías:</strong> vaca, vaquillona, ternera, toro, novillo, ternero, cría al pie, borrego, oveja, capón, otros (cabra, cerdo, equino).</p>
-          <p><strong>Operaciones:</strong></p>
+          <h4>Arrendamientos</h4>
+          <p><strong>Qué hace:</strong> registra los contratos de arrendamiento de campos cuando explotás campos que no son propios.</p>
+          <p><strong>Datos por contrato:</strong></p>
           <ul>
-            <li>Alta por compra o nacimiento</li>
-            <li>Recategorización automática por edad</li>
-            <li>Movimiento entre lotes / potreros</li>
-            <li>Pesadas con histórico para curva de crecimiento</li>
-            <li>Sanidad: vacunaciones, baños, tratamientos</li>
-            <li>Baja por venta, faena, muerte</li>
+            <li>Arrendador (CUIT, datos de contacto)</li>
+            <li>Campo arrendado (vinculado al módulo Producción → Campos)</li>
+            <li>Plazo del contrato (fecha inicio, fecha fin)</li>
+            <li>Modalidad de pago: pesos, dólares, quintales fijos de soja/maíz, % del rinde</li>
+            <li>Cantidad acordada</li>
+            <li>Vencimientos (uno o varios pagos a lo largo del contrato)</li>
           </ul>
-          <p><strong>Indicadores:</strong> cabezas totales y por categoría, kilos en pie, ganancia diaria de peso (GDP), carga animal (cab/ha), mortandad.</p>
+          <p><strong>Integración:</strong> los vencimientos aparecen automáticamente en el flujo de caja como pagos comprometidos. Si el contrato es en quintales, el sistema valoriza la cuota al precio BCR del día y calcula el equivalente en pesos / dólares.</p>
+          <p><strong>Alertas:</strong> vencimientos próximos, contratos por terminar, renovaciones a evaluar.</p>
+
+          <h4>Control de efectivo</h4>
+          <p>Registro de movimientos de caja chica: ingresos/egresos en efectivo con saldo actualizado.</p>
+          <p><strong>Datos por movimiento:</strong> fecha, tipo, concepto (sueldos, viáticos, gastos varios, retiro de socio, etc.), importe, comprobante asociado.</p>
         </section>
 
-        <section id="mod-empleados">
-          <h3>6.9 Empleados</h3>
-          <p>Alta y gestión del personal: datos, contratos, sueldos, recibos.</p>
-          <p><strong>Datos:</strong> nombre, CUIL, DNI, fechas, puesto/categoría, sueldo básico, modalidad (efectivo/registrado, jornal/mensual), contacto.</p>
+        <section id="mod-logistica">
+          <h3>6.7 Logística y RRHH</h3>
+          <p>Sección que agrupa los movimientos de transporte y la gestión del personal.</p>
+
+          <h4>Viajes</h4>
+          <p><strong>Qué hace:</strong> registra los viajes de transporte cuando se trasladan granos a destino (acopio, exportadora, planta de proceso) o entre campos propios.</p>
+          <p><strong>Datos por viaje:</strong></p>
+          <ul>
+            <li>Fecha de salida y de llegada</li>
+            <li>Origen (campo / depósito) y destino</li>
+            <li>Transportista (proveedor del servicio)</li>
+            <li>Chofer y patente del camión</li>
+            <li>Tipo de carga y tonelaje cargado / pesado en destino</li>
+            <li>Cartas de porte (CTG y/o número físico)</li>
+            <li>Costo del flete</li>
+            <li>Asociación con factura de venta o ingreso a depósito</li>
+          </ul>
+          <p><strong>Integración:</strong> los kilos pesados en destino pueden generar el movimiento de stock asociado.</p>
+
+          <h4>Empleados</h4>
+          <p><strong>Qué hace:</strong> alta y gestión del personal de la empresa: datos personales, contratos, sueldos, recibos.</p>
+          <p><strong>Datos:</strong> nombre, CUIL, DNI, fechas, puesto/categoría, sueldo básico, modalidad (efectivo/registrado, jornal, mensual), contacto.</p>
           <p><strong>Contratos:</strong> uno o varios a lo largo del tiempo (ej. por temporada). Histórico mantenido.</p>
           <p><strong>Recibos de sueldo:</strong> generación mensual con cálculo automático de descuentos, aguinaldo, vacaciones, horas extras. Exportables a PDF.</p>
         </section>
 
-        <section id="mod-config">
-          <h3>6.10 Configuración</h3>
-
-          <h4>Empresa</h4>
-          <p>Datos fiscales, logo, color institucional, configuración de ARCA (certificado digital, modo producción/homologación, punto de venta).</p>
-
-          <h4>Usuarios y permisos</h4>
-          <p>Alta de usuarios, asignación a empresas con rol, activar/desactivar, reseteo de contraseñas.</p>
-
-          <h4>Roles personalizados</h4>
-          <p>Roles pre-cargados (Admin, Contable, Operaciones, Lectura) o roles a medida marcando exactamente qué permiso tiene cada uno.</p>
+        <section id="mod-admin">
+          <h3>6.8 Administración</h3>
+          <p>Sección al pie de la barra lateral, agrupa los parámetros del sistema.</p>
 
           <h4>Catálogos</h4>
-          <p>Productos, cultivos, razas y categorías de hacienda, conceptos de tesorería, bancos.</p>
+          <p>Master data que alimenta a todos los módulos.</p>
+          <ul>
+            <li><strong>Productos:</strong> insumos, granos, combustible, repuestos. Con código, categoría, unidad, alícuota IVA, stock mínimo.</li>
+            <li><strong>Cultivos:</strong> soja, maíz, trigo, etc., con tipo (gruesa/fina) y datos agronómicos.</li>
+            <li><strong>Bancos:</strong> lista para usar al cargar cheques y cuentas corrientes.</li>
+            <li><strong>Conceptos de tesorería:</strong> tipologías de movimientos de efectivo.</li>
+            <li><strong>Provincias y localidades:</strong> cargados de inicio.</li>
+          </ul>
+          <p>Hay sidebar con filtros jerárquicos para encontrar rápido el ítem que buscás.</p>
 
-          <h4>Sincronización con ARCA</h4>
-          <p>Web service: certificado, modo, punto de venta, alícuotas habilitadas.</p>
+          <h4>Usuarios</h4>
+          <p>Alta de personas que pueden iniciar sesión.</p>
+          <p><strong>Datos:</strong> email, alias, nombre/apellido, foto opcional, estado activo/inactivo, rol Super Admin opcional.</p>
+          <p><strong>Asignación a empresas:</strong> desde la ficha del usuario, asociás cada empresa con su rol respectivo.</p>
+          <p><strong>Reseteo de contraseña:</strong> un Admin puede resetear la contraseña de los usuarios de su empresa (genera contraseña temporal).</p>
+
+          <h4>Roles y permisos</h4>
+          <p>Roles vienen pre-cargados (Admin, Contable, Operaciones, Lectura), y podés crear roles a medida.</p>
+          <p><strong>Permisos disponibles</strong> (granularidad por módulo + acción):</p>
+          <ul>
+            <li><code>produccion:read</code> / <code>produccion:write</code></li>
+            <li><code>stock:read</code> / <code>stock:write</code></li>
+            <li><code>contactos:read</code> / <code>contactos:write</code></li>
+            <li><code>finanzas:read</code> / <code>finanzas:write</code></li>
+            <li><code>dashboard:read</code></li>
+            <li>Wildcards: <code>produccion:*</code>, <code>*:read</code>, <code>*:*</code></li>
+          </ul>
+          <p><strong>Ejemplos típicos:</strong></p>
+          <ul>
+            <li><strong>Admin empresa:</strong> todos los permisos.</li>
+            <li><strong>Contable externo:</strong> finanzas:* + stock:read + dashboard:read.</li>
+            <li><strong>Operaciones campo:</strong> producción:* + stock:write.</li>
+            <li><strong>Solo lectura:</strong> *:read.</li>
+          </ul>
+
+          <h4>Empresas</h4>
+          <p>Solo accesible para Super Admin.</p>
+          <p><strong>Datos:</strong> nombre, fantasía, CUIT, razón social, condición IVA, domicilio, logo, color institucional (hex), modo (con ARCA o "informal" sin ARCA), estado activa/inactiva.</p>
+          <p><strong>Operaciones:</strong> crear, editar, asignar usuarios y roles, configurar integración ARCA (certificado, modo, punto de venta), desactivar.</p>
         </section>
 
         <section id="flujos">
@@ -450,26 +510,26 @@
 
           <h3>Flujo 1 — Cargar una compra de fertilizante</h3>
           <ol>
-            <li><strong>Contactos → Proveedores → Nuevo</strong> (si no existe). Cargás CUIT, razón social, condición IVA.</li>
-            <li><strong>Facturación → Compras → Nueva factura de compra</strong>. Proveedor, tipo A, número, fecha, ítem (Urea Granulada × 5000 kg × $X).</li>
+            <li><strong>Contactos → Proveedores → Nuevo</strong> (si no existe). CUIT, razón social, condición IVA.</li>
+            <li><strong>Finanzas → Compras → Nueva factura de compra</strong>. Proveedor, tipo A, número, fecha, ítem (Urea Granulada × 5000 kg).</li>
             <li>Forma de pago: cuenta corriente. Confirmás.</li>
-            <li><strong>Resultado automático:</strong> stock de Urea sube 5000 kg, cuenta corriente del proveedor con saldo deudor, aparece en flujo de caja, IVA registrado en libro.</li>
+            <li><strong>Resultado automático:</strong> stock de Urea sube 5000 kg, cuenta corriente del proveedor con saldo deudor, aparece en flujo de caja, IVA registrado en libro IVA Compras.</li>
           </ol>
 
           <h3>Flujo 2 — Aplicar el fertilizante a una campaña</h3>
           <ol>
             <li><strong>Producción → Insumos y labores → Nueva aplicación</strong>.</li>
-            <li>Campaña ("Soja 2025/26"), lote, fecha. Insumo: Urea Granulada. Dosis: 100 kg/ha. Hectáreas: 50.</li>
-            <li>Sistema calcula: total aplicado = 5000 kg. Confirmás.</li>
-            <li><strong>Resultado automático:</strong> stock de Urea baja 5000 kg, costo imputado a la campaña.</li>
+            <li>Campaña ("Soja 2025/26"), lote, fecha. Insumo: Urea. Dosis: 100 kg/ha. Hectáreas: 50.</li>
+            <li>Sistema calcula: total = 5000 kg. Confirmás.</li>
+            <li><strong>Resultado:</strong> stock de Urea baja 5000 kg, costo imputado a la campaña.</li>
           </ol>
 
           <h3>Flujo 3 — Vender granos y cobrar con cheques</h3>
           <ol>
-            <li><strong>Facturación → Nueva factura</strong>. Cliente "Acopiadora Pampeana", factura A, ítem "Soja Cosecha 25/26 × 100 t × USD 380/t".</li>
+            <li><strong>Finanzas → Facturación → Nueva factura</strong>. Cliente "Acopiadora Pampeana", factura A, ítem "Soja Cosecha 25/26 × 100 t × USD 380/t".</li>
             <li>Sistema emite, obtiene CAE, descuenta stock, genera PDF.</li>
-            <li>Recibís el cheque. <strong>Tesorería → Cheques → Nuevo (recibido)</strong>. Cargás banco, número, importe, fecha.</li>
-            <li><strong>Resultado:</strong> cuenta corriente del cliente al día, cheque "en cartera", aparece en flujos de caja.</li>
+            <li>Recibís el cheque. <strong>Finanzas → Cheques → Nuevo (recibido)</strong>. Asociado a la factura.</li>
+            <li><strong>Resultado:</strong> cuenta corriente del cliente al día, cheque "en cartera", flujo de caja proyectado, sumado al libro IVA Ventas.</li>
           </ol>
 
           <h3>Flujo 4 — Cierre de campaña con rinde real</h3>
@@ -477,7 +537,24 @@
             <li><strong>Producción → Campañas → Editar "Soja 2025/26"</strong>. Cargás rinde real (35 qq/ha).</li>
             <li><strong>Stock → Movimientos → Entrada por cosecha</strong>: 175 t entran al stock.</li>
             <li>Marcás campaña como <strong>Cosechada</strong>.</li>
-            <li><strong>Resultado:</strong> stock de soja sube, reporte de margen completo (ingresos - insumos - labores).</li>
+            <li><strong>Resultado:</strong> stock sube, reporte de margen completo (ingresos - insumos - labores - arrendamiento si aplica).</li>
+          </ol>
+
+          <h3>Flujo 5 — Pago de cuota de arrendamiento</h3>
+          <ol>
+            <li><strong>Finanzas → Arrendamientos → Editar contrato existente</strong>.</li>
+            <li>Verificás el próximo vencimiento (ej. 200 quintales de soja, vence el 30/06/2026).</li>
+            <li>Al llegar el vencimiento, registrás el pago: el sistema valoriza al precio BCR del día.</li>
+            <li><strong>Resultado:</strong> cuenta corriente del arrendador actualizada, libro IVA si corresponde, egreso en flujo de caja.</li>
+          </ol>
+
+          <h3>Flujo 6 — Despacho de soja a destino</h3>
+          <ol>
+            <li><strong>Logística y RRHH → Viajes → Nuevo viaje</strong>.</li>
+            <li>Origen: tu silo. Destino: Acopiadora Pampeana. Transportista, chofer, patente.</li>
+            <li>Tonelaje cargado en origen, carta de porte (CTG).</li>
+            <li>Al llegar a destino, cargás peso real y eventuales mermas.</li>
+            <li><strong>Resultado:</strong> salida de stock, costo del flete imputado, asociación con factura de venta.</li>
           </ol>
         </section>
 
@@ -485,13 +562,13 @@
           <h2>8. Preguntas frecuentes</h2>
 
           <h4>¿Pierdo datos si se corta la luz / internet?</h4>
-          <p>No. Los datos viven en el servidor (cloud o local), no en tu navegador. Si se corta la luz, los reanudás cuando vuelva. Si se corta internet pero el server local sigue prendido, podés seguir trabajando desde la red local. El modo PWA además guarda en el dispositivo lo que cargues offline.</p>
+          <p>No. Los datos viven en el servidor (cloud o local). Si se corta la luz, los reanudás cuando vuelva. Si se corta internet pero el server local sigue prendido, podés seguir trabajando desde la red local. El modo PWA además guarda en el dispositivo lo que cargues offline.</p>
 
           <h4>¿Cómo se hacen los backups?</h4>
           <p>Si estás en Cloud (AWS), automático y diario, con retención de 30 días. Si estás en servidor propio, según el plan acordado (típicamente diario incremental + semanal completo).</p>
 
           <h4>¿Puedo migrar datos de mi sistema actual?</h4>
-          <p>Sí. Importamos desde Excel, planillas de cálculo o archivos exportados de tu sistema previo. La migración inicial está incluida en la implementación.</p>
+          <p>Sí. Importamos desde Excel, planillas o archivos exportados. La migración inicial está incluida en la implementación.</p>
 
           <h4>¿Cuánta gente puede usar el sistema al mismo tiempo?</h4>
           <p>No hay límite por licencia. Las únicas limitaciones son técnicas (servidor) y los precios planos no escalan por usuario.</p>
@@ -500,19 +577,22 @@
           <p>Sí. Responsive y adaptado a pantallas pequeñas. La carga de movimientos puede hacerse desde el celular en el campo.</p>
 
           <h4>¿Cómo se factura con ARCA?</h4>
-          <p>Web service integrado. Una vez cargado tu certificado digital, las facturas se emiten directo con CAE. No necesitás ir al portal de ARCA.</p>
+          <p>Web service integrado. Una vez cargado tu certificado digital, las facturas se emiten directo con CAE.</p>
 
           <h4>¿Y si quiero un módulo nuevo o un cambio específico?</h4>
           <p>Los pedidos se evalúan caso por caso. Hay un canal en tu plan de mantenimiento mensual. Cambios mayores tienen presupuesto aparte.</p>
 
           <h4>¿Quién es dueño de los datos?</h4>
-          <p>Vos. El código fuente y la infraestructura (cuenta AWS o servidor propio) son tuyos. Sin lock-in, sin sorpresas.</p>
+          <p>Vos. El código fuente y la infraestructura son tuyos. Sin lock-in.</p>
 
           <h4>¿Cuánto tarda la implementación?</h4>
-          <p>Entre 4 y 6 semanas desde la confirmación, dependiendo del volumen de datos a migrar y la cantidad de usuarios.</p>
+          <p>Entre 4 y 6 semanas desde la confirmación.</p>
 
           <h4>¿Mis datos están seguros?</h4>
-          <p>Estándares bancarios: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups con retención, auditoría completa, OWASP Top 10. Firmamos NDA y los datos nunca salen de tu infraestructura.</p>
+          <p>Estándares bancarios: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups con retención, auditoría completa, OWASP Top 10. Firmamos NDA.</p>
+
+          <h4>¿Puedo ver Hacienda en algún lado?</h4>
+          <p>En esta versión, los KPIs del Inicio muestran "Cabezas" como dato consolidado. La gestión completa de Hacienda (categorías, pesadas, sanidad) está prevista para una próxima versión. Si es crítico para tu operatoria, lo conversamos en el alcance de implementación.</p>
         </section>
 
         <section id="soporte">
@@ -533,18 +613,17 @@
             <li>Captura de pantalla del error.</li>
             <li>Tu usuario y aproximadamente la hora.</li>
           </ol>
-          <p>Con eso podemos reproducirlo y arreglarlo rápido.</p>
         </section>
 
       </main>
     </div>
   </div>
 
-  <!-- ============== FOOTER ============== -->
+  <!-- FOOTER -->
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
       <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario v1.0 · Mayo 2026</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario v1.1 · Mayo 2026</p>
       <div class="mt-4 space-x-4">
         <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
         <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>
@@ -554,16 +633,13 @@
   </footer>
 
   <script>
-    // TOC: marcar la sección visible como activa
     const tocLinks = document.querySelectorAll('.toc-link');
     const sections = document.querySelectorAll('section[id]');
 
     function updateActiveTOC() {
       let current = '';
       const offset = window.scrollY + 100;
-      sections.forEach(s => {
-        if (s.offsetTop <= offset) current = s.id;
-      });
+      sections.forEach(s => { if (s.offsetTop <= offset) current = s.id; });
       tocLinks.forEach(l => {
         l.classList.toggle('active', l.getAttribute('href') === '#' + current);
       });
