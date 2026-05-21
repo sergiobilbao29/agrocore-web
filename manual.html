@@ -111,8 +111,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
-      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 25+ vistas, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.2 · Mayo 2026 · Sistema AgroCore v0.2</p>
+      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 25+ vistas, modo offline, flujos típicos y respuestas a las preguntas más frecuentes.</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.3 · Mayo 2026 · Sistema AgroCore v0.2</p>
     </div>
   </section>
 
@@ -276,6 +276,37 @@
 
           <h3>Buscador global</h3>
           <p>La barra de búsqueda al centro-arriba permite encontrar rápidamente clientes, productos o empleados sin entrar al módulo correspondiente.</p>
+
+          <h3>Trabajar sin conexión (modo offline) <span class="badge-new">Nuevo</span></h3>
+          <p>AgroCore funciona <strong>sin señal de internet</strong> — pensado para cargar datos desde el celular en el campo, donde muchas veces no hay cobertura. Los cambios se guardan en el dispositivo y se sincronizan solos cuando vuelve la conexión.</p>
+
+          <h4>Qué se puede hacer sin conexión</h4>
+          <p>Sin señal funcionan las secciones de <strong>Producción</strong>:</p>
+          <table>
+            <thead>
+              <tr><th>✅ Disponible sin conexión</th><th>❌ Necesita conexión</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Inicio</td><td>Dashboard · Resumen multi-empresa</td></tr>
+              <tr><td>Campos y lotes</td><td>Stock · Movimientos · Reporte de margen</td></tr>
+              <tr><td>Campañas</td><td>Clientes · Proveedores · Finanzas (todas)</td></tr>
+              <tr><td>Insumos y labores</td><td>Logística y RRHH · Administración</td></tr>
+            </tbody>
+          </table>
+          <p>Si abrís una sección que necesita internet estando sin señal, el sistema muestra un <strong>cartel informativo</strong> claro (no un error técnico), indicando qué secciones sí están disponibles offline.</p>
+
+          <h4>Cómo funciona</h4>
+          <ul>
+            <li>Cuando cargás un campo, lote, campaña, insumo o labor <strong>sin señal</strong>, se guarda en el celular y aparece en la lista al instante.</li>
+            <li>Una <strong>barra naranja abajo</strong> te avisa: "📴 Sin conexión · X cambios pendientes de sincronizar".</li>
+            <li>Al volver la señal, los cambios se <strong>sincronizan automáticamente</strong> con el sistema y aparece un aviso de confirmación ("✓ X cambios sincronizados").</li>
+            <li>Si creaste, por ejemplo, un campo y después una campaña para ese campo (ambos offline), el sistema resuelve solo las referencias entre ellos al sincronizar.</li>
+          </ul>
+
+          <h4>Instalá AgroCore como app en el celular</h4>
+          <p>Para la mejor experiencia offline, agregá AgroCore a la pantalla de inicio del celular: abrí la URL del sistema en el navegador → menú del navegador → <strong>"Agregar a pantalla de inicio"</strong>. Queda como una app y abre incluso sin señal.</p>
+
+          <blockquote>Importante: abrí la app <strong>con conexión al menos una vez</strong> después de instalarla, para que descargue los datos de Producción. De ahí en más, podés trabajar sin señal con tranquilidad.</blockquote>
         </section>
 
         <section id="multiempresa">
@@ -537,14 +568,14 @@
 
           <h4>Roles y permisos</h4>
           <p>Roles vienen pre-cargados (Admin, Contable, Operaciones, Lectura), y podés crear roles a medida.</p>
-          <p><strong>Permisos disponibles</strong> (granularidad por módulo + acción):</p>
+          <p>Al crear o editar un rol, los permisos se muestran en una grilla con las <strong>áreas en español</strong> (Producción, Stock, Contactos, Finanzas, etc.) y las acciones también en español: <strong>Ver, Crear, Editar, Eliminar y Todo</strong> <span class="badge-new">Nuevo</span>. Internamente el sistema usa claves técnicas, pero el usuario siempre ve los nombres en español.</p>
+          <p><strong>Acciones por área:</strong></p>
           <ul>
-            <li><code>produccion:read</code> / <code>produccion:write</code></li>
-            <li><code>stock:read</code> / <code>stock:write</code></li>
-            <li><code>contactos:read</code> / <code>contactos:write</code></li>
-            <li><code>finanzas:read</code> / <code>finanzas:write</code></li>
-            <li><code>dashboard:read</code></li>
-            <li>Wildcards: <code>produccion:*</code>, <code>*:read</code>, <code>*:*</code></li>
+            <li><strong>Ver</strong> — consultar la información del módulo.</li>
+            <li><strong>Crear</strong> — dar de alta nuevos registros.</li>
+            <li><strong>Editar</strong> — modificar registros existentes.</li>
+            <li><strong>Eliminar</strong> — borrar registros.</li>
+            <li><strong>Todo</strong> — todas las acciones sobre esa área.</li>
           </ul>
           <p><strong>Ejemplos típicos:</strong></p>
           <ul>
@@ -642,6 +673,9 @@
           <h4>¿Funciona desde el celular?</h4>
           <p>Sí. Responsive y adaptado a pantallas pequeñas. La carga de movimientos puede hacerse desde el celular en el campo. El botón Atrás del celular navega entre módulos dentro de la app, no te saca afuera.</p>
 
+          <h4>¿Puedo cargar datos sin señal en el campo?</h4>
+          <p>Sí. AgroCore tiene <strong>modo offline</strong>: las secciones de Producción (Campos y lotes, Campañas, Insumos y labores) funcionan sin internet. Los registros que cargues sin señal se guardan en el celular y se sincronizan solos cuando volvés a tener conexión. Para que funcione, abrí la app con conexión al menos una vez para que descargue los datos. Ver el detalle completo en la sección "Trabajar sin conexión (modo offline)".</p>
+
           <h4>¿Cómo se factura con ARCA?</h4>
           <p>Web service integrado. Una vez cargado tu certificado digital, las facturas se emiten directo con CAE.</p>
 
@@ -693,7 +727,7 @@
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
       <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario v1.2 · Mayo 2026</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario v1.3 · Mayo 2026</p>
       <div class="mt-4 space-x-4">
         <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
         <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>
