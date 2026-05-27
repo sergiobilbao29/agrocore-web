@@ -118,7 +118,7 @@
         </div>
         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
           <div class="text-3xl font-extrabold text-blue-700">A elección</div>
-          <div class="text-xs text-slate-600 mt-1">Cloud (USD 20–40/mes) o Servidor propio (sin costo)</div>
+          <div class="text-xs text-slate-600 mt-1">Cloud AWS (USD 50–80/mes) o Servidor propio (sin costo)</div>
         </div>
       </div>
     </div>
@@ -288,20 +288,20 @@
             <div class="flex items-baseline justify-between mb-3">
               <h4 class="font-bold text-blue-900 flex items-center gap-2"><span class="text-xl">☁️</span> Cloud (AWS)</h4>
               <div class="text-right">
-                <div class="text-lg font-extrabold text-blue-700">USD 20–40</div>
+                <div class="text-lg font-extrabold text-blue-700">USD 50–80</div>
                 <div class="text-xs text-slate-500">/mes · estimado</div>
               </div>
             </div>
             <ul class="space-y-1.5 text-sm text-slate-700">
-              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Cuenta AWS a tu nombre</li>
-              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Backups automáticos diarios (RDS)</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Cuenta AWS a tu nombre · región São Paulo (baja latencia)</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> EC2 t3.small + RDS PostgreSQL · 24×7</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Backups automáticos diarios + snapshots semanales en otra región</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> HTTPS con certificado gratuito (Let's Encrypt o ACM)</li>
               <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Acceso desde cualquier lugar con internet</li>
-              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Encriptación AES-256, certificado SSL</li>
-              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Alertas de presupuesto AWS</li>
-              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Pago directo a Amazon (no nos paga a nosotros)</li>
-              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Costo escala según uso real</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Alertas de presupuesto y monitoreo básico (CloudWatch)</li>
+              <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Pago directo a Amazon en USD (no nos pagás a nosotros)</li>
             </ul>
-            <div class="mt-3 text-xs text-blue-900 italic">Recomendado para empresas con conectividad estable y múltiples sucursales o usuarios en distintos lugares.</div>
+            <div class="mt-3 text-xs text-blue-900 italic">Recomendado para empresas con conectividad estable y múltiples sucursales o usuarios en distintos lugares. Opcional: alta disponibilidad (RDS Multi-AZ + segundo servidor) suma ~USD 60–75/mes.</div>
           </div>
 
           <!-- Opción B: Servidor Propio -->
@@ -337,8 +337,8 @@
             <span class="font-semibold">USD 999,99</span>
           </div>
           <div class="flex justify-between border-b border-agro-700 pb-2">
-            <span>Infraestructura (mensual, opción Cloud)</span>
-            <span class="font-semibold">USD 20–40 / mes</span>
+            <span>Infraestructura (mensual, opción Cloud AWS)</span>
+            <span class="font-semibold">USD 50–80 / mes</span>
           </div>
           <div class="flex justify-between border-b border-agro-700 pb-2 text-agro-200">
             <span>Infraestructura (mensual, opción Servidor Propio)</span>
@@ -351,7 +351,7 @@
         </div>
 
         <div class="mt-4 pt-4 border-t border-agro-700 text-xs text-agro-200">
-          <p class="mb-2"><strong class="text-white">Ejemplo cliente A:</strong> Cloud + mantenimiento → primer pago USD 999,99 (única vez), luego ~USD 130/mes recurrente.</p>
+          <p class="mb-2"><strong class="text-white">Ejemplo cliente A:</strong> Cloud AWS + mantenimiento → primer pago USD 999,99 (única vez), luego ~USD 150–180/mes recurrente.</p>
           <p><strong class="text-white">Ejemplo cliente B:</strong> Servidor propio sin mantenimiento → primer pago USD 999,99 (única vez), luego USD 0/mes recurrente.</p>
         </div>
       </div>

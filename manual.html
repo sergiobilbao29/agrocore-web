@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual de Usuario — AgroCore Argentina</title>
-  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre las 7 secciones: producción, stock (con Hacienda por campo), contactos, finanzas (cheques, cuentas corrientes con manuales aparte, control de efectivo multi-caja), logística y RRHH (planilla y liquidación de sueldo por empleado), administración, más el resumen multi-empresa.">
+  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre las 7 secciones: producción, stock (con Hacienda por campo), contactos, finanzas (cheques, cuentas corrientes con manuales aparte, control de efectivo multi-caja), logística y RRHH (planilla y liquidación de sueldo por empleado, viajes con CTG y estados, verificación contra ARCA / WSCTG), administración (con configuración por empresa de contactos y conexión ARCA), más el resumen multi-empresa.">
   <meta name="robots" content="index,follow">
 
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
@@ -111,8 +111,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
-      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 25+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.4 · Mayo 2026 · Sistema AgroCore v0.3</p>
+      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 30+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.6 · Mayo 2026 · Sistema AgroCore v0.5</p>
     </div>
   </section>
 
@@ -270,6 +270,7 @@
             </tbody>
           </table>
           <p>La hora a la derecha muestra cuándo se actualizó por última vez. El sistema refresca automáticamente.</p>
+          <p>Al lado del refresh aparece un botón verde <strong>💬 Asesor</strong> <span class="badge-new">Nuevo</span> que abre WhatsApp con el asesor comercial configurado para consultar precios o negocios de granos. El mensaje arranca con un saludo personalizado y menciona la empresa que escribe. Si no hay asesor configurado, WhatsApp se abre con el mensaje pre-cargado y dejás elegir el contacto. El asesor se carga en <strong>Administración → Configuración → ⚙️ Configuración</strong>.</p>
 
           <h3>Notificaciones</h3>
           <p>El icono de campanita arriba a la derecha muestra alertas: <strong>cheques vencidos sin cobrar</strong>, <strong>cheques a vencer en los próximos 15 días</strong> <span class="badge-new">Nuevo</span> (alerta proactiva), stock bajo, facturas vencidas, vencimientos de arrendamientos.</p>
@@ -557,20 +558,34 @@
           <h3>6.8 Logística y RRHH</h3>
           <p>Sección que agrupa los movimientos de transporte y la gestión del personal.</p>
 
-          <h4>Viajes</h4>
-          <p><strong>Qué hace:</strong> registra los viajes de transporte cuando se trasladan granos a destino (acopio, exportadora, planta de proceso) o entre campos propios.</p>
-          <p><strong>Datos por viaje:</strong></p>
+          <h4>Viajes — operativa completa de fletes <span class="badge-new">Nuevo</span></h4>
+          <p>Registra los viajes de transporte cuando se trasladan granos a destino (acopio, exportadora, planta de proceso) o entre campos propios. El formulario tiene toda la información operativa que cargan los responsables de logística:</p>
           <ul>
-            <li>Fecha de salida y de llegada</li>
-            <li>Origen (campo / depósito) y destino</li>
-            <li>Transportista (proveedor del servicio)</li>
-            <li>Chofer y patente del camión</li>
-            <li>Tipo de carga y tonelaje cargado / pesado en destino</li>
-            <li>Cartas de porte (CTG y/o número físico)</li>
-            <li>Costo del flete</li>
-            <li>Asociación con factura de venta o ingreso a depósito</li>
+            <li><strong>Viaje:</strong> fecha, producto / carga, origen, destino, km recorridos y <strong>tarifa por tonelada</strong>.</li>
+            <li><strong>Carga / descarga:</strong> kg de carga y kg de descarga con cálculo automático de <strong>diferencia</strong> (resaltada en rojo si supera los 500 kg de merma).</li>
+            <li><strong>Documentos:</strong> carta de porte, <strong>CTG separado</strong> y CDP.</li>
+            <li><strong>Transporte:</strong> nombre y CUIT del transportista, nombre y CUIT del chofer, tipo de camión (chasis, semi, bitren, jaula, tolva, cisterna…), patente del camión y <strong>patente del acoplado</strong>.</li>
+            <li><strong>Gastos del viaje:</strong> combustible, peajes, comida, varios y total flete pagado.</li>
+            <li><strong>Estado del viaje y vinculación a factura del transportista</strong> (ver más abajo).</li>
           </ul>
-          <p><strong>Integración:</strong> los kilos pesados en destino pueden generar el movimiento de stock asociado.</p>
+
+          <h4>Estado del viaje (automático)</h4>
+          <p>El estado del viaje progresa solo a medida que se cargan los datos:</p>
+          <ul>
+            <li><strong>Pendiente</strong> → cuando se crea sin kg.</li>
+            <li><strong>Cargado</strong> → cuando se ingresan los kg de carga.</li>
+            <li><strong>Descargado</strong> → cuando se ingresan los kg de descarga.</li>
+            <li><strong>Facturado</strong> → cuando se vincula la factura de compra del transportista (botón 🔗 en cada fila del listado).</li>
+            <li><strong>Pagado</strong> → cuando se le salda la cuenta corriente al transportista. El sistema lo cambia <em>solo</em> al registrar el pago. También hay un botón manual 💵 por si querés forzarlo.</li>
+          </ul>
+          <p>El listado muestra una columna <strong>Diferencia</strong> (kg carga − kg descarga), badges de colores por estado y atajos por fila: editar, vincular factura, marcar pagado, borrar.</p>
+
+          <h4>Solicitar Camión Logística por WhatsApp</h4>
+          <p>Botón <strong>🚛 Solicitar Camión Logística</strong> en la cabecera de Viajes. Abre un formulario con los datos típicos del pedido (Cereal / Producto, Zona / Origen, Destino, Distancia, Tarifa $/ton, Fecha de carga, Cantidad de camiones, Fecha de cupo, Tipo de camión, Información adicional) y arma una plantilla bonita de WhatsApp con emojis y los datos cargados. Los campos vacíos no aparecen en el mensaje. El mensaje se envía al teléfono de logística configurado en <strong>Configuración → ⚙️ Configuración → Logística de camiones</strong>. Si no hay teléfono configurado, WhatsApp te ofrece elegir el contacto con el mensaje ya pre-cargado.</p>
+
+          <h4>Verificar CTGs en ARCA <span class="badge-new">Nuevo</span></h4>
+          <p>Botón <strong>🔍 Verificar CTGs en ARCA</strong> en la cabecera. Abre un modal con todos los viajes en estado <strong>Cargado</strong> que tienen CTG cargado, y permite consultar el estado de cada uno (o todos juntos) contra los servidores de AFIP / ARCA en vivo. Cuando se consulta, el sistema completa solo el <strong>kg descargado</strong> que devuelve ARCA. Al confirmar con <strong>✓ Guardar</strong>, el viaje pasa a "Descargado".</p>
+          <p>Para que la verificación funcione, primero hay que cargar el certificado y la clave privada de ARCA en <strong>Configuración → 🏛️ ARCA</strong> (ver más abajo en la sección Administración).</p>
 
           <h4>Empleados — nómina + planilla personal <span class="badge-new">Nuevo</span></h4>
           <p>El módulo de empleados tiene dos niveles. Arriba está la <strong>nómina</strong> — lista de todos los empleados con foto, puesto, sueldo base, fechas y estado. Cada empleado se da de alta con: nombre, apellido, DNI, CUIL, puesto, fecha de ingreso, sueldo base, teléfono, email, dirección, provincia y localidad, foto y observaciones.</p>
@@ -650,6 +665,26 @@
           <p>Solo accesible para Super Admin.</p>
           <p><strong>Datos:</strong> nombre, fantasía, CUIT, razón social, condición IVA, domicilio, logo, color institucional (hex), modo (con ARCA o "informal" sin ARCA), estado activa/inactiva.</p>
           <p><strong>Operaciones:</strong> crear, editar, asignar usuarios y roles, configurar integración ARCA (certificado, modo, punto de venta), desactivar.</p>
+
+          <h4>Configuración <span class="badge-new">Nuevo</span></h4>
+          <p>Pantalla dedicada con dos pestañas para configurar el sistema:</p>
+
+          <p><strong>⚙️ Configuración</strong> — contactos compartidos por todas las empresas. Lo edita solamente el Super Admin; el resto de los usuarios los lee. Se usan en los botones de WhatsApp del sistema. Los teléfonos se cargan con código de área y número (asumiendo Argentina, +54 9).</p>
+          <ul>
+            <li><strong>📈 Asesor comercial (precios de granos)</strong> — nombre y teléfono. Aparece como botón "💬 Asesor" arriba en el ticker de cotizaciones. Al hacer clic, abre WhatsApp con un mensaje pre-armado que menciona la empresa que escribe.</li>
+            <li><strong>🚚 Logística de camiones</strong> — nombre y teléfono. Aparece como botón "🚛 Solicitar Camión Logística" en la sección Viajes, con plantilla bonita de WhatsApp.</li>
+            <li><strong>🧾 Contador / Asesor contable</strong> — nombre y teléfono. Disponible para futuros botones de contacto rápido.</li>
+          </ul>
+
+          <p><strong>🏛️ ARCA</strong> — integración real con AFIP/ARCA por empresa: <strong>WSCTG</strong> (Carta de Porte de Granos, para verificar el estado y kg recibidos en los viajes) y <strong>WSFE</strong> (Facturación Electrónica, para sacar CAE en las facturas). Cada empresa tiene su propio certificado emitido por AFIP/ARCA. Sólo un admin de la empresa puede editar.</p>
+          <p><strong>Selector de ambiente</strong> arriba: <strong>Homologación</strong> (sandbox de AFIP para pruebas — los datos no tienen valor fiscal) o <strong>Producción</strong> (los servicios reales de AFIP). Cada ambiente tiene su propio certificado: el de homologación NO sirve en producción y viceversa. Recomendado: arrancar en homologación, probar todo, y recién pasar a producción cuando esté todo OK.</p>
+          <p>La pantalla tiene tres pasos guiados, con un cartel arriba indicando el estado de la integración (verde si está todo cargado, ámbar si falta algo) y la bandera del ambiente activo:</p>
+          <ol>
+            <li><strong>Paso 1 — Generar la clave privada y solicitud de certificado:</strong> ingresás nombre y CUIT, y el sistema genera automáticamente los archivos <code>privada.key</code> y <code>solicitud.csr</code> que descargás a tu PC. No hay que instalar nada.</li>
+            <li><strong>Paso 2 — Registrar el certificado en ARCA:</strong> entrás al portal de AFIP del ambiente elegido (homo o prod) con clave fiscal, buscás "Administración de Certificados Digitales", creás un alias (ej: <code>agrocore</code>) y subís el <code>solicitud.csr</code>. ARCA te devuelve un archivo <code>cert.crt</code>. Después, en el portal, asociás ese alias a los servicios que vayas a usar: <strong>WSCTG</strong> y/o <strong>WSFE</strong> (mismo cert sirve para los dos).</li>
+            <li><strong>Paso 3 — Cargar los archivos en el sistema:</strong> subís el <code>cert.crt</code> y la <code>privada.key</code>, ingresás el CUIT, "Guardar configuración", y después "Probar conexión ARCA". El sistema autentica con WSAA y hace un heartbeat a WSFE. Si las dos cosas responden OK, estás listo para verificar CTGs y emitir facturas electrónicas en ese ambiente.</p></li>
+          </ol>
+          <p>La conexión es real contra los servidores de AFIP/ARCA del ambiente elegido. El sistema firma cada login con tu certificado (CMS PKCS#7 con SHA-256), obtiene el ticket de acceso (TA) de WSAA, y lo cachea por 11 horas para reutilizarlo en consultas posteriores.</p>
         </section>
 
         <section id="flujos">
@@ -678,4 +713,140 @@
             <li>Sistema emite, obtiene CAE, descuenta stock, genera PDF.</li>
             <li>Recibís el cheque. <strong>Finanzas → Cheques → Nuevo (recibido)</strong>. Asociado a la factura, fecha de pago a 60 días.</li>
             <li><strong>Resultado:</strong> cuenta corriente del cliente al día, cheque "en cartera", flujo de caja proyectado, sumado al libro IVA Ventas.</li>
-       
+            <li><strong>15 días antes del vencimiento:</strong> el sistema lo muestra en la alerta "⏰ Cheques a vencer en 15 días" del Dashboard.</li>
+          </ol>
+
+          <h3>Flujo 4 — Revisar consolidado de tres empresas en simultáneo</h3>
+          <ol>
+            <li><strong>Inicio → 🌐 Resumen multi-empresa</strong>.</li>
+            <li>Veo el total consolidado: cheques en cartera, a vencer en 15 días, vencidos, efectivo, flujo de caja.</li>
+            <li>Si quiero excluir una empresa (ej. está en pausa), desmarco su checkbox → los totales se recalculan al instante.</li>
+            <li>Una empresa muestra 3 cheques vencidos. Hago clic en <strong>"Cheques →"</strong> de esa fila.</li>
+            <li>Sistema cambia automáticamente a esa empresa y abre Cheques, donde puedo ver el detalle y gestionarlos.</li>
+          </ol>
+
+          <h3>Flujo 5 — Cierre de campaña con rinde real</h3>
+          <ol>
+            <li><strong>Producción → Campañas → Editar "Soja 2025/26"</strong>. Cargás rinde real (35 qq/ha).</li>
+            <li><strong>Stock → Movimientos → Entrada por cosecha</strong>: 175 t entran al stock.</li>
+            <li>Marcás campaña como <strong>Cosechada</strong>.</li>
+            <li><strong>Resultado:</strong> stock sube, reporte de margen completo (ingresos - insumos - labores - arrendamiento si aplica).</li>
+          </ol>
+
+          <h3>Flujo 6 — Pago de cuota de arrendamiento</h3>
+          <ol>
+            <li><strong>Finanzas → Arrendamientos → Editar contrato existente</strong>.</li>
+            <li>Verificás el próximo vencimiento (ej. 200 quintales de soja, vence el 30/06/2026).</li>
+            <li>Al llegar el vencimiento, registrás el pago: el sistema valoriza al precio BCR del día.</li>
+            <li><strong>Resultado:</strong> cuenta corriente del arrendador actualizada, libro IVA si corresponde, egreso en flujo de caja real.</li>
+          </ol>
+
+          <h3>Flujo 7 — Despacho de soja a destino</h3>
+          <ol>
+            <li><strong>Logística y RRHH → Viajes → Nuevo viaje</strong>.</li>
+            <li>Origen: tu silo. Destino: Acopiadora Pampeana. Transportista, chofer, patente.</li>
+            <li>Tonelaje cargado en origen, carta de porte (CTG).</li>
+            <li>Al llegar a destino, cargás peso real y eventuales mermas.</li>
+            <li><strong>Resultado:</strong> salida de stock, costo del flete imputado, asociación con factura de venta.</li>
+          </ol>
+        </section>
+
+        <section id="faq">
+          <h2>8. Preguntas frecuentes</h2>
+
+          <h4>¿Pierdo datos si se corta la luz / internet?</h4>
+          <p>No. Los datos viven en el servidor (cloud o local), no en tu navegador. Si se corta la luz, los reanudás cuando vuelva. Si se corta internet pero el server local sigue prendido, podés seguir trabajando desde la red local. El modo PWA además guarda en el dispositivo lo que cargues offline.</p>
+
+          <h4>¿Cómo se hacen los backups?</h4>
+          <p>Si estás en Cloud (AWS), automático y diario, con retención de 30 días. Si estás en servidor propio, según el plan acordado (típicamente diario incremental + semanal completo).</p>
+
+          <h4>¿Puedo migrar datos de mi sistema actual?</h4>
+          <p>Sí. Importamos desde Excel, planillas o archivos exportados. La migración inicial está incluida en la implementación.</p>
+
+          <h4>¿Cuánta gente puede usar el sistema al mismo tiempo?</h4>
+          <p>No hay límite por licencia. Las únicas limitaciones son técnicas (servidor) y los precios planos no escalan por usuario.</p>
+
+          <h4>¿Funciona desde el celular?</h4>
+          <p>Sí. Responsive y adaptado a pantallas pequeñas. La carga de movimientos puede hacerse desde el celular en el campo. El botón Atrás del celular navega entre módulos dentro de la app, no te saca afuera.</p>
+
+          <h4>¿Puedo cargar datos sin señal en el campo?</h4>
+          <p>Sí. AgroCore tiene <strong>modo offline</strong>: las secciones de Producción (Campos y lotes, Campañas, Insumos y labores) funcionan sin internet. Los registros que cargues sin señal se guardan en el celular y se sincronizan solos cuando volvés a tener conexión. Para que funcione, abrí la app con conexión al menos una vez para que descargue los datos. Ver el detalle completo en la sección "Trabajar sin conexión (modo offline)".</p>
+
+          <h4>¿Cómo se factura con ARCA?</h4>
+          <p>Web service integrado. Una vez cargado tu certificado digital, las facturas se emiten directo con CAE.</p>
+
+          <h4>¿Puedo ver datos de varias empresas en simultáneo?</h4>
+          <p>Sí, con el módulo <strong>Resumen multi-empresa</strong> (sección INICIO de la barra lateral). Sumás cheques, efectivo y flujo de caja de todas las empresas a las que tu usuario tiene acceso, sin perder la separación por empresa. Podés filtrar con checkboxes qué empresas incluir en el total.</p>
+
+          <h4>¿Y si quiero un módulo nuevo o un cambio específico?</h4>
+          <p>Los pedidos se evalúan caso por caso. Hay un canal en tu plan de mantenimiento mensual. Cambios mayores tienen presupuesto aparte.</p>
+
+          <h4>¿Quién es dueño de los datos?</h4>
+          <p>Vos. El código fuente y la infraestructura son tuyos. Sin lock-in.</p>
+
+          <h4>¿Cuánto tarda la implementación?</h4>
+          <p>Entre 4 y 6 semanas desde la confirmación.</p>
+
+          <h4>¿Mis datos están seguros?</h4>
+          <p>Estándares bancarios: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups con retención, auditoría completa, OWASP Top 10. Firmamos NDA.</p>
+
+          <h4>¿Puedo ver Hacienda en algún lado?</h4>
+          <p>En esta versión, los KPIs del Inicio muestran "Cabezas" como dato consolidado. La gestión completa de Hacienda (categorías, pesadas, sanidad) está prevista para una próxima versión. Si es crítico para tu operatoria, lo conversamos en el alcance de implementación.</p>
+        </section>
+
+        <section id="soporte">
+          <h2>9. Soporte y contacto</h2>
+          <p>Durante la prueba del demo y en el plan de mantenimiento:</p>
+          <ul>
+            <li><strong>WhatsApp:</strong> (te lo pasamos en la primera conversación)</li>
+            <li><strong>Email:</strong> sergiodbilbao@gmail.com</li>
+            <li><strong>Web:</strong> <a href="https://agrocore.ar" class="text-agro-700 underline">https://agrocore.ar</a></li>
+          </ul>
+          <p><strong>Horario:</strong> lunes a viernes, 9:00 a 18:00 hs (Argentina). <strong>Respuesta:</strong> 24 hs hábiles para consultas, 4 hs para incidentes críticos.</p>
+
+          <h3>Para reportar un bug durante el testing</h3>
+          <ol>
+            <li>Qué estabas haciendo cuando pasó (paso a paso).</li>
+            <li>Qué esperabas que pasara.</li>
+            <li>Qué pasó en realidad.</li>
+            <li>Captura de pantalla del error.</li>
+            <li>Tu usuario y aproximadamente la hora.</li>
+          </ol>
+          <p>Con eso podemos reproducirlo y arreglarlo rápido.</p>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+      <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario v1.3 · Mayo 2026</p>
+      <div class="mt-4 space-x-4">
+        <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
+        <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>
+        <a href="https://demo.agrocore.ar" class="text-gold-400 hover:text-gold-300">Probar el demo →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveTOC() {
+      let current = '';
+      const offset = window.scrollY + 100;
+      sections.forEach(s => { if (s.offsetTop <= offset) current = s.id; });
+      tocLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveTOC);
+    updateActiveTOC();
+  </script>
+
+</body>
+</html>
