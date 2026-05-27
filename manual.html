@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual de Usuario — AgroCore Argentina</title>
-  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre las 7 secciones: producción, stock, contactos, finanzas, logística y RRHH, administración, más el resumen multi-empresa.">
+  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre las 7 secciones: producción, stock (con Hacienda por campo), contactos, finanzas (cheques, cuentas corrientes con manuales aparte, control de efectivo multi-caja), logística y RRHH (planilla y liquidación de sueldo por empleado), administración, más el resumen multi-empresa.">
   <meta name="robots" content="index,follow">
 
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
@@ -111,8 +111,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
-      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 25+ vistas, modo offline, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.3 · Mayo 2026 · Sistema AgroCore v0.2</p>
+      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 25+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, flujos típicos y respuestas a las preguntas más frecuentes.</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.4 · Mayo 2026 · Sistema AgroCore v0.3</p>
     </div>
   </section>
 
@@ -438,6 +438,18 @@
 
           <h4>Reporte de margen</h4>
           <p>Análisis económico que cruza compras vs ventas calculando costo promedio, precio promedio, % de margen y ganancia. Filtros por producto, campaña, cliente / proveedor o período. Exportable a Excel.</p>
+
+          <h4>Hacienda — stock por campo, declarado vs real <span class="badge-new">Nuevo</span></h4>
+          <p>Módulo dedicado al manejo del ganado. La gran diferencia con el stock de productos es que cada categoría se rastrea <strong>por campo</strong> y se compara lo que está <strong>declarado en SENASA / ARCA</strong> con el <strong>stock real</strong> que hay en el campo.</p>
+          <p><strong>Cómo se ve:</strong> por cada campo se muestra una tabla con sus categorías (Vacas, Vaquillonas, Terneros, Terneras, Novillos, Toros, Crías o las que cada empresa configure) y tres columnas clave:</p>
+          <ul>
+            <li><strong>Declarado (SENASA):</strong> lo que figura registrado oficialmente. Se carga manualmente cuando se actualiza en ARCA.</li>
+            <li><strong>Real (en campo):</strong> se calcula automáticamente sumando los movimientos cargados (nacimientos, muertes, compras, ventas, traslados, ajustes).</li>
+            <li><strong>Diferencia:</strong> destacada en rojo o verde. Es el aviso de qué falta registrar en ARCA.</li>
+          </ul>
+          <p><strong>Tipos de movimientos:</strong> Nacimiento, Muerte, Compra (entró), Venta (salió), Traslado entre campos (genera salida en el origen y entrada en el destino en una sola operación) y Ajuste / Conteo (puede ser positivo o negativo para corregir diferencias).</p>
+          <p><strong>Modo offline:</strong> esta sección funciona <strong>sin conexión</strong>. La gente que está en el campo puede cargar nacimientos, muertes o ajustes desde el celular, sin señal. Los cambios se guardan en el dispositivo y se sincronizan solos cuando vuelve internet.</p>
+          <p><strong>Ejemplo típico:</strong> en el campo Higueras hay 200 terneros y en Holmberg 11. Cada campo aparece con su propia tabla. Si nacen 3 terneros en Higueras, se carga "Nacimiento, Terneros, 3" y el real pasa a 203, mientras el declarado sigue en 200 — el sistema muestra "+3 de diferencia" hasta que se actualiza en ARCA y se sube el declarado a 203.</p>
         </section>
 
         <section id="mod-contactos">
@@ -494,11 +506,25 @@
           <h4>Cheques</h4>
           <p>Registra cheques recibidos y emitidos, con estados: <strong>En cartera → Endosado / Depositado → Acreditado / Rechazado</strong>.</p>
           <p><strong>Datos:</strong> número, banco, sucursal, importe, fechas (emisión y pago), cliente/proveedor, cuenta corriente afectada, CUIT del librador.</p>
-          <p><strong>Alertas proactivas</strong> <span class="badge-new">Nuevo</span>: el sistema avisa cuando un cheque está próximo a vencer en los <strong>próximos 15 días</strong> — no esperás a que venza, lo gestionás antes. Aparece tanto en el Dashboard como en la campanita de notificaciones.</p>
+          <p><strong>Formato físico o electrónico (e-cheq)</strong> <span class="badge-new">Nuevo</span>: cada cheque se marca como físico o electrónico, con filtro y badge en la lista. Atajo "Ver disponibles" muestra los cheques en cartera listos para usar.</p>
+          <p><strong>Alertas proactivas</strong>: el sistema avisa cuando un cheque está próximo a vencer en los <strong>próximos 15 días</strong> — no esperás a que venza, lo gestionás antes. Aparece tanto en el Dashboard como en la campanita de notificaciones.</p>
 
           <h4>Cuentas corrientes</h4>
-          <p>Para cada cliente y proveedor, débitos y créditos con saldo actualizado.</p>
-          <p><strong>Conciliación:</strong> permite "atar" un cobro a una factura específica, dejando claro qué está pago.</p>
+          <p>Tres vistas separadas y bien diferenciadas:</p>
+          <ul>
+            <li><strong>A cobrar:</strong> saldo por cliente, alimentado automáticamente por las facturas de venta. Botón "Registrar cobro" para descontar el saldo cuando el cliente paga.</li>
+            <li><strong>A pagar:</strong> saldo por proveedor, alimentado por las facturas de compra. Botón "Registrar pago".</li>
+            <li><strong>Otros / Manuales</strong> <span class="badge-new">Nuevo</span>: sección aparte con sus <strong>propios totales</strong>, totalmente independientes de los de clientes y proveedores. Ideal para alquileres, impuestos, servicios y cualquier obligación que no venga de una factura cargada.</li>
+          </ul>
+          <p><strong>Cada movimiento manual lleva:</strong></p>
+          <ul>
+            <li><strong>Categoría</strong> (Arrendamiento, Servicio, Impuesto, Otro — o la que cargues a mano).</li>
+            <li><strong>Fecha de vencimiento</strong> con badges visuales: "Vence en X días" en amarillo si está a 15 días o menos, "Vencido Xd" en rojo si ya pasó.</li>
+            <li><strong>Dirección</strong>: a cobrar o a pagar, con su monto único.</li>
+            <li><strong>Estado:</strong> pendiente / pagado. Un botón "Marcar pagado / Desmarcar" lo cierra cuando se salda.</li>
+          </ul>
+          <p><strong>Tres tarjetas resumen en el tab Otros:</strong> "A cobrar manuales", "A pagar manuales" y "Vencen en 15 días" (con cuántos están vencidos). Filtros por categoría, estado y dirección.</p>
+          <p><strong>Ejemplo:</strong> el alquiler de octubre por $1.000.000 se carga como manual con dirección "A pagar", categoría "Arrendamiento", vencimiento 05/10, detalle "Alquiler octubre 2026". Queda solo en "A pagar manuales", con su alerta cuando se acerca, sin ensuciar el total de proveedores.</p>
 
           <h4>Arrendamientos</h4>
           <p><strong>Qué hace:</strong> registra los contratos de arrendamiento de campos cuando explotás campos que no son propios.</p>
@@ -514,9 +540,17 @@
           <p><strong>Integración:</strong> los vencimientos aparecen automáticamente en el flujo de caja como pagos comprometidos. Si el contrato es en quintales, el sistema valoriza la cuota al precio BCR del día y calcula el equivalente en pesos / dólares.</p>
           <p><strong>Alertas:</strong> vencimientos próximos, contratos por terminar, renovaciones a evaluar.</p>
 
-          <h4>Control de efectivo</h4>
-          <p>Registro de movimientos de caja chica: ingresos/egresos en efectivo con saldo actualizado.</p>
-          <p><strong>Datos por movimiento:</strong> fecha, tipo (ingreso o egreso), concepto (sueldos, viáticos, gastos varios, retiro de socio, etc.), importe, comprobante asociado.</p>
+          <h4>Control de efectivo — multi-caja <span class="badge-new">Nuevo</span></h4>
+          <p>El control de efectivo maneja <strong>varias cajas físicas</strong> en paralelo (Oficina, los nombres de quienes manejan dinero, sucursales — las que cada empresa cargue en Catálogos → Cajas). Cada caja tiene su propio saldo y arriba se ve la <strong>"Caja general"</strong>: el total de efectivo de la empresa, sin importar quién lo tenga.</p>
+          <p><strong>Tres tipos de movimiento:</strong></p>
+          <ul>
+            <li><strong>Ingreso:</strong> entra plata a una caja (cobranza, retiro de banco, etc.).</li>
+            <li><strong>Egreso / gasto:</strong> sale plata de una caja (combustible, mercado, sueldos, etc.).</li>
+            <li><strong>Transferencia entre cajas:</strong> mueve plata de una caja a otra en una sola operación (por ej., "Luciano le entrega $500.000 a Oficina"). El total de la empresa no cambia.</li>
+          </ul>
+          <p><strong>Clasificación de cada gasto / ingreso:</strong> "De empresa" o "Propio" — esto permite separar lo que es del negocio de lo personal (por ej., gastos de los hijos). Hay una tabla "Gastos e ingresos por caja — empresa vs propios" con la comparación.</p>
+          <p><strong>Filtros:</strong> por caja, por tipo, por clasificación y por rango de fechas.</p>
+          <p><strong>Datos por movimiento:</strong> fecha, tipo, caja (origen y destino en transferencias), concepto, monto, clasificación, observaciones.</p>
         </section>
 
         <section id="mod-logistica">
@@ -538,11 +572,38 @@
           </ul>
           <p><strong>Integración:</strong> los kilos pesados en destino pueden generar el movimiento de stock asociado.</p>
 
-          <h4>Empleados</h4>
-          <p><strong>Qué hace:</strong> alta y gestión del personal de la empresa: datos personales, contratos, sueldos, recibos.</p>
-          <p><strong>Datos:</strong> nombre, CUIL, DNI, fechas, puesto/categoría, sueldo básico, modalidad (efectivo/registrado, jornal, mensual), contacto.</p>
-          <p><strong>Contratos:</strong> uno o varios a lo largo del tiempo (ej. por temporada). Histórico mantenido.</p>
-          <p><strong>Recibos de sueldo:</strong> generación mensual con cálculo automático de descuentos, aguinaldo, vacaciones, horas extras. Exportables a PDF.</p>
+          <h4>Empleados — nómina + planilla personal <span class="badge-new">Nuevo</span></h4>
+          <p>El módulo de empleados tiene dos niveles. Arriba está la <strong>nómina</strong> — lista de todos los empleados con foto, puesto, sueldo base, fechas y estado. Cada empleado se da de alta con: nombre, apellido, DNI, CUIL, puesto, fecha de ingreso, sueldo base, teléfono, email, dirección, provincia y localidad, foto y observaciones.</p>
+          <p>Pero al <strong>hacer clic en un empleado</strong> se entra a su <strong>planilla personal</strong> de gastos y ganancias, donde se carga todo lo que le pasó al empleado mes a mes y se hace la liquidación de sueldo.</p>
+
+          <h4>Planilla mensual del empleado</h4>
+          <p>Cada empleado tiene su planilla dividida por mes. Un selector de mes/año libre permite cargar o editar movimientos de <strong>cualquier período</strong>, pasado o futuro.</p>
+          <p><strong>Tipos de movimiento que se pueden cargar:</strong></p>
+          <ul>
+            <li><strong>Ganancias:</strong> sueldo, horas trabajadas (horas × valor por hora, con cálculo automático del total), premios / bonos, otros ingresos.</li>
+            <li><strong>Gastos:</strong> adelantos de dinero, compras personales (zapatillas, ropa, cosas que la empresa le compra), descuentos, otros gastos.</li>
+          </ul>
+          <p>El <strong>sueldo base</strong> configurado en la ficha aparece automáticamente como ganancia fija cada mes — no hace falta cargarlo manualmente. Si se cargó un "Sueldo" como movimiento manual ese mes, lo reemplaza.</p>
+          <p>En la cabecera del mes se ven cuatro KPIs: ganancias del mes, gastos del mes, neto y estado (liquidado o pendiente).</p>
+
+          <h4>Liquidación de sueldo</h4>
+          <p>A fin de mes se confirma la liquidación con un click. El sistema calcula el neto (ganancias − gastos) y permite elegir <strong>de dónde sale el pago</strong>, integrando automáticamente con los otros módulos:</p>
+          <ul>
+            <li><strong>Efectivo en caja:</strong> genera el egreso en la caja elegida del Control de Efectivo, clasificado como "empresa".</li>
+            <li><strong>Cheque propio:</strong> genera el cheque a nombre del empleado en estado "en cartera" en el módulo de Cheques.</li>
+            <li><strong>Transferencia bancaria:</strong> queda registrada en la liquidación con banco y referencia, sin afectar otros módulos.</li>
+          </ul>
+          <p>Si después hay que corregir algo, el botón <strong>"Anular liquidación"</strong> deshace todo: borra el pago generado (egreso de efectivo o cheque) y desmarca los movimientos del mes.</p>
+
+          <h4>Resumen anual del empleado</h4>
+          <p>Debajo de la planilla del mes, aparece el <strong>resumen anual</strong> del año en curso (o del año del mes seleccionado): total liquidado, meses liquidados (X / 12), promedio mensual, ganancias y gastos totales del año, y una <strong>tira de 12 meses</strong> con el neto liquidado de cada uno — clickeable para saltar al mes.</p>
+
+          <h4>Exportar y entregar al empleado</h4>
+          <p>Dos botones en la ficha del empleado:</p>
+          <ul>
+            <li><strong>📊 Excel:</strong> descarga la planilla completa del mes seleccionado en .xlsx (fecha, tipo, categoría, concepto, horas, monto, observaciones, totales).</li>
+            <li><strong>🖨️ Recibo PDF:</strong> genera un recibo de liquidación de sueldo profesional, con el encabezado de la empresa, datos del empleado, tabla de haberes y descuentos, neto a cobrar destacado, forma de pago y dos líneas de firma (empleador / empleado "Recibí conforme"). Listo para imprimir y entregar.</li>
+          </ul>
         </section>
 
         <section id="mod-admin">
@@ -617,140 +678,4 @@
             <li>Sistema emite, obtiene CAE, descuenta stock, genera PDF.</li>
             <li>Recibís el cheque. <strong>Finanzas → Cheques → Nuevo (recibido)</strong>. Asociado a la factura, fecha de pago a 60 días.</li>
             <li><strong>Resultado:</strong> cuenta corriente del cliente al día, cheque "en cartera", flujo de caja proyectado, sumado al libro IVA Ventas.</li>
-            <li><strong>15 días antes del vencimiento:</strong> el sistema lo muestra en la alerta "⏰ Cheques a vencer en 15 días" del Dashboard.</li>
-          </ol>
-
-          <h3>Flujo 4 — Revisar consolidado de tres empresas en simultáneo</h3>
-          <ol>
-            <li><strong>Inicio → 🌐 Resumen multi-empresa</strong>.</li>
-            <li>Veo el total consolidado: cheques en cartera, a vencer en 15 días, vencidos, efectivo, flujo de caja.</li>
-            <li>Si quiero excluir una empresa (ej. está en pausa), desmarco su checkbox → los totales se recalculan al instante.</li>
-            <li>Una empresa muestra 3 cheques vencidos. Hago clic en <strong>"Cheques →"</strong> de esa fila.</li>
-            <li>Sistema cambia automáticamente a esa empresa y abre Cheques, donde puedo ver el detalle y gestionarlos.</li>
-          </ol>
-
-          <h3>Flujo 5 — Cierre de campaña con rinde real</h3>
-          <ol>
-            <li><strong>Producción → Campañas → Editar "Soja 2025/26"</strong>. Cargás rinde real (35 qq/ha).</li>
-            <li><strong>Stock → Movimientos → Entrada por cosecha</strong>: 175 t entran al stock.</li>
-            <li>Marcás campaña como <strong>Cosechada</strong>.</li>
-            <li><strong>Resultado:</strong> stock sube, reporte de margen completo (ingresos - insumos - labores - arrendamiento si aplica).</li>
-          </ol>
-
-          <h3>Flujo 6 — Pago de cuota de arrendamiento</h3>
-          <ol>
-            <li><strong>Finanzas → Arrendamientos → Editar contrato existente</strong>.</li>
-            <li>Verificás el próximo vencimiento (ej. 200 quintales de soja, vence el 30/06/2026).</li>
-            <li>Al llegar el vencimiento, registrás el pago: el sistema valoriza al precio BCR del día.</li>
-            <li><strong>Resultado:</strong> cuenta corriente del arrendador actualizada, libro IVA si corresponde, egreso en flujo de caja real.</li>
-          </ol>
-
-          <h3>Flujo 7 — Despacho de soja a destino</h3>
-          <ol>
-            <li><strong>Logística y RRHH → Viajes → Nuevo viaje</strong>.</li>
-            <li>Origen: tu silo. Destino: Acopiadora Pampeana. Transportista, chofer, patente.</li>
-            <li>Tonelaje cargado en origen, carta de porte (CTG).</li>
-            <li>Al llegar a destino, cargás peso real y eventuales mermas.</li>
-            <li><strong>Resultado:</strong> salida de stock, costo del flete imputado, asociación con factura de venta.</li>
-          </ol>
-        </section>
-
-        <section id="faq">
-          <h2>8. Preguntas frecuentes</h2>
-
-          <h4>¿Pierdo datos si se corta la luz / internet?</h4>
-          <p>No. Los datos viven en el servidor (cloud o local), no en tu navegador. Si se corta la luz, los reanudás cuando vuelva. Si se corta internet pero el server local sigue prendido, podés seguir trabajando desde la red local. El modo PWA además guarda en el dispositivo lo que cargues offline.</p>
-
-          <h4>¿Cómo se hacen los backups?</h4>
-          <p>Si estás en Cloud (AWS), automático y diario, con retención de 30 días. Si estás en servidor propio, según el plan acordado (típicamente diario incremental + semanal completo).</p>
-
-          <h4>¿Puedo migrar datos de mi sistema actual?</h4>
-          <p>Sí. Importamos desde Excel, planillas o archivos exportados. La migración inicial está incluida en la implementación.</p>
-
-          <h4>¿Cuánta gente puede usar el sistema al mismo tiempo?</h4>
-          <p>No hay límite por licencia. Las únicas limitaciones son técnicas (servidor) y los precios planos no escalan por usuario.</p>
-
-          <h4>¿Funciona desde el celular?</h4>
-          <p>Sí. Responsive y adaptado a pantallas pequeñas. La carga de movimientos puede hacerse desde el celular en el campo. El botón Atrás del celular navega entre módulos dentro de la app, no te saca afuera.</p>
-
-          <h4>¿Puedo cargar datos sin señal en el campo?</h4>
-          <p>Sí. AgroCore tiene <strong>modo offline</strong>: las secciones de Producción (Campos y lotes, Campañas, Insumos y labores) funcionan sin internet. Los registros que cargues sin señal se guardan en el celular y se sincronizan solos cuando volvés a tener conexión. Para que funcione, abrí la app con conexión al menos una vez para que descargue los datos. Ver el detalle completo en la sección "Trabajar sin conexión (modo offline)".</p>
-
-          <h4>¿Cómo se factura con ARCA?</h4>
-          <p>Web service integrado. Una vez cargado tu certificado digital, las facturas se emiten directo con CAE.</p>
-
-          <h4>¿Puedo ver datos de varias empresas en simultáneo?</h4>
-          <p>Sí, con el módulo <strong>Resumen multi-empresa</strong> (sección INICIO de la barra lateral). Sumás cheques, efectivo y flujo de caja de todas las empresas a las que tu usuario tiene acceso, sin perder la separación por empresa. Podés filtrar con checkboxes qué empresas incluir en el total.</p>
-
-          <h4>¿Y si quiero un módulo nuevo o un cambio específico?</h4>
-          <p>Los pedidos se evalúan caso por caso. Hay un canal en tu plan de mantenimiento mensual. Cambios mayores tienen presupuesto aparte.</p>
-
-          <h4>¿Quién es dueño de los datos?</h4>
-          <p>Vos. El código fuente y la infraestructura son tuyos. Sin lock-in.</p>
-
-          <h4>¿Cuánto tarda la implementación?</h4>
-          <p>Entre 4 y 6 semanas desde la confirmación.</p>
-
-          <h4>¿Mis datos están seguros?</h4>
-          <p>Estándares bancarios: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups con retención, auditoría completa, OWASP Top 10. Firmamos NDA.</p>
-
-          <h4>¿Puedo ver Hacienda en algún lado?</h4>
-          <p>En esta versión, los KPIs del Inicio muestran "Cabezas" como dato consolidado. La gestión completa de Hacienda (categorías, pesadas, sanidad) está prevista para una próxima versión. Si es crítico para tu operatoria, lo conversamos en el alcance de implementación.</p>
-        </section>
-
-        <section id="soporte">
-          <h2>9. Soporte y contacto</h2>
-          <p>Durante la prueba del demo y en el plan de mantenimiento:</p>
-          <ul>
-            <li><strong>WhatsApp:</strong> (te lo pasamos en la primera conversación)</li>
-            <li><strong>Email:</strong> sergiodbilbao@gmail.com</li>
-            <li><strong>Web:</strong> <a href="https://agrocore.ar" class="text-agro-700 underline">https://agrocore.ar</a></li>
-          </ul>
-          <p><strong>Horario:</strong> lunes a viernes, 9:00 a 18:00 hs (Argentina). <strong>Respuesta:</strong> 24 hs hábiles para consultas, 4 hs para incidentes críticos.</p>
-
-          <h3>Para reportar un bug durante el testing</h3>
-          <ol>
-            <li>Qué estabas haciendo cuando pasó (paso a paso).</li>
-            <li>Qué esperabas que pasara.</li>
-            <li>Qué pasó en realidad.</li>
-            <li>Captura de pantalla del error.</li>
-            <li>Tu usuario y aproximadamente la hora.</li>
-          </ol>
-          <p>Con eso podemos reproducirlo y arreglarlo rápido.</p>
-        </section>
-
-      </main>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-      <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario v1.3 · Mayo 2026</p>
-      <div class="mt-4 space-x-4">
-        <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
-        <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>
-        <a href="https://demo.agrocore.ar" class="text-gold-400 hover:text-gold-300">Probar el demo →</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const tocLinks = document.querySelectorAll('.toc-link');
-    const sections = document.querySelectorAll('section[id]');
-
-    function updateActiveTOC() {
-      let current = '';
-      const offset = window.scrollY + 100;
-      sections.forEach(s => { if (s.offsetTop <= offset) current = s.id; });
-      tocLinks.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
-      });
-    }
-    window.addEventListener('scroll', updateActiveTOC);
-    updateActiveTOC();
-  </script>
-
-</body>
-</html>
+       

@@ -271,24 +271,25 @@
             <li>• Facturación de Ventas (A, B, C, E con CAE)</li>
             <li>• Facturas de Compra de proveedores</li>
             <li>• Libro IVA Ventas y Compras (Excel/PDF)</li>
-            <li>• Cheques propios y de terceros</li>
-            <li>• Cuentas Corrientes</li>
-            <li>• Flujo de Caja · Control de Efectivo</li>
+            <li>• Cheques físicos y electrónicos (e-cheq), con alerta a 15 días</li>
+            <li>• Cuentas Corrientes con manuales aparte (alquileres, impuestos, vencimientos)</li>
+            <li>• Control de Efectivo multi-caja con transferencias</li>
+            <li>• Flujo de Caja proyectado</li>
             <li>• Arrendamientos con vencimientos</li>
           </ul>
         </div>
 
         <div class="bg-white p-6 rounded-xl border border-slate-200">
           <div class="text-2xl mb-2">🌾</div>
-          <h3 class="font-bold text-agro-900 mb-2">Producción Agropecuaria</h3>
+          <h3 class="font-bold text-agro-900 mb-2">Producción Agropecuaria y Hacienda</h3>
           <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Stock unificado con catálogo</li>
-            <li>• Movimientos automáticos al facturar</li>
-            <li>• Validación de stock al vender</li>
-            <li>• Reporte de Margen (compras vs ventas)</li>
-            <li>• Campañas agrícolas y costos</li>
             <li>• Campos y lotes</li>
-            <li>• Insumos y labores aplicadas</li>
+            <li>• Campañas agrícolas, costos y rinde</li>
+            <li>• Insumos y labores aplicadas (con hectáreas parciales)</li>
+            <li>• Stock unificado con catálogo</li>
+            <li>• Movimientos automáticos al facturar · validación al vender</li>
+            <li>• Reporte de Margen (compras vs ventas)</li>
+            <li>• <strong>Hacienda por campo</strong>: stock declarado (SENASA) vs real, con nacimientos, muertes, traslados y conteos — funciona offline desde el celular</li>
           </ul>
         </div>
 
@@ -297,9 +298,12 @@
           <h3 class="font-bold text-agro-900 mb-2">Logística y RRHH</h3>
           <ul class="text-sm text-slate-600 space-y-1">
             <li>• Empleados con foto y legajo</li>
-            <li>• Viajes y fletes</li>
-            <li>• Notificaciones de vencimientos</li>
-            <li>• Asignación de tareas</li>
+            <li>• <strong>Planilla mensual por empleado</strong>: adelantos, horas trabajadas, compras personales, premios</li>
+            <li>• <strong>Liquidación de sueldo</strong> con descuento automático en efectivo, cheque propio o transferencia</li>
+            <li>• Recibo de sueldo en PDF para imprimir y entregar</li>
+            <li>• Exportación de la planilla del mes a Excel</li>
+            <li>• Resumen anual del empleado (total liquidado, promedio)</li>
+            <li>• Viajes y fletes con cartas de porte y CTG</li>
           </ul>
         </div>
 
@@ -775,26 +779,3 @@
         if (j.success) {
           status.innerHTML = '<span class="text-agro-700 font-medium">✓ ¡Mensaje enviado! Te respondemos en menos de 24 hs.</span>';
           form.reset();
-        } else {
-          throw new Error(j.message || 'Error desconocido');
-        }
-      } catch (err) {
-        status.innerHTML = `<span class="text-red-600">No pudimos enviar el mensaje. Probá por <a href="https://wa.me/5493582408884" class="underline">WhatsApp</a>.</span>`;
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Enviar consulta →';
-      }
-      return false;
-    }
-
-    // Smooth fade-in on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
-
-</body>
-</html>
