@@ -130,8 +130,10 @@ function _armarEmailHtml({ nombre, email, telefono, empresa, mensaje, fechaArg }
   // Mensaje con saltos de línea preservados (escapamos HTML y mantenemos \n).
   const mensajeHtml = _esc(mensaje).replace(/\n/g, '<br>');
 
+  // Usamos el redirector /wa en agrocore.ar que detecta desktop vs mobile y
+  // manda al WhatsApp correcto (Web o app) sin pasar por el prompt intermedio.
   const waButton = telDigits ? `
-    <a href="https://wa.me/${telDigits}" style="display:inline-block;background:#25d366;color:#ffffff;padding:10px 18px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;margin-left:8px">
+    <a href="https://agrocore.ar/wa?p=${telDigits}" style="display:inline-block;background:#25d366;color:#ffffff;padding:10px 18px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;margin-left:8px">
       💬 Abrir WhatsApp
     </a>` : '';
 
