@@ -750,20 +750,17 @@
       });
     });
 
-    // Contact form — usa FormSubmit (formsubmit.co) en modo AJAX. Es gratis y no
-    // requiere registro. La PRIMERA vez que llegue un mensaje, FormSubmit le
-    // envía un mail de activación al destinatario (sergiodbilbao@gmail.com) con
-    // un botón "Activate". Una sola vez. A partir de ahí, todos los formularios
-    // llegan al mail directamente.
-    const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/sergiodbilbao@gmail.com';
-
+    // Contact form — usa una Cloudflare Pages Function propia (functions/api/contact.js)
+    // que envía mail vía Resend con plantilla HTML en español, branding AgroCore
+    // y reply-to al email del que consulta. Si la función no está disponible o
+    // falla, se hace fallback abriendo WhatsApp con el mensaje pre-cargado.
     async function enviarFormulario(e) {
       e.preventDefault();
       const form = e.target;
       const status = document.getElementById('formStatus');
       const btn = form.querySelector('button[type=submit]');
 
-      // Honeypot anti-spam
+      // Honeypot anti-spam (campo invisible que solo los bots completan)
       if (form.botcheck.checked) {
         status.innerHTML = '<span class="text-red-600">Detectamos actividad sospechosa.</span>';
         return false;
@@ -774,44 +771,31 @@
       status.innerHTML = '';
 
       const data = {
-        nombre:    form.nombre.value,
-        email:     form.email.value,
-        telefono:  form.telefono.value || '-',
-        empresa:   form.empresa.value || '-',
-        mensaje:   form.mensaje.value,
-        _subject:  'Nueva consulta desde AgroCore.ar',
-        _template: 'table',
-        _captcha:  'false',
+        nombre:   form.nombre.value.trim(),
+        email:    form.email.value.trim(),
+        telefono: form.telefono.value.trim(),
+        empresa:  form.empresa.value.trim(),
+        mensaje:  form.mensaje.value.trim(),
       };
 
       try {
-        const r = await fetch(FORMSUBMIT_ENDPOINT, {
+        const r = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
         });
-        const j = await r.json();
-        // FormSubmit success can come as boolean true or string "true"
-        if (j.success === true || j.success === 'true') {
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && j.ok) {
           status.innerHTML = '<span class="text-agro-700 font-medium">✓ ¡Mensaje enviado! Te respondemos en menos de 24 hs.</span>';
           form.reset();
           return false;
         }
-        // Caso especial: primera vez que se manda, FormSubmit pide activación.
-        // El mensaje incluye "activation" o un link de confirmación.
-        const msg = (j.message || '').toLowerCase();
-        if (msg.includes('activate') || msg.includes('confirm')) {
-          status.innerHTML = '<span class="text-amber-700">⚠️ El formulario tiene que activarse una vez. AgroCore recibió un mail de activación — en cuanto lo confirme, los próximos mensajes llegan directo. Por ahora te abrimos WhatsApp con tu consulta.</span>';
-          const text = `Hola! Soy ${data.nombre}.\nEmpresa: ${data.empresa}\nEmail: ${data.email}\nTel: ${data.telefono}\n\n${data.mensaje}`;
-          waOpen(text);
-          return false;
-        }
-        throw new Error(j.message || 'Error desconocido');
+        // Si el server-side no está configurado todavía o devolvió error, caemos a WhatsApp.
+        throw new Error(j.error || ('HTTP ' + r.status));
       } catch (err) {
-        // Fallback: abrir WhatsApp con el mensaje pre-armado.
-        const text = `Hola! Soy ${data.nombre}.\nEmpresa: ${data.empresa}\nEmail: ${data.email}\nTel: ${data.telefono}\n\n${data.mensaje}`;
+        const text = `Hola! Soy ${data.nombre}.\nEmpresa: ${data.empresa || '-'}\nEmail: ${data.email}\nTel: ${data.telefono || '-'}\n\n${data.mensaje}`;
         waOpen(text);
-        status.innerHTML = '<span class="text-agro-700 font-medium">✓ Te abrimos WhatsApp con tu mensaje. (Si esperabas mail, podemos confirmarlo y enviar el próximo).</span>';
+        status.innerHTML = '<span class="text-agro-700 font-medium">✓ Te abrimos WhatsApp con tu mensaje. (Si esperabas mail, en breve se activa.)</span>';
       } finally {
         btn.disabled = false;
         btn.textContent = 'Enviar consulta →';
