@@ -263,124 +263,104 @@
         <p class="text-slate-600 max-w-2xl mx-auto">7 secciones totalmente integradas, sin necesidad de conectar sistemas externos.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
           <div class="text-2xl mb-2">💰</div>
           <h3 class="font-bold text-agro-900 mb-2">Comercial y Financiero</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Facturación de Ventas (A, B, C, E con CAE)</li>
-            <li>• <strong>📥 Cargar facturas emitidas en ARCA</strong> manualmente, con el CAE real</li>
-            <li>• Facturas de Compra de proveedores</li>
-            <li>• Libro IVA Ventas y Compras (Excel/PDF)</li>
-            <li>• Cheques físicos y electrónicos (e-cheq), con alerta a 15 días</li>
-            <li>• Cuentas Corrientes con manuales aparte (alquileres, impuestos, vencimientos)</li>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• <strong>Facturación electrónica ARCA</strong> (A, B, C, E) y carga manual de facturas externas</li>
+            <li>• Compras, Libro IVA Ventas y Compras (Excel y PDF)</li>
+            <li>• <strong>Cheques</strong> físicos y electrónicos con alertas a 15 días</li>
+            <li>• Cuentas Corrientes a cobrar, a pagar y manuales con vencimientos</li>
             <li>• Control de Efectivo multi-caja con transferencias</li>
-            <li>• Flujo de Caja proyectado</li>
-            <li>• Arrendamientos con vencimientos</li>
-            <li>• <strong>🏦 Créditos bancarios</strong> con plan de cuotas automático (sistema francés) y alertas de vencimiento</li>
-            <li>• <strong>🎯 Estado de situación</strong>: dashboard cronológico de lo que tenés que pagar y lo que vas a cobrar</li>
+            <li>• <strong>Créditos bancarios</strong> con plan de cuotas y alertas</li>
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
           <div class="text-2xl mb-2">🌾</div>
-          <h3 class="font-bold text-agro-900 mb-2">Producción Agropecuaria y Hacienda</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Campos y lotes</li>
-            <li>• Campañas agrícolas, costos y rinde</li>
-            <li>• <strong>Labor con empleado responsable e insumos consumidos del stock</strong> (descuenta automáticamente)</li>
-            <li>• <strong>🛠️ Labor avanzada</strong>: precio referencia por hectárea + % cobro empleado → la ganancia entra sola en su planilla</li>
-            <li>• Stock unificado con catálogo</li>
-            <li>• Movimientos automáticos al facturar · validación al vender</li>
-            <li>• Reporte de Margen (compras vs ventas)</li>
-            <li>• <strong>🏭 Cerealeras y depósitos</strong>: el cereal sigue siendo tuyo pero está en planta, con costos de estadía y secada</li>
-            <li>• <strong>🧾 Liquidaciones de cereal</strong>: kg brutos, mermas, descuentos, retenciones y neto a cobrar</li>
-            <li>• <strong>Hacienda por campo</strong>: stock declarado (SENASA) vs real, con nacimientos, muertes, compras, ventas, traslados y conteos — funciona offline desde el celular</li>
+          <h3 class="font-bold text-agro-900 mb-2">Producción y Hacienda</h3>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• Campos, lotes y campañas con costos y rinde por hectárea</li>
+            <li>• Insumos y labores con consumo automático del stock</li>
+            <li>• <strong>Labor avanzada</strong> con precio de referencia y % de cobro al empleado</li>
+            <li>• <strong>Cerealeras y liquidaciones</strong> de cereal con mermas y retenciones</li>
+            <li>• Stock unificado y reporte de margen (compras vs ventas)</li>
+            <li>• <strong>Hacienda por campo</strong> (SENASA vs real) — funciona sin conexión</li>
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
           <div class="text-2xl mb-2">🚚</div>
-          <h3 class="font-bold text-agro-900 mb-2">Logística y RRHH</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Empleados con foto y legajo</li>
-            <li>• <strong>👤 Propio / 🔧 Externo</strong> + cobro por porcentaje de labor (contratistas, fasoneros)</li>
-            <li>• <strong>Planilla mensual por empleado</strong>: adelantos, horas trabajadas, compras personales, premios</li>
-            <li>• <strong>Ganancia automática</strong> al cargar una labor con %: se suma sola a la planilla del mes</li>
-            <li>• <strong>Liquidación de sueldo</strong> con descuento automático en efectivo, cheque propio o transferencia</li>
-            <li>• Recibo de sueldo en PDF para imprimir y entregar</li>
-            <li>• Exportación de la planilla del mes a Excel</li>
-            <li>• <strong>Viajes con operativa completa</strong>: kg carga + descarga con diferencia, CTG y carta de porte separados, tarifa $/ton, CUITs, patente acoplado, tipo de camión</li>
-            <li>• <strong>Destino del cereal en el viaje</strong>: cerealera del catálogo o venta directa, con atajo para cargar entrega/liquidación</li>
-            <li>• <strong>Estado del viaje automático</strong>: cargado → descargado → facturado → pagado, vinculado a la factura del transportista</li>
-            <li>• <strong>🚛 Solicitar Camión Logística</strong> por WhatsApp con plantilla armada automática</li>
-            <li>• <strong>🔍 Verificación de CTGs en ARCA</strong>: consulta el estado y kg recibidos contra los servidores de AFIP en vivo</li>
+          <h3 class="font-bold text-agro-900 mb-2">Logística y Viajes</h3>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• <strong>Viajes con CTG y carta de porte</strong>: kg carga / descarga, diferencia, tarifa $/ton</li>
+            <li>• Estado automático: pendiente → cargado → descargado → facturado → pagado</li>
+            <li>• <strong>Verificación de CTGs en ARCA</strong> en vivo y completado del kg descargado</li>
+            <li>• Solicitar camión a logística por WhatsApp con plantilla armada</li>
+            <li>• Destino del cereal vinculado a cerealera o venta directa</li>
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
-          <div class="text-2xl mb-2">📚</div>
-          <h3 class="font-bold text-agro-900 mb-2">Catálogos y Maestros</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Clientes y Proveedores</li>
-            <li>• Productos por categoría</li>
-            <li>• Bancos y Cuentas Bancarias</li>
-            <li>• Geografía: País → Provincia → Ciudad</li>
-            <li>• Cereales, insumos y labores precargados</li>
-            <li>• <strong>Labores con precio sugerido</strong> ($/ha o total) que se auto-carga al usar la labor en el form</li>
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
+          <div class="text-2xl mb-2">👷</div>
+          <h3 class="font-bold text-agro-900 mb-2">RRHH y Empleados</h3>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• Ficha del empleado con foto, legajo y planilla personal</li>
+            <li>• <strong>Propios o externos</strong> (contratistas, fasoneros) con cobro por % de labor</li>
+            <li>• Planilla mensual con adelantos, horas, premios y descuentos</li>
+            <li>• <strong>Liquidación de sueldo</strong> con descuento desde efectivo, cheque o transferencia</li>
+            <li>• Recibo de sueldo en PDF y exportación de la planilla a Excel</li>
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
+          <div class="text-2xl mb-2">📊</div>
+          <h3 class="font-bold text-agro-900 mb-2">Inteligencia y Análisis</h3>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• <strong>Dashboard</strong> con 5 vistas: Resumen, Finanzas, Stock, Producción y Patrimonial</li>
+            <li>• <strong>Estado de situación</strong>: lo que vas a cobrar y lo que tenés que pagar, ordenado por fecha</li>
+            <li>• Flujo de caja proyectado a 30, 90, 180 y 365 días</li>
+            <li>• Resumen consolidado multi-empresa</li>
+            <li>• KPIs en tiempo real y buscador global</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
           <div class="text-2xl mb-2">💱</div>
           <h3 class="font-bold text-agro-900 mb-2">Información en Vivo</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Dólar oficial, blue, MEP, CCL, cripto, tarjeta</li>
-            <li>• Granos BCR Rosario (soja, maíz, trigo, sorgo, girasol)</li>
-            <li>• Tendencia visual ▲▼ por cotización</li>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• Dólar oficial, blue, MEP, CCL, cripto y tarjeta</li>
+            <li>• <strong>Granos BCR Rosario</strong>: soja, maíz, trigo, sorgo, girasol con tendencia ▲▼</li>
             <li>• Noticias del agro (Infocampo, Valor Soja, Agritotal)</li>
-            <li>• <strong>💬 Botón directo al asesor comercial por WhatsApp</strong> para consultar precios de granos</li>
+            <li>• Botón directo al asesor comercial por WhatsApp</li>
+            <li>• Pizarra de cotizaciones siempre visible arriba</li>
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
-          <div class="text-2xl mb-2">📊</div>
-          <h3 class="font-bold text-agro-900 mb-2">Dashboard e Inteligencia</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• 5 solapas: Resumen, Finanzas, Stock, Producción, Patrimonial</li>
-            <li>• Gráficos interactivos</li>
-            <li>• KPIs en tiempo real</li>
-            <li>• Buscador global</li>
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
+          <div class="text-2xl mb-2">📚</div>
+          <h3 class="font-bold text-agro-900 mb-2">Catálogos y Datos Maestros</h3>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• Clientes y Proveedores con cuenta corriente integrada</li>
+            <li>• Productos por categoría con stock mínimo</li>
+            <li>• Cerealeras, depósitos propios y cajas físicas</li>
+            <li>• Bancos y geografía País → Provincia → Ciudad</li>
+            <li>• Labores con precio sugerido que se auto-carga en el form</li>
           </ul>
         </div>
 
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
+        <div class="bg-white p-6 rounded-xl border border-slate-200 flex flex-col">
           <div class="text-2xl mb-2">🔐</div>
           <h3 class="font-bold text-agro-900 mb-2">Administración y Seguridad</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• Roles y permisos granulares</li>
-            <li>• <strong>Permisos finos opt-in</strong>: separá "Labor simple" de "Labor avanzada", "Crear crédito" de "Marcar cuota pagada", etc.</li>
-            <li>• <strong>Configuración por empresa</strong>: contactos del sistema (Asesor, Logística, Contador) e <strong>integración real con ARCA / WSCTG + WSFE</strong></li>
-            <li>• <strong>Toggle ambiente Homologación ↔ Producción</strong> para AFIP (probar sin emitir factura real)</li>
-            <li>• Generación automática de la clave privada y solicitud de certificado para ARCA — sin instalar nada</li>
-            <li>• Auditoría de acciones</li>
-            <li>• HTTPS/TLS · Hash bcrypt para contraseñas</li>
+          <ul class="text-sm text-slate-600 space-y-1.5">
+            <li>• <strong>Roles y permisos</strong> generales y finos por funcionalidad</li>
+            <li>• Configuración por empresa con <strong>integración real ARCA</strong> (WSCTG + WSFE)</li>
+            <li>• Toggle Homologación / Producción para probar AFIP sin emitir factura real</li>
+            <li>• Auditoría de acciones, HTTPS / TLS y hash bcrypt</li>
             <li>• Backups diarios automáticos</li>
           </ul>
         </div>
-
-        <div class="bg-white p-6 rounded-xl border border-slate-200">
-          <div class="text-2xl mb-2">🌐</div>
-          <h3 class="font-bold text-agro-900 mb-2">Acceso y Deployment</h3>
-          <ul class="text-sm text-slate-600 space-y-1">
-            <li>• 100% responsive (celular, tablet, PC)</li>
-            <li>• Acceso desde internet con HTTPS</li>
-            <li>• Acceso LAN para la oficina</li>
-            <li>• Auto-inicio en Windows</li>
-            <li>• Compartir con QR code</li>
-          </ul>
-        </div>
-
       </div>
     </div>
   </section>
