@@ -112,7 +112,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 30+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.6 · Mayo 2026 · Sistema AgroCore v0.5</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.7 · Junio 2026 · Sistema AgroCore v0.6</p>
     </div>
   </section>
 
@@ -154,13 +154,13 @@
           <p>AgroCore es un sistema integral pensado <strong>por y para el agro argentino</strong>. No es un ERP genérico adaptado a la fuerza: cada módulo se diseñó pensando en las particularidades del campo argentino — campañas de gruesa y fina, arrendamientos en quintales, facturación con ARCA, libro IVA, cotizaciones de la BCR Rosario en vivo.</p>
           <p>El sistema te permite gestionar:</p>
           <ul>
-            <li><strong>Producción:</strong> campos, lotes, campañas, insumos y labores aplicadas.</li>
-            <li><strong>Stock:</strong> granos y productos en general, con trazabilidad y reporte de margen.</li>
+            <li><strong>Producción:</strong> campos, lotes, campañas, insumos y labores aplicadas — incluso labores avanzadas con empleados que cobran por porcentaje de la ganancia.</li>
+            <li><strong>Stock:</strong> granos y productos con trazabilidad, reporte de margen, hacienda por campo (declarado SENASA vs real), <strong>cerealeras y depósitos</strong> con liquidaciones de cereal.</li>
             <li><strong>Contactos:</strong> clientes y proveedores, con cuentas corrientes integradas.</li>
-            <li><strong>Finanzas:</strong> flujo de caja, facturación electrónica ARCA, compras, libro IVA, cheques, cuentas corrientes, arrendamientos y control de efectivo.</li>
-            <li><strong>Logística y RRHH:</strong> viajes (cartas de porte) y empleados (contratos, recibos).</li>
-            <li><strong>Administración:</strong> catálogos, usuarios, roles y permisos, empresas.</li>
-            <li><strong>Resumen multi-empresa:</strong> vista consolidada de cheques, efectivo y flujo a través de todas las empresas a las que tengas acceso <span class="badge-new">Nuevo</span></li>
+            <li><strong>Finanzas:</strong> flujo de caja, facturación electrónica ARCA (con toggle Homo/Prod), compras, libro IVA, cheques, cuentas corrientes, arrendamientos, control de efectivo, <strong>créditos bancarios</strong> con plan de cuotas y <strong>Estado de situación</strong> proyectado.</li>
+            <li><strong>Logística y RRHH:</strong> viajes con CTG y destino del cereal, empleados propios o externos con planilla y liquidación de sueldo.</li>
+            <li><strong>Administración:</strong> catálogos, usuarios, roles y permisos finos, empresas.</li>
+            <li><strong>Resumen multi-empresa:</strong> vista consolidada de cheques, efectivo y flujo a través de todas las empresas a las que tengas acceso.</li>
           </ul>
           <p>Todo en una sola plataforma, con datos compartidos entre módulos. Si cargás una factura de venta, automáticamente se actualiza el stock, el flujo de caja proyectado, la cuenta corriente del cliente, el libro IVA y los KPIs del dashboard.</p>
         </section>
@@ -412,13 +412,31 @@
 
           <h4>Insumos y labores</h4>
           <p><strong>Qué hace:</strong> registra cada aplicación de insumo (semilla, fertilizante, agroquímico) y cada labor (siembra, pulverización, cosecha) sobre un lote, con fecha, dosis, costo y operario.</p>
-          <p><strong>Hectáreas aplicadas custom</strong> <span class="badge-new">Nuevo</span>: en el formulario podés especificar la <strong>cantidad real de hectáreas donde se aplicó</strong>. Por defecto el sistema autocompleta con el total del lote, pero es editable. Útil cuando aplicaste solo en una parte del lote (ej. el alrededor, una franja específica, o un sector).</p>
+          <p>En la cabecera hay tres botones: <strong>+ Insumo</strong>, <strong>+ Labor</strong> (forma normal) y <strong>🛠️ Labor avanzada</strong> (con cálculo de % cobro empleado).</p>
+          <p><strong>Hectáreas aplicadas custom</strong>: en el formulario podés especificar la <strong>cantidad real de hectáreas donde se aplicó</strong>. Por defecto el sistema autocompleta con el total del lote, pero es editable. Útil cuando aplicaste solo en una parte del lote (ej. el alrededor, una franja específica, o un sector).</p>
           <ul>
             <li>Si la cantidad es menor al total del lote, la tabla marca esa aplicación con un asterisco amarillo "<span style="color:#d97706">*</span>" indicando que fue parcial.</li>
             <li>El costo total se calcula como <code>costoHa × hectáreasAplicadas</code> (no como <code>costoHa × hectáreasTotalesDelLote</code>), lo que da el costo real preciso.</li>
             <li>El reporte de margen toma el costo real, no el estimado por el total del lote.</li>
           </ul>
           <p><strong>Integración con stock:</strong> cuando cargás un insumo aplicado, <strong>automáticamente se descuenta del stock</strong>. No hay que cargar dos veces.</p>
+
+          <h4>Labor con empleado responsable e insumos consumidos <span class="badge-new">Nuevo</span></h4>
+          <p>El formulario de Labor ahora permite cargar todo lo que se usó en la labor en una sola pantalla:</p>
+          <ul>
+            <li><strong>Empleado responsable</strong>: select que muestra todos los empleados activos con su tipo (👤 propio / 🔧 externo) y si cobran porcentaje. Texto libre como fallback.</li>
+            <li><strong>Insumos consumidos</strong>: tabla con producto, cantidad y precio unitario. Cada insumo seleccionado <strong>descuenta del stock real</strong> con un movimiento de egreso trazable, así no hay que cargarlo dos veces.</li>
+          </ul>
+
+          <h4>Labor avanzada — cobro por porcentaje al empleado <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando una labor la hace un contratista, fasonero o un empleado que cobra por porcentaje, abrís el botón <strong>🛠️ Labor avanzada</strong>. Trae todo lo del form normal y suma un bloque "Cobro por porcentaje del empleado" con:</p>
+          <ul>
+            <li><strong>Tipo de precio:</strong> Por hectárea (siembra, pulverización, cosecha) o Total de la labor (alambrado, limpieza, eventos puntuales).</li>
+            <li><strong>Precio referencia</strong>: el valor base que se toma como precio total de la labor. Se auto-carga del catálogo si la labor tiene precio sugerido, y se puede modificar.</li>
+            <li><strong>% Empleado</strong>: el porcentaje sobre el precio total que cobra el empleado por hacer la labor. Si elegís un empleado que cobra %, se precarga con su porcentaje por defecto.</li>
+          </ul>
+          <p><strong>Cálculo en vivo:</strong> el form muestra base de cálculo (ha × precio o precio total), ganancia del empleado (base × %) y el mes en que aparecerá en su planilla.</p>
+          <p><strong>Al guardar:</strong> se descuentan los insumos del stock <strong>y</strong>, si el empleado cobra porcentaje, se crea automáticamente un movimiento "ganancia" tipo "labor" en su planilla del mes con el concepto de la labor (tipo, hectáreas y %). No hay que ir a la planilla a cargarlo aparte.</p>
           <p><strong>Reporte por lote:</strong> todas las aplicaciones de un lote en una campaña, con costo acumulado vs presupuesto.</p>
         </section>
 
@@ -451,6 +469,23 @@
           <p><strong>Tipos de movimientos:</strong> Nacimiento, Muerte, Compra (entró), Venta (salió), Traslado entre campos (genera salida en el origen y entrada en el destino en una sola operación) y Ajuste / Conteo (puede ser positivo o negativo para corregir diferencias).</p>
           <p><strong>Modo offline:</strong> esta sección funciona <strong>sin conexión</strong>. La gente que está en el campo puede cargar nacimientos, muertes o ajustes desde el celular, sin señal. Los cambios se guardan en el dispositivo y se sincronizan solos cuando vuelve internet.</p>
           <p><strong>Ejemplo típico:</strong> en el campo Higueras hay 200 terneros y en Holmberg 11. Cada campo aparece con su propia tabla. Si nacen 3 terneros en Higueras, se carga "Nacimiento, Terneros, 3" y el real pasa a 203, mientras el declarado sigue en 200 — el sistema muestra "+3 de diferencia" hasta que se actualiza en ARCA y se sube el declarado a 203.</p>
+
+          <h4>Cerealeras y depósitos — cereal en planta sin perder trazabilidad <span class="badge-new">Nuevo</span></h4>
+          <p>Sección dedicada a registrar las cerealeras / acopiadoras y depósitos propios donde se almacena el cereal. El concepto clave: cuando entregás cereal a una cerealera, el grano <strong>sigue siendo tuyo</strong> — solo cambia de ubicación física. Después decidís cuándo venderlo.</p>
+          <p><strong>Carga de cerealeras:</strong> nombre, CUIT, contacto comercial, teléfono, email, dirección, localidad, provincia. Si es una cerealera, también podés cargar los <strong>costos operativos</strong>: <em>$/tn por mes de estadía</em> y <em>$/tn de secada</em>.</p>
+          <p><strong>Entregar cereal:</strong> botón "📤 Entregar cereal" que abre un formulario para seleccionar producto, cantidad, fecha, cerealera destino y remito. Al guardar, el sistema mueve la cantidad del campo (tu depósito implícito) al depósito de la cerealera elegida — todo en una operación atómica.</p>
+          <p><strong>Stock por depósito:</strong> el panel muestra cuánto cereal hay en cada cerealera y en cada depósito propio. Cuando hay cereal en una cerealera, también aparece como stock total — solo separado por ubicación.</p>
+
+          <h4>Liquidaciones de cereal — cuando vendés lo que tenés en la cerealera <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando decidís vender el cereal que dejaste en una cerealera, cargás una <strong>liquidación</strong>. El formulario reproduce la planilla típica del comprobante:</p>
+          <ul>
+            <li><strong>Cabecera:</strong> cerealera, producto, cliente comprador (opcional), fecha y nro de liquidación.</li>
+            <li><strong>Cálculo del bruto:</strong> kilos brutos, % merma (humedad/calidad), kilos netos calculados, precio por tonelada → bruto $.</li>
+            <li><strong>Conceptos:</strong> agregás los descuentos (flete, paritarios, secada, estadía) e impuestos (IVA, IIBB, ret. ganancias) que aparecen en la liquidación real. Cada uno con tipo, concepto e importe.</li>
+            <li><strong>Resultado:</strong> bruto, descuentos totales, impuestos totales y <strong>neto a cobrar</strong> destacado en verde.</li>
+            <li><strong>Fecha estimada de cobro:</strong> entra al Estado de situación para anticipar el ingreso.</li>
+          </ul>
+          <p>Al registrar la liquidación, el sistema <strong>descuenta el cereal del depósito de la cerealera</strong> (kilos netos a toneladas) y, si hay cliente, crea el movimiento de cuenta corriente con el neto a cobrar. Después podés marcarla como cobrada con un botón.</p>
         </section>
 
         <section id="mod-contactos">
@@ -474,6 +509,23 @@
           <p><strong>Qué hace:</strong> proyección financiera consolidada a partir de cobros esperados, pagos comprometidos, vencimientos de cheques, pagos de arrendamientos y otros compromisos cargados en el sistema.</p>
           <p><strong>Salida:</strong> gráfico y tabla diaria/semanal/mensual con saldo proyectado a 30/60/90 días. Anticipa baches financieros antes de que ocurran.</p>
 
+          <h4>Estado de situación — flujo proyectado consolidado <span class="badge-new">Nuevo</span></h4>
+          <p>Dashboard cronológico que junta en una sola vista <strong>todo lo que vas a cobrar y todo lo que tenés que pagar</strong> en los próximos días, ordenado por proximidad. Suma desde varios módulos:</p>
+          <ul>
+            <li><strong>Cheques a depositar</strong> (terceros en cartera) y <strong>cheques propios a pagar</strong>.</li>
+            <li><strong>Cuentas corrientes</strong> con vencimiento próximo, no pagadas.</li>
+            <li><strong>Cuotas de créditos bancarios</strong> pendientes.</li>
+            <li><strong>Liquidaciones de cereal</strong> con fecha estimada de cobro.</li>
+            <li><strong>Arrendamientos</strong> con vencimiento próximo.</li>
+          </ul>
+          <p><strong>Cómo se ve:</strong> filtros de horizonte (30 / 90 / 180 / 365 días), tres KPIs arriba (A ingresar, A pagar, Saldo neto) y cards mensuales con + ingresos / - egresos / saldo. Cada evento individual muestra concepto, fecha, "en X días" y urgencia visual: rojo si vence en menos de 7 días, ámbar dentro de 30, gris el resto.</p>
+
+          <h4>Créditos bancarios — plan de cuotas y alertas <span class="badge-new">Nuevo</span></h4>
+          <p>Cargás los préstamos bancarios con su plan de cuotas y el sistema te avisa los vencimientos próximos.</p>
+          <p><strong>Cargar un crédito:</strong> banco, número de operación, monto solicitado, tasa anual (TNA), cantidad de cuotas, periodicidad (mensual / bimestral / trimestral / semestral), fecha de la primer cuota y destino. Al guardar, el sistema genera automáticamente <strong>todas las cuotas</strong> con sistema francés (cuota total constante), discriminando capital, interés y total por cuota.</p>
+          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota con medio de pago (efectivo, cheque, transferencia, débito automático). La cuota queda marcada con fecha de pago.</p>
+          <p><strong>Card de alertas:</strong> arriba aparece "Cuotas a vencer en los próximos 30 días" con la lista completa cruzando todos tus créditos. KPIs: cantidad de créditos activos, deuda pendiente total y cuotas próximas.</p>
+
           <h4>Facturación (ventas)</h4>
           <p><strong>Qué hace:</strong> emite facturas electrónicas (A, B, C, M) directamente vía web service de ARCA, con CAE en el momento.</p>
           <p><strong>Cómo emitir:</strong></p>
@@ -489,6 +541,10 @@
           </ol>
           <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
           <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
+
+          <h4>Cargar factura emitida directamente en ARCA <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando un socio o el contador emite una factura por afuera del sistema (directamente en el portal de ARCA), podés cargarla manualmente para que aparezca en los listados, descuente stock y mueva la cuenta corriente del cliente.</p>
+          <p>En Facturación, botón <strong>"📥 Cargar factura ARCA"</strong>. El formulario es igual al de emitir, pero pide dos datos extras: el <strong>CAE real de 14 dígitos</strong> que devolvió ARCA y su <strong>fecha de vencimiento</strong>. La factura queda marcada con un badge "📥 ARCA ext." en la lista para que se distinga visualmente. El sistema <strong>no la reenvía a ARCA</strong> — solo registra el dato para mantener la trazabilidad fiscal.</p>
 
           <h4>Compras</h4>
           <p><strong>Qué hace:</strong> registra las facturas que <strong>te emiten</strong> los proveedores, para control de gastos, IVA crédito fiscal, cuentas corrientes y vencimientos.</p>
@@ -569,6 +625,14 @@
             <li><strong>Estado del viaje y vinculación a factura del transportista</strong> (ver más abajo).</li>
           </ul>
 
+          <h4>Destino del cereal — vínculo con cerealera o liquidación <span class="badge-new">Nuevo</span></h4>
+          <p>El form del viaje tiene una sección "Destino del cereal" para registrar a dónde va el grano:</p>
+          <ul>
+            <li><strong>🏭 A cerealera:</strong> seleccionás del catálogo la cerealera destino. El viaje queda marcado con un badge 🏭 en la lista. Después, desde el botón <strong>📤</strong> que aparece en la fila del viaje, se abre el modal de "Entregar cereal" con producto, cantidad, fecha, remito y cerealera precargados — solo confirmás y el cereal se mueve del campo al stock de la cerealera.</li>
+            <li><strong>💰 Venta directa:</strong> el viaje queda con badge 💰. Desde el botón <strong>🧾</strong> de la fila se abre el modal de "Nueva liquidación de cereal" con kg brutos, fecha y producto precargados.</li>
+            <li><strong>📦 Otro / Sin aplica:</strong> destino texto libre, sin trazabilidad de stock.</li>
+          </ul>
+
           <h4>Estado del viaje (automático)</h4>
           <p>El estado del viaje progresa solo a medida que se cargan los datos:</p>
           <ul>
@@ -589,6 +653,12 @@
 
           <h4>Empleados — nómina + planilla personal <span class="badge-new">Nuevo</span></h4>
           <p>El módulo de empleados tiene dos niveles. Arriba está la <strong>nómina</strong> — lista de todos los empleados con foto, puesto, sueldo base, fechas y estado. Cada empleado se da de alta con: nombre, apellido, DNI, CUIL, puesto, fecha de ingreso, sueldo base, teléfono, email, dirección, provincia y localidad, foto y observaciones.</p>
+          <p><strong>Tipo de empleado y forma de cobro</strong> <span class="badge-new">Nuevo</span>: al final del formulario hay un bloque para distinguir si el empleado es:</p>
+          <ul>
+            <li><strong>👤 Propio:</strong> en relación de dependencia, cobra sueldo base mensual.</li>
+            <li><strong>🔧 Externo:</strong> contratista, fasonero, monotributista que factura sus servicios.</li>
+          </ul>
+          <p>Cualquiera de los dos puede tener activado <strong>"Cobra % por labor"</strong>: en ese caso, cargás el porcentaje por defecto. Cuando ese empleado figura como responsable de una <strong>Labor avanzada</strong>, el sistema calcula automáticamente la ganancia (precio referencia × hectáreas × %) y la suma sola a su planilla del mes con categoría "labor". Pensado especialmente para fasoneros de siembra/cosecha y contratistas que cobran un porcentaje del ingreso.</p>
           <p>Pero al <strong>hacer clic en un empleado</strong> se entra a su <strong>planilla personal</strong> de gastos y ganancias, donde se carga todo lo que le pasó al empleado mes a mes y se hace la liquidación de sueldo.</p>
 
           <h4>Planilla mensual del empleado</h4>
@@ -631,6 +701,8 @@
             <li><strong>Productos:</strong> insumos, granos, combustible, repuestos. Con código, categoría, unidad, alícuota IVA, stock mínimo.</li>
             <li><strong>Cultivos:</strong> soja, maíz, trigo, etc., con tipo (gruesa/fina) y datos agronómicos.</li>
             <li><strong>Bancos:</strong> lista para usar al cargar cheques y cuentas corrientes.</li>
+            <li><strong>Cajas:</strong> las cajas físicas que se usan en Control de Efectivo (Oficina, nombres de personas, sucursales).</li>
+            <li><strong>Labores:</strong> tipos de labor (siembra, pulverización, cosecha, etc.) con <strong>precio sugerido</strong> ($/ha o total) <span class="badge-new">Nuevo</span>. Cuando cargás una "Labor avanzada" y elegís el tipo, el sistema precarga este precio y el tipo de cálculo — y los podés modificar en ese momento.</li>
             <li><strong>Conceptos de tesorería:</strong> tipologías de movimientos de efectivo.</li>
             <li><strong>Provincias y localidades:</strong> cargados de inicio.</li>
           </ul>
@@ -644,7 +716,15 @@
 
           <h4>Roles y permisos</h4>
           <p>Roles vienen pre-cargados (Admin, Contable, Operaciones, Lectura), y podés crear roles a medida.</p>
-          <p>Al crear o editar un rol, los permisos se muestran en una grilla con las <strong>áreas en español</strong> (Producción, Stock, Contactos, Finanzas, etc.) y las acciones también en español: <strong>Ver, Crear, Editar, Eliminar y Todo</strong> <span class="badge-new">Nuevo</span>. Internamente el sistema usa claves técnicas, pero el usuario siempre ve los nombres en español.</p>
+          <p>Al crear o editar un rol, los permisos se muestran en una grilla con las <strong>áreas en español</strong> (Producción, Stock, Contactos, Finanzas, etc.) y las acciones también en español: <strong>Ver, Crear, Editar, Eliminar y Todo</strong>. Internamente el sistema usa claves técnicas, pero el usuario siempre ve los nombres en español.</p>
+          <p><strong>Permisos finos opt-in</strong> <span class="badge-new">Nuevo</span>: debajo de los permisos generales hay una sección "Permisos finos (opcionales — restringen aún más dentro de un área)" con grupos:</p>
+          <ul>
+            <li><strong>Producción · Labores:</strong> separa "Cargar labor simple" de "Cargar labor avanzada" (con cálculo de % cobro empleado).</li>
+            <li><strong>Stock · Cerealeras y depósitos:</strong> separa "Crear/editar depósitos" de "Registrar entrega a cerealera".</li>
+            <li><strong>Finanzas · Créditos y liquidaciones:</strong> separa "Cargar créditos bancarios", "Marcar cuotas como pagadas", "Cargar liquidaciones de cereal" y "Ver Estado de situación".</li>
+            <li><strong>Finanzas · Facturación:</strong> separa "Cargar facturas externas ARCA".</li>
+          </ul>
+          <p>Si <strong>NO marcás ninguno</strong> en un grupo, el rol hereda el permiso del área (el comportamiento anterior se mantiene). Si marcás al menos uno, solo esos quedan habilitados dentro de ese grupo — útil para empleados de campo con acceso restringido a sus propias funciones.</p>
           <p><strong>Acciones por área:</strong></p>
           <ul>
             <li><strong>Ver</strong> — consultar la información del módulo.</li>
@@ -823,7 +903,7 @@
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
       <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario v1.3 · Mayo 2026</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario v1.7 · Junio 2026</p>
       <div class="mt-4 space-x-4">
         <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
         <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>

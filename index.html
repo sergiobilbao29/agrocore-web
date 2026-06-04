@@ -269,6 +269,7 @@
           <h3 class="font-bold text-agro-900 mb-2">Comercial y Financiero</h3>
           <ul class="text-sm text-slate-600 space-y-1">
             <li>• Facturación de Ventas (A, B, C, E con CAE)</li>
+            <li>• <strong>📥 Cargar facturas emitidas en ARCA</strong> manualmente, con el CAE real</li>
             <li>• Facturas de Compra de proveedores</li>
             <li>• Libro IVA Ventas y Compras (Excel/PDF)</li>
             <li>• Cheques físicos y electrónicos (e-cheq), con alerta a 15 días</li>
@@ -276,6 +277,8 @@
             <li>• Control de Efectivo multi-caja con transferencias</li>
             <li>• Flujo de Caja proyectado</li>
             <li>• Arrendamientos con vencimientos</li>
+            <li>• <strong>🏦 Créditos bancarios</strong> con plan de cuotas automático (sistema francés) y alertas de vencimiento</li>
+            <li>• <strong>🎯 Estado de situación</strong>: dashboard cronológico de lo que tenés que pagar y lo que vas a cobrar</li>
           </ul>
         </div>
 
@@ -285,11 +288,14 @@
           <ul class="text-sm text-slate-600 space-y-1">
             <li>• Campos y lotes</li>
             <li>• Campañas agrícolas, costos y rinde</li>
-            <li>• Insumos y labores aplicadas (con hectáreas parciales)</li>
+            <li>• <strong>Labor con empleado responsable e insumos consumidos del stock</strong> (descuenta automáticamente)</li>
+            <li>• <strong>🛠️ Labor avanzada</strong>: precio referencia por hectárea + % cobro empleado → la ganancia entra sola en su planilla</li>
             <li>• Stock unificado con catálogo</li>
             <li>• Movimientos automáticos al facturar · validación al vender</li>
             <li>• Reporte de Margen (compras vs ventas)</li>
-            <li>• <strong>Hacienda por campo</strong>: stock declarado (SENASA) vs real, con nacimientos, muertes, traslados y conteos — funciona offline desde el celular</li>
+            <li>• <strong>🏭 Cerealeras y depósitos</strong>: el cereal sigue siendo tuyo pero está en planta, con costos de estadía y secada</li>
+            <li>• <strong>🧾 Liquidaciones de cereal</strong>: kg brutos, mermas, descuentos, retenciones y neto a cobrar</li>
+            <li>• <strong>Hacienda por campo</strong>: stock declarado (SENASA) vs real, con nacimientos, muertes, compras, ventas, traslados y conteos — funciona offline desde el celular</li>
           </ul>
         </div>
 
@@ -298,11 +304,14 @@
           <h3 class="font-bold text-agro-900 mb-2">Logística y RRHH</h3>
           <ul class="text-sm text-slate-600 space-y-1">
             <li>• Empleados con foto y legajo</li>
+            <li>• <strong>👤 Propio / 🔧 Externo</strong> + cobro por porcentaje de labor (contratistas, fasoneros)</li>
             <li>• <strong>Planilla mensual por empleado</strong>: adelantos, horas trabajadas, compras personales, premios</li>
+            <li>• <strong>Ganancia automática</strong> al cargar una labor con %: se suma sola a la planilla del mes</li>
             <li>• <strong>Liquidación de sueldo</strong> con descuento automático en efectivo, cheque propio o transferencia</li>
             <li>• Recibo de sueldo en PDF para imprimir y entregar</li>
             <li>• Exportación de la planilla del mes a Excel</li>
             <li>• <strong>Viajes con operativa completa</strong>: kg carga + descarga con diferencia, CTG y carta de porte separados, tarifa $/ton, CUITs, patente acoplado, tipo de camión</li>
+            <li>• <strong>Destino del cereal en el viaje</strong>: cerealera del catálogo o venta directa, con atajo para cargar entrega/liquidación</li>
             <li>• <strong>Estado del viaje automático</strong>: cargado → descargado → facturado → pagado, vinculado a la factura del transportista</li>
             <li>• <strong>🚛 Solicitar Camión Logística</strong> por WhatsApp con plantilla armada automática</li>
             <li>• <strong>🔍 Verificación de CTGs en ARCA</strong>: consulta el estado y kg recibidos contra los servidores de AFIP en vivo</li>
@@ -318,6 +327,7 @@
             <li>• Bancos y Cuentas Bancarias</li>
             <li>• Geografía: País → Provincia → Ciudad</li>
             <li>• Cereales, insumos y labores precargados</li>
+            <li>• <strong>Labores con precio sugerido</strong> ($/ha o total) que se auto-carga al usar la labor en el form</li>
           </ul>
         </div>
 
@@ -349,7 +359,9 @@
           <h3 class="font-bold text-agro-900 mb-2">Administración y Seguridad</h3>
           <ul class="text-sm text-slate-600 space-y-1">
             <li>• Roles y permisos granulares</li>
-            <li>• <strong>Configuración por empresa</strong>: contactos del sistema (Asesor, Logística, Contador) e <strong>integración real con ARCA / WSCTG</strong></li>
+            <li>• <strong>Permisos finos opt-in</strong>: separá "Labor simple" de "Labor avanzada", "Crear crédito" de "Marcar cuota pagada", etc.</li>
+            <li>• <strong>Configuración por empresa</strong>: contactos del sistema (Asesor, Logística, Contador) e <strong>integración real con ARCA / WSCTG + WSFE</strong></li>
+            <li>• <strong>Toggle ambiente Homologación ↔ Producción</strong> para AFIP (probar sin emitir factura real)</li>
             <li>• Generación automática de la clave privada y solicitud de certificado para ARCA — sin instalar nada</li>
             <li>• Auditoría de acciones</li>
             <li>• HTTPS/TLS · Hash bcrypt para contraseñas</li>
