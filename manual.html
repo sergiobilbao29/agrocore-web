@@ -112,7 +112,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 30+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.7 · Junio 2026 · Sistema AgroCore v0.6</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.8 · Junio 2026 · Sistema AgroCore v0.7</p>
     </div>
   </section>
 
@@ -234,21 +234,30 @@
             <li><strong>Área principal (centro):</strong> contenido del módulo actual.</li>
           </ul>
 
-          <h3>Las 7 secciones de la barra lateral</h3>
+          <h3>Las secciones de la barra lateral — agrupadas por proceso administrativo <span class="badge-new">Nuevo</span></h3>
+          <p>El menú está organizado siguiendo el flujo real del negocio: vistas rápidas → ventas → compras → tesorería → operaciones del campo → administración.</p>
           <table>
             <thead>
               <tr><th>Sección</th><th>Módulos que contiene</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>INICIO</strong></td><td>Inicio · Dashboard · Resumen multi-empresa <span class="badge-new">Nuevo</span></td></tr>
-              <tr><td><strong>PRODUCCIÓN</strong></td><td>Campos y lotes · Campañas · Insumos y labores</td></tr>
-              <tr><td><strong>STOCK</strong></td><td>Stock · Movimientos · Reporte de margen</td></tr>
-              <tr><td><strong>CONTACTOS</strong></td><td>Clientes · Proveedores</td></tr>
-              <tr><td><strong>FINANZAS</strong></td><td>Flujo de caja · Facturación · Compras · Libro IVA · Cheques · Cuentas corrientes · Arrendamientos · Control de efectivo</td></tr>
-              <tr><td><strong>LOGÍSTICA Y RRHH</strong></td><td>Viajes · Empleados</td></tr>
-              <tr><td><strong>ADMINISTRACIÓN</strong></td><td>Catálogos · Usuarios · Roles y permisos · Empresas</td></tr>
+              <tr><td><strong>(Inicio)</strong></td><td>Inicio — siempre arriba de todo, sin sección.</td></tr>
+              <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Estado de situación · Flujo de caja · Resumen multi-empresa</td></tr>
+              <tr><td><strong>💼 VENTAS</strong></td><td>Clientes · Facturación · Liquidaciones cereal · Cuentas corrientes</td></tr>
+              <tr><td><strong>🛒 COMPRAS</strong></td><td>Proveedores · Compras · Libro IVA</td></tr>
+              <tr><td><strong>🏛️ TESORERÍA</strong></td><td>Bancos · Control de efectivo · Cheques · Créditos · Arrendamientos</td></tr>
+              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Campañas · Insumos y labores · Reporte de margen</td></tr>
+              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos · Cerealeras / Depósitos · Hacienda</td></tr>
+              <tr><td><strong>🚚 LOGÍSTICA</strong></td><td>Viajes y fletes</td></tr>
+              <tr><td><strong>👷 RRHH</strong></td><td>Empleados</td></tr>
+              <tr><td><strong>🔐 ADMINISTRACIÓN</strong></td><td>Catálogos · Usuarios · Roles y permisos · Empresas · Configuración</td></tr>
             </tbody>
           </table>
+          <p><strong>Secciones plegables y buscador:</strong> hacé clic en el nombre de una sección para plegarla / desplegarla (▾/▸). Arriba del menú hay un buscador — escribís "che" y filtra al instante a "Cheques", "via" lleva a "Viajes", etc. El estado de plegado se recuerda por usuario.</p>
+
+          <h3>Accesos directos del Inicio — configurables por usuario <span class="badge-new">Nuevo</span></h3>
+          <p>En la pantalla de Inicio, arriba de las tarjetas de "Accesos rápidos", aparece el botón <strong>⚙️ Personalizar</strong>. Cada usuario elige qué módulos quiere ver pinneados en su panel (Facturación, Cheques, Empleados, lo que más use), con un modal agrupado por sección y un máximo de 12.</p>
+          <p>La selección se guarda en la base con el usuario, así que se sincroniza entre todos los dispositivos donde te logueés (PC de la oficina, celular, casa).</p>
 
           <h3>Botón Volver y navegación con historial <span class="badge-new">Nuevo</span></h3>
           <p>En cualquier pantalla (excepto Inicio) verás un botón <strong>← Volver</strong> arriba a la izquierda del header. También funciona el botón Atrás del navegador o del celular: navega entre módulos dentro de la app, no te saca afuera.</p>
@@ -451,8 +460,8 @@
 
           <h4>Movimientos</h4>
           <p>Cada vez que entra o sale algo del stock, se registra un movimiento. Trazabilidad completa.</p>
-          <p><strong>Tipos:</strong> entrada por compra, entrada por cosecha, salida por venta, salida por consumo interno, ajuste de inventario, transferencia entre depósitos.</p>
-          <p><strong>Cada movimiento registra:</strong> fecha, tipo, producto y cantidad, origen/destino, comprobante asociado, usuario.</p>
+          <p><strong>Tipos:</strong> entrada por compra, entrada por cosecha, salida por venta, salida por consumo interno, ajuste de inventario, transferencia entre depósitos, entrega a cerealera, liquidación.</p>
+          <p><strong>Cada movimiento registra:</strong> fecha, tipo, producto y cantidad, origen/destino, comprobante asociado, depósito y <strong>usuario que lo cargó</strong> (columna "Cargado por" visible en la lista — auditoría completa, incluso para movimientos automáticos generados por facturas, entregas a cerealera, liquidaciones y labores avanzadas).</p>
           <p><strong>Integración:</strong> los movimientos generados por compras o ventas tienen un botón que abre la factura origen. En facturas de venta, el sistema avisa antes de vender más de lo que hay en stock.</p>
 
           <h4>Reporte de margen</h4>
@@ -470,9 +479,10 @@
           <p><strong>Modo offline:</strong> esta sección funciona <strong>sin conexión</strong>. La gente que está en el campo puede cargar nacimientos, muertes o ajustes desde el celular, sin señal. Los cambios se guardan en el dispositivo y se sincronizan solos cuando vuelve internet.</p>
           <p><strong>Ejemplo típico:</strong> en el campo Higueras hay 200 terneros y en Holmberg 11. Cada campo aparece con su propia tabla. Si nacen 3 terneros en Higueras, se carga "Nacimiento, Terneros, 3" y el real pasa a 203, mientras el declarado sigue en 200 — el sistema muestra "+3 de diferencia" hasta que se actualiza en ARCA y se sube el declarado a 203.</p>
 
-          <h4>Cerealeras y depósitos — cereal en planta sin perder trazabilidad <span class="badge-new">Nuevo</span></h4>
+          <h4>Cerealeras y depósitos — cereal en planta sin perder trazabilidad</h4>
           <p>Sección dedicada a registrar las cerealeras / acopiadoras y depósitos propios donde se almacena el cereal. El concepto clave: cuando entregás cereal a una cerealera, el grano <strong>sigue siendo tuyo</strong> — solo cambia de ubicación física. Después decidís cuándo venderlo.</p>
           <p><strong>Carga de cerealeras:</strong> nombre, CUIT, contacto comercial, teléfono, email, dirección, localidad, provincia. Si es una cerealera, también podés cargar los <strong>costos operativos</strong>: <em>$/tn por mes de estadía</em> y <em>$/tn de secada</em>.</p>
+          <p><strong>🌐 Compartido entre empresas</strong> <span class="badge-new">Nuevo</span>: el formulario tiene un check para marcar el depósito como compartido. Si lo activás, el depósito es visible y usable desde cualquiera de las empresas que tengas asociadas en tu cuenta — pensado para cerealeras o silos que usás con varias razones sociales del mismo grupo. Si lo dejás desactivado, sigue siendo privado a la empresa actual. En la lista aparece un badge "🌐 Compartido" para distinguirlos.</p>
           <p><strong>Entregar cereal:</strong> botón "📤 Entregar cereal" que abre un formulario para seleccionar producto, cantidad, fecha, cerealera destino y remito. Al guardar, el sistema mueve la cantidad del campo (tu depósito implícito) al depósito de la cerealera elegida — todo en una operación atómica.</p>
           <p><strong>Stock por depósito:</strong> el panel muestra cuánto cereal hay en cada cerealera y en cada depósito propio. Cuando hay cereal en una cerealera, también aparece como stock total — solo separado por ubicación.</p>
 
@@ -520,10 +530,23 @@
           </ul>
           <p><strong>Cómo se ve:</strong> filtros de horizonte (30 / 90 / 180 / 365 días), tres KPIs arriba (A ingresar, A pagar, Saldo neto) y cards mensuales con + ingresos / - egresos / saldo. Cada evento individual muestra concepto, fecha, "en X días" y urgencia visual: rojo si vence en menos de 7 días, ámbar dentro de 30, gris el resto.</p>
 
-          <h4>Créditos bancarios — plan de cuotas y alertas <span class="badge-new">Nuevo</span></h4>
+          <h4>Bancos — cuentas, movimientos y conciliación automática <span class="badge-new">Nuevo</span></h4>
+          <p>Sección que centraliza todas las cuentas bancarias y sus movimientos. Cada cuenta muestra su saldo en vivo y los totales por moneda (ARS y USD) arriba.</p>
+          <p><strong>Cargar una cuenta bancaria:</strong> banco, sucursal, tipo (cta. corriente / caja de ahorro / cuenta USD / otro), moneda (ARS / USD / EUR), número de cuenta, CBU / CVU, alias, titular, saldo de apertura (cuando arrancás a usar el sistema) y observaciones.</p>
+          <p><strong>Movimientos por cuenta:</strong> al hacer clic en una cuenta se abre su extracto con saldo corriente fila a fila. Tipos de movimiento:</p>
+          <ul>
+            <li><strong>Depósito</strong> / <strong>Extracción</strong> — entradas y salidas manuales (efectivo, dep. cheque, etc.).</li>
+            <li><strong>Transferencia in / out</strong> — entre cuentas propias: si elegís cuenta destino, el sistema crea automáticamente el movimiento espejo en la otra cuenta. Si borrás uno, borra los dos.</li>
+            <li><strong>Cheque cobrado / Cheque pagado</strong> — generados automáticamente desde el módulo de Cheques (ver más abajo).</li>
+            <li><strong>Crédito acreditado / Cuota de crédito</strong> — desembolso del préstamo y cuotas pagadas por transferencia o débito automático.</li>
+            <li><strong>Comisión / Impuesto / Interés / Otro</strong> — los típicos cargos del banco.</li>
+          </ul>
+          <p>Cada movimiento queda firmado con el <strong>usuario que lo cargó</strong>. Filtros por fecha y tipo.</p>
+
+          <h4>Créditos bancarios — plan de cuotas y alertas</h4>
           <p>Cargás los préstamos bancarios con su plan de cuotas y el sistema te avisa los vencimientos próximos.</p>
           <p><strong>Cargar un crédito:</strong> banco, número de operación, monto solicitado, tasa anual (TNA), cantidad de cuotas, periodicidad (mensual / bimestral / trimestral / semestral), fecha de la primer cuota y destino. Al guardar, el sistema genera automáticamente <strong>todas las cuotas</strong> con sistema francés (cuota total constante), discriminando capital, interés y total por cuota.</p>
-          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota con medio de pago (efectivo, cheque, transferencia, débito automático). La cuota queda marcada con fecha de pago.</p>
+          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota. Modal con medio de pago (efectivo, cheque, transferencia, débito automático) y — si elegís <em>transferencia</em> o <em>débito automático</em> — un selector de <strong>cuenta bancaria de origen</strong>. Al confirmar, la cuota queda pagada y se registra automáticamente el egreso en el extracto de esa cuenta bancaria.</p>
           <p><strong>Card de alertas:</strong> arriba aparece "Cuotas a vencer en los próximos 30 días" con la lista completa cruzando todos tus créditos. KPIs: cantidad de créditos activos, deuda pendiente total y cuotas próximas.</p>
 
           <h4>Facturación (ventas)</h4>
@@ -563,8 +586,15 @@
           <h4>Cheques</h4>
           <p>Registra cheques recibidos y emitidos, con estados: <strong>En cartera → Endosado / Depositado → Acreditado / Rechazado</strong>.</p>
           <p><strong>Datos:</strong> número, banco, sucursal, importe, fechas (emisión y pago), cliente/proveedor, cuenta corriente afectada, CUIT del librador.</p>
-          <p><strong>Formato físico o electrónico (e-cheq)</strong> <span class="badge-new">Nuevo</span>: cada cheque se marca como físico o electrónico, con filtro y badge en la lista. Atajo "Ver disponibles" muestra los cheques en cartera listos para usar.</p>
-          <p><strong>Alertas proactivas</strong>: el sistema avisa cuando un cheque está próximo a vencer en los <strong>próximos 15 días</strong> — no esperás a que venza, lo gestionás antes. Aparece tanto en el Dashboard como en la campanita de notificaciones.</p>
+          <p><strong>Formato físico o electrónico (e-cheq):</strong> cada cheque se marca como físico o electrónico, con filtro y badge en la lista. Atajo "Ver disponibles" muestra los cheques en cartera listos para usar.</p>
+          <p><strong>Alertas proactivas:</strong> el sistema avisa cuando un cheque está próximo a vencer en los <strong>próximos 15 días</strong> — no esperás a que venza, lo gestionás antes. Aparece tanto en el Dashboard como en la campanita de notificaciones.</p>
+          <p><strong>Acreditar / pagar cheque vinculado a cuenta bancaria</strong> <span class="badge-new">Nuevo</span>: cada fila tiene un botón 💰 (terceros) o 💸 (propios) para cambiar el estado del cheque y, opcionalmente, registrarlo en una cuenta bancaria. Modal con selector de cuenta y fecha. Al confirmar:</p>
+          <ul>
+            <li>Terceros depositado / cobrado → se genera un <strong>ingreso</strong> en la cuenta bancaria elegida (tipo "cheque cobrado") con el monto del cheque.</li>
+            <li>Propio pagado / cobrado → se genera un <strong>egreso</strong> en la cuenta bancaria elegida (tipo "cheque pagado") con el monto del cheque.</li>
+            <li>Si después cambiás el estado o la cuenta, el movimiento se actualiza solo.</li>
+            <li>Si volvés el cheque a "en cartera", el movimiento bancario se elimina automáticamente — sin descuadrar saldos.</li>
+          </ul>
 
           <h4>Cuentas corrientes</h4>
           <p>Tres vistas separadas y bien diferenciadas:</p>
@@ -714,17 +744,20 @@
           <p><strong>Asignación a empresas:</strong> desde la ficha del usuario, asociás cada empresa con su rol respectivo.</p>
           <p><strong>Reseteo de contraseña:</strong> un Admin puede resetear la contraseña de los usuarios de su empresa (genera contraseña temporal).</p>
 
-          <h4>Roles y permisos</h4>
+          <h4>Roles y permisos — grilla por módulo agrupada por proceso <span class="badge-new">Nuevo</span></h4>
           <p>Roles vienen pre-cargados (Admin, Contable, Operaciones, Lectura), y podés crear roles a medida.</p>
-          <p>Al crear o editar un rol, los permisos se muestran en una grilla con las <strong>áreas en español</strong> (Producción, Stock, Contactos, Finanzas, etc.) y las acciones también en español: <strong>Ver, Crear, Editar, Eliminar y Todo</strong>. Internamente el sistema usa claves técnicas, pero el usuario siempre ve los nombres en español.</p>
-          <p><strong>Permisos finos opt-in</strong> <span class="badge-new">Nuevo</span>: debajo de los permisos generales hay una sección "Permisos finos (opcionales — restringen aún más dentro de un área)" con grupos:</p>
+          <p>Al crear o editar un rol, los permisos se muestran agrupados por <strong>proceso administrativo</strong> (los mismos grupos del menú lateral: Tablero, Ventas, Compras, Tesorería, Producción, Stock, Logística/RRHH, Administración). Cada <strong>módulo del menú aparece como una fila</strong> con sus propios checkboxes <strong>Ver / Crear / Editar / Eliminar / Todo</strong> — los nombres son los mismos que ves en el sidebar.</p>
+          <p><strong>Toggle "Todo el grupo"</strong> arriba de cada sección: con un solo clic le das al rol acceso completo a todos los módulos de ese proceso (ej. "Todo Tesorería" = Bancos + Efectivo + Cheques + Créditos + Arrendamientos).</p>
+          <p><strong>Permisos compartidos</strong>: algunos módulos comparten internamente el mismo permiso técnico (ej. Facturación + Ctas Corrientes + Cheques + Bancos usan todos "finanzas:*"). Esas filas muestran un icono <strong>⚭</strong> con tooltip de qué módulos están sincronizados — marcar uno marca a los demás. Es la realidad del backend reflejada en la UI.</p>
+          <p><strong>Permisos finos opt-in</strong>: debajo de los permisos generales hay una sección "Permisos finos (opcionales — restringen aún más dentro de un área)" con grupos:</p>
           <ul>
-            <li><strong>Producción · Labores:</strong> separa "Cargar labor simple" de "Cargar labor avanzada" (con cálculo de % cobro empleado).</li>
+            <li><strong>Producción · Labores:</strong> separa "Cargar labor simple", "Cargar labor avanzada" y "Modificar precios y % en labor avanzada".</li>
             <li><strong>Stock · Cerealeras y depósitos:</strong> separa "Crear/editar depósitos" de "Registrar entrega a cerealera".</li>
-            <li><strong>Finanzas · Créditos y liquidaciones:</strong> separa "Cargar créditos bancarios", "Marcar cuotas como pagadas", "Cargar liquidaciones de cereal" y "Ver Estado de situación".</li>
-            <li><strong>Finanzas · Facturación:</strong> separa "Cargar facturas externas ARCA".</li>
+            <li><strong>Tesorería · Bancos:</strong> separa "Crear cuentas", "Cargar movimientos manuales" y "Eliminar movimientos".</li>
+            <li><strong>Tesorería · Créditos y liquidaciones:</strong> separa "Cargar créditos", "Marcar cuotas pagadas", "Cargar liquidaciones de cereal" y "Ver Estado de situación".</li>
+            <li><strong>Ventas · Facturación:</strong> separa "Cargar facturas externas ARCA".</li>
           </ul>
-          <p>Si <strong>NO marcás ninguno</strong> en un grupo, el rol hereda el permiso del área (el comportamiento anterior se mantiene). Si marcás al menos uno, solo esos quedan habilitados dentro de ese grupo — útil para empleados de campo con acceso restringido a sus propias funciones.</p>
+          <p>Si <strong>NO marcás ninguno</strong> en un grupo de permisos finos, el rol hereda el permiso del área (comportamiento clásico). Si marcás al menos uno, solo esos quedan habilitados dentro de ese grupo — útil para empleados de campo con acceso restringido a sus propias funciones.</p>
           <p><strong>Acciones por área:</strong></p>
           <ul>
             <li><strong>Ver</strong> — consultar la información del módulo.</li>
@@ -903,7 +936,7 @@
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
       <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario v1.7 · Junio 2026</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario v1.8 · Junio 2026</p>
       <div class="mt-4 space-x-4">
         <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
         <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>
