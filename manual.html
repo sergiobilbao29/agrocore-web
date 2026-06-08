@@ -112,7 +112,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 30+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.8 · Junio 2026 · Sistema AgroCore v0.7</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 1.9 · Junio 2026 · Sistema AgroCore v0.7</p>
     </div>
   </section>
 
@@ -203,14 +203,23 @@
               <tr><td><code>Super</code></td><td><code>super123</code></td><td>Super administrador (todas las empresas)</td></tr>
             </tbody>
           </table>
-          <blockquote>En tu instalación productiva estos usuarios no existen — el primer alta la hace el equipo de implementación con tus datos reales.</blockquote>
+          <blockquote>En tu instalación productiva estos usuarios no existen — el equipo de implementación los borra antes de entregarte el sistema y el hint <em>desaparece automáticamente del login</em>. Si los ves, todavía estás mirando la demo.</blockquote>
 
           <h3>Cómo iniciar sesión</h3>
           <ol>
-            <li>Entrá a <code>https://demo.agrocore.ar</code>.</li>
+            <li>Entrá a <code>https://demo.agrocore.ar</code> (o la URL del cliente).</li>
             <li>Escribí el <strong>usuario</strong> (alias, nombre o email) y la <strong>contraseña</strong>.</li>
+            <li>Opcional: tildá <strong>"Recordarme en este equipo"</strong> si la PC es solo tuya. <span class="badge-new">Nuevo</span></li>
             <li>Clic en <strong>Ingresar</strong>.</li>
           </ol>
+
+          <h3>🔒 Seguridad de la sesión <span class="badge-new">Nuevo</span></h3>
+          <p>Pensado para PCs compartidas con otros usuarios:</p>
+          <ul>
+            <li><strong>Cerrar el navegador = cerrar la sesión</strong> (default). Si cerrás el navegador y otra persona lo abre después, no entra automáticamente con tu usuario — el sistema le pide login de cero.</li>
+            <li><strong>Auto-logout por inactividad</strong>: si no movés mouse, teclado o hacés clic durante <strong>30 minutos</strong>, el sistema cierra la sesión solo y muestra un aviso "Sesión cerrada por inactividad".</li>
+            <li><strong>Checkbox "Recordarme en este equipo"</strong>: si la PC es solo tuya y no querés tener que loguearte cada vez, tildalo en el login. El sistema recuerda esa preferencia para los próximos arranques.</li>
+          </ul>
 
           <h3>Conceptos fundamentales</h3>
 
@@ -743,6 +752,13 @@
           <p><strong>Datos:</strong> email, alias, nombre/apellido, foto opcional, estado activo/inactivo, rol Super Admin opcional.</p>
           <p><strong>Asignación a empresas:</strong> desde la ficha del usuario, asociás cada empresa con su rol respectivo.</p>
           <p><strong>Reseteo de contraseña:</strong> un Admin puede resetear la contraseña de los usuarios de su empresa (genera contraseña temporal).</p>
+          <p><strong>🗑️ Eliminar usuario</strong> <span class="badge-new">Nuevo</span>: solo el Super Admin lo ve, y nunca al lado de su propio usuario. La eliminación pide doble confirmación (advertencia + tipear el nombre completo). Salvaguardas:</p>
+          <ul>
+            <li>No te podés borrar a vos mismo (ni siendo Super Admin).</li>
+            <li>No se puede borrar al último Super Admin activo del sistema — antes hay que crear otro.</li>
+            <li>Si el usuario tiene movimientos, cheques u otros registros cargados, el sistema rechaza el borrado y sugiere desactivarlo en vez (Editar → desmarcar "Activo"). De ese modo se mantiene la trazabilidad.</li>
+            <li>Si igual se quiere borrar, hay opción de <em>forzar</em>: los movimientos quedan sin autor registrado, pero los datos en sí se conservan.</li>
+          </ul>
 
           <h4>Roles y permisos — grilla por módulo agrupada por proceso <span class="badge-new">Nuevo</span></h4>
           <p>Roles vienen pre-cargados (Admin, Contable, Operaciones, Lectura), y podés crear roles a medida.</p>
@@ -773,11 +789,23 @@
             <li><strong>Operaciones campo:</strong> producción:* + stock:write.</li>
             <li><strong>Solo lectura:</strong> *:read.</li>
           </ul>
+          <p><strong>🗑️ Eliminar rol</strong> <span class="badge-new">Nuevo</span>: lo pueden hacer el Super Admin <em>o</em> cualquier Administrador del sistema. Doble confirmación (advertencia + tipear el nombre). Salvaguardas:</p>
+          <ul>
+            <li>El rol <strong>"Administrador"</strong> nunca se borra — es el rol base que necesitan los admins de empresa para operar.</li>
+            <li>Los demás roles de sistema (Contable, Operaciones, Lectura) solo los puede borrar el Super Admin. Pensado para implementaciones: el Super Admin limpia los roles que el cliente no va a usar.</li>
+            <li>Si el rol está siendo usado por uno o más usuarios, el borrado se rechaza y se sugiere reasignar manualmente desde Usuarios. Si se opta por <em>forzar</em>, esos usuarios pasan automáticamente al rol "Lectura" (mínimos permisos) y el rol se elimina.</li>
+          </ul>
 
           <h4>Empresas</h4>
-          <p>Solo accesible para Super Admin.</p>
+          <p>Accesible para Super Admin y Administradores de la empresa.</p>
           <p><strong>Datos:</strong> nombre, fantasía, CUIT, razón social, condición IVA, domicilio, logo, color institucional (hex), modo (con ARCA o "informal" sin ARCA), estado activa/inactiva.</p>
           <p><strong>Operaciones:</strong> crear, editar, asignar usuarios y roles, configurar integración ARCA (certificado, modo, punto de venta), desactivar.</p>
+          <p><strong>🗑️ Eliminar empresa</strong> <span class="badge-new">Nuevo</span>: lo pueden hacer el Super Admin <em>o</em> el Administrador de esa empresa específicamente. Doble confirmación (advertencia + tipear el nombre exacto). Salvaguardas:</p>
+          <ul>
+            <li>Un Administrador no puede borrar la <em>única</em> empresa a la que tiene acceso (se quedaría sin nada para administrar).</li>
+            <li>Si la empresa tiene datos cargados (clientes, facturas, movimientos, etc.), el borrado se rechaza por defecto y sugiere usar primero <strong>Limpiar empresa</strong> en Configuración → Sistema para vaciar movimientos.</li>
+            <li>Si igual se quiere borrar todo, hay opción de <em>forzar</em>: se borra la empresa con cascada total en una sola transacción atómica (clientes, facturas, cheques, ctas. corrientes, movimientos, bancos, campos, lotes, empleados, viajes, hacienda — todo). Esta operación es IRREVERSIBLE; recomendado hacer un Backup antes.</li>
+          </ul>
 
           <h4>Configuración <span class="badge-new">Nuevo</span></h4>
           <p>Pantalla dedicada con dos pestañas para configurar el sistema:</p>
@@ -798,6 +826,34 @@
             <li><strong>Paso 3 — Cargar los archivos en el sistema:</strong> subís el <code>cert.crt</code> y la <code>privada.key</code>, ingresás el CUIT, "Guardar configuración", y después "Probar conexión ARCA". El sistema autentica con WSAA y hace un heartbeat a WSFE. Si las dos cosas responden OK, estás listo para verificar CTGs y emitir facturas electrónicas en ese ambiente.</p></li>
           </ol>
           <p>La conexión es real contra los servidores de AFIP/ARCA del ambiente elegido. El sistema firma cada login con tu certificado (CMS PKCS#7 con SHA-256), obtiene el ticket de acceso (TA) de WSAA, y lo cachea por 11 horas para reutilizarlo en consultas posteriores.</p>
+
+          <h4>🛠️ Sistema — backup, restore, importación y preparación para entrega <span class="badge-new">Nuevo</span></h4>
+          <p>Pestaña final de Configuración, accesible solo para el Super Admin. Contiene las operaciones administrativas más sensibles del sistema:</p>
+
+          <p><strong>💾 Backup completo de la base</strong> — descarga un archivo <code>.sql</code> con TODA la base de datos del sistema (todas las empresas, usuarios, configuración, movimientos). Útil antes de operaciones grandes (limpiar empresa, restaurar, preparar para entrega) o como respaldo periódico. El archivo se puede restaurar después con <code>psql &lt; archivo.sql</code> en cualquier PostgreSQL, o desde el mismo botón Restaurar (más abajo). Si el backup falla, el sistema muestra un modal con el error real, los paths donde buscó <code>pg_dump</code> y los pasos para resolverlo (PostgreSQL no encontrado, problema de permisos, etc.).</p>
+
+          <p><strong>♻️ Restaurar backup desde archivo</strong> — subís un <code>.sql</code> generado por AgroCore (o por <code>pg_dump</code> compatible) para volver la base al estado de ese backup. <strong>Operación IRREVERSIBLE</strong>: pisa toda la información cargada después del archivo. La aplicación corre dentro de una transacción única (<code>--single-transaction</code>), así que si algo falla a mitad de camino se hace ROLLBACK automático y la base queda intacta. Soporta archivos de hasta 500 MB. Requiere tipear <code>RESTAURAR</code> para confirmar. Recomendado: re-loguearse después para que el frontend recargue todo desde la nueva base.</p>
+
+          <p><strong>🧹 Limpiar movimientos de empresa</strong> — borra movimientos y saldos de una empresa específica (facturas, cheques, ctas. corrientes, efectivo, créditos, liquidaciones, etc.) sin tocar los catálogos compartidos (productos, cultivos, bancos, geografía). Útil para preparar la empresa antes del go-live. Hay checkboxes opcionales para extender al stock, cuentas bancarias y cajas, datos de producción o empleados.</p>
+
+          <p><strong>📥 Importación desde Excel</strong> — descargar plantillas y subir Excels para hacer altas masivas:</p>
+          <ul>
+            <li>Plantillas generales para clientes, proveedores, productos, catálogos, cheques, cuentas corrientes, etc.</li>
+            <li>Importadores adaptados a los formatos reales del cliente: cheques, créditos bancarios, cartas de porte, control de efectivo, ventas de cerdos.</li>
+            <li>Plantillas consolidadoras para los Excel del cliente que vienen "sucios": Gastos Administrativos (Oficina, Damián, etc. → Caja), Gastos Propios (con clasificación empresa/propio), Gastos de Empleados (movimientos de planilla con tipo y categoría).</li>
+          </ul>
+
+          <p><strong>🆙 Verificar actualizaciones</strong> — consulta la última versión publicada de AgroCore en GitHub. Si hay una nueva, muestra la versión y un aviso. Para actualizar se ejecuta <code>Update-AgroCore.ps1</code> desde el menú Inicio → AgroCore (hace backup automático antes, <code>git pull</code>, instala dependencias, aplica migraciones de la base y reinicia el sistema). El script verifica que el sistema vuelva a responder al final; si no, muestra los logs.</p>
+
+          <p><strong>🚀 Preparar para entrega al cliente</strong> — asistente que analiza la base y te ofrece eliminar de un solo paso todo lo que NO debería quedar en una instalación productiva. Tres secciones con checkboxes:</p>
+          <ul>
+            <li><strong>👤 Usuarios de prueba del seed</strong>: detecta usuarios con alias <code>Admin</code> o <code>Super</code> (case-insensitive). Cada uno con su checkbox precargado, salvo el del usuario actual (deshabilitado — no te podés borrar a vos mismo).</li>
+            <li><strong>🛡️ Roles de sistema sin usuarios asignados</strong>: roles built-in (Contable, Operaciones, Lectura) que no tienen ningún usuario asignado. El rol "Administrador" nunca aparece (es el rol base de admin de empresa).</li>
+            <li><strong>🏢 Empresas que parecen de prueba</strong>: empresas cuyo nombre contiene "demo", "prueba" o "test". Desmarcadas por defecto para que las elijas a propósito. Si las borrás, se borran con cascada total.</li>
+          </ul>
+          <p>Si tu contraseña de Super Admin sigue siendo <code>super123</code>, un banner ámbar en la parte superior te avisa con instrucciones para cambiarla (el asistente no la toca, requiere tu input). Si todo está limpio, muestra un cartel verde "Todo limpio — el sistema parece listo para entregar".</p>
+          <p>Cuando aplicás el asistente, hay que tipear <code>PREPARAR</code> en mayúsculas para confirmar. Al terminar, muestra un resumen con éxitos y errores, y un botón "Recargar" que refresca la página para que el menú y permisos se recalculen.</p>
+          <p><strong>Detalle importante</strong>: el hint "Usuarios de prueba: Admin/admin123, Super/super123" que aparece en la pantalla de login solo se muestra si esos usuarios existen realmente. Al borrarlos con el asistente, el hint desaparece automáticamente — no hace falta tocar ningún archivo de configuración.</p>
         </section>
 
         <section id="flujos">
@@ -936,7 +992,7 @@
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
       <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario v1.8 · Junio 2026</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario v1.9 · Junio 2026</p>
       <div class="mt-4 space-x-4">
         <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
         <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>
