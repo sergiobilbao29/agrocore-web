@@ -88,7 +88,7 @@
       /* Numeración de páginas (navegadores/exportadores compatibles: Firefox, Edge PDF, etc.) */
       @page {
         margin: 1.6cm 1.5cm 1.9cm 1.5cm;
-        @bottom-left   { content: "AgroCore · Manual de Usuario v1.24"; font-size: 9px; color: #94a3b8; }
+        @bottom-left   { content: "AgroCore · Manual de Usuario v1.58"; font-size: 9px; color: #94a3b8; }
         @bottom-right  { content: "Página " counter(page) " de " counter(pages); font-size: 9px; color: #64748b; }
       }
 
@@ -129,7 +129,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Módulos ordenados igual que el menú (Tablero, Ventas, Compras, Tesorería, Producción, Stock, Logística, RRHH, Administración), modo offline, <strong>multimoneda y canje de cereal</strong>, hacienda integrada al stock, <strong>flujo de fondos con simulador</strong>, planilla y liquidación por empleado, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) e importación de facturas por PDF, listados configurables, flujos típicos y preguntas frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Manual actualizado · Junio 2026 · Sistema AgroCore v1.24</p>
+      <p class="text-xs text-agro-200/70 mt-4">Manual actualizado · Julio 2026 · Sistema AgroCore v1.58</p>
     </div>
   </section>
 
@@ -440,6 +440,14 @@
 
           <h4>Agenda y recordatorios</h4>
           <p>Calendario con los vencimientos y avisos del sistema (cheques, cuotas de créditos, arrendamientos, cuentas corrientes por vencer) más los recordatorios que cargues a mano. Las alarmas automáticas también se reflejan en la 🔔 campanita de notificaciones.</p>
+          <p><strong>Vistas:</strong> Mes, Semana, Día y Lista, con KPIs arriba (🔴 Vencidos, ⚠️ Para hoy, 📅 Próximos 30 días). Los eventos automáticos llevan badge <strong>🔗 Auto</strong>; podés ocultarlos con 🗑️ sin borrar el registro original.</p>
+          <p><strong>Calendario de TODAS las empresas</strong> <span class="badge-new">Nuevo</span>: el botón <strong>"🏢 Todas las empresas"</strong> arma una vista consolidada con los eventos (manuales y automáticos) de todas las empresas a las que tenés acceso, cada una con su <strong>color y su nombre</strong>, más una leyenda de colores arriba. Ideal para ver de un vistazo qué vence en todo el grupo.</p>
+          <p>Al hacer clic en un evento de esa vista se abre su detalle con acciones directas:</p>
+          <ul>
+            <li><strong>🔗 Abrir cheque / crédito / cuenta corriente</strong>: te lleva al registro que originó el aviso, <strong>cambiando automáticamente a la empresa correspondiente</strong> si es de otra. Ejemplo: estás en la Empresa 1, ves el vencimiento de un cheque de la Empresa 2 y con un clic vas a ese cheque en la Empresa 2.</li>
+            <li><strong>✏️ Editar</strong> y <strong>🗑️ Eliminar / Ocultar</strong> la alerta sin salir del calendario (se guarda en la empresa que corresponde). En las alertas automáticas, "Editar / personalizar" crea una alarma propia que reemplaza a la automática.</li>
+          </ul>
+          <p>En la vista multi-empresa solo aparecen las empresas donde el usuario tiene permiso de lectura de Agenda; el Super Admin ve todas.</p>
         </section>
 
         <section id="mod-ventas">
@@ -1073,7 +1081,7 @@
   </div>
 
   <!-- Pie repetido en cada hoja del PDF -->
-  <div class="print-footer">AgroCore Argentina · Manual de Usuario v1.24 · agrocore.ar</div>
+  <div class="print-footer">AgroCore Argentina · Manual de Usuario v1.58 · agrocore.ar</div>
 
   <!-- FOOTER -->
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
