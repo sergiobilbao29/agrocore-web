@@ -88,7 +88,7 @@
       /* Numeración de páginas (navegadores/exportadores compatibles: Firefox, Edge PDF, etc.) */
       @page {
         margin: 1.6cm 1.5cm 1.9cm 1.5cm;
-        @bottom-left   { content: "AgroCore · Manual de Usuario v1.23"; font-size: 9px; color: #94a3b8; }
+        @bottom-left   { content: "AgroCore · Manual de Usuario v1.24"; font-size: 9px; color: #94a3b8; }
         @bottom-right  { content: "Página " counter(page) " de " counter(pages); font-size: 9px; color: #64748b; }
       }
 
@@ -129,7 +129,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Módulos ordenados igual que el menú (Tablero, Ventas, Compras, Tesorería, Producción, Stock, Logística, RRHH, Administración), modo offline, <strong>multimoneda y canje de cereal</strong>, hacienda integrada al stock, <strong>flujo de fondos con simulador</strong>, planilla y liquidación por empleado, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) e importación de facturas por PDF, listados configurables, flujos típicos y preguntas frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Manual actualizado · Junio 2026 · Sistema AgroCore v1.23</p>
+      <p class="text-xs text-agro-200/70 mt-4">Manual actualizado · Junio 2026 · Sistema AgroCore v1.24</p>
     </div>
   </section>
 
@@ -576,11 +576,18 @@
           </ul>
           <p><strong>Listado configurable:</strong> con el botón ⚙️ Columnas mostrás/ocultás y reordenás columnas, y tocando el título de cualquier columna ordenás los datos (1 clic ascendente, 2 descendente). Ver 6.10.</p>
 
-          <h4>Créditos bancarios — plan de cuotas y alertas</h4>
+          <h4>Créditos bancarios — plan de cuotas, multimoneda y alertas <span class="badge-new">Nuevo</span></h4>
           <p>Cargás los préstamos bancarios con su plan de cuotas y el sistema te avisa los vencimientos próximos.</p>
-          <p><strong>Cargar un crédito:</strong> banco, número de operación, monto solicitado, tasa anual (TNA), cantidad de cuotas, periodicidad (mensual / bimestral / trimestral / semestral), fecha de la primer cuota y destino. Al guardar, el sistema genera automáticamente <strong>todas las cuotas</strong> con sistema francés (cuota total constante), discriminando capital, interés y total por cuota. Cada crédito se puede <strong>editar o eliminar</strong> desde la lista.</p>
-          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota. Modal con medio de pago (efectivo, cheque, transferencia, débito automático) y — si elegís <em>transferencia</em> o <em>débito automático</em> — un selector de <strong>cuenta bancaria de origen</strong>. Al confirmar, la cuota queda pagada y se registra automáticamente el egreso en el extracto de esa cuenta bancaria.</p>
-          <p><strong>Card de alertas:</strong> arriba aparece "Cuotas a vencer en los próximos 30 días" con la lista completa cruzando todos tus créditos. KPIs: cantidad de créditos activos, deuda pendiente total y cuotas próximas.</p>
+          <p><strong>Cargar un crédito:</strong> banco, número de operación, monto del crédito, <strong>moneda</strong>, tasa anual (TNA), cantidad de cuotas, periodicidad (mensual / bimestral / trimestral / semestral), fecha de la primer cuota y destino. Cada crédito se puede <strong>editar o eliminar</strong> desde la lista.</p>
+          <p><strong>Créditos en dólares u otra moneda</strong> <span class="badge-new">Nuevo</span>: el crédito puede ser en pesos, dólar, euro o cualquier moneda del catálogo. Si no es en pesos, cargás el <strong>tipo de cambio del día que te lo habilitaron</strong> y el sistema te muestra el <strong>total en pesos que ingresó</strong> (monto × TC). En el detalle ves el monto en su moneda, el TC de alta y el equivalente en pesos.</p>
+          <p><strong>Plan de cuotas — automático o manual</strong> <span class="badge-new">Nuevo</span>: al cargar el crédito elegís cómo se arma el plan:</p>
+          <ul>
+            <li><strong>Automático (sistema francés):</strong> el sistema genera todas las cuotas con cuota total constante, discriminando capital, interés y total.</li>
+            <li><strong>Manual:</strong> cargás <strong>vos cada cuota con su fecha e importe</strong>. Ideal cuando las cuotas son distintas entre sí (por ej. te dan US$ 70.000 y las cuotas son 10, 12, 15… mil hasta completar). El botón <em>"↻ Generar fechas"</em> arma las filas según la periodicidad y reparte el monto en partes iguales como punto de partida, y después editás el importe de cada una. Abajo se muestra la suma de las cuotas vs el monto del crédito para que cierre.</li>
+          </ul>
+          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota. Modal con medio de pago (efectivo, cheque, transferencia, débito automático) y — si elegís <em>transferencia</em> o <em>débito automático</em> — un selector de <strong>cuenta bancaria de origen</strong>. Al confirmar, la cuota queda pagada y se registra automáticamente el egreso en el extracto de esa cuenta bancaria (siempre en pesos).</p>
+          <p><strong>Pago al tipo de cambio del día</strong> <span class="badge-new">Nuevo</span>: si el crédito es en moneda extranjera, al pagar una cuota ponés el <strong>TC del día del pago</strong> y el sistema calcula y te muestra <strong>cuánto es en pesos</strong> antes de confirmar (porque hasta el día que pagás no sabés el valor exacto: el dólar varía). Cada cuota paga guarda el TC usado y los pesos efectivamente pagados.</p>
+          <p><strong>Card de alertas:</strong> arriba aparece "Cuotas a vencer en los próximos 30 días" con la lista completa cruzando todos tus créditos. KPIs: cantidad de créditos activos, deuda pendiente total (valorizada a pesos) y cuotas próximas.</p>
 
           <h4>Arrendamientos</h4>
           <p><strong>Qué hace:</strong> registra los contratos de arrendamiento de campos cuando explotás campos que no son propios.</p>
@@ -1066,13 +1073,13 @@
   </div>
 
   <!-- Pie repetido en cada hoja del PDF -->
-  <div class="print-footer">AgroCore Argentina · Manual de Usuario v1.23 · agrocore.ar</div>
+  <div class="print-footer">AgroCore Argentina · Manual de Usuario v1.24 · agrocore.ar</div>
 
   <!-- FOOTER -->
   <footer class="bg-agro-900 text-agro-100 py-8 mt-12 no-print">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
       <p class="mb-2">© 2026 AgroCore Argentina · Todos los derechos reservados</p>
-      <p class="text-xs text-agro-200/60">Manual de Usuario · AgroCore v1.23 · Junio 2026</p>
+      <p class="text-xs text-agro-200/60">Manual de Usuario · AgroCore v1.24 · Junio 2026</p>
       <div class="mt-4 space-x-4">
         <a href="index.html" class="text-gold-400 hover:text-gold-300">Inicio</a>
         <a href="presupuesto.html" class="text-gold-400 hover:text-gold-300">Presupuesto</a>

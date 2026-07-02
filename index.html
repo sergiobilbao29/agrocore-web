@@ -101,6 +101,55 @@
     /* Smooth fade-in on scroll */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ====== v1.55 — más estilo y movimiento (moderno/profesional) ====== */
+    /* Reveal genérico al hacer scroll (con stagger via inline delay) */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); will-change: opacity, transform; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* Título con degradé */
+    .grad-text {
+      background: linear-gradient(90deg, #15803d 0%, #22c55e 55%, #ca8a04 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* Blobs animados del hero */
+    .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .5; pointer-events: none; z-index: 0; }
+    .blob-1 { width: 42vw; height: 42vw; max-width: 560px; max-height: 560px; top: -12%; right: -8%;
+      background: radial-gradient(circle, #22c55e, transparent 70%); animation: float1 15s ease-in-out infinite; }
+    .blob-2 { width: 38vw; height: 38vw; max-width: 480px; max-height: 480px; bottom: -16%; left: -10%;
+      background: radial-gradient(circle, #eab308, transparent 70%); opacity: .32; animation: float2 18s ease-in-out infinite; }
+    .blob-3 { width: 24vw; height: 24vw; max-width: 320px; max-height: 320px; top: 35%; left: 40%;
+      background: radial-gradient(circle, #4ade80, transparent 70%); opacity: .22; animation: float1 22s ease-in-out infinite; }
+    @keyframes float1 { 50% { transform: translate(-5%, 7%) scale(1.12); } }
+    @keyframes float2 { 50% { transform: translate(7%, -5%) scale(1.15); } }
+
+    /* Aparición del contenido del hero al cargar */
+    @keyframes heroUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    .hero-in > * { opacity: 0; animation: heroUp .8s cubic-bezier(.2,.7,.2,1) forwards; }
+    .hero-in > *:nth-child(1){ animation-delay:.05s } .hero-in > *:nth-child(2){ animation-delay:.18s }
+    .hero-in > *:nth-child(3){ animation-delay:.31s } .hero-in > *:nth-child(4){ animation-delay:.44s }
+    .hero-in > *:nth-child(5){ animation-delay:.57s } .hero-in > *:nth-child(6){ animation-delay:.70s }
+
+    /* Nav con sombra al bajar */
+    nav { transition: box-shadow .3s, background-color .3s; }
+    nav.nav-scrolled { box-shadow: 0 8px 30px -14px rgba(20,83,45,.45); }
+
+    /* Botones con brillo al pasar el mouse */
+    .btn-cta { position: relative; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 34px -12px rgba(234,179,8,.55); }
+    .btn-cta::after { content:''; position:absolute; top:0; left:-120%; width:60%; height:100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); transition: left .6s; }
+    .btn-cta:hover::after { left: 140%; }
+
+    /* Card hover con leve glow (complementa .feature-card) */
+    .feature-card:hover { box-shadow: 0 16px 40px -14px rgba(22,163,74,.35); }
+
+    /* Respeta usuarios que prefieren menos movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .hero-in > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+      .blob { animation: none !important; }
+    }
   </style>
 </head>
 <body class="text-slate-800 antialiased">
@@ -163,8 +212,11 @@
   <!-- ============== HERO ============== -->
   <section id="hero" class="hero-bg pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
     <div class="hero-pattern absolute inset-0 opacity-50"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="hero-in relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <!-- Big logo en caja blanca centrada -->
       <div class="flex justify-center mb-8">
         <div class="bg-white/95 rounded-3xl p-8 md:p-10 shadow-2xl backdrop-blur flex items-center justify-center relative">
@@ -193,7 +245,7 @@
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10">
         <a href="https://wa.me/5493582408884?text=Hola!%20Me%20interesa%20conocer%20AgroCore." data-wa-text="Hola! Me interesa conocer AgroCore." target="_blank" rel="noopener"
-           class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg shadow-xl transition">
+           class="btn-cta inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg shadow-xl transition">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
           Solicitar demo por WhatsApp
         </a>
@@ -814,6 +866,26 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ==== Estilo/movimiento moderno (v1.55) ====
+    // Títulos de secciones claras con degradé
+    document.querySelectorAll('h2.text-agro-900').forEach(h => h.classList.add('grad-text'));
+    // Reveal con stagger en el contenido de cada sección (el hero ya anima al cargar)
+    document.querySelectorAll('section:not(#hero)').forEach(sec => {
+      let i = 0;
+      sec.querySelectorAll(':scope h2, :scope h3, :scope .feature-card, :scope .grid > *, :scope details, :scope form').forEach(el => {
+        if (el.classList.contains('reveal') || el.classList.contains('fade-in')) return;
+        el.classList.add('reveal');
+        el.style.transitionDelay = ((i % 6) * 70) + 'ms';
+        i++;
+        observer.observe(el);
+      });
+    });
+    // Sombra del nav al scrollear
+    const navEl = document.querySelector('nav');
+    const onNavScroll = () => { if (navEl) navEl.classList.toggle('nav-scrolled', window.scrollY > 12); };
+    window.addEventListener('scroll', onNavScroll, { passive: true });
+    onNavScroll();
   </script>
 
 </body>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AgroCore — Promo</title>
+<style>
+  :root{
+    --verde-900:#14532d; --verde-800:#166534; --verde-700:#15803d;
+    --verde-600:#16a34a; --verde-500:#22c55e; --verde-400:#4ade80; --verde-300:#86efac;
+    --gold-400:#fbbf24; --gold-500:#eab308; --gold-600:#ca8a04;
+    --tinta:#0a2818; --tinta2:#0f3d22;
+    --blanco:#ffffff; --hueso:#f0fdf4; --niebla:#bbf7d0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#000;overflow:hidden;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif}
+  #wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000}
+  #stage{
+    position:relative;width:100vw;height:100vh;max-width:56.25vh;max-height:100vh;
+    aspect-ratio:9/16;overflow:hidden;
+    background:radial-gradient(120% 80% at 50% 0%, var(--tinta2) 0%, var(--tinta) 55%, #061a10 100%);
+    color:var(--blanco);
+  }
+  @media(min-aspect-ratio:9/16){ #stage{width:auto;height:100vh;max-width:none} }
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+  .blob.a{width:70%;height:40%;left:-20%;top:-8%;background:radial-gradient(circle,var(--verde-600),transparent 70%)}
+  .blob.b{width:80%;height:45%;right:-30%;bottom:-6%;background:radial-gradient(circle,var(--gold-600),transparent 70%);opacity:.35;animation-delay:-6s}
+  .blob.c{width:55%;height:30%;left:25%;top:40%;background:radial-gradient(circle,var(--verde-400),transparent 70%);opacity:.25;animation-delay:-3s}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(4%,5%) scale(1.12)}}
+  .grid{position:absolute;inset:0;opacity:.06;pointer-events:none;background-image:radial-gradient(var(--blanco) 1px,transparent 1px);background-size:26px 26px}
+  .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55) 100%)}
+  .wm{position:absolute;top:3%;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:8px;z-index:6;opacity:.95}
+  .wm svg{height:34px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+  .wm b{font-size:16px;letter-spacing:.3px;font-weight:800;background:linear-gradient(180deg,var(--verde-300),var(--verde-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+  #scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9% 8% 12%;z-index:5}
+  .kicker{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-400);font-weight:800;margin-bottom:18px}
+  h1{font-size:46px;line-height:1.06;font-weight:900;letter-spacing:-.5px;text-shadow:0 4px 24px rgba(0,0,0,.45)}
+  h1 .hl{color:var(--gold-400)}
+  h2{font-size:38px;line-height:1.1;font-weight:900;letter-spacing:-.3px;text-shadow:0 4px 18px rgba(0,0,0,.4)}
+  h2 .hl{color:var(--gold-400)}
+  .sub{margin-top:14px;font-size:19px;line-height:1.5;color:var(--niebla);font-weight:500;max-width:90%}
+  .icon{font-size:64px;line-height:1;margin-bottom:14px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.4))}
+  .pts{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:14px;width:100%;max-width:92%}
+  .pts li{display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:15px 17px;text-align:left;font-size:18px;font-weight:600;line-height:1.25;backdrop-filter:blur(4px)}
+  .pts li .tick{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--verde-500),var(--verde-700));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;box-shadow:0 3px 10px rgba(22,163,74,.5)}
+  .chips{margin-top:26px;display:flex;flex-wrap:wrap;gap:11px;justify-content:center;max-width:96%}
+  .chip{background:rgba(255,255,255,.08);border:1px solid rgba(251,191,36,.35);border-radius:999px;padding:12px 18px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .chip .e{font-size:19px}
+  /* Logo lockup vectorial */
+  .lock{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .lock svg{width:auto;height:170px;filter:drop-shadow(0 10px 26px rgba(0,0,0,.5))}
+  .lock.sm svg{height:130px}
+  .wordmark{font-weight:900;letter-spacing:-1.5px;font-size:58px;line-height:1;
+    background:linear-gradient(180deg,var(--verde-300) 0%,var(--verde-500) 55%,var(--verde-600) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 3px 10px rgba(0,0,0,.35))}
+  .lock.sm .wordmark{font-size:46px}
+  .tag{margin-top:10px;font-size:21px;color:var(--hueso);font-weight:600;font-style:italic}
+  .url{margin-top:24px;font-size:30px;font-weight:900;letter-spacing:.5px;color:var(--gold-400)}
+  .cta{margin-top:18px;display:inline-block;background:linear-gradient(135deg,var(--gold-400),var(--gold-600));color:#1a1207;font-weight:900;font-size:20px;padding:16px 30px;border-radius:999px;box-shadow:0 10px 26px rgba(234,179,8,.45)}
+  .an{opacity:0;animation:up .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .an.d1{animation-delay:.10s}.an.d2{animation-delay:.26s}.an.d3{animation-delay:.42s}
+  .an.d4{animation-delay:.58s}.an.d5{animation-delay:.74s}.an.d6{animation-delay:.90s}.an.d7{animation-delay:1.06s}
+  @keyframes up{from{opacity:0;transform:translateY(26px) scale(.97)}to{opacity:1;transform:none}}
+  .pop{opacity:0;animation:pop .8s cubic-bezier(.2,1.3,.3,1) forwards}
+  @keyframes pop{0%{opacity:0;transform:scale(.6)}60%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+  .bar{position:absolute;left:0;top:0;height:5px;background:linear-gradient(90deg,var(--gold-400),var(--verde-500));width:0;z-index:8;box-shadow:0 0 12px rgba(251,191,36,.6)}
+  .dots{position:absolute;bottom:3.4%;left:0;right:0;display:flex;gap:8px;justify-content:center;z-index:8}
+  .dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);transition:.3s}
+  .dots i.on{background:var(--gold-400);width:24px;border-radius:5px}
+  .ctl{position:absolute;bottom:8.5%;left:0;right:0;display:flex;gap:14px;justify-content:center;z-index:9;opacity:0;transition:.25s}
+  #stage:hover .ctl{opacity:1}
+  .ctl button{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px)}
+  .ctl button:active{transform:scale(.92)}
+  .hint{position:absolute;bottom:1.2%;left:0;right:0;text-align:center;font-size:11px;color:rgba(255,255,255,.45);z-index:9}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <div class="blob a"></div><div class="blob b"></div><div class="blob c"></div>
+  <div class="grid"></div>
+  <div class="bar" id="bar"></div>
+  <div class="wm" id="wm"></div>
+  <div id="scene"></div>
+  <div class="vig"></div>
+  <div class="dots" id="dots"></div>
+  <div class="ctl"><button id="prev">&#9664;</button><button id="play">&#10074;&#10074;</button><button id="next">&#9654;</button></div>
+  <div class="hint">Tocá para pausar &middot; Para WhatsApp: grabá la pantalla</div>
+</div></div>
+<script>
+const LOGO_SVG=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="AgroCore"><defs><linearGradient id="lLight" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#86efac"/><stop offset="100%" stop-color="#16a34a"/></linearGradient><linearGradient id="lMid" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#15803d"/></linearGradient><linearGradient id="lDark" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#14532d"/></linearGradient><linearGradient id="soil" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#15803d"/><stop offset="100%" stop-color="#14532d"/></linearGradient></defs><path d="M58 178 Q72 170 88 176 Q100 172 112 176 Q128 170 142 178 Q138 188 100 188 Q62 188 58 178 Z" fill="url(#soil)"/><path d="M100 182 L 100 88" stroke="#15803d" stroke-width="3.5" stroke-linecap="round" fill="none"/><path d="M100 158 Q72 156 50 144 Q60 134 80 142 Q95 150 100 158 Z" fill="url(#lMid)"/><path d="M100 158 Q128 156 150 144 Q140 134 120 142 Q105 150 100 158 Z" fill="url(#lLight)"/><path d="M100 132 Q70 128 46 112 Q60 102 84 112 Q96 122 100 132 Z" fill="url(#lLight)"/><path d="M100 132 Q130 128 154 112 Q140 102 116 112 Q104 122 100 132 Z" fill="url(#lMid)"/><path d="M100 108 Q78 104 60 92 Q72 84 90 92 Q98 100 100 108 Z" fill="url(#lMid)"/><path d="M100 108 Q122 104 140 92 Q128 84 110 92 Q102 100 100 108 Z" fill="url(#lLight)"/><path d="M100 90 C 92 76, 76 60, 68 44 C 62 28, 78 18, 90 32 C 96 42, 100 58, 100 78 Z" fill="url(#lMid)"/><path d="M100 90 C 96 76, 88 60, 84 46 C 82 36, 92 32, 96 42 C 98 52, 100 64, 100 78 Z" fill="url(#lDark)" opacity="0.55"/><path d="M100 90 C 108 76, 124 60, 132 44 C 138 28, 122 18, 110 32 C 104 42, 100 58, 100 78" fill="none" stroke="url(#lDark)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M118 30 C 128 28, 134 36, 134 46" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round" opacity="0.7"/></svg>`;
+function lock(extra){return `<div class="lock${extra||''}">${LOGO_SVG}<div class="wordmark">AgroCore</div></div>`;}
+document.getElementById('wm').innerHTML=LOGO_SVG+'<b>AgroCore</b>';
+const SCENES=[
+  {ms:4500,html:`<div class="pop">${lock()}</div><div class="tag an d3">El corazón del negocio agrícola</div><div class="sub an d4" style="margin-top:16px">Gestión integral para el campo argentino 🇦🇷</div>`},
+  {ms:5200,html:`<div class="kicker an">Un solo sistema</div><h1 class="an d1">Todo tu campo,<br><span class="hl">en un solo lugar</span></h1><div class="chips"><span class="chip an d2"><span class="e">🌱</span>Producción</span><span class="chip an d3"><span class="e">🐄</span>Hacienda</span><span class="chip an d4"><span class="e">📦</span>Stock</span><span class="chip an d5"><span class="e">🧾</span>Compras</span><span class="chip an d6"><span class="e">💰</span>Finanzas</span><span class="chip an d7"><span class="e">🚚</span>Logística</span></div>`},
+  {ms:5600,html:`<div class="icon pop">💵</div><h2 class="an d1">Multimoneda<br><span class="hl">de verdad</span></h2><ul class="pts"><li class="an d2"><span class="tick">✓</span>Pesos, dólares y granos en un mismo sistema</li><li class="an d3"><span class="tick">✓</span>Pagá y cobrá con entrega de cereal</li><li class="an d4"><span class="tick">✓</span>Siempre a la cotización del día</li></ul>`},
+  {ms:5600,html:`<div class="icon pop">🌱</div><h2 class="an d1">Cada lote,<br><span class="hl">bajo control</span></h2><ul class="pts"><li class="an d2"><span class="tick">✓</span>Campañas con insumos y labores</li><li class="an d3"><span class="tick">✓</span>Costo y margen por hectárea</li><li class="an d4"><span class="tick">✓</span>Mostralo todo en u$s o en $</li></ul>`},
+  {ms:5600,html:`<div class="icon pop">🐄</div><h2 class="an d1">Tu hacienda,<br><span class="hl">al día</span></h2><ul class="pts"><li class="an d2"><span class="tick">✓</span>Cabezas y kilos por campo</li><li class="an d3"><span class="tick">✓</span>Control SENASA vs. stock real</li><li class="an d4"><span class="tick">✓</span>Cargá movimientos sin señal</li></ul>`},
+  {ms:5600,html:`<div class="icon pop">🧾</div><h2 class="an d1">Facturás<br><span class="hl">con ARCA</span></h2><ul class="pts"><li class="an d2"><span class="tick">✓</span>Facturas electrónicas con CAE</li><li class="an d3"><span class="tick">✓</span>Cheques, bancos y créditos</li><li class="an d4"><span class="tick">✓</span>Flujo de fondos con simulador</li></ul>`},
+  {ms:5600,html:`<div class="icon pop">📊</div><h2 class="an d1">Todo,<br><span class="hl">de un vistazo</span></h2><ul class="pts"><li class="an d2"><span class="tick">✓</span>Tablero multimoneda en tiempo real</li><li class="an d3"><span class="tick">✓</span>Multi-empresa y multi-usuario</li><li class="an d4"><span class="tick">✓</span>En la nube o en tu propio servidor</li></ul>`},
+  {ms:5200,html:`<div class="pop">${lock(' sm')}</div><div class="tag an d3">El corazón del negocio agrícola</div><div class="url an d4">agrocore.ar</div><span class="cta an d5">Pedí tu demo gratis</span>`},
+];
+const sceneEl=document.getElementById('scene');
+const barEl=document.getElementById('bar');
+const dotsEl=document.getElementById('dots');
+SCENES.forEach((_,i)=>{const d=document.createElement('i');if(i===0)d.className='on';dotsEl.appendChild(d);});
+const dots=[...dotsEl.children];
+let idx=0, playing=true, t0=0, raf=null, timer=null;
+function render(i){idx=i;sceneEl.innerHTML=SCENES[i].html;dots.forEach((d,k)=>d.classList.toggle('on',k===i));startTimer();}
+function startTimer(){cancelAnimationFrame(raf);clearTimeout(timer);const dur=SCENES[idx].ms;t0=performance.now();const tick=(now)=>{const p=Math.min(1,(now-t0)/dur);barEl.style.width=(p*100)+'%';if(p<1&&playing)raf=requestAnimationFrame(tick);};raf=requestAnimationFrame(tick);if(playing)timer=setTimeout(()=>render((idx+1)%SCENES.length),dur);}
+function pause(){playing=false;cancelAnimationFrame(raf);clearTimeout(timer);document.getElementById('play').innerHTML='&#9654;';}
+function play(){playing=true;document.getElementById('play').innerHTML='&#10074;&#10074;';const elapsed=parseFloat(barEl.style.width||'0')/100*SCENES[idx].ms;t0=performance.now()-elapsed;const dur=SCENES[idx].ms;const tick=(now)=>{const p=Math.min(1,(now-t0)/dur);barEl.style.width=(p*100)+'%';if(p<1&&playing)raf=requestAnimationFrame(tick);};raf=requestAnimationFrame(tick);timer=setTimeout(()=>render((idx+1)%SCENES.length),dur-elapsed);}
+document.getElementById('next').onclick=(e)=>{e.stopPropagation();render((idx+1)%SCENES.length);};
+document.getElementById('prev').onclick=(e)=>{e.stopPropagation();render((idx-1+SCENES.length)%SCENES.length);};
+document.getElementById('play').onclick=(e)=>{e.stopPropagation();playing?pause():play();};
+document.getElementById('stage').addEventListener('click',()=>{playing?pause():play();});
+document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight')render((idx+1)%SCENES.length);else if(e.key==='ArrowLeft')render((idx-1+SCENES.length)%SCENES.length);else if(e.key===' '){e.preventDefault();playing?pause():play();}});
+render(0);
+</script>
+</body>
+</html>
