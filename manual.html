@@ -88,7 +88,7 @@
       /* Numeración de páginas (navegadores/exportadores compatibles: Firefox, Edge PDF, etc.) */
       @page {
         margin: 1.6cm 1.5cm 1.9cm 1.5cm;
-        @bottom-left   { content: "AgroCore · Manual de Usuario v1.58"; font-size: 9px; color: #94a3b8; }
+        @bottom-left   { content: "AgroCore · Manual de Usuario v1.78"; font-size: 9px; color: #94a3b8; }
         @bottom-right  { content: "Página " counter(page) " de " counter(pages); font-size: 9px; color: #64748b; }
       }
 
@@ -129,7 +129,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Módulos ordenados igual que el menú (Tablero, Ventas, Compras, Tesorería, Producción, Stock, Logística, RRHH, Administración), modo offline, <strong>multimoneda y canje de cereal</strong>, hacienda integrada al stock, <strong>flujo de fondos con simulador</strong>, planilla y liquidación por empleado, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) e importación de facturas por PDF, listados configurables, flujos típicos y preguntas frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Manual actualizado · Julio 2026 · Sistema AgroCore v1.58</p>
+      <p class="text-xs text-agro-200/70 mt-4">Manual actualizado · Julio 2026 · Sistema AgroCore v1.78</p>
     </div>
   </section>
 
@@ -474,7 +474,8 @@
             <li>Listo para enviar por email al cliente.</li>
           </ol>
           <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
-          <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
+          <p><strong>Nota de Crédito y Nota de Débito</strong> <span class="badge-new">Nuevo</span>: en el formulario de venta hay un selector <strong>Comprobante</strong> (Factura / Nota de Crédito / Nota de Débito). La <strong>factura</strong> descuenta stock del depósito elegido; la <strong>NC</strong> se toma como devolución (<strong>reingresa</strong> el stock al depósito y baja lo que te debe el cliente); la <strong>ND</strong> suma lo que te deben sin tocar el stock. Cada opción muestra un aviso de su efecto.</p>
+          <p><strong>Modo informal / sin ARCA:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato. Además, cuando la empresa está marcada como "sin ARCA", todos los elementos fiscales (CAE, Libro IVA, botones de ARCA) aparecen <strong>en gris/deshabilitados</strong> para no confundir.</p>
 
           <h4>Cargar factura emitida directamente en ARCA <span class="badge-new">Nuevo</span></h4>
           <p>Cuando un socio o el contador emite una factura por afuera del sistema (directamente en el portal de ARCA), podés cargarla manualmente para que aparezca en los listados, descuente stock y mueva la cuenta corriente del cliente.</p>
@@ -509,7 +510,8 @@
           <p><strong>Qué hace:</strong> registra las facturas que <strong>te emiten</strong> los proveedores, para control de gastos, IVA crédito fiscal, cuentas corrientes y vencimientos.</p>
           <p><strong>Datos:</strong> proveedor, tipo y número, fechas, ítems con cantidades/precios/IVA, <strong>moneda</strong> y cotización, forma de pago, adjunto del comprobante físico (opcional).</p>
           <p><strong>Importación masiva:</strong> desde Excel o desde el portal "Mis Comprobantes" de ARCA.</p>
-          <p><strong>Importación por PDF</strong> <span class="badge-new">Nuevo</span>: podés cargar una factura desde su PDF. El sistema lee el QR de ARCA (o el texto del comprobante) y completa proveedor, tipo, número, fecha, ítems, IVA y — si la factura está en dólares (U$S / U$D / USD) — la <strong>moneda y la cotización</strong> del comprobante.</p>
+          <p><strong>Importación por PDF</strong> <span class="badge-new">Nuevo</span>: podés cargar una factura desde su PDF. El sistema lee el QR de ARCA (o el texto del comprobante) y completa proveedor, tipo, número, fecha, ítems, IVA y — si la factura está en dólares (U$S / U$D / USD) — la <strong>moneda y la cotización</strong> del comprobante. Lee correctamente Facturas A/B/C, Notas de Crédito y Débito y formatos de otros sistemas; los ítems se cargan como artículos manuales.</p>
+          <p><strong>Facturas, NC y ND desde la misma pantalla</strong> <span class="badge-new">Nuevo</span>: hay un selector <strong>Comprobante</strong> (Factura / Nota de Crédito / Nota de Débito). Al cargar el PDF, el sistema <strong>detecta</strong> cuál es y lo selecciona solo. La <strong>NC resta</strong> la deuda al proveedor y la <strong>ND la suma</strong> (las notas no tocan el stock; si es una devolución, ajustá el stock a mano). Podés elegir el <strong>depósito destino</strong> del stock que entra con la compra.</p>
 
           <h4>Cuentas a pagar</h4>
           <p>Saldo por proveedor, alimentado por las facturas de compra. Botón <strong>"Registrar pago"</strong> para saldar, con varios métodos: efectivo, cheque, transferencia, <strong>🌾 entrega de cereal</strong> (canje, ver 6.10) o <strong>🔄 Intercompany</strong>. Si pagás una deuda en otra moneda (ej. una factura en US$ pagada en pesos), el sistema cancela la deuda en su moneda y registra automáticamente la <strong>diferencia de cambio</strong> en pesos (ver 6.10).</p>
@@ -593,7 +595,7 @@
             <li><strong>Automático (sistema francés):</strong> el sistema genera todas las cuotas con cuota total constante, discriminando capital, interés y total.</li>
             <li><strong>Manual:</strong> cargás <strong>vos cada cuota con su fecha e importe</strong>. Ideal cuando las cuotas son distintas entre sí (por ej. te dan US$ 70.000 y las cuotas son 10, 12, 15… mil hasta completar). El botón <em>"↻ Generar fechas"</em> arma las filas según la periodicidad y reparte el monto en partes iguales como punto de partida, y después editás el importe de cada una. Abajo se muestra la suma de las cuotas vs el monto del crédito para que cierre.</li>
           </ul>
-          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota. Modal con medio de pago (efectivo, cheque, transferencia, débito automático) y — si elegís <em>transferencia</em> o <em>débito automático</em> — un selector de <strong>cuenta bancaria de origen</strong>. Al confirmar, la cuota queda pagada y se registra automáticamente el egreso en el extracto de esa cuenta bancaria (siempre en pesos).</p>
+          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota. Modal con medio de pago y el <strong>selector de origen según el método</strong> <span class="badge-new">Nuevo</span>: <em>transferencia / débito</em> → cuenta bancaria; <em>efectivo</em> → <strong>caja</strong>; <em>cheque</em> → <strong>cheque en cartera</strong>. Al confirmar, la cuota queda pagada y se registra el egreso en el lugar que corresponde (banco, caja o cheque entregado/endosado).</p>
           <p><strong>Pago al tipo de cambio del día</strong> <span class="badge-new">Nuevo</span>: si el crédito es en moneda extranjera, al pagar una cuota ponés el <strong>TC del día del pago</strong> y el sistema calcula y te muestra <strong>cuánto es en pesos</strong> antes de confirmar (porque hasta el día que pagás no sabés el valor exacto: el dólar varía). Cada cuota paga guarda el TC usado y los pesos efectivamente pagados.</p>
           <p><strong>Card de alertas:</strong> arriba aparece "Cuotas a vencer en los próximos 30 días" con la lista completa cruzando todos tus créditos. KPIs: cantidad de créditos activos, deuda pendiente total (valorizada a pesos) y cuotas próximas.</p>
 
@@ -604,18 +606,20 @@
             <li>Arrendador (CUIT, datos de contacto)</li>
             <li>Campo arrendado (vinculado al módulo Producción → Campos)</li>
             <li>Plazo del contrato (fecha inicio, fecha fin)</li>
-            <li>Modalidad de pago: pesos, dólares, quintales fijos de soja/maíz, % del rinde</li>
+            <li>Modalidad de pago: pesos, dólares, quintales fijos de soja/maíz, <strong>Kg Novillo</strong> <span class="badge-new">Nuevo</span> o % del rinde</li>
             <li>Cantidad acordada</li>
             <li>Vencimientos (uno o varios pagos a lo largo del contrato)</li>
           </ul>
-          <p><strong>Integración:</strong> los vencimientos aparecen automáticamente en el flujo de caja y el Flujo de Fondos como pagos comprometidos. Si el contrato es en quintales, el sistema valoriza la cuota al precio BCR del día y calcula el equivalente en pesos / dólares.</p>
+          <p><strong>Cuotas en todas las modalidades</strong> <span class="badge-new">Nuevo</span>: podés cargar <strong>cuotas</strong> (cuánto y cuándo) en efectivo, quintales y Kg Novillo — la única sin cuotas es "Porcentaje del rinde". La modalidad <strong>Kg Novillo</strong> valoriza la cuota al precio de referencia de Cañuelas, que se carga como una "moneda" más en Tesorería → Cotizaciones.</p>
+          <p><strong>Pago de cuotas</strong> <span class="badge-new">Nuevo</span>: con el botón <strong>📅</strong> abrís las cuotas y pagás cada una con <strong>efectivo (elegís la caja), cheque (de cartera), transferencia o débito</strong>. El egreso queda registrado en <strong>Movimientos diarios</strong> (mueve la caja/cheque/banco real) y la cuota queda marcada como pagada.</p>
+          <p><strong>Integración:</strong> los vencimientos de cada cuota aparecen automáticamente en la <strong>Agenda</strong> (con acceso directo al contrato) y en el <strong>Flujo de Fondos</strong> como pagos comprometidos. Si el contrato es en quintales o Kg Novillo, el sistema valoriza la cuota al precio del día y calcula el equivalente en pesos / dólares.</p>
           <p><strong>Alertas:</strong> vencimientos próximos, contratos por terminar, renovaciones a evaluar.</p>
 
           <h4>Cuentas Intercompany — saldos entre tus empresas <span class="badge-new">Nuevo</span></h4>
           <p>Cuando manejás <strong>varias empresas del mismo grupo</strong> y una le cubre un pago o un cobro a otra, el sistema registra el préstamo interno en las <strong>dos firmas a la vez</strong> (asientos espejo) y mantiene una matriz de saldos cruzados (quién le debe a quién). Aparece como método <strong>"🔄 Intercompany"</strong> al registrar un pago a proveedor o un cobro de cliente, y tiene su propia pantalla en Tesorería → Cuentas Intercompany. Requiere el permiso <code>finanzas:intercompany</code>.</p>
 
           <h4>Cotizaciones</h4>
-          <p>Tesorería → <strong>Cotizaciones</strong> muestra dólar, euro y pizarras de granos en vivo (Bolsa de Rosario), guarda el <strong>histórico diario</strong> y permite cargar/corregir un valor a mano (ej. una cotización pactada). Las monedas propias se crean en <strong>Catálogos → Monedas</strong>. El detalle de multimoneda, diferencia de cambio y canje está en la sección 6.10.</p>
+          <p>Tesorería → <strong>Cotizaciones</strong> muestra dólar, euro y pizarras de granos en vivo (Bolsa de Rosario), guarda el <strong>histórico diario</strong> y permite cargar/corregir un valor a mano (ej. una cotización pactada). Incluye <strong>Kg Novillo (Cañuelas)</strong> <span class="badge-new">Nuevo</span> como precio de referencia editable, disponible en todos los selectores y en el ticker. Las monedas propias se crean en <strong>Catálogos → Monedas</strong>. El detalle de multimoneda, diferencia de cambio y canje está en la sección 6.10.</p>
         </section>
 
         <section id="mod-produccion">
@@ -664,6 +668,21 @@
 
           <h4>Reporte de margen</h4>
           <p>Análisis económico que cruza compras vs ventas calculando costo promedio, precio promedio, % de margen y ganancia. Filtros por producto, campaña, cliente / proveedor o período. También entrega el costo acumulado por lote en una campaña vs presupuesto. Exportable a Excel.</p>
+          <p><strong>Solo artículos del catálogo</strong> <span class="badge-new">Nuevo</span>: al igual que Stock, el reporte muestra únicamente los productos que están en el Catálogo; los productos "huérfanos" quedan ocultos con un check para verlos.</p>
+
+          <h4>Planilla de resultado económico por campaña <span class="badge-new">Nuevo</span></h4>
+          <p><strong>Qué es:</strong> el <strong>resultado económico completo</strong> de una campaña en una sola planilla, con el <strong>rinde de indiferencia</strong>. Se abre con el botón <strong>📊 Planilla</strong> desde <strong>Campañas</strong> (en cada tarjeta) o desde <strong>Insumos y Labores</strong> (en el encabezado de cada campaña).</p>
+          <ul>
+            <li><strong>Insumos y labores automáticos:</strong> lista todo lo aplicado en la campaña (fecha, dosis/ha, precio unitario, u$s/ha y u$s/lote) con su subtotal. Sale solo de lo cargado.</li>
+            <li><strong>Costos fijos editables:</strong> arranca con Arrendamiento, Cosecha, Seguro e Ing. Agrónomo (podés agregar/quitar). Cada uno se carga en modo "por hectárea" o "total".</li>
+            <li><strong>Precio del cereal:</strong> se sugiere de la <strong>pizarra del día</strong> y es editable (ej. precio a fijar / posición). Le restás gastos de comercialización y flete para el <strong>precio neto</strong>.</li>
+            <li><strong>Resultado:</strong> ingreso bruto (precio neto × rinde estimado), gastos totales, resultado neto por hectárea y por campo.</li>
+            <li><strong>🎯 Rinde de indiferencia:</strong> el rinde (tn/ha) que necesitás para cubrir los gastos = <em>gastos por ha ÷ precio neto por tn</em>.</li>
+            <li><strong>Rinde real:</strong> kg cosechados de la campaña ÷ hectáreas, con el desglose de viajes + movimientos de stock.</li>
+            <li><strong>Moneda:</strong> botón <strong>US$ / $ Pesos</strong> que pasa toda la planilla de moneda (en pesos, el precio sale de la pizarra en $/tn y los costos en dólares se convierten con el dólar del día). La moneda se guarda por campaña.</li>
+            <li><strong>Exportable</strong> a <strong>Excel</strong> y <strong>PDF</strong>, y se guarda por campaña.</li>
+          </ul>
+          <p><strong>Rinde real — de dónde sale:</strong> para calcularlo, en los <strong>viajes de cereal</strong> y en los <strong>movimientos de stock manual de granos</strong> (ingreso por cosecha) hay un selector de <strong>Campaña</strong>. Al indicarla, esos kilos se atribuyen a la campaña y la planilla arma el rinde real (mostrando el desglose para que no se dupliquen).</p>
         </section>
 
         <section id="mod-stock">
@@ -674,12 +693,14 @@
           <p>Listado del inventario actual: cada producto con cantidad disponible, valorizado a precio de última compra o promedio ponderado.</p>
           <p><strong>Tipos de productos:</strong> insumos agrícolas, granos, combustible, repuestos y consumibles, otros.</p>
           <p><strong>Información por producto:</strong> nombre, código, categoría, unidad, stock actual (con alerta de mínimo), valorización, ubicación, histórico de movimientos.</p>
+          <p><strong>El Catálogo manda</strong> <span class="badge-new">Nuevo</span>: el Stock (y los buscadores de ítems de Compras y Ventas) muestran solo los artículos que están en el <strong>Catálogo</strong> — insumos, cereales y categorías de animales. Los productos que no están en el catálogo quedan <strong>ocultos</strong> (no se borran) y hay un check <em>"ver también los que no están en el catálogo"</em>. Los <strong>tipos de insumo</strong> son dinámicos: si creás uno nuevo (ej. "Combustible y Lubricantes") y le cargás ítems, aparecen en todos lados automáticamente.</p>
 
           <h4>Movimientos</h4>
           <p>Cada vez que entra o sale algo del stock, se registra un movimiento. Trazabilidad completa.</p>
           <p><strong>Tipos:</strong> entrada por compra, entrada por cosecha, salida por venta, salida por consumo interno, ajuste de inventario, transferencia entre depósitos, entrega a cerealera, liquidación. Los movimientos de <strong>hacienda</strong> (🐄 Animales) también se ven y editan acá.</p>
           <p><strong>Cada movimiento registra:</strong> fecha, tipo, producto y cantidad, origen/destino, comprobante asociado, depósito y <strong>usuario que lo cargó</strong> (columna "Cargado por" visible en la lista — auditoría completa, incluso para movimientos automáticos generados por facturas, entregas a cerealera, liquidaciones y labores avanzadas).</p>
           <p><strong>Integración:</strong> los movimientos generados por compras o ventas tienen un botón que abre la factura origen. En facturas de venta, el sistema avisa antes de vender más de lo que hay en stock.</p>
+          <p><strong>Campaña del grano</strong> <span class="badge-new">Nuevo</span>: en el movimiento de stock manual de granos (ingreso por cosecha) podés elegir de qué <strong>campaña</strong> sale/entra el cereal. Con eso, la <strong>Planilla de resultado económico</strong> (ver 6.5) calcula el rinde real. Al entrar a Movimientos, la pantalla arranca <strong>sin filtros</strong> para que veas todo (antes el filtro de depósito quedaba pegado).</p>
 
           <h4>Cerealeras / Depósitos — cereal en planta sin perder trazabilidad</h4>
           <p>Sección dedicada a registrar las cerealeras / acopiadoras y depósitos propios donde se almacena el cereal. El concepto clave: cuando entregás cereal a una cerealera, el grano <strong>sigue siendo tuyo</strong> — solo cambia de ubicación física. Después decidís cuándo venderlo (con una Liquidación de cereal, ver 6.2).</p>
