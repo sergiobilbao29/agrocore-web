@@ -10,7 +10,7 @@
  * 3. En Cloudflare Pages (proyecto agrocore-web) → Settings → Environment
  *    variables → agregar:
  *       RESEND_API_KEY = re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
- *       CONTACT_TO     = sergiodbilbao@gmail.com   (a quién llegan las consultas)
+ *       CONTACT_TO     = consultas@agrocore.ar   (a quién llegan las consultas)
  * 4. (Opcional) Verificar el dominio agrocore.ar en Resend para usar
  *    "consultas@agrocore.ar" como remitente. Hasta entonces se usa el
  *    sender por defecto de Resend (onboarding@resend.dev).
@@ -46,7 +46,7 @@ export async function onRequestPost({ request, env }) {
     }, 503);
   }
 
-  const to = env.CONTACT_TO || 'sergiodbilbao@gmail.com';
+  const to = env.CONTACT_TO || 'consultas@agrocore.ar';
   const from = env.CONTACT_FROM || 'AgroCore <onboarding@resend.dev>';
 
   const fechaArg = new Date().toLocaleString('es-AR', {
