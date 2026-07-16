@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Rinde de Indiferencia | AgroCore</title>
+  <meta name="description" content="Calculá gratis el rinde de indiferencia de tu campaña: cuántos quintales por hectárea necesitás para cubrir todos los gastos. Herramienta de AgroCore.">
+  <meta name="keywords" content="rinde de indiferencia, calculadora rinde, costos campaña agrícola, gestión agropecuaria">
+  <meta property="og:title" content="Calculadora de Rinde de Indiferencia — AgroCore">
+  <meta property="og:description" content="¿Cuántos quintales por hectárea necesitás para cubrir los gastos de tu campaña? Calculalo gratis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://agrocore.ar/calculadora.html">
+  <meta property="og:image" content="https://agrocore.ar/img/logo-card.png">
+  <link rel="canonical" href="https://agrocore.ar/calculadora.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TLTNL3NJ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0TLTNL3NJ0');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xmye67pyx1");
+  </script>
+</head>
+<body class="bg-emerald-50 text-slate-800">
+
+  <!-- Encabezado -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="https://agrocore.ar/" class="flex items-center gap-2">
+        <img src="img/logo-icon-128.png" alt="AgroCore" class="h-8 w-8">
+        <span class="font-bold text-emerald-800 text-lg">AgroCore</span>
+      </a>
+      <a href="https://agrocore.ar/#contacto" class="text-sm bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2 rounded-lg">Solicitar demo</a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-emerald-800">Calculadora de Rinde de Indiferencia</h1>
+      <p class="mt-2 text-slate-600 max-w-2xl mx-auto">¿Cuántos quintales por hectárea necesitás para cubrir <b>todos</b> los gastos de tu campaña? Cargá tus números y calculalo al instante.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Formulario -->
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h2 class="font-bold text-emerald-800 mb-4">Tus datos</h2>
+
+        <label class="block text-sm font-medium mb-1">Cultivo</label>
+        <select id="cultivo" class="w-full border border-slate-300 rounded-lg p-2 mb-4">
+          <option value="300">Soja</option>
+          <option value="180">Maíz</option>
+          <option value="200">Trigo</option>
+          <option value="420">Girasol</option>
+          <option value="180">Sorgo</option>
+        </select>
+
+        <div class="text-xs font-semibold uppercase text-slate-400 mb-2">Costos por hectárea (USD/ha)</div>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div>
+            <label class="block text-sm mb-1">Insumos</label>
+            <input id="insumos" type="number" value="250" class="w-full border border-slate-300 rounded-lg p-2">
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Labores</label>
+            <input id="labores" type="number" value="120" class="w-full border border-slate-300 rounded-lg p-2">
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Arrendamiento</label>
+            <input id="arren" type="number" value="180" class="w-full border border-slate-300 rounded-lg p-2">
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Otros (estructura, etc.)</label>
+            <input id="otros" type="number" value="60" class="w-full border border-slate-300 rounded-lg p-2">
+          </div>
+        </div>
+
+        <div class="text-xs font-semibold uppercase text-slate-400 mb-2">Precio del grano</div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm mb-1">Precio bruto (USD/tn)</label>
+            <input id="precio" type="number" value="300" class="w-full border border-slate-300 rounded-lg p-2">
+          </div>
+          <div>
+            <label class="block text-sm mb-1">Gastos comerc.+cosecha (%)</label>
+            <input id="gastos" type="number" value="25" class="w-full border border-slate-300 rounded-lg p-2">
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 mt-2">Los gastos de comercialización + cosecha + flete se descuentan del precio (típico 20-30%).</p>
+      </div>
+
+      <!-- Resultado -->
+      <div class="bg-emerald-700 text-white rounded-2xl shadow p-6 flex flex-col justify-center">
+        <div class="text-sm uppercase tracking-wide text-emerald-100">Rinde de indiferencia</div>
+        <div class="mt-2 flex items-baseline gap-2">
+          <span id="qqha" class="text-6xl font-extrabold">27,1</span>
+          <span class="text-2xl font-semibold">qq/ha</span>
+        </div>
+        <div class="mt-1 text-emerald-100"><span id="tnha">2,71</span> tn/ha</div>
+        <div class="mt-4 text-sm bg-emerald-800/50 rounded-lg p-3">
+          Necesitás <b id="qqha2">27,1</b> quintales por hectárea <b>solo para cubrir los gastos</b>. Todo lo que produzcas por encima de ese rinde es ganancia; por debajo, pérdida.
+        </div>
+        <div class="mt-4 text-xs text-emerald-100">
+          Costo total: <b id="costoha">US$ 610</b>/ha · Precio neto: <b id="precioneto">US$ 225</b>/tn
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-8 bg-white rounded-2xl shadow p-6 text-center">
+      <h3 class="text-xl font-bold text-emerald-800">Esto, con tus números reales y en vivo</h3>
+      <p class="mt-2 text-slate-600 max-w-2xl mx-auto">AgroCore calcula el rinde de indiferencia de cada campaña automáticamente, con los costos que vas cargando y el precio del grano actualizado con la cotización del día. Además: stock, hacienda, finanzas y facturación ARCA, todo en un lugar.</p>
+      <div class="mt-4 flex flex-wrap gap-3 justify-center">
+        <a href="https://agrocore.ar/#contacto" onclick="leadEvent('demo')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-lg">Solicitar una demo gratis</a>
+        <a href="https://agrocore.ar/presupuesto" onclick="leadEvent('presupuesto')" class="border border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-semibold px-6 py-3 rounded-lg">Ver precios</a>
+      </div>
+    </div>
+
+    <p class="text-center text-xs text-slate-400 mt-6">Herramienta orientativa de <a href="https://agrocore.ar/" class="underline">AgroCore Argentina</a>. Los resultados dependen de los datos que cargues.</p>
+  </main>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const fmt = n => n.toLocaleString('es-AR', { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+    const fmt0 = n => Math.round(n).toLocaleString('es-AR');
+
+    function calc() {
+      const costoHa = ['insumos','labores','arren','otros'].reduce((a,id) => a + (Number($(id).value) || 0), 0);
+      const precioBruto = Number($('precio').value) || 0;
+      const gastosPct = Number($('gastos').value) || 0;
+      const precioNeto = precioBruto * (1 - gastosPct / 100);
+      let tnha = 0;
+      if (precioNeto > 0) tnha = costoHa / precioNeto;
+      const qqha = tnha * 10;
+      $('qqha').textContent = fmt(qqha);
+      $('qqha2').textContent = fmt(qqha);
+      $('tnha').textContent = fmt(tnha);
+      $('costoha').textContent = 'US$ ' + fmt0(costoHa);
+      $('precioneto').textContent = 'US$ ' + fmt0(precioNeto);
+    }
+
+    function leadEvent(dest) {
+      try { gtag('event', 'generate_lead', { source: 'calculadora', destino: dest }); } catch(e) {}
+    }
+
+    document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));
+    // Al cambiar el cultivo, sugerimos su precio bruto.
+    $('cultivo').addEventListener('change', e => { $('precio').value = e.target.value; calc(); });
+    calc();
+  </script>
+</body>
+</html>
