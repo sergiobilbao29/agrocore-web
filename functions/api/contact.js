@@ -11,9 +11,8 @@
  *    variables → agregar:
  *       RESEND_API_KEY = re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  *       CONTACT_TO     = consultas@agrocore.ar   (a quién llegan las consultas)
- * 4. (Opcional) Verificar el dominio agrocore.ar en Resend para usar
- *    "consultas@agrocore.ar" como remitente. Hasta entonces se usa el
- *    sender por defecto de Resend (onboarding@resend.dev).
+ * 4. Dominio agrocore.ar YA verificado en Resend: el remitente por defecto es
+ *    "AgroCore <consultas@agrocore.ar>". Se puede sobrescribir con CONTACT_FROM.
  * 5. Hacer un git push (cualquier cambio) para que Cloudflare re-deploye con
  *    la variable nueva disponible.
  *
@@ -47,7 +46,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   const to = env.CONTACT_TO || 'consultas@agrocore.ar';
-  const from = env.CONTACT_FROM || 'AgroCore <onboarding@resend.dev>';
+  const from = env.CONTACT_FROM || 'AgroCore <consultas@agrocore.ar>';
 
   const fechaArg = new Date().toLocaleString('es-AR', {
     timeZone: 'America/Argentina/Buenos_Aires',
