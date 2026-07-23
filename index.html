@@ -9,57 +9,6 @@
   <meta property="og:title" content="AgroCore Argentina — El corazón del negocio agrícola">
   <meta property="og:description" content="Sistema integral para empresas rurales: facturación ARCA, stock, hacienda, finanzas y mucho más.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://agrocore.ar/">
-  <meta property="og:image" content="https://agrocore.ar/img/logo-card.png">
-  <meta property="og:locale" content="es_AR">
-  <meta property="og:site_name" content="AgroCore Argentina">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AgroCore Argentina — Sistema de Gestión Integral para el Campo">
-  <meta name="twitter:description" content="Facturación ARCA, stock, hacienda, finanzas y multimoneda. Multi-empresa y multi-usuario.">
-  <meta name="twitter:image" content="https://agrocore.ar/img/logo-card.png">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://agrocore.ar/">
-
-  <!-- SEO: datos estructurados (ayudan a Google a entender qué es AgroCore) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "AgroCore",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web, Windows",
-    "description": "Sistema de gestión integral para el agro argentino: producción, stock, hacienda, finanzas multimoneda, facturación ARCA, logística y RRHH.",
-    "url": "https://agrocore.ar/",
-    "inLanguage": "es-AR",
-    "offers": { "@type": "Offer", "price": "999.99", "priceCurrency": "USD" },
-    "publisher": {
-      "@type": "Organization",
-      "name": "AgroCore Argentina",
-      "url": "https://agrocore.ar/",
-      "logo": "https://agrocore.ar/img/logo-full-512.png",
-      "address": { "@type": "PostalAddress", "addressLocality": "Río Cuarto", "addressRegion": "Córdoba", "addressCountry": "AR" }
-    }
-  }
-  </script>
-
-  <!-- ===================== MEDICIÓN / ANALYTICS ===================== -->
-  <!-- (1) Google Analytics 4 — REEMPLAZAR G-0TLTNL3NJ0 por tu ID de medición -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TLTNL3NJ0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0TLTNL3NJ0');
-  </script>
-  <!-- (2) Microsoft Clarity (grabaciones y mapas de calor) — REEMPLAZAR XXXXXXXXXX por tu Project ID -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xmye67pyx1");
-  </script>
-  <!-- =============================================================== -->
 
   <!-- Favicon: planta con corazón formado por hojas (SVG vectorial) -->
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
@@ -174,12 +123,12 @@
         </a>
 
         <!-- Desktop links -->
-        <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
+          <a href="#mercado" class="nav-link">Mercado</a>
+          <a href="#clima" class="nav-link">Clima</a>
+          <a href="#calculadoras" class="nav-link">Calculadoras</a>
           <a href="#features" class="nav-link">Funcionalidades</a>
-          <a href="#how" class="nav-link">Cómo funciona</a>
           <a href="#pricing" class="nav-link">Precio</a>
-          <a href="calculadora.html" class="nav-link text-agro-700 font-semibold">Calculadora de rinde</a>
-          <a href="#faq" class="nav-link">Preguntas</a>
           <a href="#contacto" class="nav-link">Contacto</a>
         </div>
 
@@ -202,11 +151,11 @@
       <!-- Mobile menu -->
       <div id="mobileMenu" class="md:hidden border-t border-slate-200 mobile-hidden">
         <div class="px-2 py-3 space-y-1 text-sm font-medium">
+          <a href="#mercado" class="block px-3 py-2 rounded hover:bg-slate-100">Mercado hoy</a>
+          <a href="#clima" class="block px-3 py-2 rounded hover:bg-slate-100">Clima</a>
+          <a href="#calculadoras" class="block px-3 py-2 rounded hover:bg-slate-100">Calculadoras</a>
           <a href="#features" class="block px-3 py-2 rounded hover:bg-slate-100">Funcionalidades</a>
-          <a href="#how" class="block px-3 py-2 rounded hover:bg-slate-100">Cómo funciona</a>
           <a href="#pricing" class="block px-3 py-2 rounded hover:bg-slate-100">Precio</a>
-          <a href="calculadora.html" class="block px-3 py-2 rounded hover:bg-slate-100 text-agro-700 font-semibold">🧮 Calculadora de rinde</a>
-          <a href="#faq" class="block px-3 py-2 rounded hover:bg-slate-100">Preguntas</a>
           <a href="#contacto" class="block px-3 py-2 rounded hover:bg-slate-100">Contacto</a>
         </div>
       </div>
@@ -254,14 +203,6 @@
         </a>
       </div>
 
-      <!-- Acceso destacado a la Calculadora de rinde -->
-      <a href="calculadora.html"
-         class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-agro-800 font-bold rounded-full shadow-lg hover:shadow-xl hover:bg-agro-50 transition mb-10">
-        <span class="text-xl">🧮</span>
-        <span>Probá gratis la Calculadora de Rinde de Indiferencia</span>
-        <span aria-hidden="true">→</span>
-      </a>
-
       <!-- Trust bar -->
       <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-agro-100/80 font-medium">
         <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Multi-empresa · Multi-usuario</span>
@@ -269,6 +210,26 @@
         <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Sin contrato de permanencia</span>
         <span class="flex items-center gap-1.5"><span class="text-gold-400">✓</span> Garantía 30 días</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ============== MERCADO HOY ============== -->
+  <section id="mercado" class="py-10 md:py-14 bg-white border-b border-slate-100 fade-in">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between flex-wrap gap-2 mb-5">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-2">
+            <span class="w-2 h-2 rounded-full bg-agro-500 animate-pulse"></span> En vivo
+          </span>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-agro-900">Mercado hoy</h2>
+          <p class="text-slate-500 text-sm">Pizarra de granos y dólar, actualizado a diario.</p>
+        </div>
+        <div class="text-xs text-slate-400" id="mkt-updated">Cargando…</div>
+      </div>
+      <div id="mkt-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+        <div class="col-span-full text-center text-slate-400 text-sm py-6">Cargando cotizaciones…</div>
+      </div>
+      <p class="text-[11px] text-slate-400 mt-3">Valores de referencia (pizarra Rosario y dólar). No constituyen asesoramiento comercial.</p>
     </div>
   </section>
 
@@ -438,6 +399,86 @@
     </div>
   </section>
 
+  <!-- ============== CONTADORES ============== -->
+  <section class="py-14 bg-agro-900 text-white relative overflow-hidden">
+    <div class="hero-pattern absolute inset-0 opacity-40"></div>
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative">
+      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400 counter" data-to="9">0</div><div class="text-agro-100 text-sm mt-1">Módulos integrados</div></div>
+      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400 counter" data-to="40" data-suffix="+">0</div><div class="text-agro-100 text-sm mt-1">Pantallas y reportes</div></div>
+      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400 counter" data-to="100" data-suffix="%">0</div><div class="text-agro-100 text-sm mt-1">En la nube</div></div>
+      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400">24/7</div><div class="text-agro-100 text-sm mt-1">Acceso desde el celu</div></div>
+    </div>
+  </section>
+
+  <!-- ============== CLIMA AGRO ============== -->
+  <section id="clima" class="py-16 md:py-20 bg-white fade-in">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-6">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Clima</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-2">El clima de tu zona</h2>
+        <p class="text-slate-500">Pronóstico de 7 días: lluvias y temperaturas. Elegí tu localidad.</p>
+      </div>
+      <div class="flex justify-center mb-6">
+        <select id="clima-zona" class="px-4 py-2.5 rounded-lg border border-slate-300 text-sm font-medium bg-white shadow-sm focus:ring-2 focus:ring-agro-500 focus:outline-none">
+          <option value="-33.13,-64.35">Río Cuarto (Cba)</option>
+          <option value="-32.95,-60.63">Rosario (SF)</option>
+          <option value="-31.42,-64.18">Córdoba Capital</option>
+          <option value="-34.61,-58.38">Buenos Aires</option>
+          <option value="-33.30,-66.34">San Luis</option>
+          <option value="-32.40,-63.24">Villa María (Cba)</option>
+          <option value="-38.00,-57.55">Mar del Plata</option>
+          <option value="-31.64,-60.70">Paraná (ER)</option>
+          <option value="-36.62,-64.29">Santa Rosa (LP)</option>
+          <option value="-27.79,-64.26">Sgo. del Estero</option>
+        </select>
+      </div>
+      <div id="clima-grid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+        <div class="col-span-full text-center text-slate-400 text-sm py-6">Cargando pronóstico…</div>
+      </div>
+      <p class="text-[11px] text-slate-400 mt-3 text-center">Fuente: Open-Meteo. Pronóstico orientativo.</p>
+    </div>
+  </section>
+
+  <!-- ============== CALCULADORAS ============== -->
+  <section id="calculadoras" class="py-16 md:py-20 bg-agro-50 fade-in">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Herramientas</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-2">Calculadoras del productor</h2>
+        <p class="text-slate-500">Rápidas y gratis. El precio del grano se completa solo con la pizarra de hoy.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        <!-- Rinde de indiferencia -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="font-bold text-agro-900 mb-1">🎯 Rinde de indiferencia</h3>
+          <p class="text-xs text-slate-500 mb-4">Cuántos quintales por hectárea necesitás para cubrir los costos.</p>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Costo total ($/ha)</label>
+          <input id="calc-costo" type="number" inputmode="numeric" value="450000" class="w-full mb-3 px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcRinde()"/>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Precio del grano ($/tn)</label>
+          <input id="calc-precio" type="number" inputmode="numeric" value="" class="w-full mb-4 px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcRinde()"/>
+          <div class="bg-agro-50 rounded-lg p-4 text-center">
+            <div class="text-3xl font-extrabold text-agro-700" id="calc-rinde-qq">—</div>
+            <div class="text-xs text-slate-500 mt-0.5">quintales / ha · <span id="calc-rinde-tn">—</span> tn/ha</div>
+          </div>
+        </div>
+        <!-- Relación insumo / grano -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="font-bold text-agro-900 mb-1">⚖️ Relación insumo / grano</h3>
+          <p class="text-xs text-slate-500 mb-4">Cuántos kilos de grano "cuesta" una unidad de insumo.</p>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Precio del insumo ($/unidad)</label>
+          <input id="calc-insumo" type="number" inputmode="numeric" value="15000" class="w-full mb-3 px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcRelacion()"/>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Precio del grano ($/tn)</label>
+          <input id="calc-precio2" type="number" inputmode="numeric" value="" class="w-full mb-4 px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcRelacion()"/>
+          <div class="bg-agro-50 rounded-lg p-4 text-center">
+            <div class="text-3xl font-extrabold text-agro-700" id="calc-rel">—</div>
+            <div class="text-xs text-slate-500 mt-0.5">kg de grano por unidad de insumo</div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-sm text-slate-500 mt-6">¿Querés estas cuentas hechas solas sobre tus datos reales? <a href="#contacto" class="text-agro-700 font-semibold hover:underline">Probá AgroCore →</a></p>
+    </div>
+  </section>
+
   <!-- ============== HOW IT WORKS ============== -->
   <section id="how" class="py-16 md:py-20 bg-white">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -477,12 +518,12 @@
       <div class="text-center mb-12">
         <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Precio</span>
         <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-3">Una inversión, sin sorpresas</h2>
-        <p class="text-slate-600 max-w-2xl mx-auto">Un <b>pago único</b> por el sistema completo —también <b>en cuotas</b>— y te llevás hasta el código. El mantenimiento mensual es <b>opcional</b> y cancelable cuando quieras.</p>
+        <p class="text-slate-600 max-w-2xl mx-auto">Pago único por el sistema completo. El mantenimiento mensual es <b>opcional</b> y cancelable cuando quieras.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
-        <!-- Card 1: Pago único -->
+        <!-- Card 1: Desarrollo -->
         <div class="price-card-highlight rounded-2xl p-8 text-white relative lg:scale-105">
           <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold rounded-full">PRINCIPAL</div>
           <div class="text-xs uppercase tracking-wider text-agro-200 font-semibold mb-2">Desarrollo + Implementación</div>
@@ -490,15 +531,15 @@
             <span class="text-5xl font-extrabold">USD</span>
             <span class="text-6xl font-extrabold text-gold-400">999<span class="text-2xl">,99</span></span>
           </div>
-          <div class="text-sm text-agro-200 mb-1">pago único · o <b>en cuotas</b></div>
-          <div class="text-sm text-agro-200 mb-6">el sistema es tuyo, con el código</div>
+          <div class="text-sm text-agro-200 mb-6">pago único · al finalizar la implementación</div>
           <ul class="space-y-2 text-sm">
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Sistema completo con todos los módulos</li>
-            <li class="flex gap-2"><span class="text-gold-400">✓</span> Implementación Cloud (AWS) o servidor propio</li>
-            <li class="flex gap-2"><span class="text-gold-400">✓</span> Carga inicial de datos + capacitación</li>
-            <li class="flex gap-2"><span class="text-gold-400">✓</span> <b>Copia del código fuente (sin lock-in)</b></li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Implementación Cloud (AWS) o Local en servidor propio</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Carga inicial de datos maestros</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Manual de usuario sectorizado por módulo</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> URL pública con HTTPS</li>
-            <li class="flex gap-2"><span class="text-gold-400">✓</span> Garantía 30 días + NDA</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Garantía 30 días</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Acuerdo de Confidencialidad (NDA)</li>
           </ul>
           <a href="#contacto" class="block mt-6 px-5 py-3 bg-gold-500 hover:bg-gold-600 text-agro-900 text-center font-bold rounded-lg transition">
             Empezar
@@ -571,7 +612,7 @@
       </div>
 
       <p class="text-center text-xs text-slate-500 mt-8 max-w-2xl mx-auto">
-        💡 Inversión: <b>USD 999,99</b> pago único (o <b>en cuotas</b>) + infraestructura a elección (<b>USD 50–80/mes</b> en Cloud AWS o <b>sin costo recurrente</b> en servidor propio) + <b>USD 100/mes</b> de mantenimiento si lo tomás. Sin mantenimiento, el sistema sigue funcionando perfectamente.
+        💡 Inversión inicial estimada: <b>USD 999,99</b> (pago único) + infraestructura a elección (<b>USD 50–80/mes</b> en Cloud AWS o <b>sin costo recurrente</b> en servidor propio) + <b>USD 100/mes</b> de mantenimiento si lo tomás. Si no querés mantenimiento, el sistema sigue funcionando perfectamente.
       </p>
 
       <div class="flex flex-wrap justify-center gap-3 mt-8">
@@ -669,6 +710,36 @@
     </div>
   </section>
 
+  <!-- ============== NOVEDADES ============== -->
+  <section id="novedades" class="py-16 md:py-20 bg-agro-50 fade-in">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Novedades</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-2">Mejoramos AgroCore todas las semanas</h2>
+        <p class="text-slate-500">Versión <span id="nov-version" class="font-bold text-agro-700">…</span> · algunas de las últimas mejoras publicadas.</p>
+      </div>
+      <div id="nov-list" class="space-y-3">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
+          <span class="text-xs font-bold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0">Mejora</span>
+          <div><div class="font-semibold text-agro-900">Factura con formato ARCA en hoja A4 completa</div><div class="text-sm text-slate-500">Imprimí o generá el PDF por triplicado (Original/Duplicado/Triplicado), idéntico al comprobante oficial.</div></div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
+          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
+          <div><div class="font-semibold text-agro-900">Comprobantes por email con PDF adjunto</div><div class="text-sm text-slate-500">Enviá órdenes de pago, recibos y facturas por mail o WhatsApp con un clic.</div></div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
+          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
+          <div><div class="font-semibold text-agro-900">Compras y Facturación unificadas</div><div class="text-sm text-slate-500">Todos los movimientos ordenados por fecha con filtro por tipo, y recibos de cobro.</div></div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
+          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
+          <div><div class="font-semibold text-agro-900">Logística de viajes con auto-alta y comisiones</div><div class="text-sm text-slate-500">Transportistas, choferes y cheques propios cargados desde el mismo viaje.</div></div>
+        </div>
+      </div>
+      <p class="text-center text-sm text-slate-500 mt-6">Cada cliente recibe las mejoras automáticamente. <a href="#contacto" class="text-agro-700 font-semibold hover:underline">Sumate →</a></p>
+    </div>
+  </section>
+
   <!-- ============== CONTACTO ============== -->
   <section id="contacto" class="py-16 md:py-20 bg-agro-900 hero-pattern">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -763,7 +834,6 @@
           <a href="#features" class="hover:text-gold-400">Funcionalidades</a>
           <a href="#how" class="hover:text-gold-400">Cómo funciona</a>
           <a href="#pricing" class="hover:text-gold-400">Precio</a>
-          <a href="calculadora.html" class="hover:text-gold-400">Calculadora de rinde</a>
           <a href="presupuesto.html" class="hover:text-gold-400">Presupuesto</a>
           <a href="manual.html" class="hover:text-gold-400">Manual de Usuario</a>
           <a href="#faq" class="hover:text-gold-400">FAQ</a>
@@ -777,9 +847,6 @@
         <p>© <span id="yr"></span> AgroCore Argentina · agrocore.ar — Hecho en Argentina con ❤️ para el campo.</p>
         <p>Sistema de gestión integral · Multi-empresa · Multi-usuario · Cloud o Local</p>
       </div>
-      <p class="text-center text-[11px] text-agro-400 mt-3">
-        <a target="_blank" href="https://www.comparasoftware.com.ar/agrocore" class="hover:text-gold-400">Agrocore</a> se encuentra verificado como <a href="https://www.comparasoftware.com.ar/administracion-agropecuaria" class="hover:text-gold-400">Software de Gestión Agropecuaria en Argentina</a>
-      </p>
     </div>
   </footer>
 
@@ -847,7 +914,8 @@
       };
 
       try {
-        const r = await fetch('/api/contact', {
+        const _api = (typeof AGRO_API !== 'undefined') ? AGRO_API : '';
+        const r = await fetch(_api + '/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
@@ -878,6 +946,136 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- ============== WIDGETS DINÁMICOS (Mercado / Clima / Calculadoras / Contadores / Novedades) ============== -->
+  <script>
+    // API pública de AgroCore (instancia demo, siempre activa). Cotizaciones + versión.
+    const AGRO_API = 'https://demo.agrocore.ar';
+    const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
+
+    // ---------- MERCADO HOY ----------
+    function mktCard(emoji, label, valor, sub) {
+      return `<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm hover:shadow-md transition">
+        <div class="text-2xl mb-1">${emoji}</div>
+        <div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${label}</div>
+        <div class="text-base md:text-lg font-extrabold text-agro-900 leading-tight mt-0.5">${valor}</div>
+        ${sub ? `<div class="text-[10px] text-slate-400">${sub}</div>` : ''}
+      </div>`;
+    }
+    async function loadMercado() {
+      const grid = document.getElementById('mkt-grid'); if (!grid) return;
+      try {
+        const r = await fetch(AGRO_API + '/api/cotizaciones', { cache: 'no-store' });
+        const j = await r.json();
+        const cer = (j.cereales && j.cereales.items) || {};
+        const dol = j.dolar || {};
+        const cards = [];
+        const grano = (k, label, emoji) => { const v = cer[k]; if (v != null) cards.push(mktCard(emoji, label, '$ ' + fmtAr(v), '$/tn')); };
+        grano('soja','Soja','🌱'); grano('maiz','Maíz','🌽'); grano('trigo','Trigo','🌾'); grano('sorgo','Sorgo','🌿'); grano('girasol','Girasol','🌻');
+        const dcard = (k, label) => { const v = dol[k] && dol[k].venta; if (v != null) cards.push(mktCard('💵', label, '$ ' + fmtAr(v), 'venta')); };
+        dcard('oficial','Dólar oficial'); dcard('blue','Dólar blue');
+        grid.innerHTML = cards.length ? cards.join('') : '<div class="col-span-full text-center text-slate-400 text-sm py-4">Sin datos por ahora.</div>';
+        const t = (j.actualizado && (j.actualizado.cereales || j.actualizado.dolar));
+        const up = document.getElementById('mkt-updated');
+        if (up) up.textContent = t ? 'Actualizado: ' + new Date(t).toLocaleString('es-AR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : '';
+        // Autocompletar el precio del grano en las calculadoras (soja de referencia).
+        if (cer.soja) {
+          ['calc-precio','calc-precio2'].forEach(id => { const el = document.getElementById(id); if (el && !el.value) el.value = Math.round(cer.soja); });
+          calcRinde(); calcRelacion();
+        }
+      } catch (e) {
+        grid.innerHTML = '<div class="col-span-full text-center text-slate-400 text-sm py-4">No pudimos cargar las cotizaciones ahora. Probá recargar en un rato.</div>';
+      }
+    }
+
+    // ---------- CONTADORES ANIMADOS ----------
+    function animateCounter(el) {
+      const to = Number(el.dataset.to || 0), suf = el.dataset.suffix || '';
+      const dur = 1400, t0 = performance.now();
+      const step = (t) => {
+        const p = Math.min((t - t0) / dur, 1);
+        const val = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        el.textContent = val.toLocaleString('es-AR') + suf;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+    const cntObs = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); cntObs.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.counter').forEach(el => cntObs.observe(el));
+
+    // ---------- CLIMA AGRO (Open-Meteo) ----------
+    const WMO = (c) => {
+      if (c === 0) return ['☀️','Despejado'];
+      if (c <= 3) return ['⛅','Parcial'];
+      if (c <= 48) return ['🌫️','Niebla'];
+      if (c <= 67) return ['🌧️','Lluvia'];
+      if (c <= 77) return ['❄️','Nieve'];
+      if (c <= 82) return ['🌦️','Chaparrones'];
+      if (c <= 86) return ['🌨️','Nevadas'];
+      return ['⛈️','Tormenta'];
+    };
+    async function loadClima(latlon) {
+      const grid = document.getElementById('clima-grid'); if (!grid) return;
+      grid.innerHTML = '<div class="col-span-full text-center text-slate-400 text-sm py-4">Cargando pronóstico…</div>';
+      try {
+        const [lat, lon] = latlon.split(',');
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=auto&forecast_days=7`;
+        const r = await fetch(url); const j = await r.json(); const d = j.daily;
+        const cards = d.time.map((iso, i) => {
+          const [emoji, lbl] = WMO(d.weathercode[i]);
+          const dia = new Date(iso + 'T12:00').toLocaleDateString('es-AR', { weekday: 'short' });
+          const mm = d.precipitation_sum[i], pp = d.precipitation_probability_max[i];
+          return `<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm">
+            <div class="text-xs font-bold text-agro-800 capitalize">${i===0?'Hoy':dia}</div>
+            <div class="text-3xl my-1" title="${lbl}">${emoji}</div>
+            <div class="text-sm font-bold text-agro-900">${Math.round(d.temperature_2m_max[i])}°<span class="text-slate-400 font-normal">/${Math.round(d.temperature_2m_min[i])}°</span></div>
+            <div class="text-[11px] mt-1 ${mm>0?'text-blue-600 font-semibold':'text-slate-400'}">💧 ${mm>0?mm+' mm':'—'}</div>
+            <div class="text-[10px] text-slate-400">${pp!=null?pp+'%':''}</div>
+          </div>`;
+        });
+        grid.innerHTML = cards.join('');
+      } catch (e) {
+        grid.innerHTML = '<div class="col-span-full text-center text-slate-400 text-sm py-4">No pudimos cargar el clima ahora.</div>';
+      }
+    }
+    (function(){ const sel = document.getElementById('clima-zona'); if (sel){ sel.addEventListener('change', e => loadClima(e.target.value)); loadClima(sel.value); } })();
+
+    // ---------- CALCULADORAS ----------
+    function calcRinde() {
+      const costo = Number(document.getElementById('calc-costo')?.value || 0);
+      const precio = Number(document.getElementById('calc-precio')?.value || 0);
+      const qqEl = document.getElementById('calc-rinde-qq'), tnEl = document.getElementById('calc-rinde-tn');
+      if (!qqEl) return;
+      if (costo > 0 && precio > 0) {
+        const tnHa = costo / precio;            // tn/ha
+        const qqHa = tnHa * 10;                 // 1 tn = 10 qq
+        qqEl.textContent = qqHa.toLocaleString('es-AR', { maximumFractionDigits: 1 });
+        if (tnEl) tnEl.textContent = tnHa.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+      } else { qqEl.textContent = '—'; if (tnEl) tnEl.textContent = '—'; }
+    }
+    function calcRelacion() {
+      const ins = Number(document.getElementById('calc-insumo')?.value || 0);
+      const precio = Number(document.getElementById('calc-precio2')?.value || 0);
+      const el = document.getElementById('calc-rel'); if (!el) return;
+      if (ins > 0 && precio > 0) {
+        const kg = ins / (precio / 1000);       // kg de grano por unidad de insumo
+        el.textContent = kg.toLocaleString('es-AR', { maximumFractionDigits: 0 }) + ' kg';
+      } else el.textContent = '—';
+    }
+
+    // ---------- NOVEDADES (versión en vivo) ----------
+    async function loadVersion() {
+      const el = document.getElementById('nov-version'); if (!el) return;
+      try { const r = await fetch(AGRO_API + '/api/system/version', { cache: 'no-store' }); const j = await r.json(); if (j.version) el.textContent = 'v' + j.version; }
+      catch (e) { el.textContent = ''; }
+    }
+
+    // Init
+    loadMercado(); loadVersion(); calcRinde(); calcRelacion();
+    setInterval(loadMercado, 10 * 60 * 1000); // refresca el mercado cada 10 min si dejan la pestaña abierta
   </script>
 
 </body>
