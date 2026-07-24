@@ -52,25 +52,15 @@
         <h1 class="text-3xl md:text-4xl font-extrabold">El clima de tu campo</h1>
         <p class="text-agro-100 mt-1">Mostrando: <b id="clima-ciudad" class="text-white">Río Cuarto (Cba)</b> · radar, temperatura del día, sol, luna y 7 días.</p>
       </div>
-      <div class="flex flex-col gap-2 items-stretch sm:items-end">
-        <div class="flex gap-2">
-          <input id="clima-buscar" type="text" placeholder="Buscar ciudad (ej: Coronel Moldes)" class="px-3 py-2.5 rounded-lg border border-white/20 bg-white/95 text-slate-800 text-sm w-56 focus:ring-2 focus:ring-gold-400 focus:outline-none"/>
-          <button onclick="buscarCiudad()" class="px-4 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold text-sm shadow whitespace-nowrap">Buscar</button>
-        </div>
-        <select id="clima-zona" class="px-4 py-2.5 rounded-lg border border-white/20 bg-white/95 text-slate-800 text-sm font-medium shadow-sm focus:ring-2 focus:ring-gold-400 focus:outline-none">
-          <option value="-33.13,-64.35">Río Cuarto (Cba)</option>
-          <option value="-32.95,-60.63">Rosario (SF)</option>
-          <option value="-31.42,-64.18">Córdoba Capital</option>
-          <option value="-34.61,-58.38">Buenos Aires</option>
-          <option value="-33.30,-66.34">San Luis</option>
-          <option value="-32.40,-63.24">Villa María (Cba)</option>
-          <option value="-38.00,-57.55">Mar del Plata</option>
-          <option value="-31.64,-60.70">Paraná (ER)</option>
-          <option value="-36.62,-64.29">Santa Rosa (LP)</option>
-          <option value="-27.79,-64.26">Sgo. del Estero</option>
-          <option value="-26.82,-65.22">Tucumán</option>
-          <option value="-34.92,-57.95">La Plata</option>
-        </select>
+      <div class="flex gap-2 items-stretch">
+        <input id="clima-buscar" list="ciudades" type="text" placeholder="Buscá tu ciudad…" value="Río Cuarto" autocomplete="off"
+               class="px-3 py-2.5 rounded-lg border border-white/20 bg-white/95 text-slate-800 text-sm w-60 focus:ring-2 focus:ring-gold-400 focus:outline-none"/>
+        <button onclick="buscarCiudad()" class="px-4 py-2.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold text-sm shadow whitespace-nowrap">Buscar</button>
+        <datalist id="ciudades">
+          <option>Río Cuarto</option><option>Rosario</option><option>Córdoba</option><option>Buenos Aires</option><option>San Luis</option>
+          <option>Villa María</option><option>Mar del Plata</option><option>Paraná</option><option>Santa Rosa</option>
+          <option>Santiago del Estero</option><option>Tucumán</option><option>La Plata</option>
+        </datalist>
       </div>
     </div>
   </header>
@@ -245,23 +235,26 @@
     function pauseRadar() { clearInterval(radarTimer); radarTimer = null; const b = document.getElementById('radar-play'); if (b) b.textContent = '▶'; }
     function toggleRadar() { radarTimer ? pauseRadar() : playRadar(); }
 
-    // ---------- Buscar ciudad (geocoding Open-Meteo) ----------
+    // ---------- Buscar ciudad (atajos + geocoding Open-Meteo) ----------
+    const CITIES = { 'río cuarto':'-33.13,-64.35','rio cuarto':'-33.13,-64.35','rosario':'-32.95,-60.63','córdoba':'-31.42,-64.18','cordoba':'-31.42,-64.18','buenos aires':'-34.61,-58.38','caba':'-34.61,-58.38','san luis':'-33.30,-66.34','villa maría':'-32.40,-63.24','villa maria':'-32.40,-63.24','mar del plata':'-38.00,-57.55','paraná':'-31.64,-60.70','parana':'-31.64,-60.70','santa rosa':'-36.62,-64.29','santiago del estero':'-27.79,-64.26','tucumán':'-26.82,-65.22','tucuman':'-26.82,-65.22','la plata':'-34.92,-57.95' };
     async function buscarCiudad() {
       const q = document.getElementById('clima-buscar').value.trim(); if (!q) return;
+      const key = q.toLowerCase();
+      if (CITIES[key]) { document.getElementById('clima-ciudad').textContent = q; loadClima(CITIES[key]); return; }
       try {
         let j = await (await fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=5&language=es&countryCode=AR')).json();
         let r = (j.results || [])[0];
         if (!r) { j = await (await fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(q) + '&count=5&language=es')).json(); r = (j.results || [])[0]; }
-        if (!r) { alert('No encontré esa localidad. Probá escribiéndola distinto.'); return; }
+        if (!r) { alert('No encontré "' + q + '". Probá con otro nombre o una ciudad cercana.'); return; }
         document.getElementById('clima-ciudad').textContent = r.name + (r.admin1 ? ', ' + r.admin1 : '');
         loadClima(r.latitude + ',' + r.longitude);
       } catch (e) { alert('No pude buscar la localidad ahora. Reintentá.'); }
     }
     // Init
-    const sel = document.getElementById('clima-zona');
-    sel.addEventListener('change', e => { document.getElementById('clima-ciudad').textContent = sel.options[sel.selectedIndex].text; loadClima(e.target.value); });
-    document.getElementById('clima-buscar').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); buscarCiudad(); } });
-    loadClima(sel.value);
+    const inp = document.getElementById('clima-buscar');
+    inp.addEventListener('change', buscarCiudad);  // al elegir una sugerencia o salir del campo
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); buscarCiudad(); } });
+    buscarCiudad(); // carga la ciudad inicial
   </script>
 </body>
 </html>
