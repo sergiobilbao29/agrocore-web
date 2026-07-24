@@ -69,11 +69,9 @@
   <!-- TENDENCIA -->
   <section class="py-10 bg-white border-t border-slate-100">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between flex-wrap gap-3 mb-4">
-        <div><h2 class="text-2xl font-extrabold text-agro-900">Tendencia</h2><p class="text-slate-500 text-sm">Evolución de los últimos meses.</p></div>
-        <select id="trend-moneda" class="px-4 py-2.5 rounded-lg border border-slate-300 text-sm font-medium bg-white shadow-sm focus:ring-2 focus:ring-agro-500 focus:outline-none">
-          <option value="SOJA">Soja</option><option value="MAIZ">Maíz</option><option value="TRIGO">Trigo</option><option value="SORGO">Sorgo</option><option value="GIRASOL">Girasol</option><option value="USD">Dólar oficial</option><option value="USD_BLUE">Dólar blue</option>
-        </select>
+      <div class="mb-4">
+        <h2 class="text-2xl font-extrabold text-agro-900">Tendencia</h2>
+        <p class="text-slate-500 text-sm">Evolución de los últimos meses — <b id="trend-label" class="text-agro-700">Soja</b>. Tocá cualquier valor de arriba para cambiar.</p>
       </div>
       <div class="bg-slate-50 rounded-2xl border border-slate-200 p-4"><canvas id="trend-chart" height="120"></canvas></div>
       <p id="trend-msg" class="text-center text-xs text-slate-400 mt-3"></p>
@@ -98,27 +96,36 @@
   <script>
     const AGRO_API = 'https://demo.agrocore.ar';
     const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
-    function card(emoji, label, valor, sub) {
-      return `<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm"><div class="text-2xl mb-1">${emoji}</div><div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${label}</div><div class="text-lg font-extrabold text-agro-900 leading-tight mt-0.5">${valor}</div>${sub?`<div class="text-[10px] text-slate-400">${sub}</div>`:''}</div>`;
+    const MON_LABEL = { SOJA:'Soja', MAIZ:'Maíz', TRIGO:'Trigo', SORGO:'Sorgo', GIRASOL:'Girasol', CEBADA:'Cebada', CENTENO:'Centeno', AVENA:'Avena', USD:'Dólar oficial', USD_BLUE:'Dólar blue', USD_MEP:'Dólar MEP', USD_MAYORISTA:'Dólar mayorista', EUR:'Euro' };
+    function card(emoji, label, valor, sub, moneda) {
+      return `<div data-mon="${moneda||''}" ${moneda?`onclick="setTrend('${moneda}')" role="button" tabindex="0"`:''} class="mkt-card cursor-pointer bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm hover:border-agro-500 hover:shadow-md transition"><div class="text-2xl mb-1">${emoji}</div><div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${label}</div><div class="text-lg font-extrabold text-agro-900 leading-tight mt-0.5">${valor}</div>${sub?`<div class="text-[10px] text-slate-400">${sub}</div>`:''}</div>`;
     }
     async function loadMercado() {
       try {
         const j = await (await fetch(AGRO_API + '/api/cotizaciones', { cache:'no-store' })).json();
         const cer = (j.cereales && j.cereales.items) || {}, dol = j.dolar || {};
         const granos = [['soja','Soja','🌱'],['maiz','Maíz','🌽'],['trigo','Trigo','🌾'],['sorgo','Sorgo','🌿'],['girasol','Girasol','🌻'],['cebada','Cebada','🌾'],['centeno','Centeno','🌾'],['avena','Avena','🌾']];
-        const gc = granos.filter(([k]) => cer[k]!=null).map(([k,l,e]) => card(e, l, '$ '+fmtAr(cer[k]), '$/tn'));
+        const gc = granos.filter(([k]) => cer[k]!=null).map(([k,l,e]) => card(e, l, '$ '+fmtAr(cer[k]), '$/tn', k.toUpperCase()));
         document.getElementById('mkt-granos').innerHTML = gc.length ? gc.join('') : '<div class="col-span-full text-center text-slate-400 text-sm py-4">Sin datos.</div>';
+        const dMap = { oficial:'USD', blue:'USD_BLUE', mep:'USD_MEP', mayorista:'USD_MAYORISTA', euro:'EUR' };
         const dt = [['oficial','Oficial'],['blue','Blue'],['mep','MEP'],['mayorista','Mayorista'],['euro','Euro']];
-        const dc = dt.filter(([k]) => dol[k]).map(([k,l]) => card('💵', l, '$ '+fmtAr(dol[k].venta), dol[k].compra?'compra $ '+fmtAr(dol[k].compra):'venta'));
+        const dc = dt.filter(([k]) => dol[k]).map(([k,l]) => card('💵', l, '$ '+fmtAr(dol[k].venta), dol[k].compra?'compra $ '+fmtAr(dol[k].compra):'venta', dMap[k]));
         document.getElementById('mkt-dolar').innerHTML = dc.length ? dc.join('') : '<div class="col-span-full text-center text-slate-400 text-sm py-4">—</div>';
         const t = j.actualizado && (j.actualizado.cereales || j.actualizado.dolar);
         document.getElementById('mkt-updated').textContent = t ? 'Actualizado: '+new Date(t).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
+        setTrend(trendMon); // resaltar la card activa y (re)dibujar
       } catch (e) { document.getElementById('mkt-granos').innerHTML = '<div class="col-span-full text-center text-slate-400 text-sm py-4">No pudimos cargar las cotizaciones ahora.</div>'; }
     }
     // ---- Tendencia ----
-    let trendChart = null;
+    let trendChart = null, trendMon = 'SOJA';
+    function setTrend(m) {
+      trendMon = m;
+      document.querySelectorAll('.mkt-card').forEach(c => { const on = c.dataset.mon === m; c.classList.toggle('ring-2', on); c.classList.toggle('ring-agro-600', on); c.classList.toggle('border-agro-600', on); });
+      const lb = document.getElementById('trend-label'); if (lb) lb.textContent = MON_LABEL[m] || m;
+      loadTrend();
+    }
     async function loadTrend() {
-      const mon = document.getElementById('trend-moneda').value;
+      const mon = trendMon;
       const msg = document.getElementById('trend-msg');
       try {
         const j = await (await fetch(AGRO_API + '/api/cotizaciones/historico?moneda=' + mon + '&dias=120', { cache:'no-store' })).json();
@@ -137,8 +144,7 @@
       } catch (e) { msg.textContent = 'No pudimos cargar la tendencia ahora.'; }
     }
     // Init
-    loadMercado(); loadTrend();
-    document.getElementById('trend-moneda').addEventListener('change', loadTrend);
+    loadMercado();
     setInterval(loadMercado, 10 * 60 * 1000);
   </script>
 </body>
