@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herramientas del productor — Calculadoras del campo · AgroCore</title>
+  <meta name="description" content="Calculadoras gratis para el campo: rinde de indiferencia y margen de campaña, densidad de siembra, dosis y mezcla de tanque, relación insumo/grano. Por AgroCore.">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { agro:{50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d'}, gold:{400:'#fbbf24',500:'#eab308',600:'#ca8a04'} },
+      fontFamily: { display: ['Inter','system-ui','sans-serif'] }
+    } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style> body { font-family:'Inter',system-ui,sans-serif; } html { scroll-behavior:smooth; }
+    .hero-bg { background: radial-gradient(ellipse at top, rgba(34,197,94,.18), transparent 60%), linear-gradient(180deg,#14532d 0%,#166534 100%); }
+    .inp { width:100%; padding:.5rem .625rem; border-radius:.5rem; border:1px solid #cbd5e1; font-size:.875rem; }
+    .inp:focus { outline:none; box-shadow:0 0 0 2px #22c55e; }
+    .lbl { display:block; font-size:11px; font-weight:600; color:#475569; margin-bottom:.25rem; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50">
+
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="img/logo-icon-128.png" srcset="img/logo-icon-128.png 1x, img/logo-icon-256.png 2x" alt="AgroCore Argentina" class="w-11 h-11 object-contain"/>
+        <div><div class="flex items-baseline gap-1.5"><div class="text-xl font-extrabold text-agro-900 leading-none tracking-tight">AgroCore</div><div class="text-[10px] font-bold text-gold-600 uppercase tracking-wider leading-none">Argentina</div></div><div class="text-[10px] text-slate-500 leading-tight mt-0.5">Herramientas</div></div>
+      </a>
+      <div class="flex items-center gap-4 text-sm font-medium">
+        <a href="index.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Inicio</a>
+        <a href="mercado.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Mercado</a>
+        <a href="clima.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Clima</a>
+        <a href="herramientas.html" class="hidden sm:inline text-agro-800 font-semibold">Herramientas</a>
+        <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 bg-agro-700 hover:bg-agro-800 text-white font-semibold rounded-lg shadow-sm transition">Solicitar demo →</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero-bg text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      <h1 class="text-3xl md:text-4xl font-extrabold">Herramientas del productor</h1>
+      <p class="text-agro-100 mt-1">Calculadoras rápidas y gratis. El precio del grano se completa solo con la pizarra de hoy.</p>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+
+    <!-- CALCULADORA DE CAMPAÑA -->
+    <section>
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🎯 Calculadora de campaña</h2>
+      <p class="text-slate-500 text-sm mb-4">Cargá todos los costos y te decimos el <b>rinde de indiferencia</b> (para no perder) y el <b>margen esperado</b>.</p>
+      <div class="grid lg:grid-cols-5 gap-5">
+        <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm">
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+            <div><label class="lbl">Cultivo</label><select id="cc-cultivo" class="inp" onchange="ccCultivo()"><option value="soja">Soja</option><option value="maiz">Maíz</option><option value="trigo">Trigo</option><option value="girasol">Girasol</option><option value="sorgo">Sorgo</option></select></div>
+            <div><label class="lbl">Precio grano ($/tn)</label><input id="cc-precio" type="number" value="" class="inp" oninput="calcCampana()"/></div>
+            <div><label class="lbl">Rinde esperado (tn/ha)</label><input id="cc-rinde" type="number" step="0.1" value="3.5" class="inp" oninput="calcCampana()"/></div>
+          </div>
+          <p class="text-[11px] font-bold uppercase tracking-wide text-agro-700 mb-2">Costos directos ($/ha)</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+            <div><label class="lbl">Semillas</label><input id="cc-sem" type="number" value="80000" class="inp" oninput="calcCampana()"/></div>
+            <div><label class="lbl">Fertilizantes</label><input id="cc-fert" type="number" value="120000" class="inp" oninput="calcCampana()"/></div>
+            <div><label class="lbl">Agroquímicos</label><input id="cc-agroq" type="number" value="90000" class="inp" oninput="calcCampana()"/></div>
+            <div><label class="lbl">Labores/siembra</label><input id="cc-lab" type="number" value="70000" class="inp" oninput="calcCampana()"/></div>
+          </div>
+          <p class="text-[11px] font-bold uppercase tracking-wide text-agro-700 mb-2">Otros costos fijos ($/ha)</p>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div><label class="lbl">Arrendamiento</label><input id="cc-arr" type="number" value="180000" class="inp" oninput="calcCampana()"/></div>
+            <div><label class="lbl">Estructura / admin.</label><input id="cc-estr" type="number" value="40000" class="inp" oninput="calcCampana()"/></div>
+          </div>
+          <p class="text-[11px] font-bold uppercase tracking-wide text-agro-700 mb-2">Gastos sobre el ingreso (%)</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div><label class="lbl">Cosecha <span class="text-slate-400">(recom. 8%)</span></label><input id="cc-cos" type="number" step="0.5" value="8" class="inp" oninput="calcCampana()"/></div>
+            <div><label class="lbl">Comercialización <span class="text-slate-400">(flete+acopio, ~13%)</span></label><input id="cc-com" type="number" step="0.5" value="13" class="inp" oninput="calcCampana()"/></div>
+          </div>
+        </div>
+        <div class="lg:col-span-2 space-y-4">
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm text-center"><div class="text-[11px] font-bold uppercase tracking-wide text-slate-400">Rinde de indiferencia</div><div class="text-4xl font-extrabold text-agro-700 mt-1" id="cc-indif-qq">—</div><div class="text-xs text-slate-500">quintales/ha · <span id="cc-indif-tn">—</span> tn/ha para no perder</div></div>
+          <div class="rounded-2xl p-5 shadow-sm text-center" id="cc-margen-box" style="background:#166534"><div class="text-[11px] font-bold uppercase tracking-wide text-agro-100">Margen esperado (con tu rinde)</div><div class="text-4xl font-extrabold text-white mt-1" id="cc-margen">—</div><div class="text-xs text-agro-100">$/ha</div></div>
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm text-sm">
+            <div class="flex justify-between py-1 border-b border-slate-100"><span class="text-slate-500">Ingreso bruto</span><b id="cc-ing">—</b></div>
+            <div class="flex justify-between py-1 border-b border-slate-100"><span class="text-slate-500">Costos totales</span><b id="cc-cost">—</b></div>
+            <div class="flex justify-between py-1"><span class="text-slate-500">Precio neto (post gastos)</span><b id="cc-neto">—</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OTRAS HERRAMIENTAS -->
+    <section class="grid md:grid-cols-3 gap-5">
+      <!-- Densidad de siembra -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🌱 Densidad de siembra</h3>
+        <p class="text-xs text-slate-500 mb-3">Kilos de semilla por hectárea.</p>
+        <label class="lbl">Plantas objetivo (pl/m²)</label><input id="ds-pl" type="number" value="30" class="inp mb-2" oninput="calcDensidad()"/>
+        <label class="lbl">Poder germinativo (%)</label><input id="ds-pg" type="number" value="90" class="inp mb-2" oninput="calcDensidad()"/>
+        <label class="lbl">Peso de mil semillas (g)</label><input id="ds-pms" type="number" value="180" class="inp mb-3" oninput="calcDensidad()"/>
+        <div class="bg-agro-50 rounded-lg p-3 text-center"><div class="text-2xl font-extrabold text-agro-700" id="ds-out">—</div><div class="text-xs text-slate-500">kg de semilla / ha</div></div>
+      </div>
+      <!-- Dosis y tanque -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🛢️ Dosis y mezcla de tanque</h3>
+        <p class="text-xs text-slate-500 mb-3">Producto total y hectáreas por tanque.</p>
+        <label class="lbl">Superficie (ha)</label><input id="dt-ha" type="number" value="100" class="inp mb-2" oninput="calcDosis()"/>
+        <label class="lbl">Dosis del producto (l o kg /ha)</label><input id="dt-dosis" type="number" step="0.1" value="2.5" class="inp mb-2" oninput="calcDosis()"/>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="lbl">Caldo (l/ha)</label><input id="dt-caldo" type="number" value="100" class="inp" oninput="calcDosis()"/></div>
+          <div><label class="lbl">Tanque (l)</label><input id="dt-tanque" type="number" value="3000" class="inp" oninput="calcDosis()"/></div>
+        </div>
+        <div class="bg-agro-50 rounded-lg p-3 text-center mt-3">
+          <div class="text-2xl font-extrabold text-agro-700" id="dt-total">—</div><div class="text-xs text-slate-500">producto total (l/kg)</div>
+          <div class="text-sm font-bold text-agro-800 mt-2"><span id="dt-hatan">—</span> ha/tanque · <span id="dt-prodtan">—</span> por tanque</div>
+        </div>
+      </div>
+      <!-- Relación insumo / grano -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">⚖️ Relación insumo / grano</h3>
+        <p class="text-xs text-slate-500 mb-3">Cuántos kilos de grano "cuesta" un insumo.</p>
+        <label class="lbl">Precio del insumo ($/unidad)</label><input id="ri-ins" type="number" value="15000" class="inp mb-2" oninput="calcRelacion()"/>
+        <label class="lbl">Precio del grano ($/tn)</label><input id="ri-precio" type="number" value="" class="inp mb-3" oninput="calcRelacion()"/>
+        <div class="bg-agro-50 rounded-lg p-3 text-center"><div class="text-2xl font-extrabold text-agro-700" id="ri-out">—</div><div class="text-xs text-slate-500">kg de grano por unidad</div></div>
+      </div>
+    </section>
+
+    <p class="text-center text-sm text-slate-500">¿Querés estas cuentas hechas solas sobre tus campañas reales, lote por lote? <a href="index.html#contacto" class="text-agro-700 font-semibold hover:underline">Probá AgroCore →</a></p>
+  </div>
+
+  <footer class="bg-agro-900 border-t border-agro-700 text-agro-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+      <div class="flex items-center gap-3"><img src="img/logo-white-96.png" srcset="img/logo-white-96.png 1x, img/logo-white-192.png 2x" alt="AgroCore" class="w-10 h-10 object-contain"/><div><div class="font-extrabold text-white">AgroCore <span class="text-gold-400 text-xs">ARGENTINA</span></div><div class="text-xs text-agro-200">El corazón del negocio agrícola</div></div></div>
+      <div class="flex items-center gap-4"><a href="index.html" class="hover:text-white">Inicio</a><a href="mercado.html" class="hover:text-white">Mercado</a><a href="clima.html" class="hover:text-white">Clima</a><a href="index.html#contacto" class="hover:text-white">Contacto</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const AGRO_API = 'https://demo.agrocore.ar';
+    const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
+    const _num = id => Number(document.getElementById(id)?.value || 0);
+    const _set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+    let MKT = { cereales: {} };
+
+    // ---- Campaña ----
+    const CULTIVOS = { soja:{k:'soja',rinde:3.5}, maiz:{k:'maiz',rinde:8}, trigo:{k:'trigo',rinde:4}, girasol:{k:'girasol',rinde:2.2}, sorgo:{k:'sorgo',rinde:5} };
+    function ccCultivo(soloPrecio) {
+      const sel = document.getElementById('cc-cultivo'); if (!sel) return;
+      const c = CULTIVOS[sel.value] || CULTIVOS.soja; const precio = MKT.cereales[c.k];
+      const pEl = document.getElementById('cc-precio'); if (pEl && precio != null) pEl.value = Math.round(precio);
+      if (!soloPrecio) { const rEl = document.getElementById('cc-rinde'); if (rEl) rEl.value = c.rinde; }
+      const ri = document.getElementById('ri-precio'); if (ri && !ri.value && precio != null) ri.value = Math.round(precio);
+      calcCampana(); calcRelacion();
+    }
+    function calcCampana() {
+      const precio = _num('cc-precio'), rinde = _num('cc-rinde');
+      const fijos = _num('cc-sem')+_num('cc-fert')+_num('cc-agroq')+_num('cc-lab')+_num('cc-arr')+_num('cc-estr');
+      const gPct = (_num('cc-cos')+_num('cc-com'))/100;
+      if (precio <= 0) { ['cc-indif-qq','cc-indif-tn','cc-margen','cc-ing','cc-cost','cc-neto'].forEach(i=>_set(i,'—')); return; }
+      const precioNeto = precio*(1-gPct), indifTn = precioNeto>0 ? fijos/precioNeto : 0;
+      _set('cc-indif-qq', (indifTn*10).toLocaleString('es-AR',{maximumFractionDigits:1}));
+      _set('cc-indif-tn', indifTn.toLocaleString('es-AR',{maximumFractionDigits:2}));
+      _set('cc-neto', '$ '+fmtAr(precioNeto)+' /tn');
+      const ingreso = rinde*precio, costos = fijos + ingreso*gPct, margen = ingreso-costos;
+      _set('cc-ing', '$ '+fmtAr(ingreso)); _set('cc-cost', '$ '+fmtAr(costos)); _set('cc-margen', '$ '+fmtAr(margen));
+      const box = document.getElementById('cc-margen-box'); if (box) box.style.background = margen>=0 ? '#166534' : '#b91c1c';
+    }
+    // ---- Densidad de siembra ----
+    function calcDensidad() {
+      const pl = _num('ds-pl'), pg = _num('ds-pg'), pms = _num('ds-pms');
+      if (pl>0 && pg>0 && pms>0) { const kg = (pl*10000/(pg/100))*pms/1e6; _set('ds-out', kg.toLocaleString('es-AR',{maximumFractionDigits:1})); }
+      else _set('ds-out','—');
+    }
+    // ---- Dosis y tanque ----
+    function calcDosis() {
+      const ha=_num('dt-ha'), dosis=_num('dt-dosis'), caldo=_num('dt-caldo'), tanque=_num('dt-tanque');
+      _set('dt-total', dosis>0&&ha>0 ? fmtAr(ha*dosis) : '—');
+      if (caldo>0 && tanque>0) { const haTan = tanque/caldo; _set('dt-hatan', haTan.toLocaleString('es-AR',{maximumFractionDigits:1})); _set('dt-prodtan', (haTan*dosis).toLocaleString('es-AR',{maximumFractionDigits:1})+' l/kg'); }
+      else { _set('dt-hatan','—'); _set('dt-prodtan','—'); }
+    }
+    // ---- Relación insumo/grano ----
+    function calcRelacion() {
+      const ins=_num('ri-ins'), precio=_num('ri-precio');
+      _set('ri-out', ins>0&&precio>0 ? (ins/(precio/1000)).toLocaleString('es-AR',{maximumFractionDigits:0})+' kg' : '—');
+    }
+
+    async function loadPrecios() {
+      try { const j = await (await fetch(AGRO_API + '/api/cotizaciones', { cache:'no-store' })).json(); MKT.cereales = (j.cereales && j.cereales.items) || {}; ccCultivo(true); } catch (e) {}
+    }
+    // Init
+    loadPrecios(); calcCampana(); calcDensidad(); calcDosis(); calcRelacion();
+  </script>
+</body>
+</html>

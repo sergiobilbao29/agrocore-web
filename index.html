@@ -101,6 +101,14 @@
     /* Smooth fade-in on scroll */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* Ticker de mercado (marquee que corre solo, se frena al pasar el mouse) */
+    .ticker-wrap { overflow: hidden; white-space: nowrap; }
+    .ticker-track { display: inline-flex; }
+    .ticker-anim { animation: tickerMove 50s linear infinite; }
+    #ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-seg { display: inline-flex; align-items: center; gap: 1rem; padding-left: 1.25rem; }
+    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   </style>
 </head>
 <body class="text-slate-800 antialiased">
@@ -124,8 +132,9 @@
 
         <!-- Desktop links -->
         <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
-          <a href="mercado.html" class="nav-link">Mercado y clima</a>
-          <a href="#calculadoras" class="nav-link">Calculadoras</a>
+          <a href="mercado.html" class="nav-link">Mercado</a>
+          <a href="clima.html" class="nav-link">Clima</a>
+          <a href="herramientas.html" class="nav-link">Herramientas</a>
           <a href="#features" class="nav-link">Funcionalidades</a>
           <a href="#pricing" class="nav-link">Precio</a>
           <a href="#contacto" class="nav-link">Contacto</a>
@@ -150,21 +159,25 @@
       <!-- Mobile menu -->
       <div id="mobileMenu" class="md:hidden border-t border-slate-200 mobile-hidden">
         <div class="px-2 py-3 space-y-1 text-sm font-medium">
-          <a href="mercado.html" class="block px-3 py-2 rounded hover:bg-slate-100">Mercado y clima</a>
-          <a href="#calculadoras" class="block px-3 py-2 rounded hover:bg-slate-100">Calculadoras</a>
+          <a href="mercado.html" class="block px-3 py-2 rounded hover:bg-slate-100">Mercado</a>
+          <a href="clima.html" class="block px-3 py-2 rounded hover:bg-slate-100">Clima</a>
+          <a href="herramientas.html" class="block px-3 py-2 rounded hover:bg-slate-100">Herramientas</a>
           <a href="#features" class="block px-3 py-2 rounded hover:bg-slate-100">Funcionalidades</a>
           <a href="#pricing" class="block px-3 py-2 rounded hover:bg-slate-100">Precio</a>
           <a href="#contacto" class="block px-3 py-2 rounded hover:bg-slate-100">Contacto</a>
         </div>
       </div>
     </div>
-    <!-- Ticker de mercado (siempre visible, primera vista) -->
-    <a href="mercado.html" id="ticker" class="block bg-agro-900 hover:bg-agro-800 transition border-t border-agro-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center gap-3 text-xs md:text-sm overflow-x-auto whitespace-nowrap">
-        <span class="font-bold text-gold-400 shrink-0 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-agro-500 animate-pulse"></span>Mercado</span>
-        <span id="ticker-items" class="flex items-center gap-4 text-agro-50">Cargando cotizaciones…</span>
-        <span class="ml-auto shrink-0 text-gold-400 font-semibold hidden sm:inline">Mercado y clima →</span>
+    <!-- Ticker de mercado (corre solo, se frena al pasar el mouse) -->
+    <a href="mercado.html" id="ticker" class="flex items-center bg-agro-900 hover:bg-agro-800 transition border-t border-agro-800 text-xs md:text-sm">
+      <span class="shrink-0 pl-4 pr-1 py-1.5 font-bold text-gold-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-agro-500 animate-pulse"></span>Mercado</span>
+      <div class="ticker-wrap flex-1 py-1.5">
+        <div class="ticker-track ticker-anim text-agro-50">
+          <span class="ticker-seg" id="ticker-items">Cargando cotizaciones…</span>
+          <span class="ticker-seg" id="ticker-items2" aria-hidden="true"></span>
+        </div>
       </div>
+      <span class="shrink-0 px-3 py-1.5 text-gold-400 font-semibold hidden sm:inline border-l border-agro-800">Mercado y clima →</span>
     </a>
   </nav>
 
@@ -396,68 +409,6 @@
     </div>
   </section>
 
-  <!-- ============== CALCULADORA DE CAMPAÑA ============== -->
-  <section id="calculadoras" class="py-16 md:py-20 bg-agro-50 fade-in">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Herramienta gratis</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-2">Calculadora de campaña</h2>
-        <p class="text-slate-500 max-w-2xl mx-auto">Cargá todos los costos de tu cultivo y te decimos el <b>rinde de indiferencia</b> (cuánto necesitás para no perder) y el <b>margen esperado</b>. El precio se completa solo con la pizarra de hoy.</p>
-      </div>
-      <div class="grid lg:grid-cols-5 gap-5">
-        <!-- Inputs -->
-        <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm">
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Cultivo</label>
-              <select id="cc-cultivo" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" onchange="ccCultivo()">
-                <option value="soja">Soja</option><option value="maiz">Maíz</option><option value="trigo">Trigo</option><option value="girasol">Girasol</option><option value="sorgo">Sorgo</option>
-              </select></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Precio grano ($/tn)</label>
-              <input id="cc-precio" type="number" inputmode="numeric" value="" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Rinde esperado (tn/ha)</label>
-              <input id="cc-rinde" type="number" inputmode="decimal" step="0.1" value="3.5" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-          </div>
-          <p class="text-[11px] font-bold uppercase tracking-wide text-agro-700 mb-2">Costos directos ($/ha)</p>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Semillas</label><input id="cc-sem" type="number" inputmode="numeric" value="80000" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Fertilizantes</label><input id="cc-fert" type="number" inputmode="numeric" value="120000" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Agroquímicos</label><input id="cc-agroq" type="number" inputmode="numeric" value="90000" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Labores/siembra</label><input id="cc-lab" type="number" inputmode="numeric" value="70000" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-          </div>
-          <p class="text-[11px] font-bold uppercase tracking-wide text-agro-700 mb-2">Otros costos fijos ($/ha)</p>
-          <div class="grid grid-cols-2 gap-3 mb-4">
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Arrendamiento</label><input id="cc-arr" type="number" inputmode="numeric" value="180000" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Estructura / admin.</label><input id="cc-estr" type="number" inputmode="numeric" value="40000" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-          </div>
-          <p class="text-[11px] font-bold uppercase tracking-wide text-agro-700 mb-2">Gastos sobre el ingreso (%)</p>
-          <div class="grid grid-cols-2 gap-3">
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Cosecha <span class="text-slate-400">(recom. 8%)</span></label><input id="cc-cos" type="number" inputmode="decimal" step="0.5" value="8" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-            <div><label class="block text-[11px] font-semibold text-slate-600 mb-1">Comercialización <span class="text-slate-400">(flete+acopio, ~13%)</span></label><input id="cc-com" type="number" inputmode="decimal" step="0.5" value="13" class="w-full px-2.5 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-agro-500 focus:outline-none" oninput="calcCampana()"/></div>
-          </div>
-        </div>
-        <!-- Resultados -->
-        <div class="lg:col-span-2 space-y-4">
-          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm text-center">
-            <div class="text-[11px] font-bold uppercase tracking-wide text-slate-400">🎯 Rinde de indiferencia</div>
-            <div class="text-4xl font-extrabold text-agro-700 mt-1" id="cc-indif-qq">—</div>
-            <div class="text-xs text-slate-500">quintales/ha · <span id="cc-indif-tn">—</span> tn/ha para no perder</div>
-          </div>
-          <div class="rounded-2xl p-5 shadow-sm text-center" id="cc-margen-box" style="background:#166534">
-            <div class="text-[11px] font-bold uppercase tracking-wide text-agro-100">💰 Margen esperado (con tu rinde)</div>
-            <div class="text-4xl font-extrabold text-white mt-1" id="cc-margen">—</div>
-            <div class="text-xs text-agro-100" id="cc-margen-sub">$/ha</div>
-          </div>
-          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm text-sm">
-            <div class="flex justify-between py-1 border-b border-slate-100"><span class="text-slate-500">Ingreso bruto</span><b id="cc-ing">—</b></div>
-            <div class="flex justify-between py-1 border-b border-slate-100"><span class="text-slate-500">Costos totales</span><b id="cc-cost">—</b></div>
-            <div class="flex justify-between py-1"><span class="text-slate-500">Precio neto (post gastos)</span><b id="cc-neto">—</b></div>
-          </div>
-        </div>
-      </div>
-      <p class="text-center text-[11px] text-slate-400 mt-4">Valores por hectárea, orientativos — ajustalos a tu realidad. El precio de pizarra ya viene neto de retenciones.</p>
-      <p class="text-center text-sm text-slate-500 mt-4">¿Querés estas cuentas hechas solas sobre tus campañas reales, lote por lote? <a href="#contacto" class="text-agro-700 font-semibold hover:underline">Probá AgroCore →</a></p>
-    </div>
-  </section>
 
   <!-- ============== HOW IT WORKS ============== -->
   <section id="how" class="py-16 md:py-20 bg-white">
@@ -948,8 +899,9 @@
         g('soja','Soja','🌱'); g('maiz','Maíz','🌽'); g('trigo','Trigo','🌾'); g('sorgo','Sorgo','🌿'); g('girasol','Girasol','🌻');
         const dof = MKT.dolar.oficial && MKT.dolar.oficial.venta; if (dof != null) it.push(`<span class="shrink-0">💵 <b class="text-white">Dólar</b> $${fmtAr(dof)}</span>`);
         const dbl = MKT.dolar.blue && MKT.dolar.blue.venta; if (dbl != null) it.push(`<span class="shrink-0">💵 <b class="text-white">Blue</b> $${fmtAr(dbl)}</span>`);
-        el.innerHTML = it.length ? it.join('<span class="text-agro-500 px-1">·</span>') : 'Cotizaciones no disponibles ahora.';
-        ccCultivo(true); // autocompletar precio del cultivo elegido en la calculadora
+        const html = it.length ? it.join('<span class="text-agro-500 px-2">·</span>') : 'Cotizaciones no disponibles ahora.';
+        el.innerHTML = html;
+        const el2 = document.getElementById('ticker-items2'); if (el2) el2.innerHTML = html; // segunda mitad para el loop continuo
       } catch (e) {
         el.textContent = 'Cotizaciones no disponibles ahora.';
       }
@@ -972,38 +924,6 @@
     }, { threshold: 0.4 });
     document.querySelectorAll('.counter').forEach(el => cntObs.observe(el));
 
-    // ---------- CALCULADORA DE CAMPAÑA ----------
-    const CULTIVOS = { soja:{k:'soja',rinde:3.5}, maiz:{k:'maiz',rinde:8}, trigo:{k:'trigo',rinde:4}, girasol:{k:'girasol',rinde:2.2}, sorgo:{k:'sorgo',rinde:5} };
-    function ccCultivo(soloPrecio) {
-      const sel = document.getElementById('cc-cultivo'); if (!sel) return;
-      const c = CULTIVOS[sel.value] || CULTIVOS.soja;
-      const precio = MKT.cereales[c.k];
-      const pEl = document.getElementById('cc-precio'); if (pEl && precio != null) pEl.value = Math.round(precio);
-      if (!soloPrecio) { const rEl = document.getElementById('cc-rinde'); if (rEl) rEl.value = c.rinde; }
-      calcCampana();
-    }
-    function _num(id) { return Number(document.getElementById(id)?.value || 0); }
-    function calcCampana() {
-      const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-      const precio = _num('cc-precio'), rinde = _num('cc-rinde');
-      const fijos = _num('cc-sem') + _num('cc-fert') + _num('cc-agroq') + _num('cc-lab') + _num('cc-arr') + _num('cc-estr');
-      const gPct = (_num('cc-cos') + _num('cc-com')) / 100;
-      if (precio <= 0) { ['cc-indif-qq','cc-indif-tn','cc-margen','cc-ing','cc-cost','cc-neto'].forEach(i => set(i,'—')); return; }
-      const precioNeto = precio * (1 - gPct);
-      const indifTn = precioNeto > 0 ? fijos / precioNeto : 0;
-      set('cc-indif-qq', (indifTn * 10).toLocaleString('es-AR', { maximumFractionDigits: 1 }));
-      set('cc-indif-tn', indifTn.toLocaleString('es-AR', { maximumFractionDigits: 2 }));
-      set('cc-neto', '$ ' + fmtAr(precioNeto) + ' /tn');
-      const ingreso = rinde * precio;
-      const gastosVar = ingreso * gPct;
-      const costos = fijos + gastosVar;
-      const margen = ingreso - costos;
-      set('cc-ing', '$ ' + fmtAr(ingreso));
-      set('cc-cost', '$ ' + fmtAr(costos));
-      set('cc-margen', '$ ' + fmtAr(margen));
-      const box = document.getElementById('cc-margen-box'); if (box) box.style.background = margen >= 0 ? '#166534' : '#b91c1c';
-    }
-
     // ---------- NOVEDADES (versión en vivo) ----------
     async function loadVersion() {
       const el = document.getElementById('nov-version'); if (!el) return;
@@ -1012,7 +932,7 @@
     }
 
     // Init
-    loadTicker(); loadVersion(); calcCampana();
+    loadTicker(); loadVersion();
     setInterval(loadTicker, 10 * 60 * 1000); // refresca el ticker cada 10 min si dejan la pestaña abierta
   </script>
 

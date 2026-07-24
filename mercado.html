@@ -3,21 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercado y Clima — AgroCore Argentina</title>
-  <meta name="description" content="Pizarra de granos (Rosario) y dólar del día, más el clima de tu zona: pronóstico de 7 días, lluvias, viento y humedad. Gratis, por AgroCore.">
+  <title>Mercado — Granos y dólar del día · AgroCore Argentina</title>
+  <meta name="description" content="Pizarra de granos (Rosario) y dólar del día, con gráfico de tendencia. Gratis, por AgroCore.">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { theme: { extend: {
-      colors: {
-        agro: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
-        gold: { 400:'#fbbf24',500:'#eab308',600:'#ca8a04' }
-      },
+      colors: { agro:{50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d'}, gold:{400:'#fbbf24',500:'#eab308',600:'#ca8a04'} },
       fontFamily: { display: ['Inter','system-ui','sans-serif'] }
     } } }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
   <style>
     body { font-family:'Inter',system-ui,sans-serif; }
     html { scroll-behavior:smooth; }
@@ -32,218 +30,116 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
       <a href="index.html" class="flex items-center gap-2.5">
         <img src="img/logo-icon-128.png" srcset="img/logo-icon-128.png 1x, img/logo-icon-256.png 2x" alt="AgroCore Argentina" class="w-11 h-11 object-contain"/>
-        <div>
-          <div class="flex items-baseline gap-1.5">
-            <div class="text-xl font-extrabold text-agro-900 leading-none tracking-tight">AgroCore</div>
-            <div class="text-[10px] font-bold text-gold-600 uppercase tracking-wider leading-none">Argentina</div>
-          </div>
-          <div class="text-[10px] text-slate-500 leading-tight mt-0.5">Mercado y clima</div>
-        </div>
+        <div><div class="flex items-baseline gap-1.5"><div class="text-xl font-extrabold text-agro-900 leading-none tracking-tight">AgroCore</div><div class="text-[10px] font-bold text-gold-600 uppercase tracking-wider leading-none">Argentina</div></div><div class="text-[10px] text-slate-500 leading-tight mt-0.5">Mercado</div></div>
       </a>
-      <div class="flex items-center gap-3 text-sm font-medium">
-        <a href="index.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">← Inicio</a>
-        <a href="index.html#calculadoras" class="hidden sm:inline text-slate-600 hover:text-agro-800">Calculadora</a>
+      <div class="flex items-center gap-4 text-sm font-medium">
+        <a href="index.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Inicio</a>
+        <a href="mercado.html" class="hidden sm:inline text-agro-800 font-semibold">Mercado</a>
+        <a href="clima.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Clima</a>
+        <a href="herramientas.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Herramientas</a>
         <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 bg-agro-700 hover:bg-agro-800 text-white font-semibold rounded-lg shadow-sm transition">Solicitar demo →</a>
       </div>
     </div>
   </nav>
 
-  <!-- ENCABEZADO -->
   <header class="hero-bg text-white relative overflow-hidden">
     <div class="hero-pattern absolute inset-0 opacity-50"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 relative">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-medium text-agro-100 mb-3 backdrop-blur">
-        <span class="w-2 h-2 rounded-full bg-agro-400 animate-pulse"></span> Información en vivo
-      </span>
-      <h1 class="text-3xl md:text-4xl font-extrabold">Mercado y Clima</h1>
-      <p class="text-agro-100 mt-1">Pizarra de granos y dólar del día, y el pronóstico de tu zona. Gratis, cortesía de AgroCore.</p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 relative">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-medium text-agro-100 mb-3 backdrop-blur"><span class="w-2 h-2 rounded-full bg-agro-400 animate-pulse"></span> En vivo</span>
+      <h1 class="text-3xl md:text-4xl font-extrabold">Mercado de granos y dólar</h1>
+      <p class="text-agro-100 mt-1">Pizarra de Rosario y cotización del dólar del día, con la tendencia de los últimos meses.</p>
     </div>
   </header>
 
-  <!-- MERCADO -->
-  <section class="py-10 md:py-14">
+  <!-- COTIZACIONES -->
+  <section class="py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between flex-wrap gap-2 mb-5">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-agro-900">Granos y dólar</h2>
+      <div class="flex items-end justify-between flex-wrap gap-2 mb-4">
+        <h2 class="text-2xl font-extrabold text-agro-900">Cotizaciones de hoy</h2>
         <div class="text-xs text-slate-400" id="mkt-updated">Cargando…</div>
       </div>
       <h3 class="text-xs font-bold uppercase tracking-wide text-agro-700 mb-2">Granos (pizarra Rosario · $/tn)</h3>
-      <div id="mkt-granos" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-6">
-        <div class="col-span-full text-center text-slate-400 text-sm py-6">Cargando cotizaciones…</div>
-      </div>
+      <div id="mkt-granos" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 mb-6"><div class="col-span-full text-center text-slate-400 text-sm py-6">Cargando…</div></div>
       <h3 class="text-xs font-bold uppercase tracking-wide text-agro-700 mb-2">Dólar ($/US$)</h3>
       <div id="mkt-dolar" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
-      <p class="text-[11px] text-slate-400 mt-3">Valores de referencia (pizarra Rosario y dólar). No constituyen asesoramiento comercial.</p>
+      <p class="text-[11px] text-slate-400 mt-3">Valores de referencia. No constituyen asesoramiento comercial.</p>
     </div>
   </section>
 
-  <!-- CLIMA -->
-  <section class="py-10 md:py-14 bg-white border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-end justify-between flex-wrap gap-3 mb-5">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-agro-900">El clima de tu zona</h2>
-        <select id="clima-zona" class="px-4 py-2.5 rounded-lg border border-slate-300 text-sm font-medium bg-white shadow-sm focus:ring-2 focus:ring-agro-500 focus:outline-none">
-          <option value="-33.13,-64.35">Río Cuarto (Cba)</option>
-          <option value="-32.95,-60.63">Rosario (SF)</option>
-          <option value="-31.42,-64.18">Córdoba Capital</option>
-          <option value="-34.61,-58.38">Buenos Aires</option>
-          <option value="-33.30,-66.34">San Luis</option>
-          <option value="-32.40,-63.24">Villa María (Cba)</option>
-          <option value="-38.00,-57.55">Mar del Plata</option>
-          <option value="-31.64,-60.70">Paraná (ER)</option>
-          <option value="-36.62,-64.29">Santa Rosa (LP)</option>
-          <option value="-27.79,-64.26">Sgo. del Estero</option>
-          <option value="-26.82,-65.22">Tucumán</option>
-          <option value="-34.92,-57.95">La Plata</option>
+  <!-- TENDENCIA -->
+  <section class="py-10 bg-white border-t border-slate-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between flex-wrap gap-3 mb-4">
+        <div><h2 class="text-2xl font-extrabold text-agro-900">Tendencia</h2><p class="text-slate-500 text-sm">Evolución de los últimos meses.</p></div>
+        <select id="trend-moneda" class="px-4 py-2.5 rounded-lg border border-slate-300 text-sm font-medium bg-white shadow-sm focus:ring-2 focus:ring-agro-500 focus:outline-none">
+          <option value="SOJA">Soja</option><option value="MAIZ">Maíz</option><option value="TRIGO">Trigo</option><option value="SORGO">Sorgo</option><option value="GIRASOL">Girasol</option><option value="USD">Dólar oficial</option><option value="USD_BLUE">Dólar blue</option>
         </select>
       </div>
-      <!-- Hoy detallado + acumulado -->
-      <div class="grid md:grid-cols-3 gap-4 mb-6">
-        <div id="clima-hoy" class="md:col-span-2 bg-agro-50 rounded-2xl border border-agro-100 p-5">
-          <div class="text-center text-slate-400 text-sm py-8">Cargando clima…</div>
-        </div>
-        <div id="clima-lluvia" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-center text-center">
-          <div class="text-slate-400 text-sm py-8">—</div>
-        </div>
-      </div>
-      <!-- 7 días -->
-      <h3 class="text-xs font-bold uppercase tracking-wide text-agro-700 mb-2">Próximos 7 días</h3>
-      <div id="clima-grid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-        <div class="col-span-full text-center text-slate-400 text-sm py-6">Cargando pronóstico…</div>
-      </div>
-      <p class="text-[11px] text-slate-400 mt-3">Fuente: Open-Meteo. Pronóstico orientativo. El viento es útil para planificar pulverizaciones.</p>
+      <div class="bg-slate-50 rounded-2xl border border-slate-200 p-4"><canvas id="trend-chart" height="120"></canvas></div>
+      <p id="trend-msg" class="text-center text-xs text-slate-400 mt-3"></p>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="py-12 bg-agro-900 text-white text-center">
     <div class="max-w-3xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Llevá todo tu campo en un solo sistema</h2>
-      <p class="text-agro-100 mb-5">Facturación ARCA, stock, hacienda, finanzas y empleados — con las cotizaciones y el clima integrados.</p>
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Gestioná tu campo con los precios integrados</h2>
+      <p class="text-agro-100 mb-5">Valorizá stock, ventas y contratos de canje con la pizarra del día, adentro de AgroCore.</p>
       <a href="index.html#contacto" class="inline-flex items-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg shadow-xl transition">Solicitar demo gratis →</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="bg-agro-900 border-t border-agro-700 text-agro-100 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-      <div class="flex items-center gap-3">
-        <img src="img/logo-white-96.png" srcset="img/logo-white-96.png 1x, img/logo-white-192.png 2x" alt="AgroCore Argentina" class="w-10 h-10 object-contain"/>
-        <div><div class="font-extrabold text-white">AgroCore <span class="text-gold-400 text-xs">ARGENTINA</span></div><div class="text-xs text-agro-200">El corazón del negocio agrícola</div></div>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="index.html" class="hover:text-white">Inicio</a>
-        <a href="index.html#calculadoras" class="hover:text-white">Calculadora</a>
-        <a href="index.html#contacto" class="hover:text-white">Contacto</a>
-      </div>
+      <div class="flex items-center gap-3"><img src="img/logo-white-96.png" srcset="img/logo-white-96.png 1x, img/logo-white-192.png 2x" alt="AgroCore" class="w-10 h-10 object-contain"/><div><div class="font-extrabold text-white">AgroCore <span class="text-gold-400 text-xs">ARGENTINA</span></div><div class="text-xs text-agro-200">El corazón del negocio agrícola</div></div></div>
+      <div class="flex items-center gap-4"><a href="index.html" class="hover:text-white">Inicio</a><a href="clima.html" class="hover:text-white">Clima</a><a href="herramientas.html" class="hover:text-white">Herramientas</a><a href="index.html#contacto" class="hover:text-white">Contacto</a></div>
     </div>
   </footer>
 
   <script>
     const AGRO_API = 'https://demo.agrocore.ar';
     const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
-
-    // ---------- MERCADO COMPLETO ----------
     function card(emoji, label, valor, sub) {
-      return `<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm">
-        <div class="text-2xl mb-1">${emoji}</div>
-        <div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${label}</div>
-        <div class="text-lg font-extrabold text-agro-900 leading-tight mt-0.5">${valor}</div>
-        ${sub ? `<div class="text-[10px] text-slate-400">${sub}</div>` : ''}
-      </div>`;
+      return `<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm"><div class="text-2xl mb-1">${emoji}</div><div class="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">${label}</div><div class="text-lg font-extrabold text-agro-900 leading-tight mt-0.5">${valor}</div>${sub?`<div class="text-[10px] text-slate-400">${sub}</div>`:''}</div>`;
     }
     async function loadMercado() {
       try {
-        const r = await fetch(AGRO_API + '/api/cotizaciones', { cache: 'no-store' });
-        const j = await r.json();
-        const cer = (j.cereales && j.cereales.items) || {};
-        const dol = j.dolar || {};
+        const j = await (await fetch(AGRO_API + '/api/cotizaciones', { cache:'no-store' })).json();
+        const cer = (j.cereales && j.cereales.items) || {}, dol = j.dolar || {};
         const granos = [['soja','Soja','🌱'],['maiz','Maíz','🌽'],['trigo','Trigo','🌾'],['sorgo','Sorgo','🌿'],['girasol','Girasol','🌻'],['cebada','Cebada','🌾'],['centeno','Centeno','🌾'],['avena','Avena','🌾']];
-        const gc = granos.filter(([k]) => cer[k] != null).map(([k,l,e]) => card(e, l, '$ ' + fmtAr(cer[k]), '$/tn'));
-        document.getElementById('mkt-granos').innerHTML = gc.length ? gc.join('') : '<div class="col-span-full text-center text-slate-400 text-sm py-4">Sin datos por ahora.</div>';
-        const dtipos = [['oficial','Oficial'],['blue','Blue'],['mep','MEP'],['mayorista','Mayorista'],['euro','Euro']];
-        const dc = dtipos.filter(([k]) => dol[k]).map(([k,l]) => card('💵', l, '$ ' + fmtAr(dol[k].venta), dol[k].compra ? 'compra $ ' + fmtAr(dol[k].compra) : 'venta'));
+        const gc = granos.filter(([k]) => cer[k]!=null).map(([k,l,e]) => card(e, l, '$ '+fmtAr(cer[k]), '$/tn'));
+        document.getElementById('mkt-granos').innerHTML = gc.length ? gc.join('') : '<div class="col-span-full text-center text-slate-400 text-sm py-4">Sin datos.</div>';
+        const dt = [['oficial','Oficial'],['blue','Blue'],['mep','MEP'],['mayorista','Mayorista'],['euro','Euro']];
+        const dc = dt.filter(([k]) => dol[k]).map(([k,l]) => card('💵', l, '$ '+fmtAr(dol[k].venta), dol[k].compra?'compra $ '+fmtAr(dol[k].compra):'venta'));
         document.getElementById('mkt-dolar').innerHTML = dc.length ? dc.join('') : '<div class="col-span-full text-center text-slate-400 text-sm py-4">—</div>';
-        const t = (j.actualizado && (j.actualizado.cereales || j.actualizado.dolar));
-        document.getElementById('mkt-updated').textContent = t ? 'Actualizado: ' + new Date(t).toLocaleString('es-AR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }) : '';
-      } catch (e) {
-        document.getElementById('mkt-granos').innerHTML = '<div class="col-span-full text-center text-slate-400 text-sm py-4">No pudimos cargar las cotizaciones ahora.</div>';
-      }
+        const t = j.actualizado && (j.actualizado.cereales || j.actualizado.dolar);
+        document.getElementById('mkt-updated').textContent = t ? 'Actualizado: '+new Date(t).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '';
+      } catch (e) { document.getElementById('mkt-granos').innerHTML = '<div class="col-span-full text-center text-slate-400 text-sm py-4">No pudimos cargar las cotizaciones ahora.</div>'; }
     }
-
-    // ---------- CLIMA ENRIQUECIDO (Open-Meteo) ----------
-    const WMO = (c) => {
-      if (c === 0) return ['☀️','Despejado'];
-      if (c <= 3) return ['⛅','Parcialmente nublado'];
-      if (c <= 48) return ['🌫️','Niebla'];
-      if (c <= 67) return ['🌧️','Lluvia'];
-      if (c <= 77) return ['❄️','Nieve'];
-      if (c <= 82) return ['🌦️','Chaparrones'];
-      if (c <= 86) return ['🌨️','Nevadas'];
-      return ['⛈️','Tormenta'];
-    };
-    const rumbo = (deg) => { const d = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO']; return d[Math.round(((deg||0)%360)/22.5)%16]; };
-    async function loadClima(latlon) {
-      const hoyEl = document.getElementById('clima-hoy'), gridEl = document.getElementById('clima-grid'), llEl = document.getElementById('clima-lluvia');
-      if (hoyEl) hoyEl.innerHTML = '<div class="text-center text-slate-400 text-sm py-8">Cargando clima…</div>';
+    // ---- Tendencia ----
+    let trendChart = null;
+    async function loadTrend() {
+      const mon = document.getElementById('trend-moneda').value;
+      const msg = document.getElementById('trend-msg');
       try {
-        const [lat, lon] = latlon.split(',');
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
-          `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m` +
-          `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max` +
-          `&past_days=7&forecast_days=7&timezone=auto`;
-        const r = await fetch(url); const j = await r.json();
-        const c = j.current, d = j.daily;
-        const [ce, cl] = WMO(c.weather_code);
-        // Hoy
-        hoyEl.innerHTML = `
-          <div class="flex items-center gap-5 flex-wrap">
-            <div class="text-6xl">${ce}</div>
-            <div>
-              <div class="text-4xl font-extrabold text-agro-900">${Math.round(c.temperature_2m)}°</div>
-              <div class="text-sm text-slate-500">${cl} · sensación ${Math.round(c.apparent_temperature)}°</div>
-            </div>
-            <div class="grid grid-cols-3 gap-4 ml-auto text-center">
-              <div><div class="text-xs text-slate-400">Humedad</div><div class="font-bold text-agro-800">${c.relative_humidity_2m}%</div></div>
-              <div><div class="text-xs text-slate-400">Viento</div><div class="font-bold text-agro-800">${Math.round(c.wind_speed_10m)} <span class="text-xs font-normal">km/h ${rumbo(c.wind_direction_10m)}</span></div></div>
-              <div><div class="text-xs text-slate-400">Lluvia ahora</div><div class="font-bold text-agro-800">${c.precipitation||0} mm</div></div>
-            </div>
-          </div>`;
-        // Lluvia acumulada 7 días (pasados)
-        const past = (d.precipitation_sum || []).slice(0, 7).reduce((a,b)=>a+(b||0),0);
-        const prox = (d.precipitation_sum || []).slice(7, 14).reduce((a,b)=>a+(b||0),0);
-        llEl.innerHTML = `
-          <div class="text-xs uppercase tracking-wide text-slate-400 font-semibold">Lluvia</div>
-          <div class="mt-2"><div class="text-3xl font-extrabold text-blue-600">${past.toFixed(1)} mm</div><div class="text-xs text-slate-500">acumulado últimos 7 días</div></div>
-          <div class="mt-3 pt-3 border-t border-slate-100"><div class="text-2xl font-extrabold text-agro-700">${prox.toFixed(1)} mm</div><div class="text-xs text-slate-500">esperados próximos 7 días</div></div>`;
-        // 7 días (desde hoy = índice 7)
-        const cards = [];
-        for (let i = 7; i < d.time.length; i++) {
-          const [e, l] = WMO(d.weather_code[i]);
-          const dia = new Date(d.time[i] + 'T12:00').toLocaleDateString('es-AR', { weekday:'short' });
-          const mm = d.precipitation_sum[i], pp = d.precipitation_probability_max[i], w = Math.round(d.wind_speed_10m_max[i]);
-          cards.push(`<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm">
-            <div class="text-xs font-bold text-agro-800 capitalize">${i===7?'Hoy':dia}</div>
-            <div class="text-3xl my-1" title="${l}">${e}</div>
-            <div class="text-sm font-bold text-agro-900">${Math.round(d.temperature_2m_max[i])}°<span class="text-slate-400 font-normal">/${Math.round(d.temperature_2m_min[i])}°</span></div>
-            <div class="text-[11px] mt-1 ${mm>0?'text-blue-600 font-semibold':'text-slate-400'}">💧 ${mm>0?mm+' mm':'—'} ${pp!=null?'· '+pp+'%':''}</div>
-            <div class="text-[10px] text-slate-400">🌬️ ${w} km/h</div>
-          </div>`);
-        }
-        gridEl.innerHTML = cards.join('');
-      } catch (e) {
-        hoyEl.innerHTML = '<div class="text-center text-slate-400 text-sm py-8">No pudimos cargar el clima ahora.</div>';
-        gridEl.innerHTML = '';
-      }
+        const j = await (await fetch(AGRO_API + '/api/cotizaciones/historico?moneda=' + mon + '&dias=120', { cache:'no-store' })).json();
+        const serie = (j.series && j.series[mon]) || [];
+        if (serie.length < 2) { msg.textContent = 'Todavía no hay suficiente histórico para esta cotización (se acumula día a día).'; if (trendChart) { trendChart.destroy(); trendChart = null; } return; }
+        msg.textContent = '';
+        const labels = serie.map(p => new Date(p.fecha).toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit' }));
+        const data = serie.map(p => p.valor);
+        const ctx = document.getElementById('trend-chart');
+        if (trendChart) trendChart.destroy();
+        trendChart = new Chart(ctx, {
+          type: 'line',
+          data: { labels, datasets: [{ label: mon, data, borderColor:'#15803d', backgroundColor:'rgba(21,128,61,.08)', fill:true, tension:.25, pointRadius:0, borderWidth:2 }] },
+          options: { responsive:true, plugins:{ legend:{ display:false } }, scales:{ y:{ ticks:{ callback:v => '$'+Number(v).toLocaleString('es-AR') } }, x:{ ticks:{ maxTicksLimit:10 } } } }
+        });
+      } catch (e) { msg.textContent = 'No pudimos cargar la tendencia ahora.'; }
     }
-
     // Init
-    loadMercado();
-    const sel = document.getElementById('clima-zona');
-    sel.addEventListener('change', e => loadClima(e.target.value));
-    loadClima(sel.value);
+    loadMercado(); loadTrend();
+    document.getElementById('trend-moneda').addEventListener('change', loadTrend);
     setInterval(loadMercado, 10 * 60 * 1000);
   </script>
-
 </body>
 </html>

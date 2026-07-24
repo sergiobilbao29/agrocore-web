@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clima del campo — Radar, pronóstico y más · AgroCore Argentina</title>
+  <meta name="description" content="El clima de tu zona: radar de nubes y tormentas en movimiento, temperatura del día, amanecer y atardecer, fase lunar y pronóstico de 7 días. Gratis, por AgroCore.">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { agro:{50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d'}, gold:{400:'#fbbf24',500:'#eab308',600:'#ca8a04'} },
+      fontFamily: { display: ['Inter','system-ui','sans-serif'] }
+    } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    body { font-family:'Inter',system-ui,sans-serif; }
+    html { scroll-behavior:smooth; }
+    .hero-bg { background: radial-gradient(ellipse at top, rgba(34,197,94,.18), transparent 60%), linear-gradient(180deg,#14532d 0%,#166534 100%); }
+    .hero-pattern { background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 0); background-size:24px 24px; }
+    #radar-map { height: 380px; border-radius: 1rem; z-index: 0; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased bg-slate-50">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="img/logo-icon-128.png" srcset="img/logo-icon-128.png 1x, img/logo-icon-256.png 2x" alt="AgroCore Argentina" class="w-11 h-11 object-contain"/>
+        <div><div class="flex items-baseline gap-1.5"><div class="text-xl font-extrabold text-agro-900 leading-none tracking-tight">AgroCore</div><div class="text-[10px] font-bold text-gold-600 uppercase tracking-wider leading-none">Argentina</div></div><div class="text-[10px] text-slate-500 leading-tight mt-0.5">Clima</div></div>
+      </a>
+      <div class="flex items-center gap-4 text-sm font-medium">
+        <a href="index.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Inicio</a>
+        <a href="mercado.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Mercado</a>
+        <a href="clima.html" class="hidden sm:inline text-agro-800 font-semibold">Clima</a>
+        <a href="herramientas.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Herramientas</a>
+        <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 bg-agro-700 hover:bg-agro-800 text-white font-semibold rounded-lg shadow-sm transition">Solicitar demo →</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero-bg text-white relative overflow-hidden">
+    <div class="hero-pattern absolute inset-0 opacity-50"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 relative flex items-end justify-between flex-wrap gap-3">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold">El clima de tu campo</h1>
+        <p class="text-agro-100 mt-1">Radar de nubes y tormentas, temperatura del día, sol, luna y pronóstico de 7 días.</p>
+      </div>
+      <select id="clima-zona" class="px-4 py-2.5 rounded-lg border border-white/20 bg-white/95 text-slate-800 text-sm font-medium shadow-sm focus:ring-2 focus:ring-gold-400 focus:outline-none">
+        <option value="-33.13,-64.35">Río Cuarto (Cba)</option>
+        <option value="-32.95,-60.63">Rosario (SF)</option>
+        <option value="-31.42,-64.18">Córdoba Capital</option>
+        <option value="-34.61,-58.38">Buenos Aires</option>
+        <option value="-33.30,-66.34">San Luis</option>
+        <option value="-32.40,-63.24">Villa María (Cba)</option>
+        <option value="-38.00,-57.55">Mar del Plata</option>
+        <option value="-31.64,-60.70">Paraná (ER)</option>
+        <option value="-36.62,-64.29">Santa Rosa (LP)</option>
+        <option value="-27.79,-64.26">Sgo. del Estero</option>
+        <option value="-26.82,-65.22">Tucumán</option>
+        <option value="-34.92,-57.95">La Plata</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <!-- HOY + SOL/LUNA -->
+    <div class="grid md:grid-cols-3 gap-4">
+      <div id="clima-hoy" class="md:col-span-2 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm"><div class="text-center text-slate-400 text-sm py-8">Cargando clima…</div></div>
+      <div id="clima-sol" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm"><div class="text-center text-slate-400 text-sm py-8">—</div></div>
+    </div>
+
+    <!-- RADAR -->
+    <div>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
+        <div><h2 class="text-2xl font-extrabold text-agro-900">Radar de lluvias</h2><p class="text-slate-500 text-sm">Nubes y tormentas en movimiento (últimas 2 horas + próxima media hora).</p></div>
+        <div class="flex items-center gap-2 text-sm">
+          <button id="radar-play" onclick="toggleRadar()" class="w-10 h-10 rounded-full bg-agro-700 hover:bg-agro-800 text-white font-bold shadow">⏸</button>
+          <span class="text-slate-500 font-mono" id="radar-time">—</span>
+        </div>
+      </div>
+      <div id="radar-map" class="border border-slate-200 shadow-sm"></div>
+      <p class="text-[11px] text-slate-400 mt-2">Radar: RainViewer. Zonas azules/verdes = lluvia leve; amarillo/rojo = intensa.</p>
+    </div>
+
+    <!-- TEMPERATURA DEL DÍA -->
+    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">Temperatura del día</h2>
+      <p class="text-slate-500 text-sm mb-4">Próximas 24 horas: temperatura y probabilidad de lluvia.</p>
+      <canvas id="hora-chart" height="110"></canvas>
+    </div>
+
+    <!-- 7 DÍAS -->
+    <div>
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-3">Próximos 7 días</h2>
+      <div id="clima-grid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3"><div class="col-span-full text-center text-slate-400 text-sm py-6">Cargando…</div></div>
+      <p class="text-[11px] text-slate-400 mt-2">Fuente: Open-Meteo. Pronóstico orientativo. El viento sirve para planificar pulverizaciones.</p>
+    </div>
+  </div>
+
+  <section class="py-12 bg-agro-900 text-white text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Toda tu operación, en un solo lugar</h2>
+      <p class="text-agro-100 mb-5">Facturación ARCA, stock, hacienda, finanzas y empleados — con mercado y clima a mano.</p>
+      <a href="index.html#contacto" class="inline-flex items-center gap-2 px-7 py-3.5 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg shadow-xl transition">Solicitar demo gratis →</a>
+    </div>
+  </section>
+
+  <footer class="bg-agro-900 border-t border-agro-700 text-agro-100 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+      <div class="flex items-center gap-3"><img src="img/logo-white-96.png" srcset="img/logo-white-96.png 1x, img/logo-white-192.png 2x" alt="AgroCore" class="w-10 h-10 object-contain"/><div><div class="font-extrabold text-white">AgroCore <span class="text-gold-400 text-xs">ARGENTINA</span></div><div class="text-xs text-agro-200">El corazón del negocio agrícola</div></div></div>
+      <div class="flex items-center gap-4"><a href="index.html" class="hover:text-white">Inicio</a><a href="mercado.html" class="hover:text-white">Mercado</a><a href="herramientas.html" class="hover:text-white">Herramientas</a><a href="index.html#contacto" class="hover:text-white">Contacto</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const WMO = (c) => {
+      if (c === 0) return ['☀️','Despejado'];
+      if (c <= 3) return ['⛅','Parcialmente nublado'];
+      if (c <= 48) return ['🌫️','Niebla'];
+      if (c <= 67) return ['🌧️','Lluvia'];
+      if (c <= 77) return ['❄️','Nieve'];
+      if (c <= 82) return ['🌦️','Chaparrones'];
+      if (c <= 86) return ['🌨️','Nevadas'];
+      return ['⛈️','Tormenta'];
+    };
+    const rumbo = (d) => ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'][Math.round(((d||0)%360)/22.5)%16];
+    const hhmm = (iso) => new Date(iso).toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
+    // Fase lunar (0=nueva, .5=llena)
+    function luna(date){
+      const lp = 2551443, nm = new Date(Date.UTC(2000,0,6,18,14)).getTime()/1000;
+      let ph = (((date.getTime()/1000) - nm) % lp) / lp; if (ph < 0) ph += 1;
+      const nombres = [['🌑','Luna nueva'],['🌒','Creciente'],['🌓','Cuarto creciente'],['🌔','Gibosa creciente'],['🌕','Luna llena'],['🌖','Gibosa menguante'],['🌗','Cuarto menguante'],['🌘','Menguante']];
+      return nombres[Math.round(ph*8)%8];
+    }
+
+    // ---------- CLIMA (Open-Meteo) ----------
+    let horaChart = null;
+    async function loadClima(latlon) {
+      const [lat, lon] = latlon.split(',');
+      document.getElementById('clima-hoy').innerHTML = '<div class="text-center text-slate-400 text-sm py-8">Cargando clima…</div>';
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+          `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m` +
+          `&hourly=temperature_2m,precipitation_probability` +
+          `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,sunrise,sunset` +
+          `&forecast_days=7&timezone=auto`;
+        const j = await (await fetch(url)).json();
+        const c = j.current, d = j.daily, h = j.hourly;
+        const [ce, cl] = WMO(c.weather_code);
+        document.getElementById('clima-hoy').innerHTML = `
+          <div class="flex items-center gap-5 flex-wrap">
+            <div class="text-6xl">${ce}</div>
+            <div><div class="text-5xl font-extrabold text-agro-900">${Math.round(c.temperature_2m)}°</div><div class="text-sm text-slate-500">${cl} · sensación ${Math.round(c.apparent_temperature)}°</div></div>
+            <div class="grid grid-cols-3 gap-5 ml-auto text-center">
+              <div><div class="text-xs text-slate-400">Humedad</div><div class="font-bold text-agro-800 text-lg">${c.relative_humidity_2m}%</div></div>
+              <div><div class="text-xs text-slate-400">Viento</div><div class="font-bold text-agro-800 text-lg">${Math.round(c.wind_speed_10m)}<span class="text-xs font-normal"> km/h ${rumbo(c.wind_direction_10m)}</span></div></div>
+              <div><div class="text-xs text-slate-400">Lluvia ahora</div><div class="font-bold text-agro-800 text-lg">${c.precipitation||0}<span class="text-xs font-normal"> mm</span></div></div>
+            </div>
+          </div>`;
+        // Sol y luna
+        const [le, ln] = luna(new Date());
+        document.getElementById('clima-sol').innerHTML = `
+          <div class="text-xs uppercase tracking-wide text-slate-400 font-semibold mb-3">Sol y luna</div>
+          <div class="flex items-center justify-around text-center mb-4">
+            <div><div class="text-3xl">🌅</div><div class="text-xs text-slate-400 mt-1">Amanece</div><div class="font-bold text-agro-800">${hhmm(d.sunrise[0])}</div></div>
+            <div><div class="text-3xl">🌇</div><div class="text-xs text-slate-400 mt-1">Atardece</div><div class="font-bold text-agro-800">${hhmm(d.sunset[0])}</div></div>
+          </div>
+          <div class="flex items-center gap-3 border-t border-slate-100 pt-3"><div class="text-4xl">${le}</div><div><div class="text-xs text-slate-400">Fase lunar</div><div class="font-bold text-agro-800">${ln}</div></div></div>`;
+        // Temperatura próximas 24h
+        const now = Date.now();
+        let start = h.time.findIndex(t => new Date(t).getTime() >= now); if (start < 0) start = 0;
+        const idx = []; for (let i = start; i < start + 24 && i < h.time.length; i++) idx.push(i);
+        const labels = idx.map(i => new Date(h.time[i]).toLocaleTimeString('es-AR', { hour:'2-digit' }));
+        const temps = idx.map(i => Math.round(h.temperature_2m[i]));
+        const probs = idx.map(i => h.precipitation_probability ? h.precipitation_probability[i] : null);
+        const ctx = document.getElementById('hora-chart');
+        if (horaChart) horaChart.destroy();
+        horaChart = new Chart(ctx, {
+          data: { labels, datasets: [
+            { type:'line', label:'Temp °C', data:temps, borderColor:'#ea580c', backgroundColor:'rgba(234,88,12,.08)', fill:true, tension:.35, pointRadius:0, borderWidth:2, yAxisID:'y' },
+            { type:'bar', label:'Prob. lluvia %', data:probs, backgroundColor:'rgba(37,99,235,.25)', yAxisID:'y1' }
+          ]},
+          options: { responsive:true, interaction:{ mode:'index', intersect:false }, plugins:{ legend:{ display:true, labels:{ boxWidth:12 } } },
+            scales:{ y:{ position:'left', ticks:{ callback:v=>v+'°' } }, y1:{ position:'right', min:0, max:100, grid:{ drawOnChartArea:false }, ticks:{ callback:v=>v+'%' } } } }
+        });
+        // 7 días
+        const cards = d.time.map((iso, i) => {
+          const [e, l] = WMO(d.weather_code[i]);
+          const dia = new Date(iso + 'T12:00').toLocaleDateString('es-AR', { weekday:'short' });
+          const mm = d.precipitation_sum[i], pp = d.precipitation_probability_max[i], w = Math.round(d.wind_speed_10m_max[i]);
+          return `<div class="bg-white rounded-xl border border-slate-200 p-3 text-center shadow-sm">
+            <div class="text-xs font-bold text-agro-800 capitalize">${i===0?'Hoy':dia}</div>
+            <div class="text-3xl my-1" title="${l}">${e}</div>
+            <div class="text-sm font-bold text-agro-900">${Math.round(d.temperature_2m_max[i])}°<span class="text-slate-400 font-normal">/${Math.round(d.temperature_2m_min[i])}°</span></div>
+            <div class="text-[11px] mt-1 ${mm>0?'text-blue-600 font-semibold':'text-slate-400'}">💧 ${mm>0?mm+' mm':'—'} ${pp!=null?'· '+pp+'%':''}</div>
+            <div class="text-[10px] text-slate-400">🌬️ ${w} km/h</div></div>`;
+        });
+        document.getElementById('clima-grid').innerHTML = cards.join('');
+      } catch (e) {
+        document.getElementById('clima-hoy').innerHTML = '<div class="text-center text-slate-400 text-sm py-8">No pudimos cargar el clima ahora.</div>';
+      }
+      initRadar(Number(lat), Number(lon));
+    }
+
+    // ---------- RADAR (Leaflet + RainViewer) ----------
+    let radarMap=null, radarLayers=[], radarFrames=[], radarIdx=0, radarTimer=null, radarHost='';
+    function initRadar(lat, lon) {
+      if (!radarMap) {
+        radarMap = L.map('radar-map', { zoomControl:true, attributionControl:false }).setView([lat, lon], 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:12 }).addTo(radarMap);
+        loadRadarFrames();
+      } else { radarMap.setView([lat, lon], 7); }
+    }
+    async function loadRadarFrames() {
+      try {
+        const j = await (await fetch('https://api.rainviewer.com/public/weather-maps.json')).json();
+        radarHost = j.host;
+        radarFrames = (j.radar.past || []).concat(j.radar.nowcast || []);
+        radarLayers.forEach(l => radarMap.removeLayer(l)); radarLayers = [];
+        radarFrames.forEach(f => { const layer = L.tileLayer(`${radarHost}${f.path}/256/{z}/{x}/{y}/4/1_1.png`, { opacity:0, zIndex:5 }); layer.addTo(radarMap); radarLayers.push(layer); });
+        radarIdx = Math.max(0, radarLayers.length - 1);
+        showRadarFrame(radarIdx);
+        playRadar();
+      } catch (e) { const t = document.getElementById('radar-time'); if (t) t.textContent = 'Radar no disponible'; }
+    }
+    function showRadarFrame(i) {
+      radarLayers.forEach((l, k) => l.setOpacity(k === i ? 0.65 : 0));
+      const f = radarFrames[i]; const t = document.getElementById('radar-time');
+      if (f && t) t.textContent = new Date(f.time * 1000).toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
+    }
+    function playRadar() { if (radarTimer || !radarLayers.length) return; radarTimer = setInterval(() => { radarIdx = (radarIdx + 1) % radarLayers.length; showRadarFrame(radarIdx); }, 700); const b = document.getElementById('radar-play'); if (b) b.textContent = '⏸'; }
+    function pauseRadar() { clearInterval(radarTimer); radarTimer = null; const b = document.getElementById('radar-play'); if (b) b.textContent = '▶'; }
+    function toggleRadar() { radarTimer ? pauseRadar() : playRadar(); }
+
+    // Init
+    const sel = document.getElementById('clima-zona');
+    sel.addEventListener('change', e => loadClima(e.target.value));
+    loadClima(sel.value);
+  </script>
+</body>
+</html>
