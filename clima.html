@@ -235,17 +235,23 @@
     function buildRadarLayers() {
       radarLayers.forEach(l => radarMap.removeLayer(l)); radarLayers = [];
       const _t0 = document.getElementById('radar-time');
-      // NUBES: satelite GOES-East (NASA GIBS), casi en tiempo real, sin API key.
+      // NUBES: satelite GOES-East (NASA GIBS), ANIMADO (cuadros cada 10 min), sin API key.
       if (radarMode === 'satellite') {
         pauseRadar();
-        const dt = new Date(Date.now() - 35*60*1000);      // ~35 min de rezago (GOES tarda en publicar)
-        dt.setUTCSeconds(0,0); dt.setUTCMinutes(Math.floor(dt.getUTCMinutes()/10)*10);
-        const iso = dt.toISOString().replace(/\.\d+Z$/,'Z'); // YYYY-MM-DDTHH:MM:SSZ
-        const url = `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_GeoColor/default/${iso}/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png`;
-        const layer = L.tileLayer(url, { opacity:0.62, zIndex:5, maxNativeZoom:7, minZoom:3 });
-        let _err=0; layer.on('tileerror', () => { _err++; if (_err===4 && _t0) _t0.textContent = '☁️ nubes no disponibles'; });
-        layer.addTo(radarMap); radarLayers = [layer]; radarFrames = [{ time: dt.getTime()/1000 }]; radarIdx = 0;
-        if (_t0) _t0.textContent = dt.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}) + ' · GOES';
+        const base = new Date(Date.now() - 35*60*1000); // rezago de publicacion del GOES
+        base.setUTCSeconds(0,0); base.setUTCMinutes(Math.floor(base.getUTCMinutes()/10)*10);
+        radarFrames = [];
+        for (let k=7; k>=0; k--) { const d = new Date(base.getTime() - k*10*60*1000); radarFrames.push({ time: d.getTime()/1000, iso: d.toISOString().replace(/\.\d+Z$/,'Z') }); }
+        let _err=0;
+        radarFrames.forEach(f => {
+          const url = `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_GeoColor/default/${f.iso}/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png`;
+          const layer = L.tileLayer(url, { opacity:0, zIndex:5, maxNativeZoom:7, minZoom:3 });
+          layer.on('tileerror', () => { _err++; if (_err===8 && _t0) _t0.textContent = '☁️ nubes no disponibles'; });
+          layer.addTo(radarMap); radarLayers.push(layer);
+        });
+        radarIdx = radarLayers.length - 1;
+        showRadarFrame(radarIdx);
+        pauseRadar(); playRadar();
         return;
       }
       // LLUVIA: radar RainViewer (animado)
@@ -265,10 +271,10 @@
       if (radarMap) buildRadarLayers();
     }
     function showRadarFrame(i) {
-      const op = radarMode === 'satellite' ? 0.55 : 0.65;
+      const op = radarMode === 'satellite' ? 0.62 : 0.65;
       radarLayers.forEach((l, k) => l.setOpacity(k === i ? op : 0));
       const f = radarFrames[i]; const t = document.getElementById('radar-time');
-      if (f && t) t.textContent = new Date(f.time * 1000).toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
+      if (f && t) t.textContent = new Date(f.time * 1000).toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' }) + (radarMode==='satellite' ? ' · GOES' : '');
     }
     function playRadar() { if (radarTimer || !radarLayers.length) return; radarTimer = setInterval(() => { radarIdx = (radarIdx + 1) % radarLayers.length; showRadarFrame(radarIdx); }, 700); const b = document.getElementById('radar-play'); if (b) b.textContent = '⏸'; }
     function pauseRadar() { clearInterval(radarTimer); radarTimer = null; const b = document.getElementById('radar-play'); if (b) b.textContent = '▶'; }
