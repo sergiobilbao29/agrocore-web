@@ -76,14 +76,18 @@
     <!-- RADAR -->
     <div>
       <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-        <div><h2 class="text-2xl font-extrabold text-agro-900">Radar de lluvias</h2><p class="text-slate-500 text-sm">Nubes y tormentas en movimiento (últimas 2 horas + próxima media hora).</p></div>
+        <div><h2 class="text-2xl font-extrabold text-agro-900">Radar y nubes</h2><p class="text-slate-500 text-sm">Lluvia (radar) y nubosidad (satélite) en movimiento — últimas 2 horas + próxima media hora.</p></div>
         <div class="flex items-center gap-2 text-sm">
+          <div class="inline-flex rounded-lg overflow-hidden border border-slate-200">
+            <button id="mode-lluvia" onclick="setRadarMode('radar')" class="px-3 py-1.5 text-sm font-semibold bg-agro-700 text-white">🌧️ Lluvia</button>
+            <button id="mode-nubes" onclick="setRadarMode('satellite')" class="px-3 py-1.5 text-sm font-semibold bg-white text-slate-600">☁️ Nubes</button>
+          </div>
           <button id="radar-play" onclick="toggleRadar()" class="w-10 h-10 rounded-full bg-agro-700 hover:bg-agro-800 text-white font-bold shadow">⏸</button>
           <span class="text-slate-500 font-mono" id="radar-time">—</span>
         </div>
       </div>
       <div id="radar-map" class="border border-slate-200 shadow-sm"></div>
-      <p class="text-[11px] text-slate-400 mt-2">Radar: RainViewer. Zonas azules/verdes = lluvia leve; amarillo/rojo = intensa.</p>
+      <p class="text-[11px] text-slate-400 mt-2">Fuente: RainViewer. <b>Lluvia</b>: azul/verde = leve, amarillo/rojo = intensa. <b>Nubes</b>: satélite infrarrojo (cielo nublado aunque no llueva).</p>
     </div>
 
     <!-- TEMPERATURA DEL DÍA -->
@@ -206,8 +210,9 @@
       initRadar(Number(lat), Number(lon));
     }
 
-    // ---------- RADAR (Leaflet + RainViewer) ----------
+    // ---------- RADAR (lluvia) + NUBES (satelite) — Leaflet + RainViewer ----------
     let radarMap=null, radarLayers=[], radarFrames=[], radarIdx=0, radarTimer=null, radarHost='';
+    let radarData={ radar:[], satellite:[] }, radarMode='radar';
     function initRadar(lat, lon) {
       if (!radarMap) {
         radarMap = L.map('radar-map', { zoomControl:true, attributionControl:false }).setView([lat, lon], 7);
@@ -219,16 +224,32 @@
       try {
         const j = await (await fetch('https://api.rainviewer.com/public/weather-maps.json')).json();
         radarHost = j.host;
-        radarFrames = (j.radar.past || []).concat(j.radar.nowcast || []);
-        radarLayers.forEach(l => radarMap.removeLayer(l)); radarLayers = [];
-        radarFrames.forEach(f => { const layer = L.tileLayer(`${radarHost}${f.path}/256/{z}/{x}/{y}/4/1_1.png`, { opacity:0, zIndex:5 }); layer.addTo(radarMap); radarLayers.push(layer); });
-        radarIdx = Math.max(0, radarLayers.length - 1);
-        showRadarFrame(radarIdx);
-        playRadar();
-      } catch (e) { const t = document.getElementById('radar-time'); if (t) t.textContent = 'Radar no disponible'; }
+        radarData.radar     = (j.radar     && (j.radar.past||[]).concat(j.radar.nowcast||[])) || [];
+        radarData.satellite = (j.satellite && (j.satellite.infrared||[])) || [];
+        buildRadarLayers();
+      } catch (e) { const t = document.getElementById('radar-time'); if (t) t.textContent = 'No disponible'; }
+    }
+    function buildRadarLayers() {
+      radarLayers.forEach(l => radarMap.removeLayer(l)); radarLayers = [];
+      radarFrames = radarData[radarMode] || [];
+      // color/opciones: lluvia (radar) = 4/1_1 ; nubes (satelite infrarrojo) = 0/0_0
+      const tileOpts = radarMode === 'radar' ? '4/1_1' : '0/0_0';
+      radarFrames.forEach(f => { const layer = L.tileLayer(`${radarHost}${f.path}/256/{z}/{x}/{y}/${tileOpts}.png`, { opacity:0, zIndex:5 }); layer.addTo(radarMap); radarLayers.push(layer); });
+      radarIdx = Math.max(0, radarLayers.length - 1);
+      showRadarFrame(radarIdx);
+      pauseRadar(); playRadar();
+    }
+    function setRadarMode(mode) {
+      radarMode = mode;
+      const bl=document.getElementById('mode-lluvia'), bn=document.getElementById('mode-nubes');
+      const on='px-3 py-1.5 text-sm font-semibold bg-agro-700 text-white', off='px-3 py-1.5 text-sm font-semibold bg-white text-slate-600';
+      if (bl) bl.className = mode==='radar' ? on : off;
+      if (bn) bn.className = mode==='satellite' ? on : off;
+      if (radarMap) buildRadarLayers();
     }
     function showRadarFrame(i) {
-      radarLayers.forEach((l, k) => l.setOpacity(k === i ? 0.65 : 0));
+      const op = radarMode === 'satellite' ? 0.55 : 0.65;
+      radarLayers.forEach((l, k) => l.setOpacity(k === i ? op : 0));
       const f = radarFrames[i]; const t = document.getElementById('radar-time');
       if (f && t) t.textContent = new Date(f.time * 1000).toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' });
     }
