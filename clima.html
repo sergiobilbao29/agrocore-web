@@ -225,13 +225,18 @@
         const j = await (await fetch('https://api.rainviewer.com/public/weather-maps.json')).json();
         radarHost = j.host;
         radarData.radar     = (j.radar     && (j.radar.past||[]).concat(j.radar.nowcast||[])) || [];
-        radarData.satellite = (j.satellite && (j.satellite.infrared||[])) || [];
+        const _sat = j.satellite;
+        radarData.satellite = Array.isArray(_sat) ? _sat
+          : (_sat && Array.isArray(_sat.infrared)) ? _sat.infrared
+          : (_sat && Array.isArray(_sat.past)) ? _sat.past : [];
         buildRadarLayers();
       } catch (e) { const t = document.getElementById('radar-time'); if (t) t.textContent = 'No disponible'; }
     }
     function buildRadarLayers() {
       radarLayers.forEach(l => radarMap.removeLayer(l)); radarLayers = [];
       radarFrames = radarData[radarMode] || [];
+      const _t0 = document.getElementById('radar-time');
+      if (!radarFrames.length) { pauseRadar(); if (_t0) _t0.textContent = radarMode==='satellite' ? '☁️ nubes sin datos ahora' : 'sin datos'; return; }
       // color/opciones: lluvia (radar) = 4/1_1 ; nubes (satelite infrarrojo) = 0/0_0
       const tileOpts = radarMode === 'radar' ? '4/1_1' : '0/0_0';
       radarFrames.forEach(f => { const layer = L.tileLayer(`${radarHost}${f.path}/256/{z}/{x}/{y}/${tileOpts}.png`, { opacity:0, zIndex:5 }); layer.addTo(radarMap); radarLayers.push(layer); });
