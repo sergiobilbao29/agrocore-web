@@ -1,0 +1,12 @@
+# Redirecciones 301 (Cloudflare Pages)
+# La calculadora se movio a /herramientas.
+/calculadora        /herramientas   301
+/calculadora.html   /herramientas   301
+
+# .html -> URL limpia (canonica) para evitar contenido duplicado en Google
+/index.html         /               301
+/mercado.html       /mercado        301
+/clima.html         /clima          301
+/herramientas.html  /herramientas   301
+/manual.html        /manual         301
+/presupuesto.html   /presupuesto    301
