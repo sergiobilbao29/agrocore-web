@@ -816,6 +816,8 @@
       const url = isMobile
         ? ('https://wa.me/' + d + (t ? '?text=' + t : ''))
         : ('https://web.whatsapp.com/send?phone=' + d + (t ? '&text=' + t : ''));
+      // Conversión Google Ads: clic de WhatsApp (cubre botones y el respaldo del formulario)
+      try { gtag('event', 'conversion', { 'send_to': 'AW-18358928255/alZICOCg9tscEP-GnLJE', 'value': 1.0, 'currency': 'ARS' }); } catch(e){}
       window.open(url, '_blank', 'noopener');
     }
     // Engancha todos los links con data-wa-text para usar el helper.
@@ -865,6 +867,8 @@
         if (r.ok && j.ok) {
           status.innerHTML = '<span class="text-agro-700 font-medium">✓ ¡Mensaje enviado! Te respondemos en menos de 24 hs.</span>';
           form.reset();
+          // Conversión Google Ads: formulario enviado
+          try { gtag('event', 'conversion', { 'send_to': 'AW-18358928255/n3pPCJbo9dscEP-GnLJE', 'value': 1.0, 'currency': 'ARS' }); } catch(e){}
           return false;
         }
         // Si el server-side no está configurado todavía o devolvió error, caemos a WhatsApp.
