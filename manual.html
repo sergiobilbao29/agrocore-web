@@ -83,25 +83,6 @@
       @page { margin: 1.5cm; }
     }
   </style>
-  <link rel="canonical" href="https://agrocore.ar/manual" />
-  <!-- ===================== MEDICIÓN / ANALYTICS ===================== -->
-  <!-- Google Analytics 4 — REEMPLAZAR G-0TLTNL3NJ0 por tu ID de medición -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TLTNL3NJ0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0TLTNL3NJ0');
-  </script>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xmye67pyx1");
-  </script>
-  <!-- =============================================================== -->
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -131,7 +112,7 @@
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
       <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Las 7 secciones, 30+ vistas, modo offline, planilla y liquidación por empleado, hacienda por campo, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 1.9 · Junio 2026 · Sistema AgroCore v0.7</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 2.0 · Agosto 2026 · Sistema AgroCore v2.33 — incluye mensajería, grupos y asistente con manual, notificaciones push, mapa de lotes con rindes, liquidaciones de hacienda e historial de campañas.</p>
     </div>
   </section>
 
@@ -158,6 +139,11 @@
             <a href="#mod-finanzas" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.7 Finanzas</a>
             <a href="#mod-logistica" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.8 Logística y RRHH</a>
             <a href="#mod-admin" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.9 Administración</a>
+            <a href="#mod-agenda" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.10 Agenda y recordatorios</a>
+            <a href="#mod-mensajes" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.11 Mensajes, grupos y asistente</a>
+            <a href="#mod-mapa" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.12 Mapa de campos con rindes</a>
+            <a href="#mod-liqhacienda" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.13 Liquidaciones de hacienda</a>
+            <a href="#mod-historial" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.14 Historial y comparador de campañas</a>
             <a href="#flujos" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">7. Flujos típicos</a>
             <a href="#faq" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">8. Preguntas frecuentes</a>
             <a href="#soporte" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">9. Soporte</a>
@@ -236,7 +222,7 @@
           <p>Pensado para PCs compartidas con otros usuarios:</p>
           <ul>
             <li><strong>Cerrar el navegador = cerrar la sesión</strong> (default). Si cerrás el navegador y otra persona lo abre después, no entra automáticamente con tu usuario — el sistema le pide login de cero.</li>
-            <li><strong>Auto-logout por inactividad</strong>: si no movés mouse, teclado o hacés clic durante <strong>30 minutos</strong>, el sistema cierra la sesión solo y muestra un aviso "Sesión cerrada por inactividad".</li>
+            <li><strong>Auto-logout por inactividad</strong>: si no movés mouse, teclado o hacés clic durante <strong>2 horas</strong>, el sistema cierra la sesión solo y muestra un aviso "Sesión cerrada por inactividad".</li>
             <li><strong>Checkbox "Recordarme en este equipo"</strong>: si la PC es solo tuya y no querés tener que loguearte cada vez, tildalo en el login. El sistema recuerda esa preferencia para los próximos arranques.</li>
           </ul>
 
@@ -475,6 +461,10 @@
           <p><strong>Cálculo en vivo:</strong> el form muestra base de cálculo (ha × precio o precio total), ganancia del empleado (base × %) y el mes en que aparecerá en su planilla.</p>
           <p><strong>Al guardar:</strong> se descuentan los insumos del stock <strong>y</strong>, si el empleado cobra porcentaje, se crea automáticamente un movimiento "ganancia" tipo "labor" en su planilla del mes con el concepto de la labor (tipo, hectáreas y %). No hay que ir a la planilla a cargarlo aparte.</p>
           <p><strong>Reporte por lote:</strong> todas las aplicaciones de un lote en una campaña, con costo acumulado vs presupuesto.</p>
+
+          <h4>Servicios a terceros — labores facturables <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando hacés una labor <strong>para otro campo o cliente</strong>, al cargarla tildás "Servicio a terceros" y elegís el cliente (la campaña queda opcional). La labor se registra igual: los insumos siguen descontando stock y el % de ganancia del empleado se calcula <strong>solo sobre el precio de la labor</strong>, no sobre los insumos que se le cobran al cliente (ej. gasoil).</p>
+          <p><strong>Facturar con un clic:</strong> en <strong>Producción → Servicios a terceros</strong> ves la lista de servicios con un botón <strong>Facturar</strong>, que abre la factura de venta ya cargada con el cliente + la línea de la labor + los insumos como líneas aparte. Al autorizarla, el servicio queda marcado como facturado y vinculado a esa factura.</p>
         </section>
 
         <section id="mod-stock">
@@ -494,6 +484,11 @@
 
           <h4>Reporte de margen</h4>
           <p>Análisis económico que cruza compras vs ventas calculando costo promedio, precio promedio, % de margen y ganancia. Filtros por producto, campaña, cliente / proveedor o período. Exportable a Excel.</p>
+
+          <h4>Traspaso / conversión y reubicación <span class="badge-new">Nuevo</span></h4>
+          <p><strong>Traspaso entre artículos:</strong> convertís stock de un artículo en otro (por ej. <strong>grano → semilla</strong>) descontando de uno e ingresando al otro en un solo paso, con su movimiento de trazabilidad.</p>
+          <p><strong>Reubicar en lote:</strong> cambiás la categoría / familia de varios artículos a la vez, útil al reorganizar el catálogo.</p>
+          <p><strong>Catálogo con árbol:</strong> el stock y los buscadores muestran <strong>solo artículos del catálogo</strong>, ordenados por el árbol <strong>Categoría → Familia → Producto</strong>, con filtros por categoría y familia.</p>
 
           <h4>Hacienda — stock por campo, declarado vs real <span class="badge-new">Nuevo</span></h4>
           <p>Módulo dedicado al manejo del ganado. La gran diferencia con el stock de productos es que cada categoría se rastrea <strong>por campo</strong> y se compara lo que está <strong>declarado en SENASA / ARCA</strong> con el <strong>stock real</strong> que hay en el campo.</p>
@@ -592,6 +587,10 @@
           </ol>
           <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
           <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
+          <p><strong>Envío y reimpresión:</strong> cada comprobante se envía por <strong>email o WhatsApp</strong> al cliente y se reimprime en PDF (la factura ARCA sale por triplicado: original, duplicado y triplicado).</p>
+          <p><strong>Notas de crédito y débito:</strong> la <strong>NC reingresa el stock</strong>; la ND no mueve stock. Ambas ajustan la cuenta corriente.</p>
+          <p><strong>Saldo a favor:</strong> si un cliente paga de más o se le emite una NC, queda un <strong>saldo a favor</strong> que se aplica en la próxima factura (aparece un aviso para usarlo).</p>
+          <p><strong>Numeración:</strong> los comprobantes internos (órdenes de pago, recibos) llevan numeración correlativa automática, configurable en Administración → Configuración.</p>
 
           <h4>Cargar factura emitida directamente en ARCA <span class="badge-new">Nuevo</span></h4>
           <p>Cuando un socio o el contador emite una factura por afuera del sistema (directamente en el portal de ARCA), podés cargarla manualmente para que aparezca en los listados, descuente stock y mueva la cuenta corriente del cliente.</p>
@@ -600,7 +599,11 @@
           <h4>Compras</h4>
           <p><strong>Qué hace:</strong> registra las facturas que <strong>te emiten</strong> los proveedores, para control de gastos, IVA crédito fiscal, cuentas corrientes y vencimientos.</p>
           <p><strong>Datos:</strong> proveedor, tipo y número, fechas, ítems con cantidades/precios/IVA, forma de pago, adjunto del comprobante físico (opcional).</p>
-          <p><strong>Importación masiva:</strong> desde Excel o desde el portal "Mis Comprobantes" de ARCA.</p>
+          <p><strong>Importación masiva:</strong> desde Excel o desde el portal "Mis Comprobantes" de ARCA. Un lector de <strong>PDF de factura ARCA</strong> autocompleta el formulario leyendo el código QR o el nombre del archivo.</p>
+
+          <h4>Pago a proveedores y Órdenes de pago <span class="badge-new">Nuevo</span></h4>
+          <p>Al pagar una factura de compra podés usar efectivo, <strong>cheque propio</strong> (se carga en la misma pantalla del pago), transferencia, <strong>tarjeta de crédito</strong> o un medio externo del catálogo. El pago genera una <strong>Orden de Pago</strong> numerada e imprimible / PDF, con el detalle de comprobantes aplicados, cheques entregados, retenciones e importe en letras.</p>
+          <p><strong>Envío y deshacer:</strong> la OP se envía por email o WhatsApp, y desde la cuenta corriente del proveedor se puede <strong>reabrir / deshacer</strong> el pago (vuelve a dejar la deuda pendiente sin descuadrar saldos).</p>
 
           <h4>Libro IVA</h4>
           <p><strong>Qué hace:</strong> consolida todas las operaciones gravadas del período (ventas + compras) discriminadas por alícuota, listo para presentación de DDJJ de IVA.</p>
@@ -666,6 +669,12 @@
           <p><strong>Clasificación de cada gasto / ingreso:</strong> "De empresa" o "Propio" — esto permite separar lo que es del negocio de lo personal (por ej., gastos de los hijos). Hay una tabla "Gastos e ingresos por caja — empresa vs propios" con la comparación.</p>
           <p><strong>Filtros:</strong> por caja, por tipo, por clasificación y por rango de fechas.</p>
           <p><strong>Datos por movimiento:</strong> fecha, tipo, caja (origen y destino en transferencias), concepto, monto, clasificación, observaciones.</p>
+
+          <h4>Movimientos internos — plata que cambia de lugar, no es gasto ni ingreso <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando la plata <strong>cambia de lugar pero sigue dentro de la empresa</strong> —una extracción o depósito <strong>banco ↔ caja</strong>, o una transferencia entre dos cuentas propias— el sistema muestra las <strong>dos patas</strong> del movimiento (el egreso de una y el ingreso en la otra) pero <strong>no las cuenta como gasto ni como ingreso</strong> en los totales del Dashboard, para no inflar los números. Esas filas aparecen etiquetadas "🔁 interno · no suma".</p>
+
+          <h4>Movimientos diarios — todo el dinero del período en una vista <span class="badge-new">Nuevo</span></h4>
+          <p>Reúne <strong>todos los movimientos de plata</strong> (banco, caja y cuentas) ordenados por fecha, con su <strong>categoría y familia</strong> (desde el árbol de Categorías de Gastos) y el método de pago —efectivo, cheque, transferencia, 💳 tarjeta— con filtros. Los egresos de acá impactan en el Dashboard (incluso los personales, porque salen de activos de la empresa), salvo los movimientos internos.</p>
         </section>
 
         <section id="mod-logistica">
@@ -761,10 +770,11 @@
             <li><strong>Bancos:</strong> lista para usar al cargar cheques y cuentas corrientes.</li>
             <li><strong>Cajas:</strong> las cajas físicas que se usan en Control de Efectivo (Oficina, nombres de personas, sucursales).</li>
             <li><strong>Labores:</strong> tipos de labor (siembra, pulverización, cosecha, etc.) con <strong>precio sugerido</strong> ($/ha o total) <span class="badge-new">Nuevo</span>. Cuando cargás una "Labor avanzada" y elegís el tipo, el sistema precarga este precio y el tipo de cálculo — y los podés modificar en ese momento.</li>
-            <li><strong>Conceptos de tesorería:</strong> tipologías de movimientos de efectivo.</li>
-            <li><strong>Provincias y localidades:</strong> cargados de inicio.</li>
+            <li><strong>Categorías de animales:</strong> por especie (bovino, porcino, ovino…) con kg / peso, para Hacienda.</li>
+            <li><strong>Cerealeras, tarjetas de crédito, ciclos y geografía</strong> (País → Provincia → Ciudad).</li>
           </ul>
-          <p>Hay sidebar con filtros jerárquicos para encontrar rápido el ítem que buscás.</p>
+          <p><strong>Árbol de Categorías y Familias</strong> <span class="badge-new">Nuevo</span>: la estructura <strong>Categoría → Familia → Producto</strong> (Insumos, Hacienda, Cereales…) define cómo se agrupan y filtran productos, insumos y labores en todo el sistema; las pestañas de Catálogos se arman solas desde este árbol. Aparte, el <strong>árbol de Categorías de Gastos</strong> clasifica los movimientos de plata (categoría + familia).</p>
+          <p><strong>Copiar configuración entre empresas</strong> <span class="badge-new">Nuevo</span>: desde Configuración transferís a otra empresa los Catálogos, el árbol de Categorías y Familias y/o el de Categorías de Gastos (cada uno opcional, sin duplicar). Una empresa nueva queda lista en minutos.</p>
 
           <h4>Usuarios</h4>
           <p>Alta de personas que pueden iniciar sesión.</p>
@@ -875,6 +885,43 @@
           <p><strong>Detalle importante</strong>: el hint "Usuarios de prueba: Admin/admin123, Super/super123" que aparece en la pantalla de login solo se muestra si esos usuarios existen realmente. Al borrarlos con el asistente, el hint desaparece automáticamente — no hace falta tocar ningún archivo de configuración.</p>
         </section>
 
+        <section id="mod-agenda">
+          <h3>6.10 Agenda y recordatorios <span class="badge-new">Nuevo</span></h3>
+          <p><strong>Qué hace:</strong> un <strong>calendario</strong> que junta los vencimientos y alarmas del sistema —cheques, cuotas de crédito, arrendamientos y recordatorios manuales— con avisos automáticos (por ejemplo, revisar un cheque 7 días después de la fecha de pago). Podés verlo por <strong>una empresa o por todas</strong> a la vez, y las alarmas automáticas son editables.</p>
+        </section>
+
+        <section id="mod-mensajes">
+          <h3>6.11 Mensajes, grupos y asistente <span class="badge-new">Nuevo</span></h3>
+          <p><strong>Qué hace:</strong> un centro de comunicación dentro de AgroCore para que todo el equipo hable en un solo lugar, sin salir del sistema. En la parte de arriba elegís la conversación: <strong>👥 Equipo</strong> (todos los usuarios de la empresa), tus <strong>👪 Grupos</strong> y el <strong>🤖 Asistente</strong>.</p>
+
+          <h4>Grupos privados</h4>
+          <p>Con <strong>➕ Grupo</strong> creás una conversación con solo algunos integrantes (por ejemplo <em>Administración</em>, <em>Dueños</em> u <em>Operarios</em>): le ponés nombre y tildás quiénes participan. Con <strong>⚙️</strong> lo editás o lo eliminás (solo el creador o un administrador). Cada usuario ve <strong>únicamente los grupos donde está</strong>; los grupos ajenos ni siquiera aparecen (solo el Super Admin ve todos). Cada conversación tiene su propio contador de <strong>mensajes sin leer</strong>.</p>
+
+          <h4>El asistente 🤖 — cargar hablando o escribiendo</h4>
+          <p>El asistente entiende <strong>lo que hiciste</strong> y lo carga por vos. Escribí o dictá con el micrófono 🎤 frases como <em>"nacieron 5 terneros en Montenegro"</em>, <em>"murió 1 vaca en El 29"</em>, <em>"compré 10 novillos"</em>, <em>"cosecha en el lote 1 de Campo Prueba"</em> o <em>"recordar vacunar el 15/8"</em>. Te muestra una propuesta para que la revises/corrijas y, al confirmar, registra el movimiento de hacienda, la labor en la campaña del lote o el recordatorio. Todo lo que carga el asistente <strong>deja registrado quién lo ordenó</strong> (en las observaciones del movimiento y en la confirmación).</p>
+
+          <h4>El asistente también te enseña a usar el sistema <span class="badge-new">Nuevo</span></h4>
+          <p>Le incorporamos el <strong>manual de usuario</strong>. Ahora podés <strong>preguntarle cómo se hace algo</strong> y te responde el paso a paso — por ejemplo <em>"¿cómo cargo un cheque de tercero?"</em>, <em>"¿cómo hago una compra?"</em>, <em>"¿cómo emito una factura?"</em>, <em>"¿cómo importo mis comprobantes?"</em>, <em>"¿cómo cargo una liquidación de hacienda?"</em>. Además de explicarte, te <strong>lleva directo a la pantalla</strong> correcta con un botón, y para lo que puede cargar solo (hacienda, labores, recordatorios) se <strong>ofrece a hacerlo por vos</strong> con un ejemplo listo para tocar. Cubre cheques, compras, ventas/ARCA, pagos y cobros, hacienda, insumos, labores, campañas, stock, arrendamientos, créditos, cotizaciones, viajes, empleados/ropa, mapa de lotes, grupos y más.</p>
+
+          <h4>Notificaciones (push) con sonido <span class="badge-new">Nuevo</span></h4>
+          <p>Tocá <strong>🔔 Activar avisos</strong> una vez en cada dispositivo para recibir notificaciones con sonido cuando te escriben, <strong>incluso con la app cerrada o la pantalla apagada</strong>. Al tocar la notificación en el celular, entrás <strong>directo a la sección Mensajes</strong>. El botón <strong>🧪 Probar</strong> te manda un aviso de prueba para verificar que llega. Los avisos de un grupo van solo a sus integrantes. <em>En iPhone hay que instalar la app en la pantalla de inicio para que funcione el push.</em></p>
+        </section>
+
+        <section id="mod-mapa">
+          <h3>6.12 Mapa de campos con rindes <span class="badge-new">Nuevo</span></h3>
+          <p><strong>Qué hace:</strong> muestra tus campos ubicados en un <strong>mapa</strong>. Cargás la ubicación de cada campo (coordenadas o un link de Google Maps) desde <strong>Campos</strong> y podés <strong>dibujar a mano el contorno</strong> de cada lote. Los lotes se pintan con <strong>colores según el rinde</strong> de la campaña, para ver de un vistazo qué anduvo mejor. Si un campo todavía no tiene ubicación, el mapa te lo avisa.</p>
+        </section>
+
+        <section id="mod-liqhacienda">
+          <h3>6.13 Liquidaciones de hacienda <span class="badge-new">Nuevo</span></h3>
+          <p><strong>Qué hace:</strong> registra la venta de hacienda a partir de la <strong>liquidación del frigorífico o consignatario</strong>. Podés <strong>importar el PDF</strong> (el sistema lee los renglones y detecta la categoría de cada animal) o cargarla a mano. Al confirmar, <strong>descuenta el stock real y el de SENASA</strong> y genera la <strong>cuenta a cobrar</strong> correspondiente.</p>
+        </section>
+
+        <section id="mod-historial">
+          <h3>6.14 Historial y comparador de campañas <span class="badge-new">Nuevo</span></h3>
+          <p><strong>Qué hace:</strong> reúne todas las campañas con sus resultados y te permite <strong>compararlas</strong> por rinde, costos y margen. Sirve para decidir qué lote y qué cultivo te conviene según cómo vinieron rindiendo.</p>
+        </section>
+
         <section id="flujos">
           <h2>7. Flujos de trabajo típicos</h2>
 
@@ -979,7 +1026,7 @@
           <p>Estándares bancarios: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups con retención, auditoría completa, OWASP Top 10. Firmamos NDA.</p>
 
           <h4>¿Puedo ver Hacienda en algún lado?</h4>
-          <p>En esta versión, los KPIs del Inicio muestran "Cabezas" como dato consolidado. La gestión completa de Hacienda (categorías, pesadas, sanidad) está prevista para una próxima versión. Si es crítico para tu operatoria, lo conversamos en el alcance de implementación.</p>
+          <p>Sí. AgroCore tiene un módulo de <strong>Hacienda por campo</strong>: definís las categorías de animales por especie (bovino, porcino, ovino, etc.) desde el catálogo, registrás los movimientos de hacienda y el sistema lleva el <strong>stock por campo</strong>, comparando el declarado (SENASA / RENSPA) con el real. Funciona incluso sin conexión y las cabezas se consolidan también en los KPIs del Inicio.</p>
         </section>
 
         <section id="soporte">
@@ -987,7 +1034,7 @@
           <p>Durante la prueba del demo y en el plan de mantenimiento:</p>
           <ul>
             <li><strong>WhatsApp:</strong> (te lo pasamos en la primera conversación)</li>
-            <li><strong>Email:</strong> consultas@agrocore.ar</li>
+            <li><strong>Email:</strong> sergiodbilbao@gmail.com</li>
             <li><strong>Web:</strong> <a href="https://agrocore.ar" class="text-agro-700 underline">https://agrocore.ar</a></li>
           </ul>
           <p><strong>Horario:</strong> lunes a viernes, 9:00 a 18:00 hs (Argentina). <strong>Respuesta:</strong> 24 hs hábiles para consultas, 4 hs para incidentes críticos.</p>
