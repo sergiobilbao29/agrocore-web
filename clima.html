@@ -102,7 +102,7 @@
     <!-- TEMPERATURA DEL DÍA -->
     <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
       <h2 class="text-2xl font-extrabold text-agro-900 mb-1">Temperatura del día</h2>
-      <p class="text-slate-500 text-sm mb-4">Próximas 48 horas: temperatura y probabilidad de lluvia.</p>
+      <p class="text-slate-500 text-sm mb-4">Últimas 6 h y próximas 18 h: temperatura y probabilidad de lluvia.</p>
       <canvas id="hora-chart" height="110"></canvas>
     </div>
 
@@ -183,10 +183,12 @@
             <div><div class="text-3xl">🌇</div><div class="text-xs text-slate-400 mt-1">Atardece</div><div class="font-bold text-agro-800">${hhmm(d.sunset[0])}</div></div>
           </div>
           <div class="flex items-center gap-3 border-t border-slate-100 pt-3"><div class="text-4xl">${le}</div><div><div class="text-xs text-slate-400">Fase lunar</div><div class="font-bold text-agro-800">${ln}</div></div></div>`;
-        // Temperatura próximas 48h (2 días), con marca de día
+        // Temperatura: 6 h hacia atrás + 18 h hacia adelante, con marca de día
         const now = Date.now();
-        let start = h.time.findIndex(t => new Date(t).getTime() >= now); if (start < 0) start = 0;
-        const idx = []; for (let i = start; i < start + 48 && i < h.time.length; i++) idx.push(i);
+        let ahora = h.time.findIndex(t => new Date(t).getTime() >= now); if (ahora < 0) ahora = 0;
+        const start = Math.max(0, ahora - 6);
+        const fin = Math.min(h.time.length, ahora + 18);
+        const idx = []; for (let i = start; i < fin; i++) idx.push(i);
         const labels = idx.map((i, k) => {
           const dt = new Date(h.time[i]);
           const hh = dt.toLocaleTimeString('es-AR', { hour:'2-digit' });
