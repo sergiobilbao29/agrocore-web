@@ -265,16 +265,15 @@
             </thead>
             <tbody>
               <tr><td><strong>(Inicio)</strong></td><td>Inicio — siempre arriba de todo, sin sección.</td></tr>
-              <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Estado de situación · Flujo de caja · Resumen multi-empresa</td></tr>
-              <tr><td><strong>💼 VENTAS</strong></td><td>Clientes · Facturación · Liquidaciones cereal · Cuentas corrientes</td></tr>
-              <tr><td><strong>🛒 COMPRAS</strong></td><td>Proveedores · Compras · Libro IVA</td></tr>
-              <tr><td><strong>🏛️ TESORERÍA</strong></td><td>Bancos · Control de efectivo · Cheques · Créditos · Arrendamientos</td></tr>
-              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Campañas · Insumos y labores · Reporte de margen · Mapa de campos <span class="badge-new">Nuevo</span> · Historial de campañas <span class="badge-new">Nuevo</span></td></tr>
-              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos · Cerealeras / Depósitos · Hacienda · Liquidaciones de hacienda <span class="badge-new">Nuevo</span></td></tr>
-              <tr><td><strong>🚚 LOGÍSTICA</strong></td><td>Viajes y fletes</td></tr>
+              <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Flujo de Fondos · Flujo de caja · Resumen multi-empresa · Agenda y recordatorios · Mensajes y asistente <span class="badge-new">Nuevo</span></td></tr>
+              <tr><td><strong>💼 VENTAS</strong></td><td>Clientes · Facturación · Liquidaciones cereal · Liquidaciones hacienda <span class="badge-new">Nuevo</span> · Cuentas a cobrar</td></tr>
+              <tr><td><strong>🛒 COMPRAS</strong></td><td>Proveedores · Compras · Cuentas a pagar · Libro IVA</td></tr>
+              <tr><td><strong>🏛️ TESORERÍA</strong></td><td>Movimientos diarios · Bancos · Control de efectivo · Cheques · Créditos bancarios · Arrendamientos · Cuentas Intercompany · Cotizaciones</td></tr>
+              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes <span class="badge-new">Nuevo</span> · Campañas · Historial de campañas <span class="badge-new">Nuevo</span> · Insumos y labores · Servicios a terceros · Reporte de margen</td></tr>
+              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos · Cerealeras / Depósitos · Hacienda</td></tr>
+              <tr><td><strong>🚚 LOGÍSTICA</strong></td><td>Viajes y fletes · Transportistas · Choferes · Camiones · Acoplados</td></tr>
               <tr><td><strong>👷 RRHH</strong></td><td>Empleados</td></tr>
-              <tr><td><strong>💬 COMUNICACIÓN</strong> <span class="badge-new">Nuevo</span></td><td>Mensajes y asistente · Grupos · Notificaciones</td></tr>
-              <tr><td><strong>🔐 ADMINISTRACIÓN</strong></td><td>Catálogos · Usuarios · Roles y permisos · Empresas · Configuración</td></tr>
+              <tr><td><strong>🔐 ADMINISTRACIÓN</strong></td><td>Catálogos · Categorías y Familias · Categorías de Gastos · Usuarios · Roles y permisos · Empresas · Configuración</td></tr>
             </tbody>
           </table>
           <p><strong>Secciones plegables y buscador:</strong> hacé clic en el nombre de una sección para plegarla / desplegarla (▾/▸). Arriba del menú hay un buscador — escribís "che" y filtra al instante a "Cheques", "via" lleva a "Viajes", etc. El estado de plegado se recuerda por usuario.</p>
@@ -685,6 +684,12 @@
 
           <h4>Movimientos diarios — todo el dinero del período en una vista <span class="badge-new">Nuevo</span></h4>
           <p>Reúne <strong>todos los movimientos de plata</strong> (banco, caja y cuentas) ordenados por fecha, con su <strong>categoría y familia</strong> (desde el árbol de Categorías de Gastos) y el método de pago —efectivo, cheque, transferencia, 💳 tarjeta— con filtros. Los egresos de acá impactan en el Dashboard (incluso los personales, porque salen de activos de la empresa), salvo los movimientos internos.</p>
+
+          <h4>Cotizaciones — dólar y granos, con histórico <span class="badge-new">Nuevo</span></h4>
+          <p>El sistema toma un <strong>snapshot diario del dólar</strong> (oficial, blue, MEP, CCL, cripto y tarjeta) y guarda el histórico; también podés cargar o corregir una cotización a mano. Las facturas y cuentas en <strong>US$</strong> usan la cotización del día y, al cobrar o pagar en pesos, el sistema calcula la <strong>diferencia de cambio</strong> automáticamente.</p>
+
+          <h4>Cuentas Intercompany — movimientos entre tus empresas <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando una de tus empresas le paga o le presta a otra del grupo, queda registrado como <strong>cuenta Intercompany</strong>: se ve la deuda de una y el crédito de la otra, sin inflar los totales consolidados del grupo.</p>
         </section>
 
         <section id="mod-logistica">
@@ -727,6 +732,9 @@
           <h4>Verificar CTGs en ARCA <span class="badge-new">Nuevo</span></h4>
           <p>Botón <strong>🔍 Verificar CTGs en ARCA</strong> en la cabecera. Abre un modal con todos los viajes en estado <strong>Cargado</strong> que tienen CTG cargado, y permite consultar el estado de cada uno (o todos juntos) contra los servidores de AFIP / ARCA en vivo. Cuando se consulta, el sistema completa solo el <strong>kg descargado</strong> que devuelve ARCA. Al confirmar con <strong>✓ Guardar</strong>, el viaje pasa a "Descargado".</p>
           <p>Para que la verificación funcione, primero hay que cargar el certificado y la clave privada de ARCA en <strong>Configuración → 🏛️ ARCA</strong> (ver más abajo en la sección Administración).</p>
+
+          <h4>Transportistas, choferes, camiones y acoplados <span class="badge-new">Nuevo</span></h4>
+          <p>Cada uno tiene su propio ABM dentro de Logística. Al guardar un viaje, si el <strong>transportista</strong>, el <strong>chofer</strong>, el <strong>camión (chasis)</strong> o el <strong>acoplado</strong> son nuevos, se dan de alta solos (con <strong>dedupe por CUIT/patente</strong>); el transportista además se crea como <strong>Proveedor</strong> para llevarle la cuenta corriente. Desde cada listado tenés un botón <strong>"Importar de viajes"</strong> para traer los que ya usaste. En el chofer podés guardar su chasis y acoplado habituales, y si es <strong>empleado</strong>, cobrar una <strong>comisión por viaje</strong>.</p>
 
           <h4>Empleados — nómina + planilla personal <span class="badge-new">Nuevo</span></h4>
           <p>El módulo de empleados tiene dos niveles. Arriba está la <strong>nómina</strong> — lista de todos los empleados con foto, puesto, sueldo base, fechas y estado. Cada empleado se da de alta con: nombre, apellido, DNI, CUIL, puesto, fecha de ingreso, sueldo base, teléfono, email, dirección, provincia y localidad, foto y observaciones.</p>
