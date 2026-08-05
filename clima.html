@@ -88,15 +88,15 @@
         <div><h2 class="text-2xl font-extrabold text-agro-900">Radar y nubes</h2><p class="text-slate-500 text-sm">Lluvia (radar) y nubosidad (satélite) en movimiento — últimas 2 horas + próxima media hora.</p></div>
         <div class="flex items-center gap-2 text-sm">
           <div class="inline-flex rounded-lg overflow-hidden border border-slate-200">
-            <button id="mode-lluvia" onclick="setRadarMode('radar')" class="px-3 py-1.5 text-sm font-semibold bg-agro-700 text-white">🌧️ Lluvia</button>
-            <button id="mode-nubes" onclick="setRadarMode('satellite')" class="px-3 py-1.5 text-sm font-semibold bg-white text-slate-600">☁️ Nubes</button>
+            <button id="mode-lluvia" onclick="setRadarMode('radar')" class="px-3 py-1.5 text-sm font-semibold bg-white text-slate-600">🌧️ Lluvia</button>
+            <button id="mode-nubes" onclick="setRadarMode('satellite')" class="px-3 py-1.5 text-sm font-semibold bg-agro-700 text-white">☁️ Nubes</button>
           </div>
           <button id="radar-play" onclick="toggleRadar()" class="w-10 h-10 rounded-full bg-agro-700 hover:bg-agro-800 text-white font-bold shadow">⏸</button>
           <span class="text-slate-500 font-mono" id="radar-time">—</span>
         </div>
       </div>
       <div id="radar-map" class="border border-slate-200 shadow-sm"></div>
-      <p class="text-[11px] text-slate-400 mt-2">Fuente: RainViewer. <b>Lluvia</b>: azul/verde = leve, amarillo/rojo = intensa. <b>Nubes</b>: satélite GOES-East (NASA) — muestra el cielo nublado aunque no llueva.</p>
+      <p class="text-[11px] text-slate-400 mt-2"><b>Nubes</b>: satélite GOES-East (NASA), cubre todo el país — es la vista más confiable acá. <b>Lluvia</b>: radar RainViewer (azul/verde = leve, amarillo/rojo = intensa); la red de radares tiene <b>cobertura parcial en Argentina</b>, así que puede no marcar lloviznas o zonas sin radar cercano. Para la probabilidad de lluvia puntual, mirá el gráfico "Temperatura del día".</p>
     </div>
 
     <!-- TEMPERATURA DEL DÍA -->
@@ -221,7 +221,7 @@
 
     // ---------- RADAR (lluvia) + NUBES (satelite) — Leaflet + RainViewer ----------
     let radarMap=null, radarLayers=[], radarFrames=[], radarIdx=0, radarTimer=null, radarHost='';
-    let radarData={ radar:[], satellite:[] }, radarMode='radar';
+    let radarData={ radar:[], satellite:[] }, radarPastLen=0, radarMode='satellite';
     function initRadar(lat, lon) {
       if (!radarMap) {
         radarMap = L.map('radar-map', { zoomControl:true, attributionControl:false }).setView([lat, lon], 7);
@@ -234,40 +234,42 @@
         const j = await (await fetch('https://api.rainviewer.com/public/weather-maps.json')).json();
         radarHost = j.host;
         radarData.radar     = (j.radar     && (j.radar.past||[]).concat(j.radar.nowcast||[])) || [];
+        radarPastLen        = (j.radar && (j.radar.past||[]).length) || 0;
         const _sat = j.satellite;
         radarData.satellite = Array.isArray(_sat) ? _sat
           : (_sat && Array.isArray(_sat.infrared)) ? _sat.infrared
           : (_sat && Array.isArray(_sat.past)) ? _sat.past : [];
-        buildRadarLayers();
-      } catch (e) { const t = document.getElementById('radar-time'); if (t) t.textContent = 'No disponible'; }
+      } catch (e) {}
+      buildRadarLayers();
     }
+    // Devuelve el índice del último cuadro que SÍ tiene imagen (para no arrancar en un hueco).
+    function _lastGoodIdx() { for (let i=radarFrames.length-1; i>=0; i--) { if (!radarFrames[i] || !radarFrames[i].bad) return i; } return radarFrames.length-1; }
     function buildRadarLayers() {
       radarLayers.forEach(l => radarMap.removeLayer(l)); radarLayers = [];
       const _t0 = document.getElementById('radar-time');
       // NUBES: satelite GOES-East (NASA GIBS), ANIMADO (cuadros cada 10 min), sin API key.
       if (radarMode === 'satellite') {
         pauseRadar();
-        const base = new Date(Date.now() - 35*60*1000); // rezago de publicacion del GOES
+        const base = new Date(Date.now() - 45*60*1000); // rezago de publicacion del GOES (más margen)
         base.setUTCSeconds(0,0); base.setUTCMinutes(Math.floor(base.getUTCMinutes()/10)*10);
         radarFrames = [];
-        for (let k=7; k>=0; k--) { const d = new Date(base.getTime() - k*10*60*1000); radarFrames.push({ time: d.getTime()/1000, iso: d.toISOString().replace(/\.\d+Z$/,'Z') }); }
-        let _err=0;
+        for (let k=9; k>=0; k--) { const d = new Date(base.getTime() - k*10*60*1000); radarFrames.push({ time: d.getTime()/1000, iso: d.toISOString().replace(/\.\d+Z$/,'Z'), bad:false }); }
         radarFrames.forEach(f => {
           const url = `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_GeoColor/default/${f.iso}/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png`;
           const layer = L.tileLayer(url, { opacity:0, zIndex:5, maxNativeZoom:7, minZoom:3 });
-          layer.on('tileerror', () => { _err++; if (_err===8 && _t0) _t0.textContent = '☁️ nubes no disponibles'; });
+          let _te=0; layer.on('tileerror', () => { _te++; if (_te>=2) f.bad = true; }); // sin imagen ese horario
           layer.addTo(radarMap); radarLayers.push(layer);
         });
-        radarIdx = radarLayers.length - 1;
-        showRadarFrame(radarIdx);
-        pauseRadar(); playRadar();
+        if (_t0) _t0.textContent = 'cargando…';
+        // Esperamos a que carguen para saber qué cuadros tienen imagen y arrancamos en el último válido.
+        setTimeout(() => { radarIdx = _lastGoodIdx(); showRadarFrame(radarIdx); pauseRadar(); playRadar(); }, 1600);
         return;
       }
-      // LLUVIA: radar RainViewer (animado)
-      radarFrames = radarData[radarMode] || [];
-      if (!radarFrames.length) { pauseRadar(); if (_t0) _t0.textContent = 'sin datos'; return; }
+      // LLUVIA: radar RainViewer (animado). OJO: la cobertura de radar en Argentina es parcial.
+      radarFrames = (radarData[radarMode] || []).map(f => ({ ...f, bad:false }));
+      if (!radarFrames.length) { pauseRadar(); if (_t0) _t0.textContent = 'sin datos de radar'; return; }
       radarFrames.forEach(f => { const layer = L.tileLayer(`${radarHost}${f.path}/256/{z}/{x}/{y}/4/1_1.png`, { opacity:0, zIndex:5 }); layer.addTo(radarMap); radarLayers.push(layer); });
-      radarIdx = Math.max(0, radarLayers.length - 1);
+      radarIdx = Math.max(0, radarPastLen - 1); // arranca en el último cuadro OBSERVADO (no el pronóstico)
       showRadarFrame(radarIdx);
       pauseRadar(); playRadar();
     }
@@ -285,7 +287,7 @@
       const f = radarFrames[i]; const t = document.getElementById('radar-time');
       if (f && t) t.textContent = new Date(f.time * 1000).toLocaleTimeString('es-AR', { hour:'2-digit', minute:'2-digit' }) + (radarMode==='satellite' ? ' · GOES' : '');
     }
-    function playRadar() { if (radarTimer || !radarLayers.length) return; radarTimer = setInterval(() => { radarIdx = (radarIdx + 1) % radarLayers.length; showRadarFrame(radarIdx); }, 700); const b = document.getElementById('radar-play'); if (b) b.textContent = '⏸'; }
+    function playRadar() { if (radarTimer || !radarLayers.length) return; radarTimer = setInterval(() => { const n = radarLayers.length; let c = 0; do { radarIdx = (radarIdx + 1) % n; c++; } while (radarFrames[radarIdx] && radarFrames[radarIdx].bad && c <= n); showRadarFrame(radarIdx); }, 700); const b = document.getElementById('radar-play'); if (b) b.textContent = '⏸'; }
     function pauseRadar() { clearInterval(radarTimer); radarTimer = null; const b = document.getElementById('radar-play'); if (b) b.textContent = '▶'; }
     function toggleRadar() { radarTimer ? pauseRadar() : playRadar(); }
 
