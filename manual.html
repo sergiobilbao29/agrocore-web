@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manual de Usuario — AgroCore Argentina</title>
-  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre las 7 secciones: producción, stock (con Hacienda por campo), contactos, finanzas (cheques, cuentas corrientes con manuales aparte, control de efectivo multi-caja), logística y RRHH (planilla y liquidación de sueldo por empleado, viajes con CTG y estados, verificación contra ARCA / WSCTG), administración (con configuración por empresa de contactos y conexión ARCA), más el resumen multi-empresa.">
+  <meta name="description" content="Manual de usuario completo del sistema de gestión integral AgroCore. Cubre las 7 secciones: producción, stock (con Animales por campo), contactos, finanzas (cheques, cuentas corrientes con manuales aparte, control de efectivo multi-caja), logística y RRHH (planilla y liquidación de sueldo por empleado, viajes con CTG y estados, verificación contra ARCA / WSCTG), administración (con configuración por empresa de contactos y conexión ARCA), más el resumen multi-empresa.">
   <meta name="robots" content="index,follow">
 
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
@@ -120,8 +120,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="inline-block px-3 py-1 bg-gold-500 text-agro-900 text-xs font-bold uppercase rounded-full mb-3">Documentación oficial</span>
       <h1 class="text-3xl md:text-5xl font-extrabold mb-3">Manual de Usuario</h1>
-      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Todos los módulos integrados, 30+ vistas, modo offline, mensajería y asistente, mapa de lotes con rindes, planilla y liquidación por empleado, hacienda por campo y liquidaciones de hacienda, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
-      <p class="text-xs text-agro-200/70 mt-4">Versión 2.1 · Agosto 2026 · Sistema AgroCore v2.34 — incluye mensajería, grupos y asistente con manual (que además saluda y guía), notificaciones push, mapa de lotes con rindes, liquidaciones de hacienda e historial de campañas.</p>
+      <p class="text-agro-100 max-w-2xl mx-auto">Guía completa de uso del sistema integral AgroCore Argentina. Todos los módulos integrados, 30+ vistas, modo offline, mensajería y asistente, mapa de lotes con rindes, planilla y liquidación por empleado, animales por campo y liquidaciones de animales, viajes con CTG + verificación contra ARCA (WSCTG), facturación electrónica (WSFE) con toggle homologación / producción, WhatsApp directo al asesor y la logística, flujos típicos y respuestas a las preguntas más frecuentes.</p>
+      <p class="text-xs text-agro-200/70 mt-4">Versión 2.1 · Agosto 2026 · Sistema AgroCore v2.34 — incluye mensajería, grupos y asistente con manual (que además saluda y guía), notificaciones push, mapa de lotes con rindes, liquidaciones de animales e historial de campañas.</p>
     </div>
   </section>
 
@@ -152,7 +152,7 @@
             <a href="#mod-agenda" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.10 Agenda y recordatorios</a>
             <a href="#mod-mensajes" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.11 Mensajes, grupos y asistente</a>
             <a href="#mod-mapa" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.12 Mapa de campos con rindes</a>
-            <a href="#mod-liqhacienda" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.13 Liquidaciones de hacienda</a>
+            <a href="#mod-liqhacienda" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.13 Liquidaciones de animales</a>
             <a href="#mod-historial" class="toc-link block py-1 px-2 ml-3 border-l-2 border-transparent text-slate-500 text-xs">6.14 Historial y comparador de campañas</a>
             <a href="#flujos" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">7. Flujos típicos</a>
             <a href="#faq" class="toc-link block py-1.5 px-2 border-l-2 border-transparent text-slate-600">8. Preguntas frecuentes</a>
@@ -170,7 +170,7 @@
           <p>El sistema te permite gestionar:</p>
           <ul>
             <li><strong>Producción:</strong> campos, lotes, campañas, insumos y labores aplicadas — incluso labores avanzadas con empleados que cobran por porcentaje de la ganancia.</li>
-            <li><strong>Stock:</strong> granos y productos con trazabilidad, reporte de margen, hacienda por campo (declarado SENASA vs real), <strong>cerealeras y depósitos</strong> con liquidaciones de cereal.</li>
+            <li><strong>Stock:</strong> granos y productos con trazabilidad, reporte de margen, animales por campo (declarado SENASA vs real), <strong>cerealeras y depósitos</strong> con liquidaciones de cereal.</li>
             <li><strong>Contactos:</strong> clientes y proveedores, con cuentas corrientes integradas.</li>
             <li><strong>Finanzas:</strong> flujo de caja, facturación electrónica ARCA (con toggle Homo/Prod), compras, libro IVA, cheques, cuentas corrientes, arrendamientos, control de efectivo, <strong>créditos bancarios</strong> con plan de cuotas y <strong>Estado de situación</strong> proyectado.</li>
             <li><strong>Logística y RRHH:</strong> viajes con CTG y destino del cereal, empleados propios o externos con planilla y liquidación de sueldo.</li>
@@ -267,11 +267,11 @@
             <tbody>
               <tr><td><strong>(Inicio)</strong></td><td>Inicio — siempre arriba de todo, sin sección.</td></tr>
               <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Flujo de Fondos · Flujo de caja · Resumen multi-empresa · Agenda y recordatorios · Mensajes y asistente <span class="badge-new">Nuevo</span></td></tr>
-              <tr><td><strong>💼 VENTAS</strong></td><td>Clientes · Facturación · Liquidaciones cereal · Liquidaciones hacienda <span class="badge-new">Nuevo</span> · Cuentas a cobrar</td></tr>
+              <tr><td><strong>💼 VENTAS</strong></td><td>Clientes · Facturación · Liquidaciones cereal · Liquidaciones animales <span class="badge-new">Nuevo</span> · Cuentas a cobrar</td></tr>
               <tr><td><strong>🛒 COMPRAS</strong></td><td>Proveedores · Compras · Cuentas a pagar · Libro IVA</td></tr>
               <tr><td><strong>🏛️ TESORERÍA</strong></td><td>Movimientos diarios · Bancos · Control de efectivo · Cheques · Créditos bancarios · Arrendamientos · Cuentas Intercompany · Cotizaciones</td></tr>
               <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes <span class="badge-new">Nuevo</span> · Campañas · Historial de campañas <span class="badge-new">Nuevo</span> · Insumos y labores · Servicios a terceros · Reporte de margen</td></tr>
-              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos · Cerealeras / Depósitos · Hacienda</td></tr>
+              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos · Cerealeras / Depósitos · Animales</td></tr>
               <tr><td><strong>🚚 LOGÍSTICA</strong></td><td>Viajes y fletes · Transportistas · Choferes · Camiones · Acoplados</td></tr>
               <tr><td><strong>👷 RRHH</strong></td><td>Empleados</td></tr>
               <tr><td><strong>🔐 ADMINISTRACIÓN</strong></td><td>Catálogos · Categorías y Familias · Categorías de Gastos · Usuarios · Roles y permisos · Empresas · Configuración</td></tr>
@@ -500,7 +500,7 @@
           <p><strong>Reubicar en lote:</strong> cambiás la categoría / familia de varios artículos a la vez, útil al reorganizar el catálogo.</p>
           <p><strong>Catálogo con árbol:</strong> el stock y los buscadores muestran <strong>solo artículos del catálogo</strong>, ordenados por el árbol <strong>Categoría → Familia → Producto</strong>, con filtros por categoría y familia.</p>
 
-          <h4>Hacienda — stock por campo, declarado vs real <span class="badge-new">Nuevo</span></h4>
+          <h4>Animales — stock por campo, declarado vs real <span class="badge-new">Nuevo</span></h4>
           <p>Módulo dedicado al manejo del ganado. La gran diferencia con el stock de productos es que cada categoría se rastrea <strong>por campo</strong> y se compara lo que está <strong>declarado en SENASA / ARCA</strong> con el <strong>stock real</strong> que hay en el campo.</p>
           <p><strong>Cómo se ve:</strong> por cada campo se muestra una tabla con sus categorías (Vacas, Vaquillonas, Terneros, Terneras, Novillos, Toros, Crías o las que cada empresa configure) y tres columnas clave:</p>
           <ul>
@@ -789,10 +789,10 @@
             <li><strong>Bancos:</strong> lista para usar al cargar cheques y cuentas corrientes.</li>
             <li><strong>Cajas:</strong> las cajas físicas que se usan en Control de Efectivo (Oficina, nombres de personas, sucursales).</li>
             <li><strong>Labores:</strong> tipos de labor (siembra, pulverización, cosecha, etc.) con <strong>precio sugerido</strong> ($/ha o total) <span class="badge-new">Nuevo</span>. Cuando cargás una "Labor avanzada" y elegís el tipo, el sistema precarga este precio y el tipo de cálculo — y los podés modificar en ese momento.</li>
-            <li><strong>Categorías de animales:</strong> por especie (bovino, porcino, ovino…) con kg / peso, para Hacienda.</li>
+            <li><strong>Categorías de animales:</strong> por especie (bovino, porcino, ovino…) con kg / peso, para Animales.</li>
             <li><strong>Cerealeras, tarjetas de crédito, ciclos y geografía</strong> (País → Provincia → Ciudad).</li>
           </ul>
-          <p><strong>Árbol de Categorías y Familias</strong> <span class="badge-new">Nuevo</span>: la estructura <strong>Categoría → Familia → Producto</strong> (Insumos, Hacienda, Cereales…) define cómo se agrupan y filtran productos, insumos y labores en todo el sistema; las pestañas de Catálogos se arman solas desde este árbol. Aparte, el <strong>árbol de Categorías de Gastos</strong> clasifica los movimientos de plata (categoría + familia).</p>
+          <p><strong>Árbol de Categorías y Familias</strong> <span class="badge-new">Nuevo</span>: la estructura <strong>Categoría → Familia → Producto</strong> (Insumos, Animales, Cereales…) define cómo se agrupan y filtran productos, insumos y labores en todo el sistema; las pestañas de Catálogos se arman solas desde este árbol. Aparte, el <strong>árbol de Categorías de Gastos</strong> clasifica los movimientos de plata (categoría + familia).</p>
           <p><strong>Copiar configuración entre empresas</strong> <span class="badge-new">Nuevo</span>: desde Configuración transferís a otra empresa los Catálogos, el árbol de Categorías y Familias y/o el de Categorías de Gastos (cada uno opcional, sin duplicar). Una empresa nueva queda lista en minutos.</p>
 
           <h4>Usuarios</h4>
@@ -852,7 +852,7 @@
           <ul>
             <li>Un Administrador no puede borrar la <em>única</em> empresa a la que tiene acceso (se quedaría sin nada para administrar).</li>
             <li>Si la empresa tiene datos cargados (clientes, facturas, movimientos, etc.), el borrado se rechaza por defecto y sugiere usar primero <strong>Limpiar empresa</strong> en Configuración → Sistema para vaciar movimientos.</li>
-            <li>Si igual se quiere borrar todo, hay opción de <em>forzar</em>: se borra la empresa con cascada total en una sola transacción atómica (clientes, facturas, cheques, ctas. corrientes, movimientos, bancos, campos, lotes, empleados, viajes, hacienda — todo). Esta operación es IRREVERSIBLE; recomendado hacer un Backup antes.</li>
+            <li>Si igual se quiere borrar todo, hay opción de <em>forzar</em>: se borra la empresa con cascada total en una sola transacción atómica (clientes, facturas, cheques, ctas. corrientes, movimientos, bancos, campos, lotes, empleados, viajes, animales — todo). Esta operación es IRREVERSIBLE; recomendado hacer un Backup antes.</li>
           </ul>
 
           <h4>Configuración <span class="badge-new">Nuevo</span></h4>
@@ -917,10 +917,10 @@
           <p>Con <strong>➕ Grupo</strong> creás una conversación con solo algunos integrantes (por ejemplo <em>Administración</em>, <em>Dueños</em> u <em>Operarios</em>): le ponés nombre y tildás quiénes participan. Con <strong>⚙️</strong> lo editás o lo eliminás (solo el creador o un administrador). Cada usuario ve <strong>únicamente los grupos donde está</strong>; los grupos ajenos ni siquiera aparecen (solo el Super Admin ve todos). Cada conversación tiene su propio contador de <strong>mensajes sin leer</strong>.</p>
 
           <h4>El asistente 🤖 — cargar hablando o escribiendo</h4>
-          <p>El asistente entiende <strong>lo que hiciste</strong> y lo carga por vos. Escribí o dictá con el micrófono 🎤 frases como <em>"nacieron 5 terneros en Montenegro"</em>, <em>"murió 1 vaca en El 29"</em>, <em>"compré 10 novillos"</em>, <em>"cosecha en el lote 1 de Campo Prueba"</em> o <em>"recordar vacunar el 15/8"</em>. Te muestra una propuesta para que la revises/corrijas y, al confirmar, registra el movimiento de hacienda, la labor en la campaña del lote o el recordatorio. Todo lo que carga el asistente <strong>deja registrado quién lo ordenó</strong> (en las observaciones del movimiento y en la confirmación).</p>
+          <p>El asistente entiende <strong>lo que hiciste</strong> y lo carga por vos. Escribí o dictá con el micrófono 🎤 frases como <em>"nacieron 5 terneros en Montenegro"</em>, <em>"murió 1 vaca en El 29"</em>, <em>"compré 10 novillos"</em>, <em>"cosecha en el lote 1 de Campo Prueba"</em> o <em>"recordar vacunar el 15/8"</em>. Te muestra una propuesta para que la revises/corrijas y, al confirmar, registra el movimiento de animales, la labor en la campaña del lote o el recordatorio. Todo lo que carga el asistente <strong>deja registrado quién lo ordenó</strong> (en las observaciones del movimiento y en la confirmación).</p>
 
           <h4>El asistente también te enseña a usar el sistema <span class="badge-new">Nuevo</span></h4>
-          <p>Le incorporamos el <strong>manual de usuario</strong>. Ahora podés <strong>preguntarle cómo se hace algo</strong> y te responde el paso a paso — por ejemplo <em>"¿cómo cargo un cheque de tercero?"</em>, <em>"¿cómo hago una compra?"</em>, <em>"¿cómo emito una factura?"</em>, <em>"¿cómo importo mis comprobantes?"</em>, <em>"¿cómo cargo una liquidación de hacienda?"</em>. Además de explicarte, te <strong>lleva directo a la pantalla</strong> correcta con un botón, y para lo que puede cargar solo (hacienda, labores, recordatorios) se <strong>ofrece a hacerlo por vos</strong> con un ejemplo listo para tocar. Cubre cheques, compras, ventas/ARCA, pagos y cobros, hacienda, insumos, labores, campañas, stock, arrendamientos, créditos, cotizaciones, viajes, empleados/ropa, mapa de lotes, grupos y más.</p>
+          <p>Le incorporamos el <strong>manual de usuario</strong>. Ahora podés <strong>preguntarle cómo se hace algo</strong> y te responde el paso a paso — por ejemplo <em>"¿cómo cargo un cheque de tercero?"</em>, <em>"¿cómo hago una compra?"</em>, <em>"¿cómo emito una factura?"</em>, <em>"¿cómo importo mis comprobantes?"</em>, <em>"¿cómo cargo una liquidación de animales?"</em>. Además de explicarte, te <strong>lleva directo a la pantalla</strong> correcta con un botón, y para lo que puede cargar solo (animales, labores, recordatorios) se <strong>ofrece a hacerlo por vos</strong> con un ejemplo listo para tocar. Cubre cheques, compras, ventas/ARCA, pagos y cobros, animales, insumos, labores, campañas, stock, arrendamientos, créditos, cotizaciones, viajes, empleados/ropa, mapa de lotes, grupos y más.</p>
 
           <h4>Notificaciones (push) con sonido <span class="badge-new">Nuevo</span></h4>
           <p>Tocá <strong>🔔 Activar avisos</strong> una vez en cada dispositivo para recibir notificaciones con sonido cuando te escriben, <strong>incluso con la app cerrada o la pantalla apagada</strong>. Al tocar la notificación en el celular, entrás <strong>directo a la sección Mensajes</strong>. El botón <strong>🧪 Probar</strong> te manda un aviso de prueba para verificar que llega. Los avisos de un grupo van solo a sus integrantes. <em>En iPhone hay que instalar la app en la pantalla de inicio para que funcione el push.</em></p>
@@ -932,8 +932,8 @@
         </section>
 
         <section id="mod-liqhacienda">
-          <h3>6.13 Liquidaciones de hacienda <span class="badge-new">Nuevo</span></h3>
-          <p><strong>Qué hace:</strong> registra la venta de hacienda a partir de la <strong>liquidación del frigorífico o consignatario</strong>. Podés <strong>importar el PDF</strong> (el sistema lee los renglones y detecta la categoría de cada animal) o cargarla a mano. Al confirmar, <strong>descuenta el stock real y el de SENASA</strong> y genera la <strong>cuenta a cobrar</strong> correspondiente.</p>
+          <h3>6.13 Liquidaciones de animales <span class="badge-new">Nuevo</span></h3>
+          <p><strong>Qué hace:</strong> registra la venta de animales a partir de la <strong>liquidación del frigorífico o consignatario</strong>. Podés <strong>importar el PDF</strong> (el sistema lee los renglones y detecta la categoría de cada animal) o cargarla a mano. Al confirmar, <strong>descuenta el stock real y el de SENASA</strong> y genera la <strong>cuenta a cobrar</strong> correspondiente.</p>
         </section>
 
         <section id="mod-historial">
@@ -959,7 +959,7 @@
             <li>Reconoce al cliente/proveedor y pide el método (efectivo con caja, transferencia o billetera). Baja el saldo de la cuenta corriente y mueve la plata real.</li>
           </ul>
 
-          <p><strong>3) Hacienda, labores y recordatorios</strong></p>
+          <p><strong>3) Animales, labores y recordatorios</strong></p>
           <ul>
             <li><em>"Nacieron 5 terneros en Montenegro"</em> · <em>"Compré 20 novillos de 300 kg a 2000 el kilo"</em></li>
             <li><em>"Cosecha en el lote 1 de Campo Prueba"</em> · <em>"Apliqué 120 litros de Glifosato en el lote 3"</em></li>
@@ -1082,8 +1082,8 @@
           <h4>¿Mis datos están seguros?</h4>
           <p>Estándares bancarios: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups con retención, auditoría completa, OWASP Top 10. Firmamos NDA.</p>
 
-          <h4>¿Puedo ver Hacienda en algún lado?</h4>
-          <p>Sí. AgroCore tiene un módulo de <strong>Hacienda por campo</strong>: definís las categorías de animales por especie (bovino, porcino, ovino, etc.) desde el catálogo, registrás los movimientos de hacienda y el sistema lleva el <strong>stock por campo</strong>, comparando el declarado (SENASA / RENSPA) con el real. Funciona incluso sin conexión y las cabezas se consolidan también en los KPIs del Inicio.</p>
+          <h4>¿Puedo ver Animales en algún lado?</h4>
+          <p>Sí. AgroCore tiene un módulo de <strong>Animales por campo</strong>: definís las categorías de animales por especie (bovino, porcino, ovino, etc.) desde el catálogo, registrás los movimientos de animales y el sistema lleva el <strong>stock por campo</strong>, comparando el declarado (SENASA / RENSPA) con el real. Funciona incluso sin conexión y las cabezas se consolidan también en los KPIs del Inicio.</p>
         </section>
 
         <section id="soporte">
