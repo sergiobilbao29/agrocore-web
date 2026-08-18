@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) - Google Ads AgroCore -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18358928255"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-18358928255');
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AgroCore Argentina — Sistema de Gestión Integral para el Campo</title>
-  <link rel="canonical" href="https://agrocore.ar/" />
   <meta name="description" content="AgroCore Argentina es el sistema de gestión integral diseñado para empresas rurales y agropecuarias del país. Multi-empresa, multi-usuario, en la nube, con cotizaciones BCR Rosario en vivo.">
   <meta name="keywords" content="sistema gestión rural, software agro, facturación ARCA, agro Argentina, gestión campo">
   <meta property="og:title" content="AgroCore Argentina — El corazón del negocio agrícola">
@@ -111,14 +101,6 @@
     /* Smooth fade-in on scroll */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Ticker de mercado (marquee que corre solo, se frena al pasar el mouse) */
-    .ticker-wrap { overflow: hidden; white-space: nowrap; }
-    .ticker-track { display: inline-flex; }
-    .ticker-anim { animation: tickerMove 50s linear infinite; }
-    #ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-seg { display: inline-flex; align-items: center; gap: 1rem; padding-left: 1.25rem; }
-    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   </style>
 </head>
 <body class="text-slate-800 antialiased">
@@ -141,12 +123,11 @@
         </a>
 
         <!-- Desktop links -->
-        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
-          <a href="mercado.html" class="nav-link">Mercado</a>
-          <a href="clima.html" class="nav-link">Clima</a>
-          <a href="herramientas.html" class="nav-link">Herramientas</a>
+        <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
           <a href="#features" class="nav-link">Funcionalidades</a>
+          <a href="#how" class="nav-link">Cómo funciona</a>
           <a href="#pricing" class="nav-link">Precio</a>
+          <a href="#faq" class="nav-link">Preguntas</a>
           <a href="#contacto" class="nav-link">Contacto</a>
         </div>
 
@@ -169,30 +150,18 @@
       <!-- Mobile menu -->
       <div id="mobileMenu" class="md:hidden border-t border-slate-200 mobile-hidden">
         <div class="px-2 py-3 space-y-1 text-sm font-medium">
-          <a href="mercado.html" class="block px-3 py-2 rounded hover:bg-slate-100">Mercado</a>
-          <a href="clima.html" class="block px-3 py-2 rounded hover:bg-slate-100">Clima</a>
-          <a href="herramientas.html" class="block px-3 py-2 rounded hover:bg-slate-100">Herramientas</a>
           <a href="#features" class="block px-3 py-2 rounded hover:bg-slate-100">Funcionalidades</a>
+          <a href="#how" class="block px-3 py-2 rounded hover:bg-slate-100">Cómo funciona</a>
           <a href="#pricing" class="block px-3 py-2 rounded hover:bg-slate-100">Precio</a>
+          <a href="#faq" class="block px-3 py-2 rounded hover:bg-slate-100">Preguntas</a>
           <a href="#contacto" class="block px-3 py-2 rounded hover:bg-slate-100">Contacto</a>
         </div>
       </div>
     </div>
-    <!-- Ticker de mercado (corre solo, se frena al pasar el mouse) -->
-    <a href="mercado.html" id="ticker" class="flex items-center bg-agro-900 hover:bg-agro-800 transition border-t border-agro-800 text-xs md:text-sm">
-      <span class="shrink-0 pl-4 pr-1 py-1.5 font-bold text-gold-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-agro-500 animate-pulse"></span>Mercado</span>
-      <div class="ticker-wrap flex-1 py-1.5">
-        <div class="ticker-track ticker-anim text-agro-50">
-          <span class="ticker-seg" id="ticker-items">Cargando cotizaciones…</span>
-          <span class="ticker-seg" id="ticker-items2" aria-hidden="true"></span>
-        </div>
-      </div>
-      <span class="shrink-0 px-3 py-1.5 text-gold-400 font-semibold hidden sm:inline border-l border-agro-800">Mercado →</span>
-    </a>
   </nav>
 
   <!-- ============== HERO ============== -->
-  <section id="hero" class="hero-bg pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
+  <section id="hero" class="hero-bg pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
     <div class="hero-pattern absolute inset-0 opacity-50"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -217,8 +186,7 @@
 
       <p class="text-base md:text-xl text-agro-100 max-w-2xl mx-auto mb-10 leading-relaxed">
         Facturación ARCA, stock, hacienda, finanzas y empleados — todo en una sola plataforma
-        multi-empresa, en la nube y con cotizaciones BCR en vivo. Con <strong>asistente inteligente</strong> que
-        carga por vos y te explica cómo hacer cada cosa. Sin instalaciones complicadas.
+        multi-empresa, en la nube y con cotizaciones BCR en vivo. Sin instalaciones complicadas.
       </p>
 
       <!-- CTAs -->
@@ -301,17 +269,12 @@
           <h3 class="font-bold text-agro-900 mb-2">Comercial y Financiero</h3>
           <ul class="text-sm text-slate-600 space-y-1.5">
             <li>• <strong>Facturación electrónica ARCA</strong> (A, B, C, E) y carga manual de facturas externas</li>
-            <li>• Compras con <strong>carga de factura por foto</strong> (la lee la IA) y Libro IVA (Excel y PDF)</li>
-            <li>• <strong>Libro IVA Digital de ARCA</strong>: genera los .txt oficiales para importar directo en el portal</li>
+            <li>• Compras, Libro IVA Ventas y Compras (Excel y PDF)</li>
             <li>• <strong>Bancos</strong>: cuentas, movimientos, transferencias internas y saldos en vivo</li>
-            <li>• <strong>Importá el resumen bancario en PDF</strong>: carga todos los movimientos solos, sin tipearlos</li>
+            <li>• <strong>Importá el resumen del banco</strong> (PDF, Excel, CSV o foto) con anti-duplicados, "deshacer" y ajuste de saldo</li>
             <li>• <strong>Cheques</strong> físicos y electrónicos vinculados al banco al acreditar / pagar</li>
             <li>• Cuentas Corrientes a cobrar, a pagar y manuales con vencimientos</li>
-            <li>• <strong>Órdenes de pago</strong> (PDF/WhatsApp), <strong>Arrendamientos</strong> y cuentas <strong>Intercompany</strong></li>
-            <li>• <strong>Multimoneda</strong> (US$ / Kg Novillo) con cotizaciones y diferencia de cambio</li>
             <li>• Control de Efectivo multi-caja, <strong>Créditos</strong> con plan de cuotas</li>
-            <li>• <strong>Balance Patrimonial</strong> (Activo = Pasivo + Patrimonio Neto) a una fecha</li>
-            <li>• <strong>Activos y maquinaria</strong>: bienes de uso + mantenimiento con alertas por km/fecha</li>
           </ul>
         </div>
 
@@ -320,15 +283,11 @@
           <h3 class="font-bold text-agro-900 mb-2">Producción y Hacienda</h3>
           <ul class="text-sm text-slate-600 space-y-1.5">
             <li>• Campos, lotes y campañas con costos y rinde por hectárea</li>
-            <li>• <strong>Mapa de lotes con rindes</strong> e <strong>historial/comparador</strong> de campañas</li>
             <li>• Insumos y labores con consumo automático del stock</li>
-            <li>• <strong>Labor avanzada</strong> y <strong>servicios a terceros</strong> facturables (% al empleado)</li>
-            <li>• <strong>Cerealeras y liquidaciones</strong> de cereal y de <strong>hacienda</strong> (importa el PDF)</li>
+            <li>• <strong>Labor avanzada</strong> con precio de referencia y % de cobro al empleado</li>
+            <li>• <strong>Cerealeras y liquidaciones</strong> de cereal con mermas y retenciones</li>
             <li>• Stock unificado y reporte de margen (compras vs ventas)</li>
-            <li>• <strong>Remitos internos</strong>: salida de insumo al campo y transferencias entre depósitos (imprimibles, con recepción)</li>
             <li>• <strong>Hacienda por campo</strong> (SENASA vs real) — funciona sin conexión</li>
-            <li>• <strong>Costo de hacienda</strong>: costo por kg de carne por lote (feedlot, campo, recría y cría)</li>
-            <li>• <strong>Campañas forrajeras multicorte</strong>: cortes que confeccionan rollos valuados</li>
           </ul>
         </div>
 
@@ -349,7 +308,6 @@
           <h3 class="font-bold text-agro-900 mb-2">RRHH y Empleados</h3>
           <ul class="text-sm text-slate-600 space-y-1.5">
             <li>• Ficha del empleado con foto, legajo y planilla personal</li>
-            <li>• <strong>Sueldo fijo o por día (jornal)</strong>: jornal × días del mes, se suma solo a la masa salarial</li>
             <li>• <strong>Propios o externos</strong> (contratistas, fasoneros) con cobro por % de labor</li>
             <li>• Planilla mensual con adelantos, horas, premios y descuentos</li>
             <li>• <strong>Liquidación de sueldo</strong> con descuento desde efectivo, cheque o transferencia</li>
@@ -365,6 +323,7 @@
             <li>• <strong>Estado de situación</strong>: lo que vas a cobrar y lo que tenés que pagar, ordenado por fecha</li>
             <li>• Flujo de caja proyectado a 30, 90, 180 y 365 días</li>
             <li>• Resumen consolidado multi-empresa</li>
+            <li>• <strong>Asistente virtual</strong>: cargá gastos, hacienda y labores por texto o voz — y te responde con <strong>voz natural</strong></li>
             <li>• KPIs en tiempo real y buscador global</li>
           </ul>
         </div>
@@ -419,18 +378,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ============== CONTADORES ============== -->
-  <section class="py-14 bg-agro-900 text-white relative overflow-hidden">
-    <div class="hero-pattern absolute inset-0 opacity-40"></div>
-    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative">
-      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400 counter" data-to="9">0</div><div class="text-agro-100 text-sm mt-1">Módulos integrados</div></div>
-      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400 counter" data-to="40" data-suffix="+">0</div><div class="text-agro-100 text-sm mt-1">Pantallas y reportes</div></div>
-      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400 counter" data-to="100" data-suffix="%">0</div><div class="text-agro-100 text-sm mt-1">En la nube</div></div>
-      <div><div class="text-4xl md:text-5xl font-extrabold text-gold-400">24/7</div><div class="text-agro-100 text-sm mt-1">Acceso desde el celu</div></div>
-    </div>
-  </section>
-
 
   <!-- ============== HOW IT WORKS ============== -->
   <section id="how" class="py-16 md:py-20 bg-white">
@@ -663,60 +610,6 @@
     </div>
   </section>
 
-  <!-- ============== NOVEDADES ============== -->
-  <section id="novedades" class="py-16 md:py-20 bg-agro-50 fade-in">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <span class="inline-block px-3 py-1 bg-agro-100 text-agro-700 text-xs font-bold uppercase rounded-full mb-3">Novedades</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-agro-900 mb-2">Mejoramos AgroCore todas las semanas</h2>
-        <p class="text-slate-500">Versión <span id="nov-version" class="font-bold text-agro-700">…</span> · algunas de las últimas mejoras publicadas.</p>
-      </div>
-      <!-- Destacado: Asistente inteligente -->
-      <div class="bg-gradient-to-br from-agro-700 to-agro-900 text-white rounded-2xl p-6 md:p-8 mb-6 shadow-xl">
-        <div class="flex items-start gap-4">
-          <div class="text-4xl md:text-5xl leading-none">🤖</div>
-          <div>
-            <span class="inline-block px-2 py-0.5 bg-gold-500 text-agro-900 text-[10px] font-extrabold uppercase rounded-full mb-2">Nuevo · Destacado</span>
-            <h3 class="text-xl md:text-2xl font-extrabold mb-1">Asistente inteligente, con el manual adentro</h3>
-            <p class="text-agro-100 text-sm md:text-base leading-relaxed">Preguntale <i>"¿cómo cargo un cheque de tercero?"</i> y te explica el paso a paso y te lleva directo a la pantalla. O contale qué hiciste —<i>"nacieron 5 terneros en Montenegro"</i>— y lo <strong>carga por vos</strong>, escribiendo o por voz 🎤. Además: <strong>chat del equipo, grupos y notificaciones al celular</strong> con sonido, aunque la app esté cerrada.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="nov-list" class="space-y-3">
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
-          <div><div class="font-semibold text-agro-900">Mensajería, grupos y avisos push</div><div class="text-sm text-slate-500">Chat interno del equipo, grupos privados y notificaciones al celular y la PC.</div></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
-          <div><div class="font-semibold text-agro-900">Mapa de lotes con rindes</div><div class="text-sm text-slate-500">Ubicá tus campos, dibujá los lotes y vé los colores de rinde de cada campaña.</div></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
-          <div><div class="font-semibold text-agro-900">Liquidaciones de hacienda e historial de campañas</div><div class="text-sm text-slate-500">Importá el PDF del frigorífico y compará campañas por rinde, costos y margen.</div></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0">Mejora</span>
-          <div><div class="font-semibold text-agro-900">Factura con formato ARCA en hoja A4 completa</div><div class="text-sm text-slate-500">Imprimí o generá el PDF por triplicado (Original/Duplicado/Triplicado), idéntico al comprobante oficial.</div></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
-          <div><div class="font-semibold text-agro-900">Comprobantes por email con PDF adjunto</div><div class="text-sm text-slate-500">Enviá órdenes de pago, recibos y facturas por mail o WhatsApp con un clic.</div></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
-          <div><div class="font-semibold text-agro-900">Compras y Facturación unificadas</div><div class="text-sm text-slate-500">Todos los movimientos ordenados por fecha con filtro por tipo, y recibos de cobro.</div></div>
-        </div>
-        <div class="bg-white rounded-xl border border-slate-200 p-4 flex gap-3 items-start">
-          <span class="text-xs font-bold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">Nuevo</span>
-          <div><div class="font-semibold text-agro-900">Logística de viajes con auto-alta y comisiones</div><div class="text-sm text-slate-500">Transportistas, choferes y cheques propios cargados desde el mismo viaje.</div></div>
-        </div>
-      </div>
-      <p class="text-center text-sm text-slate-500 mt-6">Cada cliente recibe las mejoras automáticamente. <a href="#contacto" class="text-agro-700 font-semibold hover:underline">Sumate →</a></p>
-    </div>
-  </section>
-
   <!-- ============== CONTACTO ============== -->
   <section id="contacto" class="py-16 md:py-20 bg-agro-900 hero-pattern">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -852,8 +745,6 @@
       const url = isMobile
         ? ('https://wa.me/' + d + (t ? '?text=' + t : ''))
         : ('https://web.whatsapp.com/send?phone=' + d + (t ? '&text=' + t : ''));
-      // Conversión Google Ads: clic de WhatsApp (cubre botones y el respaldo del formulario)
-      try { gtag('event', 'conversion', { 'send_to': 'AW-18358928255/alZICOCg9tscEP-GnLJE', 'value': 1.0, 'currency': 'ARS' }); } catch(e){}
       window.open(url, '_blank', 'noopener');
     }
     // Engancha todos los links con data-wa-text para usar el helper.
@@ -893,8 +784,7 @@
       };
 
       try {
-        const _api = (typeof AGRO_API !== 'undefined') ? AGRO_API : '';
-        const r = await fetch(_api + '/api/contact', {
+        const r = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
@@ -903,8 +793,6 @@
         if (r.ok && j.ok) {
           status.innerHTML = '<span class="text-agro-700 font-medium">✓ ¡Mensaje enviado! Te respondemos en menos de 24 hs.</span>';
           form.reset();
-          // Conversión Google Ads: formulario enviado
-          try { gtag('event', 'conversion', { 'send_to': 'AW-18358928255/n3pPCJbo9dscEP-GnLJE', 'value': 1.0, 'currency': 'ARS' }); } catch(e){}
           return false;
         }
         // Si el server-side no está configurado todavía o devolvió error, caemos a WhatsApp.
@@ -927,63 +815,6 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
-
-  <!-- ============== WIDGETS DINÁMICOS (Mercado / Clima / Calculadoras / Contadores / Novedades) ============== -->
-  <script>
-    // API pública de AgroCore (instancia demo, siempre activa). Cotizaciones + versión.
-    const AGRO_API = 'https://demo.agrocore.ar';
-    const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
-
-    let MKT = { cereales: {}, dolar: {} };
-    // ---------- TICKER DE MERCADO (barra superior) ----------
-    async function loadTicker() {
-      const el = document.getElementById('ticker-items'); if (!el) return;
-      try {
-        const r = await fetch(AGRO_API + '/api/cotizaciones', { cache: 'no-store' });
-        const j = await r.json();
-        MKT.cereales = (j.cereales && j.cereales.items) || {};
-        MKT.dolar = j.dolar || {};
-        const it = [];
-        const g = (k, l, e) => { const v = MKT.cereales[k]; if (v != null) it.push(`<span class="shrink-0">${e} <b class="text-white">${l}</b> $${fmtAr(v)}</span>`); };
-        g('soja','Soja','🌱'); g('maiz','Maíz','🌽'); g('trigo','Trigo','🌾'); g('sorgo','Sorgo','🌿'); g('girasol','Girasol','🌻');
-        const dof = MKT.dolar.oficial && MKT.dolar.oficial.venta; if (dof != null) it.push(`<span class="shrink-0">💵 <b class="text-white">Dólar</b> $${fmtAr(dof)}</span>`);
-        const dbl = MKT.dolar.blue && MKT.dolar.blue.venta; if (dbl != null) it.push(`<span class="shrink-0">💵 <b class="text-white">Blue</b> $${fmtAr(dbl)}</span>`);
-        const html = it.length ? it.join('<span class="text-agro-500 px-2">·</span>') : 'Cotizaciones no disponibles ahora.';
-        el.innerHTML = html;
-        const el2 = document.getElementById('ticker-items2'); if (el2) el2.innerHTML = html; // segunda mitad para el loop continuo
-      } catch (e) {
-        el.textContent = 'Cotizaciones no disponibles ahora.';
-      }
-    }
-
-    // ---------- CONTADORES ANIMADOS ----------
-    function animateCounter(el) {
-      const to = Number(el.dataset.to || 0), suf = el.dataset.suffix || '';
-      const dur = 1400, t0 = performance.now();
-      const step = (t) => {
-        const p = Math.min((t - t0) / dur, 1);
-        const val = Math.round(to * (1 - Math.pow(1 - p, 3)));
-        el.textContent = val.toLocaleString('es-AR') + suf;
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
-    const cntObs = new IntersectionObserver((ents) => {
-      ents.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); cntObs.unobserve(e.target); } });
-    }, { threshold: 0.4 });
-    document.querySelectorAll('.counter').forEach(el => cntObs.observe(el));
-
-    // ---------- NOVEDADES (versión en vivo) ----------
-    async function loadVersion() {
-      const el = document.getElementById('nov-version'); if (!el) return;
-      try { const r = await fetch(AGRO_API + '/api/system/version', { cache: 'no-store' }); const j = await r.json(); if (j.version) el.textContent = 'v' + j.version; }
-      catch (e) { el.textContent = ''; }
-    }
-
-    // Init
-    loadTicker(); loadVersion();
-    setInterval(loadTicker, 10 * 60 * 1000); // refresca el ticker cada 10 min si dejan la pestaña abierta
   </script>
 
 </body>
