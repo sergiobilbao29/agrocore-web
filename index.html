@@ -71,6 +71,14 @@
     }
     .nav-link:hover::after { width: 100%; }
 
+    /* Ticker de mercado (marquee que corre solo, se frena al pasar el mouse) */
+    .ticker-wrap { overflow: hidden; white-space: nowrap; }
+    .ticker-track { display: inline-flex; }
+    .ticker-anim { animation: tickerMove 50s linear infinite; }
+    #ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-seg { display: inline-flex; align-items: center; gap: 1rem; padding-left: 1.25rem; }
+    @keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
     /* Card hover */
     .feature-card { transition: transform .25s, box-shadow .25s, border-color .25s; }
     .feature-card:hover {
@@ -127,6 +135,9 @@
           <a href="#features" class="nav-link">Funcionalidades</a>
           <a href="#how" class="nav-link">Cómo funciona</a>
           <a href="#pricing" class="nav-link">Precio</a>
+          <a href="mercado.html" class="nav-link">Mercado</a>
+          <a href="clima.html" class="nav-link">Clima</a>
+          <a href="herramientas.html" class="nav-link">Herramientas</a>
           <a href="#faq" class="nav-link">Preguntas</a>
           <a href="#contacto" class="nav-link">Contacto</a>
         </div>
@@ -153,15 +164,29 @@
           <a href="#features" class="block px-3 py-2 rounded hover:bg-slate-100">Funcionalidades</a>
           <a href="#how" class="block px-3 py-2 rounded hover:bg-slate-100">Cómo funciona</a>
           <a href="#pricing" class="block px-3 py-2 rounded hover:bg-slate-100">Precio</a>
+          <a href="mercado.html" class="block px-3 py-2 rounded hover:bg-slate-100">Mercado</a>
+          <a href="clima.html" class="block px-3 py-2 rounded hover:bg-slate-100">Clima</a>
+          <a href="herramientas.html" class="block px-3 py-2 rounded hover:bg-slate-100">Herramientas</a>
           <a href="#faq" class="block px-3 py-2 rounded hover:bg-slate-100">Preguntas</a>
           <a href="#contacto" class="block px-3 py-2 rounded hover:bg-slate-100">Contacto</a>
         </div>
       </div>
     </div>
+    <!-- Ticker de mercado (corre solo, se frena al pasar el mouse). Cotizaciones en vivo. -->
+    <a href="mercado.html" id="ticker" class="flex items-center bg-agro-900 hover:bg-agro-800 transition border-t border-agro-800 text-xs md:text-sm">
+      <span class="shrink-0 pl-4 pr-1 py-1.5 font-bold text-gold-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-agro-500 animate-pulse"></span>Mercado</span>
+      <div class="ticker-wrap flex-1 py-1.5">
+        <div class="ticker-track ticker-anim text-agro-50">
+          <span class="ticker-seg" id="ticker-items">Cargando cotizaciones…</span>
+          <span class="ticker-seg" id="ticker-items2" aria-hidden="true"></span>
+        </div>
+      </div>
+      <span class="shrink-0 px-3 py-1.5 text-gold-400 font-semibold hidden sm:inline border-l border-agro-800">Ver mercado →</span>
+    </a>
   </nav>
 
   <!-- ============== HERO ============== -->
-  <section id="hero" class="hero-bg pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+  <section id="hero" class="hero-bg pt-28 pb-16 md:pt-36 md:pb-24 relative overflow-hidden">
     <div class="hero-pattern absolute inset-0 opacity-50"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -815,6 +840,31 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // ---------- TICKER DE MERCADO (barra superior con cotizaciones en vivo) ----------
+    const AGRO_API = 'https://demo.agrocore.ar'; // instancia demo publica: cotizaciones
+    const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
+    async function loadTicker() {
+      const el = document.getElementById('ticker-items'); if (!el) return;
+      try {
+        const r = await fetch(AGRO_API + '/api/cotizaciones', { cache: 'no-store' });
+        const j = await r.json();
+        const cer = (j.cereales && j.cereales.items) || {};
+        const dol = j.dolar || {};
+        const it = [];
+        const g = (k, l, e) => { const v = cer[k]; if (v != null) it.push(`<span class="shrink-0">${e} <b class="text-white">${l}</b> $${fmtAr(v)}</span>`); };
+        g('soja','Soja','🌱'); g('maiz','Maíz','🌽'); g('trigo','Trigo','🌾'); g('sorgo','Sorgo','🌿'); g('girasol','Girasol','🌻');
+        const dof = dol.oficial && dol.oficial.venta; if (dof != null) it.push(`<span class="shrink-0">💵 <b class="text-white">Dólar</b> $${fmtAr(dof)}</span>`);
+        const dbl = dol.blue && dol.blue.venta; if (dbl != null) it.push(`<span class="shrink-0">💵 <b class="text-white">Blue</b> $${fmtAr(dbl)}</span>`);
+        const html = it.length ? it.join('<span class="text-agro-500 px-2">·</span>') : 'Cotizaciones no disponibles ahora.';
+        el.innerHTML = html;
+        const el2 = document.getElementById('ticker-items2'); if (el2) el2.innerHTML = html;
+      } catch (e) {
+        el.textContent = 'Cotizaciones no disponibles ahora.';
+      }
+    }
+    loadTicker();
+    setInterval(loadTicker, 10 * 60 * 1000); // refresca cada 10 min
   </script>
 
 </body>
