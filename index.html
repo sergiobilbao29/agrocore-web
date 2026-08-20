@@ -131,7 +131,7 @@
         </a>
 
         <!-- Desktop links -->
-        <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+        <div class="hidden lg:flex items-center gap-4 xl:gap-5 text-[13px] font-medium text-slate-700 whitespace-nowrap">
           <a href="#features" class="nav-link">Funcionalidades</a>
           <a href="#how" class="nav-link">Cómo funciona</a>
           <a href="#pricing" class="nav-link">Precio</a>
@@ -152,14 +152,14 @@
             <span>Solicitar demo</span>
             <span>→</span>
           </a>
-          <button id="menuBtn" class="md:hidden p-2 text-slate-700">
+          <button id="menuBtn" class="lg:hidden p-2 text-slate-700">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
         </div>
       </div>
 
       <!-- Mobile menu -->
-      <div id="mobileMenu" class="md:hidden border-t border-slate-200 mobile-hidden">
+      <div id="mobileMenu" class="lg:hidden border-t border-slate-200 mobile-hidden">
         <div class="px-2 py-3 space-y-1 text-sm font-medium">
           <a href="#features" class="block px-3 py-2 rounded hover:bg-slate-100">Funcionalidades</a>
           <a href="#how" class="block px-3 py-2 rounded hover:bg-slate-100">Cómo funciona</a>
@@ -432,6 +432,42 @@
           <div class="w-14 h-14 mx-auto bg-agro-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-3">4</div>
           <h3 class="font-bold text-agro-900 mb-1">Operás</h3>
           <p class="text-sm text-slate-600">Día 1 con todo cargado y listo. Garantía de 30 días post-implementación incluida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ASISTENTE / BOT ============== -->
+  <section id="asistente" class="py-16 md:py-20 bg-agro-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-gold-400 mb-4">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> Asistente con IA
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4">Un asistente que entiende tu campo — <span class="text-gold-400">por texto o por voz</span></h2>
+          <p class="text-agro-100 text-base md:text-lg leading-relaxed mb-6">
+            Cargá un gasto, una labor o un movimiento de hacienda hablándole normal, y te responde con <strong>voz natural</strong>. Tiene el <strong>manual adentro</strong>, así que también te explica cómo hacer cualquier cosa dentro del sistema.
+          </p>
+          <ul class="space-y-2 text-agro-50 text-sm md:text-base mb-8">
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> "Cargá 200 litros de gasoil a $900" y lo registra por vos</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Consultá saldos, cotizaciones y vencimientos al instante</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Entiende varias empresas del grupo en un solo hilo</li>
+            <li class="flex gap-2"><span class="text-gold-400">✓</span> Responde hablado, ideal para usarlo en el campo</li>
+          </ul>
+          <a href="https://wa.me/5493582408884?text=Hola!%20Quiero%20ver%20el%20asistente%20de%20AgroCore." data-wa-text="Hola! Quiero ver el asistente de AgroCore." target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 px-6 py-3 bg-gold-500 hover:bg-gold-600 text-agro-900 font-bold rounded-lg transition">
+            <span>🤖</span><span>Ver el asistente en acción</span>
+          </a>
+        </div>
+        <div class="bg-white/5 border border-white/15 rounded-2xl p-5 backdrop-blur">
+          <div class="flex items-center gap-2 mb-4 text-xs text-agro-200"><span class="w-2.5 h-2.5 rounded-full bg-green-400"></span> Asistente AgroCore · en línea</div>
+          <div class="space-y-3 text-sm">
+            <div class="max-w-[80%] ml-auto bg-gold-500 text-agro-900 rounded-2xl rounded-br-sm px-4 py-2 font-medium">Cargá 3.000 kg de novillos que entraron al lote 4</div>
+            <div class="max-w-[85%] bg-white/10 rounded-2xl rounded-bl-sm px-4 py-2">Listo ✅ Registré el ingreso de <strong>3.000 kg</strong> de novillos al <strong>lote 4</strong>. ¿Querés que cargue el precio de compra también?</div>
+            <div class="max-w-[80%] ml-auto bg-gold-500 text-agro-900 rounded-2xl rounded-br-sm px-4 py-2 font-medium">¿A cuánto cerró la soja hoy?</div>
+            <div class="max-w-[85%] bg-white/10 rounded-2xl rounded-bl-sm px-4 py-2">🌱 Soja Rosario cerró a <strong>$510.000</strong> la tonelada. Te lo digo también por voz si querés.</div>
+          </div>
         </div>
       </div>
     </div>
