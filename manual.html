@@ -687,6 +687,15 @@
           <h4 id="mod-export-movs-banco">Exportar los movimientos de la cuenta a Excel <span class="badge-new">Nuevo</span></h4>
 <p>Dentro de cada cuenta (<strong>Bancos → abrí la cuenta</strong>) tenés el botón <strong>📊 Exportar Excel</strong>. Descarga los movimientos que estás viendo <strong>respetando el filtro de fechas</strong> (Desde/Hasta), en orden cronológico y listos para el contador o los dueños. El Excel trae las columnas <strong>fecha, tipo, concepto, contraparte, referencia, débito, crédito, saldo (corrido), origen (importado/manual) y cargado por</strong>, con el <strong>total de débitos y créditos</strong> al pie. El nombre del archivo incluye el banco, la cuenta y el período (ej: <em>Movimientos_Banco-Nacion_00012345_20260724_20260824.xlsx</em>). Si querés otro rango, cambiá las fechas del filtro y volvé a exportar.</p>
 
+          <h4 id="mod-kiosco">Kiosco / proveeduría del campo (descuento del sueldo) <span class="badge-new">Nuevo</span></h4>
+<p>Para el <strong>kiosquito del campo</strong> —donde el personal retira cigarrillos, galletitas, artículos de higiene, etc.— AgroCore trabaja con una <strong>lista de precios</strong> y se lo descuenta al empleado del sueldo, sin generar factura.</p>
+<ul>
+  <li><strong>Armá la lista de precios:</strong> en <strong>Catálogos</strong> creá la familia <strong>“Proveeduría”</strong> (o Kiosco) y cargá ahí los productos con su <strong>Precio de referencia</strong>. Podés incluir <strong>producción propia</strong> (un lechón, media res) para descontarla igual.</li>
+  <li><strong>Cargá el consumo:</strong> en <strong>Empleados → ficha del empleado → 🛒 Consumo kiosco</strong>, elegís los productos, la cantidad y el precio (se autocompleta y es editable). El total se <strong>descuenta del sueldo</strong> en la planilla del mes.</li>
+  <li><strong>Stock opcional:</strong> por defecto <strong>no toca stock</strong> (el kiosco suele ser solo lista de precios). Si tildás <strong>“Descontar del stock”</strong> elegís el depósito; al borrar el consumo se revierte solo.</li>
+  <li><strong>Compras afuera con ticket:</strong> si el empleado compró algo especial afuera y trajo el comprobante, lo cargás a mano como gasto (o como reintegro si puso la plata) desde <strong>+ Agregar movimiento</strong>.</li>
+</ul>
+
           <h4 id="mod-dolares">Compra y venta de dólares <span class="badge-new">Nuevo</span></h4>
 <p>En <strong>Tesorería → Bancos</strong>, el botón <strong>💱 Compra/venta de dólares</strong> registra la operación entre una cuenta en pesos y una en dólares al tipo de cambio: en la compra salen pesos y entran dólares; en la venta, al revés. Podés escribir el importe en <strong>pesos o en dólares</strong> y el sistema calcula el otro solo según la cotización, y recalcula si cambiás cualquier valor.</p>
 
