@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Herramientas del productor — Calculadoras del campo · AgroCore</title>
   <link rel="canonical" href="https://agrocore.ar/herramientas" />
-  <meta name="description" content="Calculadoras gratis para el campo: rinde de indiferencia y margen de campaña, densidad de siembra, dosis y mezcla de tanque, relación insumo/grano. Por AgroCore.">
+  <meta name="description" content="Calculadoras gratis para el campo: rinde de indiferencia y margen de campaña, estimación de rinde de soja y maíz, densidad de siembra, nitrógeno/urea, regulación de pulverizadora, dosis y mezcla de tanque, conversor de rinde. Por AgroCore.">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -46,6 +46,7 @@
         <a href="mercado.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Mercado</a>
         <a href="clima.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Clima</a>
         <a href="herramientas.html" class="hidden sm:inline text-agro-800 font-semibold">Herramientas</a>
+        <a href="recursos.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Recursos</a>
         <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 bg-agro-700 hover:bg-agro-800 text-white font-semibold rounded-lg shadow-sm transition">Solicitar demo →</a>
       </div>
     </div>
@@ -137,6 +138,97 @@
       </div>
     </section>
 
+    <!-- ESTIMACIÓN DE RINDE -->
+    <section>
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🌾 Estimación de rinde en pie</h2>
+      <p class="text-slate-500 text-sm mb-4">Contá plantas y granos a campo y estimá el rinde antes de cosechar.</p>
+      <div class="grid md:grid-cols-2 gap-5">
+        <!-- Rinde soja -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+          <h3 class="font-bold text-agro-900 mb-1">🫘 Soja</h3>
+          <p class="text-xs text-slate-500 mb-3">Rinde = plantas × vainas × granos × peso de mil.</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div><label class="lbl">Plantas (pl/m²)</label><input id="rs-pl" type="number" value="30" class="inp" oninput="calcRindeSoja()"/></div>
+            <div><label class="lbl">Vainas por planta</label><input id="rs-vai" type="number" value="40" class="inp" oninput="calcRindeSoja()"/></div>
+            <div><label class="lbl">Granos por vaina</label><input id="rs-gra" type="number" step="0.1" value="2.3" class="inp" oninput="calcRindeSoja()"/></div>
+            <div><label class="lbl">Peso mil granos (g)</label><input id="rs-pmg" type="number" value="150" class="inp" oninput="calcRindeSoja()"/></div>
+          </div>
+          <div class="bg-agro-50 rounded-lg p-3 text-center mt-3">
+            <div class="text-2xl font-extrabold text-agro-700"><span id="rs-tn">—</span> tn/ha</div>
+            <div class="text-xs text-slate-500"><span id="rs-qq">—</span> qq/ha · <span id="rs-kg">—</span> kg/ha</div>
+          </div>
+        </div>
+        <!-- Rinde maíz -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+          <h3 class="font-bold text-agro-900 mb-1">🌽 Maíz</h3>
+          <p class="text-xs text-slate-500 mb-3">Rinde = plantas × hileras × granos × peso de mil.</p>
+          <div class="grid grid-cols-2 gap-2">
+            <div><label class="lbl">Plantas (pl/ha)</label><input id="rm-pl" type="number" value="75000" class="inp" oninput="calcRindeMaiz()"/></div>
+            <div><label class="lbl">Hileras por espiga</label><input id="rm-hil" type="number" value="16" class="inp" oninput="calcRindeMaiz()"/></div>
+            <div><label class="lbl">Granos por hilera</label><input id="rm-gra" type="number" value="35" class="inp" oninput="calcRindeMaiz()"/></div>
+            <div><label class="lbl">Peso mil granos (g)</label><input id="rm-pmg" type="number" value="300" class="inp" oninput="calcRindeMaiz()"/></div>
+          </div>
+          <div class="bg-agro-50 rounded-lg p-3 text-center mt-3">
+            <div class="text-2xl font-extrabold text-agro-700"><span id="rm-tn">—</span> tn/ha</div>
+            <div class="text-xs text-slate-500"><span id="rm-qq">—</span> qq/ha · <span id="rm-kg">—</span> kg/ha</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÁS HERRAMIENTAS -->
+    <section class="grid md:grid-cols-3 gap-5">
+      <!-- Nitrógeno / urea -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🧪 Nitrógeno: cuánta urea</h3>
+        <p class="text-xs text-slate-500 mb-3">Kilos de fertilizante para llegar a tu meta de N.</p>
+        <label class="lbl">Meta de N (kg/ha)</label><input id="nu-meta" type="number" value="120" class="inp mb-2" oninput="calcUrea()"/>
+        <label class="lbl">N disponible en suelo (kg/ha)</label><input id="nu-suelo" type="number" value="40" class="inp mb-2" oninput="calcUrea()"/>
+        <label class="lbl">N del arrancador/otra fuente (kg/ha)</label><input id="nu-arr" type="number" value="10" class="inp mb-2" oninput="calcUrea()"/>
+        <label class="lbl">% N del fertilizante <span class="text-slate-400">(urea 46)</span></label><input id="nu-pn" type="number" value="46" class="inp mb-3" oninput="calcUrea()"/>
+        <div class="bg-agro-50 rounded-lg p-3 text-center"><div class="text-2xl font-extrabold text-agro-700"><span id="nu-kg">—</span> kg/ha</div><div class="text-xs text-slate-500">faltan <span id="nu-falta">—</span> kg N/ha</div></div>
+      </div>
+      <!-- Pulverizadora -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🚿 Regulación de pulverizadora</h3>
+        <p class="text-xs text-slate-500 mb-3">Caudal por pastilla para tu caldo objetivo.</p>
+        <label class="lbl">Caldo objetivo (l/ha)</label><input id="pu-vol" type="number" value="100" class="inp mb-2" oninput="calcPulver()"/>
+        <label class="lbl">Velocidad (km/h)</label><input id="pu-vel" type="number" step="0.1" value="14" class="inp mb-2" oninput="calcPulver()"/>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="lbl">Dist. pastillas (cm)</label><input id="pu-dist" type="number" value="52" class="inp" oninput="calcPulver()"/></div>
+          <div><label class="lbl">Ancho botalón (m)</label><input id="pu-ancho" type="number" value="21" class="inp" oninput="calcPulver()"/></div>
+        </div>
+        <div class="bg-agro-50 rounded-lg p-3 text-center mt-3">
+          <div class="text-2xl font-extrabold text-agro-700"><span id="pu-past">—</span> l/min</div><div class="text-xs text-slate-500">por pastilla · <span id="pu-total">—</span> l/min total</div>
+        </div>
+      </div>
+      <!-- Conversor de rinde -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🧮 Conversor de rinde</h3>
+        <p class="text-xs text-slate-500 mb-3">qq ↔ tn ↔ kg y producción total del lote.</p>
+        <label class="lbl">Rinde (qq/ha)</label><input id="cv-qq" type="number" step="0.1" value="35" class="inp mb-2" oninput="calcConv()"/>
+        <label class="lbl">Superficie (ha)</label><input id="cv-ha" type="number" value="100" class="inp mb-3" oninput="calcConv()"/>
+        <div class="bg-agro-50 rounded-lg p-3 text-center">
+          <div class="text-2xl font-extrabold text-agro-700"><span id="cv-tn">—</span> tn/ha</div>
+          <div class="text-xs text-slate-500"><span id="cv-kg">—</span> kg/ha · producción total <b><span id="cv-prod">—</span> tn</b></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="text-center text-[11px] text-slate-400 -mt-3">Valores orientativos de criterio agronómico. Ajustá siempre a tu lote, análisis de suelo y al marbete del producto.</p>
+
+    <!-- Recurso educativo -->
+    <a href="recursos.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-agro-300 transition">
+      <div class="flex items-center gap-4">
+        <div class="text-3xl">🎓</div>
+        <div class="flex-1">
+          <div class="font-bold text-agro-900">Del Diploma al Campo — guía para estudiantes de agronomía</div>
+          <div class="text-sm text-slate-500">Cómo conseguir experiencia a campo y contactos durante la carrera. 8 capítulos con checklists. Gratis.</div>
+        </div>
+        <div class="text-agro-700 font-semibold text-sm whitespace-nowrap">Leer →</div>
+      </div>
+    </a>
+
     <p class="text-center text-sm text-slate-500">¿Querés estas cuentas hechas solas sobre tus campañas reales, lote por lote? <a href="index.html#contacto" class="text-agro-700 font-semibold hover:underline">Probá AgroCore →</a></p>
   </div>
 
@@ -196,11 +288,52 @@
       _set('ri-out', ins>0&&precio>0 ? (ins/(precio/1000)).toLocaleString('es-AR',{maximumFractionDigits:0})+' kg' : '—');
     }
 
+    // ---- Estimación de rinde: soja ----
+    function calcRindeSoja() {
+      const pl=_num('rs-pl'), vai=_num('rs-vai'), gra=_num('rs-gra'), pmg=_num('rs-pmg');
+      if (pl>0&&vai>0&&gra>0&&pmg>0) {
+        const kg = pl*vai*gra*pmg/100;   // granos/m² × PMG/100 = kg/ha
+        _set('rs-kg', fmtAr(kg)); _set('rs-tn', (kg/1000).toLocaleString('es-AR',{maximumFractionDigits:2})); _set('rs-qq', (kg/100).toLocaleString('es-AR',{maximumFractionDigits:1}));
+      } else { _set('rs-kg','—'); _set('rs-tn','—'); _set('rs-qq','—'); }
+    }
+    // ---- Estimación de rinde: maíz ----
+    function calcRindeMaiz() {
+      const pl=_num('rm-pl'), hil=_num('rm-hil'), gra=_num('rm-gra'), pmg=_num('rm-pmg');
+      if (pl>0&&hil>0&&gra>0&&pmg>0) {
+        const kg = pl*hil*gra*pmg/1e6;   // granos/ha × PMG(g)/1e6 = kg/ha
+        _set('rm-kg', fmtAr(kg)); _set('rm-tn', (kg/1000).toLocaleString('es-AR',{maximumFractionDigits:2})); _set('rm-qq', (kg/100).toLocaleString('es-AR',{maximumFractionDigits:1}));
+      } else { _set('rm-kg','—'); _set('rm-tn','—'); _set('rm-qq','—'); }
+    }
+    // ---- Nitrógeno: urea ----
+    function calcUrea() {
+      const meta=_num('nu-meta'), suelo=_num('nu-suelo'), arr=_num('nu-arr'), pn=_num('nu-pn');
+      const falta = Math.max(0, meta - suelo - arr);
+      _set('nu-falta', falta.toLocaleString('es-AR',{maximumFractionDigits:0}));
+      _set('nu-kg', pn>0 ? fmtAr(falta/(pn/100)) : '—');
+    }
+    // ---- Regulación de pulverizadora ----
+    function calcPulver() {
+      const vol=_num('pu-vol'), vel=_num('pu-vel'), dist=_num('pu-dist'), ancho=_num('pu-ancho');
+      if (vol>0&&vel>0&&dist>0) {
+        const past = (vol*vel*dist)/60000;                 // l/min por pastilla
+        _set('pu-past', past.toLocaleString('es-AR',{maximumFractionDigits:2}));
+        const n = ancho>0 ? (ancho*100/dist) : 0;
+        _set('pu-total', n>0 ? (past*n).toLocaleString('es-AR',{maximumFractionDigits:1}) : '—');
+      } else { _set('pu-past','—'); _set('pu-total','—'); }
+    }
+    // ---- Conversor de rinde ----
+    function calcConv() {
+      const qq=_num('cv-qq'), ha=_num('cv-ha');
+      if (qq>0) { _set('cv-tn', (qq/10).toLocaleString('es-AR',{maximumFractionDigits:2})); _set('cv-kg', fmtAr(qq*100)); _set('cv-prod', ha>0 ? (qq/10*ha).toLocaleString('es-AR',{maximumFractionDigits:1}) : '—'); }
+      else { _set('cv-tn','—'); _set('cv-kg','—'); _set('cv-prod','—'); }
+    }
+
     async function loadPrecios() {
       try { const j = await (await fetch(AGRO_API + '/api/cotizaciones', { cache:'no-store' })).json(); MKT.cereales = (j.cereales && j.cereales.items) || {}; ccCultivo(true); } catch (e) {}
     }
     // Init
     loadPrecios(); calcCampana(); calcDensidad(); calcDosis(); calcRelacion();
+    calcRindeSoja(); calcRindeMaiz(); calcUrea(); calcPulver(); calcConv();
   </script>
 </body>
 </html>
