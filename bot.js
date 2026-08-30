@@ -142,7 +142,7 @@
   function saludo(){
     if(msgs.childElementCount) return;
     add('¡Hola! Soy el asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Guía del Ing. Agrónomo</b>. ¿Qué querés saber?','b');
-    chips(['¿Qué es AgroCore?','Densidad de siembra','Dosis de glifosato','Costo del kilo de carne','Rinde de indiferencia']);
+    chips(['¿Qué es AgroCore?','¿Cuánto sale?','Densidad de siembra','Dosis de glifosato','Costo del kilo de carne','Rinde de indiferencia']);
   }
   function open(){ panel.style.display='flex'; saludo(); setTimeout(function(){input.focus();},80); }
   btn.onclick=function(){ panel.style.display==='flex'?panel.style.display='none':open(); };
