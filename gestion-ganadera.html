@@ -109,7 +109,6 @@
         <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">🐄</div><h3 class="font-bold text-agro-900 mb-1">Stock de hacienda</h3><p class="text-sm text-slate-600">Existencias por especie y categoría, con altas, bajas, cambios de categoría y kilos.</p></div>
         <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">📊</div><h3 class="font-bold text-agro-900 mb-1">Costo por kilo</h3><p class="text-sm text-slate-600">Armá rodeos de engorde o cría y conocé el costo real por kilo producido.</p></div>
         <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">📄</div><h3 class="font-bold text-agro-900 mb-1">Liquidaciones y faena</h3><p class="text-sm text-slate-600">Importá liquidaciones de hacienda y faena en PDF y llevá la cuenta corriente al día.</p></div>
-        <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">🐎</div><h3 class="font-bold text-agro-900 mb-1">Fichas de animales (haras / cabaña)</h3><p class="text-sm text-slate-600">Ficha individual con foto, genealogía y sanidad. Cada animal suma al stock por tipo; prestás y devolvés caballos, y diferenciás los de terceros.</p></div>
       </div>
     </div>
   </section>
@@ -158,5 +157,7 @@
     function waOpen(t){ const d=WA_NUMERO.replace(/\D/g,''); const m=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||''); const q=t?encodeURIComponent(t):''; const u=m?('https://wa.me/'+d+(q?'?text='+q:'')):('https://web.whatsapp.com/send?phone='+d+(q?'&text='+q:'')); window.open(u,'_blank','noopener'); }
     document.querySelectorAll('a[data-wa-text]').forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); ev(a.getAttribute('data-evento')||'contacto_whatsapp',{metodo:'whatsapp'}); waOpen(a.getAttribute('data-wa-text')); }); });
   </script>
+  <script src="bot-kb.js" defer></script>
+  <script src="bot.js" defer></script>
 </body>
 </html>

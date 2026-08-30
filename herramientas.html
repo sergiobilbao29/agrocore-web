@@ -15,7 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Herramientas del productor — Calculadoras del campo · AgroCore</title>
   <link rel="canonical" href="https://agrocore.ar/herramientas" />
-  <meta name="description" content="16 calculadoras gratis para el campo: rinde de indiferencia y margen de campaña, densidad de siembra (granos y forrajeras), engranajes de sembradora, curado de semilla, nitrógeno/urea, mezcla física de fertilizantes, corrección de nutrientes, encalado, yeso, pulverizadora, estimación de rinde de soja y maíz y conversor. Por AgroCore.">
+  <meta name="description" content="Calculadoras gratis para el campo: rinde de indiferencia y margen de campaña, densidad de siembra, dosis y mezcla de tanque, relación insumo/grano. Por AgroCore.">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,9 +31,6 @@
     .inp { width:100%; padding:.5rem .625rem; border-radius:.5rem; border:1px solid #cbd5e1; font-size:.875rem; }
     .inp:focus { outline:none; box-shadow:0 0 0 2px #22c55e; }
     .lbl { display:block; font-size:11px; font-weight:600; color:#475569; margin-bottom:.25rem; }
-    .cat { scroll-margin-top:5rem; }
-    .res { background:#f0fdf4; border-radius:.5rem; padding:.75rem; text-align:center; margin-top:.75rem; }
-    .res b, .res .big { font-size:1.5rem; font-weight:800; color:#15803d; }
   </style>
 </head>
 <body class="text-slate-800 antialiased bg-gradient-to-b from-agro-100 via-agro-50 to-agro-50">
@@ -49,7 +46,6 @@
         <a href="mercado.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Mercado</a>
         <a href="clima.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Clima</a>
         <a href="herramientas.html" class="hidden sm:inline text-agro-800 font-semibold">Herramientas</a>
-        <a href="recursos.html" class="hidden sm:inline text-slate-600 hover:text-agro-800">Recursos</a>
         <a href="index.html#contacto" class="inline-flex items-center gap-2 px-4 py-2 bg-agro-700 hover:bg-agro-800 text-white font-semibold rounded-lg shadow-sm transition">Solicitar demo →</a>
       </div>
     </div>
@@ -58,22 +54,15 @@
   <header class="hero-bg text-white relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
       <h1 class="text-3xl md:text-4xl font-extrabold">Herramientas del productor</h1>
-      <p class="text-agro-100 mt-1">16 calculadoras rápidas y gratis. El precio del grano se completa solo con la pizarra de hoy.</p>
-      <div class="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
-        <a href="#economia" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full">🎯 Economía</a>
-        <a href="#siembra" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full">🌱 Siembra</a>
-        <a href="#fertilizacion" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full">🧪 Fertilización y suelo</a>
-        <a href="#aplicacion" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full">🚿 Aplicación</a>
-        <a href="#rinde" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full">🌾 Rinde y cosecha</a>
-      </div>
+      <p class="text-agro-100 mt-1">Calculadoras rápidas y gratis. El precio del grano se completa solo con la pizarra de hoy.</p>
     </div>
   </header>
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 
-    <!-- ============ ECONOMÍA ============ -->
-    <section id="economia" class="cat">
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🎯 Economía de campaña</h2>
+    <!-- CALCULADORA DE CAMPAÑA -->
+    <section>
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🎯 Calculadora de campaña</h2>
       <p class="text-slate-500 text-sm mb-4">Cargá todos los costos y te decimos el <b>rinde de indiferencia</b> (para no perder) y el <b>margen esperado</b>.</p>
       <div class="grid lg:grid-cols-5 gap-5">
         <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm">
@@ -112,235 +101,41 @@
       </div>
     </section>
 
-    <!-- ============ SIEMBRA ============ -->
-    <section id="siembra" class="cat">
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🌱 Siembra e implantación</h2>
-      <p class="text-slate-500 text-sm mb-4">Densidad, regulación de sembradora y tratamiento de semilla.</p>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <!-- Densidad granos -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Densidad — granos</h3>
-          <p class="text-xs text-slate-500 mb-3">Kilos de semilla por hectárea.</p>
-          <label class="lbl">Plantas objetivo (pl/m²)</label><input id="ds-pl" type="number" value="30" class="inp mb-2" oninput="calcDensidad()"/>
-          <label class="lbl">Poder germinativo (%)</label><input id="ds-pg" type="number" value="90" class="inp mb-2" oninput="calcDensidad()"/>
-          <label class="lbl">Peso de mil semillas (g)</label><input id="ds-pms" type="number" value="180" class="inp mb-2" oninput="calcDensidad()"/>
-          <div class="res"><div class="big" id="ds-out">—</div><div class="text-xs text-slate-500">kg de semilla / ha</div></div>
+    <!-- OTRAS HERRAMIENTAS -->
+    <section class="grid md:grid-cols-3 gap-5">
+      <!-- Densidad de siembra -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🌱 Densidad de siembra</h3>
+        <p class="text-xs text-slate-500 mb-3">Kilos de semilla por hectárea.</p>
+        <label class="lbl">Plantas objetivo (pl/m²)</label><input id="ds-pl" type="number" value="30" class="inp mb-2" oninput="calcDensidad()"/>
+        <label class="lbl">Poder germinativo (%)</label><input id="ds-pg" type="number" value="90" class="inp mb-2" oninput="calcDensidad()"/>
+        <label class="lbl">Peso de mil semillas (g)</label><input id="ds-pms" type="number" value="180" class="inp mb-3" oninput="calcDensidad()"/>
+        <div class="bg-agro-50 rounded-lg p-3 text-center"><div class="text-2xl font-extrabold text-agro-700" id="ds-out">—</div><div class="text-xs text-slate-500">kg de semilla / ha</div></div>
+      </div>
+      <!-- Dosis y tanque -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">🛢️ Dosis y mezcla de tanque</h3>
+        <p class="text-xs text-slate-500 mb-3">Producto total y hectáreas por tanque.</p>
+        <label class="lbl">Superficie (ha)</label><input id="dt-ha" type="number" value="100" class="inp mb-2" oninput="calcDosis()"/>
+        <label class="lbl">Dosis del producto (l o kg /ha)</label><input id="dt-dosis" type="number" step="0.1" value="2.5" class="inp mb-2" oninput="calcDosis()"/>
+        <div class="grid grid-cols-2 gap-2">
+          <div><label class="lbl">Caldo (l/ha)</label><input id="dt-caldo" type="number" value="100" class="inp" oninput="calcDosis()"/></div>
+          <div><label class="lbl">Tanque (l)</label><input id="dt-tanque" type="number" value="3000" class="inp" oninput="calcDosis()"/></div>
         </div>
-        <!-- Siembra forrajeras -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Densidad — forrajeras</h3>
-          <p class="text-xs text-slate-500 mb-3">Semilla comercial según valor cultural.</p>
-          <label class="lbl">Dosis semilla pura viable (kg/ha)</label><input id="fo-spv" type="number" step="0.1" value="12" class="inp mb-2" oninput="calcForraj()"/>
-          <label class="lbl">Pureza (%)</label><input id="fo-pur" type="number" value="96" class="inp mb-2" oninput="calcForraj()"/>
-          <label class="lbl">Poder germinativo (%)</label><input id="fo-pg" type="number" value="85" class="inp mb-2" oninput="calcForraj()"/>
-          <label class="lbl">Superficie (ha)</label><input id="fo-ha" type="number" value="45" class="inp mb-2" oninput="calcForraj()"/>
-          <div class="res"><div class="big"><span id="fo-kg">—</span></div><div class="text-xs text-slate-500">kg comercial/ha · VC <span id="fo-vc">—</span>% · total <span id="fo-total">—</span> kg</div></div>
+        <div class="bg-agro-50 rounded-lg p-3 text-center mt-3">
+          <div class="text-2xl font-extrabold text-agro-700" id="dt-total">—</div><div class="text-xs text-slate-500">producto total (l/kg)</div>
+          <div class="text-sm font-bold text-agro-800 mt-2"><span id="dt-hatan">—</span> ha/tanque · <span id="dt-prodtan">—</span> por tanque</div>
         </div>
-        <!-- Engranajes -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Engranajes de sembradora</h3>
-          <p class="text-xs text-slate-500 mb-3">Piñón conducido para tu densidad.</p>
-          <label class="lbl">Semillas objetivo (sem/m)</label><input id="en-sem" type="number" step="0.1" value="18" class="inp mb-2" oninput="calcEngr()"/>
-          <label class="lbl">Orificios del disco</label><input id="en-orif" type="number" value="60" class="inp mb-2" oninput="calcEngr()"/>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Ø rueda (cm)</label><input id="en-diam" type="number" value="62" class="inp" oninput="calcEngr()"/></div>
-            <div><label class="lbl">Piñón conductor</label><input id="en-pinon" type="number" value="17" class="inp" oninput="calcEngr()"/></div>
-          </div>
-          <label class="lbl mt-2">Patinamiento (%)</label><input id="en-pat" type="number" value="5" class="inp mb-2" oninput="calcEngr()"/>
-          <div class="res"><div class="big"><span id="en-conducido">—</span></div><div class="text-xs text-slate-500">dientes piñón conducido · relación <span id="en-rel">—</span></div></div>
-        </div>
-        <!-- Curado -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Curado de semilla</h3>
-          <p class="text-xs text-slate-500 mb-3">Caldo total y por carga (cc/100 kg).</p>
-          <label class="lbl">Semilla a curar (kg)</label><input id="cu-kg" type="number" value="4200" class="inp mb-2" oninput="calcCurado()"/>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Fungicida</label><input id="cu-fung" type="number" value="250" class="inp" oninput="calcCurado()"/></div>
-            <div><label class="lbl">Insecticida</label><input id="cu-ins" type="number" value="180" class="inp" oninput="calcCurado()"/></div>
-            <div><label class="lbl">Inoculante</label><input id="cu-inoc" type="number" value="300" class="inp" oninput="calcCurado()"/></div>
-            <div><label class="lbl">Agua</label><input id="cu-agua" type="number" value="400" class="inp" oninput="calcCurado()"/></div>
-          </div>
-          <label class="lbl mt-2">Capacidad curadora (kg/carga)</label><input id="cu-cap" type="number" value="500" class="inp mb-2" oninput="calcCurado()"/>
-          <div class="res"><div class="big"><span id="cu-total">—</span> L</div><div class="text-xs text-slate-500">caldo total · <span id="cu-cargas">—</span> cargas</div></div>
-        </div>
+      </div>
+      <!-- Relación insumo / grano -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+        <h3 class="font-bold text-agro-900 mb-1">⚖️ Relación insumo / grano</h3>
+        <p class="text-xs text-slate-500 mb-3">Cuántos kilos de grano "cuesta" un insumo.</p>
+        <label class="lbl">Precio del insumo ($/unidad)</label><input id="ri-ins" type="number" value="15000" class="inp mb-2" oninput="calcRelacion()"/>
+        <label class="lbl">Precio del grano ($/tn)</label><input id="ri-precio" type="number" value="" class="inp mb-3" oninput="calcRelacion()"/>
+        <div class="bg-agro-50 rounded-lg p-3 text-center"><div class="text-2xl font-extrabold text-agro-700" id="ri-out">—</div><div class="text-xs text-slate-500">kg de grano por unidad</div></div>
       </div>
     </section>
-
-    <!-- ============ FERTILIZACIÓN Y SUELO ============ -->
-    <section id="fertilizacion" class="cat">
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🧪 Fertilización y suelo</h2>
-      <p class="text-slate-500 text-sm mb-4">Balance de nutrientes, mezclas físicas y enmiendas.</p>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Nitrógeno / urea -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Nitrógeno: cuánta urea</h3>
-          <p class="text-xs text-slate-500 mb-3">Kilos de fertilizante para tu meta de N.</p>
-          <label class="lbl">Meta de N (kg/ha)</label><input id="nu-meta" type="number" value="120" class="inp mb-2" oninput="calcUrea()"/>
-          <label class="lbl">N disponible en suelo (kg/ha)</label><input id="nu-suelo" type="number" value="40" class="inp mb-2" oninput="calcUrea()"/>
-          <label class="lbl">N del arrancador (kg/ha)</label><input id="nu-arr" type="number" value="10" class="inp mb-2" oninput="calcUrea()"/>
-          <label class="lbl">% N del fertilizante <span class="text-slate-400">(urea 46)</span></label><input id="nu-pn" type="number" value="46" class="inp mb-2" oninput="calcUrea()"/>
-          <div class="res"><div class="big"><span id="nu-kg">—</span> kg/ha</div><div class="text-xs text-slate-500">faltan <span id="nu-falta">—</span> kg N/ha</div></div>
-        </div>
-        <!-- Mezcla física -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Mezcla física (N-P-K)</h3>
-          <p class="text-xs text-slate-500 mb-3">MAP + Urea + Cloruro para tu objetivo.</p>
-          <div class="grid grid-cols-3 gap-2">
-            <div><label class="lbl">N (kg/ha)</label><input id="mf-n" type="number" value="160" class="inp" oninput="calcMezcla()"/></div>
-            <div><label class="lbl">P₂O₅</label><input id="mf-p" type="number" value="55" class="inp" oninput="calcMezcla()"/></div>
-            <div><label class="lbl">K₂O</label><input id="mf-k" type="number" value="30" class="inp" oninput="calcMezcla()"/></div>
-          </div>
-          <div class="grid grid-cols-4 gap-2 mt-2">
-            <div><label class="lbl">%N urea</label><input id="mf-nurea" type="number" value="46" class="inp" oninput="calcMezcla()"/></div>
-            <div><label class="lbl">%P MAP</label><input id="mf-pmap" type="number" value="52" class="inp" oninput="calcMezcla()"/></div>
-            <div><label class="lbl">%N MAP</label><input id="mf-nmap" type="number" value="11" class="inp" oninput="calcMezcla()"/></div>
-            <div><label class="lbl">%K clor.</label><input id="mf-kclo" type="number" value="60" class="inp" oninput="calcMezcla()"/></div>
-          </div>
-          <div class="res text-left text-sm">
-            <div>MAP <b id="mf-map">—</b> · Urea <b id="mf-urea">—</b> · Cloruro <b id="mf-cloruro">—</b> <span class="text-xs text-slate-500">kg/ha</span></div>
-            <div class="text-xs text-slate-500 mt-1">Mezcla total: <b id="mf-total">—</b> kg/ha</div>
-          </div>
-        </div>
-        <!-- Corrección de nutrientes -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Corrección según análisis</h3>
-          <p class="text-xs text-slate-500 mb-3">Kg/ha para llegar al umbral (P, K, S…).</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Análisis (ppm)</label><input id="co-analisis" type="number" step="0.1" value="9.5" class="inp" oninput="calcCorr()"/></div>
-            <div><label class="lbl">Umbral (ppm)</label><input id="co-umbral" type="number" value="18" class="inp" oninput="calcCorr()"/></div>
-            <div><label class="lbl">Profundidad (cm)</label><input id="co-prof" type="number" value="20" class="inp" oninput="calcCorr()"/></div>
-            <div><label class="lbl">Densidad (g/cm³)</label><input id="co-dens" type="number" step="0.01" value="1.25" class="inp" oninput="calcCorr()"/></div>
-          </div>
-          <label class="lbl mt-2">Eficiencia de la fuente (%)</label><input id="co-efic" type="number" value="40" class="inp mb-2" oninput="calcCorr()"/>
-          <div class="res"><div class="big"><span id="co-kg">—</span> kg/ha</div><div class="text-xs text-slate-500">brecha <span id="co-brecha">—</span> ppm</div></div>
-        </div>
-        <!-- Encalado -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Encalado</h3>
-          <p class="text-xs text-slate-500 mb-3">Calcáreo para subir la saturación de bases.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">CIC (cmolc/kg)</label><input id="ec-cic" type="number" step="0.1" value="15.2" class="inp" oninput="calcEncal()"/></div>
-            <div><label class="lbl">PRNT (%)</label><input id="ec-prnt" type="number" value="85" class="inp" oninput="calcEncal()"/></div>
-            <div><label class="lbl">Sat. actual V1 (%)</label><input id="ec-v1" type="number" value="52" class="inp" oninput="calcEncal()"/></div>
-            <div><label class="lbl">Sat. objetivo V2 (%)</label><input id="ec-v2" type="number" value="70" class="inp" oninput="calcEncal()"/></div>
-          </div>
-          <label class="lbl mt-2">Superficie (ha)</label><input id="ec-ha" type="number" value="84" class="inp mb-2" oninput="calcEncal()"/>
-          <div class="res"><div class="big"><span id="ec-tha">—</span> t/ha</div><div class="text-xs text-slate-500">total lote <span id="ec-total">—</span> t</div></div>
-        </div>
-        <!-- Yeso -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Yeso agrícola</h3>
-          <p class="text-xs text-slate-500 mb-3">Aporte de azufre y calcio.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">S a aportar (kg/ha)</label><input id="ye-s" type="number" value="22" class="inp" oninput="calcYeso()"/></div>
-            <div><label class="lbl">% S del yeso</label><input id="ye-conts" type="number" value="18" class="inp" oninput="calcYeso()"/></div>
-            <div><label class="lbl">% Ca del yeso</label><input id="ye-contca" type="number" value="23" class="inp" oninput="calcYeso()"/></div>
-            <div><label class="lbl">Superficie (ha)</label><input id="ye-ha" type="number" value="84" class="inp" oninput="calcYeso()"/></div>
-          </div>
-          <div class="res"><div class="big"><span id="ye-kg">—</span> kg/ha</div><div class="text-xs text-slate-500">aporta <span id="ye-ca">—</span> kg Ca/ha · total <span id="ye-total">—</span> kg</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ APLICACIÓN ============ -->
-    <section id="aplicacion" class="cat">
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🚿 Aplicación y pulverización</h2>
-      <p class="text-slate-500 text-sm mb-4">Preparación de tanque y regulación de la pulverizadora.</p>
-      <div class="grid md:grid-cols-2 gap-5">
-        <!-- Dosis y tanque -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">🛢️ Dosis y mezcla de tanque</h3>
-          <p class="text-xs text-slate-500 mb-3">Producto total y hectáreas por tanque.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Superficie (ha)</label><input id="dt-ha" type="number" value="100" class="inp" oninput="calcDosis()"/></div>
-            <div><label class="lbl">Dosis (l o kg /ha)</label><input id="dt-dosis" type="number" step="0.1" value="2.5" class="inp" oninput="calcDosis()"/></div>
-            <div><label class="lbl">Caldo (l/ha)</label><input id="dt-caldo" type="number" value="100" class="inp" oninput="calcDosis()"/></div>
-            <div><label class="lbl">Tanque (l)</label><input id="dt-tanque" type="number" value="3000" class="inp" oninput="calcDosis()"/></div>
-          </div>
-          <div class="res"><div class="big" id="dt-total">—</div><div class="text-xs text-slate-500">producto total (l/kg) · <span id="dt-hatan">—</span> ha/tanque · <span id="dt-prodtan">—</span> por tanque</div></div>
-        </div>
-        <!-- Pulverizadora -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">Regulación de pulverizadora</h3>
-          <p class="text-xs text-slate-500 mb-3">Caudal por pastilla para tu caldo objetivo.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Caldo objetivo (l/ha)</label><input id="pu-vol" type="number" value="100" class="inp" oninput="calcPulver()"/></div>
-            <div><label class="lbl">Velocidad (km/h)</label><input id="pu-vel" type="number" step="0.1" value="14" class="inp" oninput="calcPulver()"/></div>
-            <div><label class="lbl">Dist. pastillas (cm)</label><input id="pu-dist" type="number" value="52" class="inp" oninput="calcPulver()"/></div>
-            <div><label class="lbl">Ancho botalón (m)</label><input id="pu-ancho" type="number" value="21" class="inp" oninput="calcPulver()"/></div>
-          </div>
-          <div class="res"><div class="big"><span id="pu-past">—</span> l/min</div><div class="text-xs text-slate-500">por pastilla · <span id="pu-total">—</span> l/min total</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ RINDE Y COSECHA ============ -->
-    <section id="rinde" class="cat">
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🌾 Rinde y cosecha</h2>
-      <p class="text-slate-500 text-sm mb-4">Estimá el rinde en pie, convertí unidades y medí el costo de un insumo en grano.</p>
-      <div class="grid md:grid-cols-2 gap-5 mb-5">
-        <!-- Rinde soja -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">🫘 Rinde de soja</h3>
-          <p class="text-xs text-slate-500 mb-3">Plantas × vainas × granos × peso de mil.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Plantas (pl/m²)</label><input id="rs-pl" type="number" value="30" class="inp" oninput="calcRindeSoja()"/></div>
-            <div><label class="lbl">Vainas por planta</label><input id="rs-vai" type="number" value="40" class="inp" oninput="calcRindeSoja()"/></div>
-            <div><label class="lbl">Granos por vaina</label><input id="rs-gra" type="number" step="0.1" value="2.3" class="inp" oninput="calcRindeSoja()"/></div>
-            <div><label class="lbl">Peso mil granos (g)</label><input id="rs-pmg" type="number" value="150" class="inp" oninput="calcRindeSoja()"/></div>
-          </div>
-          <div class="res"><div class="big"><span id="rs-tn">—</span> tn/ha</div><div class="text-xs text-slate-500"><span id="rs-qq">—</span> qq/ha · <span id="rs-kg">—</span> kg/ha</div></div>
-        </div>
-        <!-- Rinde maíz -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">🌽 Rinde de maíz</h3>
-          <p class="text-xs text-slate-500 mb-3">Plantas × hileras × granos × peso de mil.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Plantas (pl/ha)</label><input id="rm-pl" type="number" value="75000" class="inp" oninput="calcRindeMaiz()"/></div>
-            <div><label class="lbl">Hileras por espiga</label><input id="rm-hil" type="number" value="16" class="inp" oninput="calcRindeMaiz()"/></div>
-            <div><label class="lbl">Granos por hilera</label><input id="rm-gra" type="number" value="35" class="inp" oninput="calcRindeMaiz()"/></div>
-            <div><label class="lbl">Peso mil granos (g)</label><input id="rm-pmg" type="number" value="300" class="inp" oninput="calcRindeMaiz()"/></div>
-          </div>
-          <div class="res"><div class="big"><span id="rm-tn">—</span> tn/ha</div><div class="text-xs text-slate-500"><span id="rm-qq">—</span> qq/ha · <span id="rm-kg">—</span> kg/ha</div></div>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-5">
-        <!-- Conversor -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">🧮 Conversor de rinde</h3>
-          <p class="text-xs text-slate-500 mb-3">qq ↔ tn ↔ kg y producción total del lote.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Rinde (qq/ha)</label><input id="cv-qq" type="number" step="0.1" value="35" class="inp" oninput="calcConv()"/></div>
-            <div><label class="lbl">Superficie (ha)</label><input id="cv-ha" type="number" value="100" class="inp" oninput="calcConv()"/></div>
-          </div>
-          <div class="res"><div class="big"><span id="cv-tn">—</span> tn/ha</div><div class="text-xs text-slate-500"><span id="cv-kg">—</span> kg/ha · producción total <b><span id="cv-prod">—</span> tn</b></div></div>
-        </div>
-        <!-- Relación insumo / grano -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <h3 class="font-bold text-agro-900 mb-1">⚖️ Relación insumo / grano</h3>
-          <p class="text-xs text-slate-500 mb-3">Cuántos kilos de grano "cuesta" un insumo.</p>
-          <div class="grid grid-cols-2 gap-2">
-            <div><label class="lbl">Precio insumo ($/unidad)</label><input id="ri-ins" type="number" value="15000" class="inp" oninput="calcRelacion()"/></div>
-            <div><label class="lbl">Precio grano ($/tn)</label><input id="ri-precio" type="number" value="" class="inp" oninput="calcRelacion()"/></div>
-          </div>
-          <div class="res"><div class="big" id="ri-out">—</div><div class="text-xs text-slate-500">kg de grano por unidad</div></div>
-        </div>
-      </div>
-    </section>
-
-    <p class="text-center text-[11px] text-slate-400">Valores orientativos de criterio agronómico. Ajustá siempre a tu lote, análisis de suelo y al marbete del producto.</p>
-
-    <!-- Recurso educativo -->
-    <a href="recursos.html" class="block bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-agro-300 transition">
-      <div class="flex items-center gap-4">
-        <div class="text-3xl">🎓</div>
-        <div class="flex-1">
-          <div class="font-bold text-agro-900">Del Diploma al Campo — guía para estudiantes de agronomía</div>
-          <div class="text-sm text-slate-500">Cómo conseguir experiencia a campo y contactos durante la carrera. 8 capítulos con checklists. Gratis.</div>
-        </div>
-        <div class="text-agro-700 font-semibold text-sm whitespace-nowrap">Leer →</div>
-      </div>
-    </a>
 
     <p class="text-center text-sm text-slate-500">¿Querés estas cuentas hechas solas sobre tus campañas reales, lote por lote? <a href="index.html#contacto" class="text-agro-700 font-semibold hover:underline">Probá AgroCore →</a></p>
   </div>
@@ -348,7 +143,7 @@
   <footer class="bg-agro-900 border-t border-agro-700 text-agro-100 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
       <div class="flex items-center gap-3"><img src="img/logo-white-96.png" srcset="img/logo-white-96.png 1x, img/logo-white-192.png 2x" alt="AgroCore" class="w-10 h-10 object-contain"/><div><div class="font-extrabold text-white">AgroCore <span class="text-gold-400 text-xs">ARGENTINA</span></div><div class="text-xs text-agro-200">El corazón del negocio agrícola</div></div></div>
-      <div class="flex items-center gap-4"><a href="index.html" class="hover:text-white">Inicio</a><a href="mercado.html" class="hover:text-white">Mercado</a><a href="clima.html" class="hover:text-white">Clima</a><a href="recursos.html" class="hover:text-white">Recursos</a><a href="index.html#contacto" class="hover:text-white">Contacto</a></div>
+      <div class="flex items-center gap-4"><a href="index.html" class="hover:text-white">Inicio</a><a href="mercado.html" class="hover:text-white">Mercado</a><a href="clima.html" class="hover:text-white">Clima</a><a href="index.html#contacto" class="hover:text-white">Contacto</a></div>
     </div>
   </footer>
 
@@ -357,8 +152,6 @@
     const fmtAr = n => Number(n||0).toLocaleString('es-AR', { maximumFractionDigits: 0 });
     const _num = id => Number(document.getElementById(id)?.value || 0);
     const _set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-    const _d1 = n => Number(n).toLocaleString('es-AR',{maximumFractionDigits:1});
-    const _d2 = n => Number(n).toLocaleString('es-AR',{maximumFractionDigits:2});
     let MKT = { cereales: {} };
 
     // ---- Campaña ----
@@ -377,119 +170,39 @@
       const gPct = (_num('cc-cos')+_num('cc-com'))/100;
       if (precio <= 0) { ['cc-indif-qq','cc-indif-tn','cc-margen','cc-ing','cc-cost','cc-neto'].forEach(i=>_set(i,'—')); return; }
       const precioNeto = precio*(1-gPct), indifTn = precioNeto>0 ? fijos/precioNeto : 0;
-      _set('cc-indif-qq', _d1(indifTn*10)); _set('cc-indif-tn', _d2(indifTn)); _set('cc-neto', '$ '+fmtAr(precioNeto)+' /tn');
+      _set('cc-indif-qq', (indifTn*10).toLocaleString('es-AR',{maximumFractionDigits:1}));
+      _set('cc-indif-tn', indifTn.toLocaleString('es-AR',{maximumFractionDigits:2}));
+      _set('cc-neto', '$ '+fmtAr(precioNeto)+' /tn');
       const ingreso = rinde*precio, costos = fijos + ingreso*gPct, margen = ingreso-costos;
       _set('cc-ing', '$ '+fmtAr(ingreso)); _set('cc-cost', '$ '+fmtAr(costos)); _set('cc-margen', '$ '+fmtAr(margen));
       const box = document.getElementById('cc-margen-box'); if (box) box.style.background = margen>=0 ? '#166534' : '#b91c1c';
     }
-    // ---- Densidad granos ----
+    // ---- Densidad de siembra ----
     function calcDensidad() {
-      const pl=_num('ds-pl'), pg=_num('ds-pg'), pms=_num('ds-pms');
-      _set('ds-out', (pl>0&&pg>0&&pms>0) ? _d1((pl*10000/(pg/100))*pms/1e6) : '—');
-    }
-    // ---- Siembra forrajeras ----
-    function calcForraj() {
-      const spv=_num('fo-spv'), pur=_num('fo-pur'), pg=_num('fo-pg'), ha=_num('fo-ha');
-      if (spv>0&&pur>0&&pg>0) {
-        const com = spv/((pur/100)*(pg/100));
-        _set('fo-kg', _d1(com)); _set('fo-vc', _d1(pur*pg/100)); _set('fo-total', fmtAr(com*ha));
-      } else { _set('fo-kg','—'); _set('fo-vc','—'); _set('fo-total','—'); }
-    }
-    // ---- Engranajes ----
-    function calcEngr() {
-      const sem=_num('en-sem'), orif=_num('en-orif'), diam=_num('en-diam'), pinon=_num('en-pinon'), pat=_num('en-pat');
-      if (sem>0&&orif>0&&diam>0&&pinon>0) {
-        const rel = (sem*Math.PI*(diam/100)*(1-pat/100))/orif;
-        _set('en-rel', _d2(rel)); _set('en-conducido', rel>0 ? _d1(pinon/rel) : '—');
-      } else { _set('en-rel','—'); _set('en-conducido','—'); }
-    }
-    // ---- Curado ----
-    function calcCurado() {
-      const kg=_num('cu-kg'), f=_num('cu-fung'), i=_num('cu-ins'), o=_num('cu-inoc'), a=_num('cu-agua'), cap=_num('cu-cap');
-      if (kg>0) { _set('cu-total', _d1((f+i+o+a)*kg/100/1000)); _set('cu-cargas', cap>0 ? _d1(kg/cap) : '—'); }
-      else { _set('cu-total','—'); _set('cu-cargas','—'); }
-    }
-    // ---- Nitrógeno: urea ----
-    function calcUrea() {
-      const meta=_num('nu-meta'), suelo=_num('nu-suelo'), arr=_num('nu-arr'), pn=_num('nu-pn');
-      const falta = Math.max(0, meta - suelo - arr);
-      _set('nu-falta', fmtAr(falta)); _set('nu-kg', pn>0 ? fmtAr(falta/(pn/100)) : '—');
-    }
-    // ---- Mezcla física ----
-    function calcMezcla() {
-      const n=_num('mf-n'), p=_num('mf-p'), k=_num('mf-k'), nurea=_num('mf-nurea'), pmap=_num('mf-pmap'), nmap=_num('mf-nmap'), kclo=_num('mf-kclo');
-      const map = pmap>0 ? p/(pmap/100) : 0;
-      const urea = nurea>0 ? Math.max(0,(n - map*(nmap/100))/(nurea/100)) : 0;
-      const clor = kclo>0 ? k/(kclo/100) : 0;
-      _set('mf-map', fmtAr(map)); _set('mf-urea', fmtAr(urea)); _set('mf-cloruro', fmtAr(clor)); _set('mf-total', fmtAr(map+urea+clor));
-    }
-    // ---- Corrección de nutrientes ----
-    function calcCorr() {
-      const an=_num('co-analisis'), um=_num('co-umbral'), prof=_num('co-prof'), dens=_num('co-dens'), efic=_num('co-efic');
-      const brecha = um-an;
-      _set('co-brecha', _d1(brecha));
-      const sin = Math.max(0,brecha)*prof*dens*0.1;
-      _set('co-kg', efic>0 ? fmtAr(sin/(efic/100)) : '—');
-    }
-    // ---- Encalado ----
-    function calcEncal() {
-      const cic=_num('ec-cic'), v1=_num('ec-v1'), v2=_num('ec-v2'), prnt=_num('ec-prnt'), ha=_num('ec-ha');
-      const tha = (prnt>0 && v2>v1) ? ((v2-v1)*cic)/prnt : 0;
-      _set('ec-tha', tha>0 ? _d2(tha) : '—'); _set('ec-total', tha>0 ? _d1(tha*ha) : '—');
-    }
-    // ---- Yeso ----
-    function calcYeso() {
-      const s=_num('ye-s'), cs=_num('ye-conts'), cca=_num('ye-contca'), ha=_num('ye-ha');
-      if (cs>0&&s>0) { const kg=s/(cs/100); _set('ye-kg', fmtAr(kg)); _set('ye-ca', _d1(kg*(cca/100))); _set('ye-total', fmtAr(kg*ha)); }
-      else { _set('ye-kg','—'); _set('ye-ca','—'); _set('ye-total','—'); }
+      const pl = _num('ds-pl'), pg = _num('ds-pg'), pms = _num('ds-pms');
+      if (pl>0 && pg>0 && pms>0) { const kg = (pl*10000/(pg/100))*pms/1e6; _set('ds-out', kg.toLocaleString('es-AR',{maximumFractionDigits:1})); }
+      else _set('ds-out','—');
     }
     // ---- Dosis y tanque ----
     function calcDosis() {
       const ha=_num('dt-ha'), dosis=_num('dt-dosis'), caldo=_num('dt-caldo'), tanque=_num('dt-tanque');
       _set('dt-total', dosis>0&&ha>0 ? fmtAr(ha*dosis) : '—');
-      if (caldo>0 && tanque>0) { const haTan=tanque/caldo; _set('dt-hatan', _d1(haTan)); _set('dt-prodtan', _d1(haTan*dosis)+' l/kg'); }
+      if (caldo>0 && tanque>0) { const haTan = tanque/caldo; _set('dt-hatan', haTan.toLocaleString('es-AR',{maximumFractionDigits:1})); _set('dt-prodtan', (haTan*dosis).toLocaleString('es-AR',{maximumFractionDigits:1})+' l/kg'); }
       else { _set('dt-hatan','—'); _set('dt-prodtan','—'); }
-    }
-    // ---- Pulverizadora ----
-    function calcPulver() {
-      const vol=_num('pu-vol'), vel=_num('pu-vel'), dist=_num('pu-dist'), ancho=_num('pu-ancho');
-      if (vol>0&&vel>0&&dist>0) {
-        const past=(vol*vel*dist)/60000; _set('pu-past', _d2(past));
-        const nn = ancho>0 ? (ancho*100/dist) : 0; _set('pu-total', nn>0 ? _d1(past*nn) : '—');
-      } else { _set('pu-past','—'); _set('pu-total','—'); }
-    }
-    // ---- Estimación de rinde: soja ----
-    function calcRindeSoja() {
-      const pl=_num('rs-pl'), vai=_num('rs-vai'), gra=_num('rs-gra'), pmg=_num('rs-pmg');
-      if (pl>0&&vai>0&&gra>0&&pmg>0) { const kg=pl*vai*gra*pmg/100; _set('rs-kg', fmtAr(kg)); _set('rs-tn', _d2(kg/1000)); _set('rs-qq', _d1(kg/100)); }
-      else { _set('rs-kg','—'); _set('rs-tn','—'); _set('rs-qq','—'); }
-    }
-    // ---- Estimación de rinde: maíz ----
-    function calcRindeMaiz() {
-      const pl=_num('rm-pl'), hil=_num('rm-hil'), gra=_num('rm-gra'), pmg=_num('rm-pmg');
-      if (pl>0&&hil>0&&gra>0&&pmg>0) { const kg=pl*hil*gra*pmg/1e6; _set('rm-kg', fmtAr(kg)); _set('rm-tn', _d2(kg/1000)); _set('rm-qq', _d1(kg/100)); }
-      else { _set('rm-kg','—'); _set('rm-tn','—'); _set('rm-qq','—'); }
-    }
-    // ---- Conversor ----
-    function calcConv() {
-      const qq=_num('cv-qq'), ha=_num('cv-ha');
-      if (qq>0) { _set('cv-tn', _d2(qq/10)); _set('cv-kg', fmtAr(qq*100)); _set('cv-prod', ha>0 ? _d1(qq/10*ha) : '—'); }
-      else { _set('cv-tn','—'); _set('cv-kg','—'); _set('cv-prod','—'); }
     }
     // ---- Relación insumo/grano ----
     function calcRelacion() {
       const ins=_num('ri-ins'), precio=_num('ri-precio');
-      _set('ri-out', ins>0&&precio>0 ? fmtAr(ins/(precio/1000))+' kg' : '—');
+      _set('ri-out', ins>0&&precio>0 ? (ins/(precio/1000)).toLocaleString('es-AR',{maximumFractionDigits:0})+' kg' : '—');
     }
 
     async function loadPrecios() {
       try { const j = await (await fetch(AGRO_API + '/api/cotizaciones', { cache:'no-store' })).json(); MKT.cereales = (j.cereales && j.cereales.items) || {}; ccCultivo(true); } catch (e) {}
     }
     // Init
-    loadPrecios();
-    calcCampana(); calcDensidad(); calcForraj(); calcEngr(); calcCurado();
-    calcUrea(); calcMezcla(); calcCorr(); calcEncal(); calcYeso();
-    calcDosis(); calcPulver(); calcRindeSoja(); calcRindeMaiz(); calcConv(); calcRelacion();
+    loadPrecios(); calcCampana(); calcDensidad(); calcDosis(); calcRelacion();
   </script>
+  <script src="bot-kb.js" defer></script>
+  <script src="bot.js" defer></script>
 </body>
 </html>

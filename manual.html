@@ -462,6 +462,24 @@
           <h4 id="mod-forrajeras">Campañas forrajeras (multicorte) <span class="badge-new">Nuevo</span></h4>
 <p>Para verdeos, alfalfa o praderas usás campañas forrajeras con <strong>varios cortes</strong>. Cargás cada corte con sus kg/rollos/fardos y el sistema los <strong>ingresa al stock del galpón</strong> a un costo por unidad, listos para consumir en los rodeos. Así queda trazado cuánto forraje produjo cada lote y a qué costo alimentás la hacienda.</p>
 
+          <h4 id="mod-costo-kilo">Rodeos — Costo del kilo de carne <span class="badge-new">Nuevo</span></h4>
+          <p><strong>Qué hace:</strong> en <strong>Rodeos / Costo de hacienda</strong> seguís un lote de animales desde que entran (ternero) hasta que se venden, y el sistema calcula el <strong>costo del kilo producido</strong> (lo que costó engordar = costo directo ÷ kilos producidos) y el <strong>costo del kilo terminado</strong> (incluye la compra del ternero). También muestra la ganancia diaria (GPD) y el margen.</p>
+          <p><strong>Cómo se carga:</strong> creás el lote y le vas sumando eventos: Ingreso (compra), Pesajes, Alimentación, Sanidad, Labor y Venta. Los kilos producidos salen de los pesajes; por eso conviene pesar entrada y salida (o desde balanzas/caravana con "Pesaje desde balanzas").</p>
+          <p><strong>Imputar pastura:</strong> el botón <strong>🌱 Imputar pastura (forrajera)</strong> toma el costo de una campaña forrajera y lo carga al lote como alimentación, total o en un %.</p>
+
+          <h4 id="mod-racion">Producto ración / mezcla <span class="badge-new">Nuevo</span></h4>
+          <p>Podés crear un producto tildando <strong>"Es una ración/mezcla"</strong> y definir su fórmula por % en peso (ej. 85% maíz + 15% núcleo). Al consumir la ración en un rodeo, el sistema <strong>descuenta cada componente de su stock</strong> en la proporción y calcula el costo solo. El maíz picado en bolsón (silaje) es un producto común que se consume directo.</p>
+
+          <h4 id="mod-rodeo-comercial">Rodeos integrados con el circuito comercial <span class="badge-new">Nuevo</span></h4>
+          <p>Cada evento del rodeo se puede vincular con el resto del sistema:</p>
+          <ul>
+            <li><strong>Venta:</strong> genera cuenta a cobrar a un cliente, o se vincula a una factura de venta o liquidación de hacienda.</li>
+            <li><strong>Compra (ingreso):</strong> genera cuenta a pagar al proveedor (monto + fletes) o se vincula a una factura de compra.</li>
+            <li><strong>Labor:</strong> empleado propio con su % de comisión (va a la planilla) o servicio de terceros con cuenta a pagar y/o factura de compra.</li>
+            <li><strong>Sanidad / gasto:</strong> cuenta a pagar al proveedor o factura de compra.</li>
+          </ul>
+          <p>Cada evento vinculado muestra un chip de enlace; si se borra el evento, se revierten los movimientos financieros que generó.</p>
+
           <h4 id="mod-mapa">Geolocalización de lotes en el mapa <span class="badge-new">Nuevo</span></h4>
 <p>A cada lote le podés cargar su <strong>geolocalización</strong> y verlo en el <strong>mapa</strong>. Acepta coordenadas en <strong>grados decimales</strong> (ej. -32.123, -63.456) o en <strong>grados, minutos y segundos (GMS/DMS)</strong> (ej. 32°07'22"S 63°27'21"O); el sistema las interpreta y ubica el lote solo.</p>
 
@@ -710,10 +728,6 @@
   <li><strong>Caravana electrónica / collar + lote (IoT):</strong> la ficha guarda la caravana RFID/microchip y se puede <strong>vincular a un lote (rodeo)</strong> de Costo de hacienda. El <strong>peso individual</strong> —cargado como evento <em>Pesaje</em> o recibido por <strong>balanza/caravana</strong> vía el canal IoT— queda como último peso del animal; desde el lote, el botón <strong>⚖️ Pesaje desde balanzas</strong> arma el pesaje total sumando las fichas vinculadas (kg + cabezas), sin pesar la tropa a mano.</li>
   <li><strong>Hotelería / capitalización de terceros:</strong> si el animal es de un tercero (marcalo <em>Externo</em> con su <em>Propietario</em>), al cargar un evento tipo <strong>Pensión</strong> o <strong>Servicio a tercero</strong> podés tildar <em>“Cobrar este importe al propietario”</em>. Lo mismo aplica a la <strong>hacienda de terceros en engorde</strong> desde <em>Costo de hacienda (Rodeos)</em>. Con el botón <strong>🏨 Hotelería / capitalización (terceros)</strong> (en Fichas de animales y en Rodeos) sacás un <strong>resumen unificado por propietario</strong> (caballos + hacienda) por fechas, con total a cobrar y export a Excel.</li>
   <li><strong>Certificado de traslado:</strong> el botón <strong>🧾 Certificado</strong> de cada ficha genera un documento imprimible con la identificación individual (microchip, RFID, N° de registro, genealogía, origen/destino). Es un respaldo interno; <em>no reemplaza el DT-e ni la documentación sanitaria oficial de SENASA</em>.</li>
-  <li><strong>Foto del animal:</strong> podés cargar la foto desde el formulario (se reduce sola) o con <strong>📷 Agregar/Cambiar foto</strong> dentro de la ficha. Se ve en la ficha (tipo currículum) y como miniatura en el listado.</li>
-  <li><strong>Suma al Stock general:</strong> cada ficha cuenta como <strong>1 cabeza</strong> en <strong>Stock</strong>, agrupada como <strong>Animal → Equino → categoría</strong> (Padrillo, Yegua madre, Potrillo…). Filtrá por <strong>Familia = Equino</strong>. Cada alta/venta/préstamo/devolución queda como movimiento en <strong>Movimientos</strong>. <strong>No</strong> suman al stock del campo los <strong>Vendidos</strong>, <strong>Prestados</strong> ni de <strong>Baja</strong>. El <strong>catálogo</strong> ya trae todas las categorías de equinos.</li>
-  <li><strong>Prestar / Devolver:</strong> cuando el animal sale del campo de forma provisoria (ej. se va a jugar), usá <strong>🤝 Prestar</strong> (a quién/dónde, fecha y vuelta estimada → agenda recordatorio): sale del stock del campo pero <strong>puede volver</strong>. Al regresar, <strong>↩️ Devolver</strong> lo reintegra al stock.</li>
-  <li><strong>Vendidos y terceros en el stock:</strong> los <strong>Vendidos</strong> quedan con ese estado (filtrable, con a quién se vendió) y no suman al campo. Los animales de <strong>terceros</strong> (pensión) se cuentan en un renglón aparte <strong>“… (terceros)”</strong>, separado de los propios.</li>
 </ul>
 
           <h4 id="mod-dolares">Compra y venta de dólares <span class="badge-new">Nuevo</span></h4>
@@ -1134,5 +1148,7 @@
     updateActiveTOC();
   </script>
 
+  <script src="bot-kb.js" defer></script>
+  <script src="bot.js" defer></script>
 </body>
 </html>
