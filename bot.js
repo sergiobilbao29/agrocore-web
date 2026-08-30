@@ -76,8 +76,33 @@
       respuesta: hit?String(hit.titulo||'').slice(0,100):'(sin resultado)'
     }); } }catch(e){}
   }
+  // Charla / cortesía: responde a saludos, gracias, negativas, etc. (sin buscar en la base).
+  function smalltalk(q){
+    var n = sa(q).replace(/[^a-z0-9ñ ]/g,' ').replace(/\s+/g,' ').trim();
+    if(!n) return null;
+    var IN = function(arr){ return arr.indexOf(n)>=0; };
+    var HAS = function(w){ return (' '+n+' ').indexOf(' '+w+' ')>=0; };
+    // Cierre / negativas (incluye "no gracias") — chequear antes que "gracias".
+    if(IN(['no','no gracias','nada','nada mas','nada más','ninguno','ninguna','listo','ya esta','ya está','chau','adios','adiós','nos vemos','no por ahora','todo bien','esta bien','está bien'])){
+      return 'Listo. Cuando necesites algo del sistema, las calculadoras o el vademécum, escribime. 🌱'; }
+    // Agradecimiento
+    if(HAS('gracias')||IN(['genial','perfecto','buenisimo','buenísimo','barbaro','bárbaro','joya','de una','crack','excelente'])){
+      return '¡De nada! Si querés, preguntame otra cosa.'; }
+    // Saludos
+    if(/^(hola|buenas|buen dia|buen día|buenos dias|buenos días|buenas tardes|buenas noches|hey|ey|que tal|qué tal|holis)\b/.test(n)){
+      return '¡Hola! ¿En qué te ayudo? Puedo con el sistema, calculadoras agronómicas, vademécum y la Guía del Ing. Agrónomo.'; }
+    // Afirmaciones sueltas
+    if(IN(['si','sí','dale','ok','oka','okey','bueno','claro','obvio','sip','sisi','de una'])){
+      return '¡Bien! Contame el tema y te amplío (ej. "densidad de siembra", "glifosato", "costo del kilo").'; }
+    // Pedido de ayuda / qué sabe
+    if(HAS('ayuda')||/que (podes|puedes|sabes|haces|hace)/.test(n)||n==='?'){
+      return 'Puedo ayudarte con: 🧮 <b>calculadoras</b> (densidad, urea, pulverizadora, rinde…), 🧫 <b>vademécum</b> (dosis, modo de acción, carencia), 💻 el <b>sistema</b> (costo del kilo, flujo de fondos, facturación…) y la 📘 <b>Guía del Ing. Agrónomo</b>. Escribí una palabra clave.'; }
+    return null;
+  }
   function responder(q){
     add(esc(q),'u'); input.value='';
+    var st=smalltalk(q);
+    if(st){ log(q,{tipo:'charla',titulo:q}); add(st,'b'); return; }
     var hits=buscar(q);
     if(!hits.length){ log(q,null); add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b'); return; }
     log(q, hits[0]);
