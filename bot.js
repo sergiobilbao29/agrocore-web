@@ -99,15 +99,45 @@
       return 'Puedo ayudarte con: 🧮 <b>calculadoras</b> (densidad, urea, pulverizadora, rinde…), 🧫 <b>vademécum</b> (dosis, modo de acción, carencia), 💻 el <b>sistema</b> (costo del kilo, flujo de fondos, facturación…) y la 📘 <b>Guía del Ing. Agrónomo</b>. Escribí una palabra clave.'; }
     return null;
   }
-  function responder(q){
+  var AGRO_BOT_API = 'https://demo.agrocore.ar';
+  // ¿El match local es "fuerte"? (consulta corta cuyos términos están casi todos en el tema)
+  function confiable(q, hit){
+    var qt=toks(q); if(!qt.length||!hit) return false;
+    var m=0; qt.forEach(function(w){ if(hit._t.indexOf(w)>=0 || sa(hit.titulo).indexOf(w)>=0) m++; });
+    return qt.length<=3 && m===qt.length;
+  }
+  function fmtIA(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>'); }
+  async function askIA(q){
+    try{
+      var r=await fetch(AGRO_BOT_API+'/api/bot-web',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:q})});
+      var j=await r.json();
+      if(j && j.ok && j.respuesta) return { texto:j.respuesta, fuente:j.fuente||'ia' };
+    }catch(e){}
+    return null;
+  }
+  async function responder(q){
     add(esc(q),'u'); input.value='';
     var st=smalltalk(q);
     if(st){ log(q,{tipo:'charla',titulo:q}); add(st,'b'); return; }
     var hits=buscar(q);
-    if(!hits.length){ log(q,null); add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b'); return; }
-    log(q, hits[0]);
-    add(hits[0].resp,'b');
-    if(hits.length>1){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(hits.slice(1).map(function(h){return h.titulo;})); }
+    // 1) Match local fuerte → respuesta instantánea (gratis)
+    if(hits.length && confiable(q, hits[0])){
+      log(q, hits[0]); add(hits[0].resp,'b');
+      if(hits.length>1){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(hits.slice(1).map(function(h){return h.titulo;})); }
+      return;
+    }
+    // 2) Pregunta libre → IA (con la base como contexto en el server)
+    var pensando=add('Pensando… ⏳','b');
+    var ia=await askIA(q);
+    if(pensando && pensando.parentNode) pensando.parentNode.removeChild(pensando);
+    if(ia && ia.texto){
+      log(q,{tipo:ia.fuente,titulo:q}); add(fmtIA(ia.texto),'b');
+      if(hits.length){ chips(hits.slice(0,3).map(function(h){return h.titulo;})); }
+      return;
+    }
+    // 3) Fallback: mejor resultado local, o mensaje de ayuda
+    if(hits.length){ log(q,hits[0]); add(hits[0].resp,'b'); if(hits.length>1){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(hits.slice(1).map(function(h){return h.titulo;})); } return; }
+    log(q,null); add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b');
   }
   function saludo(){
     if(msgs.childElementCount) return;
