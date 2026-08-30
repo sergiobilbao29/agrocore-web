@@ -58,7 +58,7 @@
   function el(html){ var d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
   var st=document.createElement('style'); st.textContent=CSS; document.head.appendChild(st);
   var btn=el('<button id="agb-btn">💬 Asistente</button>');
-  var panel=el('<div id="agb-panel"><div id="agb-head"><div>Asistente AgroCore<small>Sistema · calculadoras · vademécum · guía</small></div><button id="agb-x" title="Cerrar">×</button></div><div id="agb-msgs"></div><div id="agb-foot"><input id="agb-in" placeholder="Escribí tu consulta…" autocomplete="off"/><button id="agb-send">➤</button></div></div>');
+  var panel=el('<div id="agb-panel"><div id="agb-head"><div>Asistente AgroCore<small>Sistema · calculadoras · vademécum · Guía del Ing. Agrónomo</small></div><button id="agb-x" title="Cerrar">×</button></div><div id="agb-msgs"></div><div id="agb-foot"><input id="agb-in" placeholder="Escribí tu consulta…" autocomplete="off"/><button id="agb-send">➤</button></div></div>');
   document.body.appendChild(btn); document.body.appendChild(panel);
   var msgs=panel.querySelector('#agb-msgs'), input=panel.querySelector('#agb-in');
 
@@ -68,16 +68,25 @@
     list.forEach(function(t){ var b=el('<button class="agb-chip">'+esc(t)+'</button>'); b.onclick=function(){ input.value=t; responder(t); }; c.appendChild(b); });
     msgs.appendChild(c); msgs.scrollTop=msgs.scrollHeight;
   }
+  function log(q, hit){
+    // Registro de consultas: se manda como evento a Google Analytics (si está gtag).
+    try{ if(typeof gtag==='function'){ gtag('event','bot_consulta',{
+      pregunta:String(q||'').slice(0,100),
+      tema: hit?hit.tipo:'sin_resultado',
+      respuesta: hit?String(hit.titulo||'').slice(0,100):'(sin resultado)'
+    }); } }catch(e){}
+  }
   function responder(q){
     add(esc(q),'u'); input.value='';
     var hits=buscar(q);
-    if(!hits.length){ add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b'); return; }
+    if(!hits.length){ log(q,null); add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b'); return; }
+    log(q, hits[0]);
     add(hits[0].resp,'b');
-    if(hits.length>1){ add('¿Te referías a alguno de estos?','b'); chips(hits.slice(1).map(function(h){return h.titulo;})); }
+    if(hits.length>1){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(hits.slice(1).map(function(h){return h.titulo;})); }
   }
   function saludo(){
     if(msgs.childElementCount) return;
-    add('¡Hola! Soy el asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>guía para estudiantes</b>. ¿Qué querés saber?','b');
+    add('¡Hola! Soy el asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Guía del Ing. Agrónomo</b>. ¿Qué querés saber?','b');
     chips(['¿Qué es AgroCore?','Densidad de siembra','Dosis de glifosato','Costo del kilo de carne','Rinde de indiferencia']);
   }
   function open(){ panel.style.display='flex'; saludo(); setTimeout(function(){input.focus();},80); }
