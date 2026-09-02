@@ -243,25 +243,26 @@
             <li><strong>Área principal (centro):</strong> contenido del módulo actual.</li>
           </ul>
 
-          <h3>Las secciones de la barra lateral — agrupadas por proceso administrativo <span class="badge-new">Nuevo</span></h3>
-          <p>El menú está organizado siguiendo el flujo real del negocio: vistas rápidas → ventas → compras → tesorería → operaciones del campo → administración.</p>
+          <h3>Las secciones de la barra lateral — agrupadas por proceso <span class="badge-new">Actualizado</span></h3>
+          <p>El menú está organizado siguiendo el flujo real del negocio, en <strong>9 grupos</strong>. Arriba de todo, fijos y siempre visibles, están <strong>Inicio</strong> y <strong>Mensajes y asistente</strong>. Las herramientas de producción y logística son <strong>compartidas</strong> por empresas agrícolas y ganaderas.</p>
           <table>
             <thead>
               <tr><th>Sección</th><th>Módulos que contiene</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>(Inicio)</strong></td><td>Inicio — siempre arriba de todo, sin sección.</td></tr>
-              <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Estado de situación · Flujo de caja · Resumen multi-empresa</td></tr>
-              <tr><td><strong>💼 VENTAS</strong></td><td>Clientes · Facturación · Liquidaciones cereal · Cuentas corrientes</td></tr>
-              <tr><td><strong>🛒 COMPRAS</strong></td><td>Proveedores · Compras · Libro IVA</td></tr>
-              <tr><td><strong>🏛️ TESORERÍA</strong></td><td>Bancos · Control de efectivo · Cheques · Créditos · Arrendamientos</td></tr>
-              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Campañas · Insumos y labores · Reporte de margen</td></tr>
-              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos · Cerealeras / Depósitos · Hacienda</td></tr>
-              <tr><td><strong>🚚 LOGÍSTICA</strong></td><td>Viajes y fletes</td></tr>
-              <tr><td><strong>👷 RRHH</strong></td><td>Empleados</td></tr>
-              <tr><td><strong>🔐 ADMINISTRACIÓN</strong></td><td>Catálogos · Usuarios · Roles y permisos · Empresas · Configuración</td></tr>
+              <tr><td><strong>(Arriba, fijo)</strong></td><td>Inicio · Mensajes y asistente — siempre visibles, sin sección.</td></tr>
+              <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Flujo de Fondos · Flujo de caja · Resumen multi-empresa · Balance Patrimonial · Agenda y recordatorios</td></tr>
+              <tr><td><strong>💼 COMERCIAL</strong></td><td>Clientes · Movimientos de ventas · Liquidaciones cereal · Liquidaciones animales · Cuentas a cobrar · Proveedores · Movimientos de compras · Cuentas a pagar</td></tr>
+              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes · Campañas · Historial de campañas · Insumos y labores · Servicios a terceros · Reporte de margen · Calculadoras agronómicas · Vademécum</td></tr>
+              <tr><td><strong>🐎 GANADERÍA Y HARAS</strong></td><td>Movimientos de animales · Fichas de animales · Rodeos y Hacienda · Guías de hacienda (DT-e)</td></tr>
+              <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos de stock · Remitos internos · Depósitos y cerealeras · Posición de granos · Contratos de cereal</td></tr>
+              <tr><td><strong>🚚 LOGÍSTICA Y TRANSPORTE</strong></td><td>Viajes y fletes · Transportistas · Choferes · Camiones (chasis) · Acoplados</td></tr>
+              <tr><td><strong>🏛️ TESORERÍA</strong></td><td>Movimientos diarios · Bancos · Control de efectivo · Cheques · Retenciones · Créditos bancarios · Cuentas Intercompany · Cotizaciones</td></tr>
+              <tr><td><strong>🏭 PATRIMONIO Y CONTRATOS</strong></td><td>Activos y maquinaria · Arrendamientos</td></tr>
+              <tr><td><strong>🔐 ADMINISTRACIÓN</strong></td><td>Empleados · Catálogos · Categorías y Familias · Categorías de Gastos · Libro IVA · Exportar para contador · Usuarios · Roles y permisos · Empresas · Configuración</td></tr>
             </tbody>
           </table>
+          <p><strong>Módulos visibles por empresa:</strong> cada empresa puede ocultar del menú lo que no usa desde <strong>Administración → Configuración → Módulos visibles</strong>, con presets rápidos por rubro (agrícola / ganadera-haras / mostrar todo) y tilde por módulo. No se duplican accesos ni datos: solo cambia lo que ve el usuario.</p>
           <p><strong>Secciones plegables y buscador:</strong> hacé clic en el nombre de una sección para plegarla / desplegarla (▾/▸). Arriba del menú hay un buscador — escribís "che" y filtra al instante a "Cheques", "via" lleva a "Viajes", etc. El estado de plegado se recuerda por usuario.</p>
 
           <h3>Accesos directos del Inicio — configurables por usuario <span class="badge-new">Nuevo</span></h3>
@@ -309,7 +310,7 @@
               <tr><td>Inicio</td><td>Dashboard · Resumen multi-empresa</td></tr>
               <tr><td>Campos y lotes</td><td>Stock · Movimientos · Reporte de margen</td></tr>
               <tr><td>Campañas</td><td>Clientes · Proveedores · Finanzas (todas)</td></tr>
-              <tr><td>Insumos y labores</td><td>Logística y RRHH · Administración</td></tr>
+              <tr><td>Insumos y labores</td><td>Logística y transporte · Administración</td></tr>
             </tbody>
           </table>
           <p>Si abrís una sección que necesita internet estando sin señal, el sistema muestra un <strong>cartel informativo</strong> claro (no un error técnico), indicando qué secciones sí están disponibles offline.</p>
@@ -533,10 +534,15 @@
 
         <section id="mod-contactos">
           <h4 id="mod-activos">Activos fijos y maquinaria <span class="badge-new">Nuevo</span></h4>
-<p>En <strong>Stock y depósitos → Activos / Maquinaria</strong> cargás tus bienes de uso (tractores, camionetas, sembradoras, instalaciones). De cada activo guardás valor de compra, fecha, vida útil y su <strong>amortización</strong>, el <strong>seguro</strong> (aseguradora, tipo, número de póliza, vigencia y contacto) y podés <strong>adjuntar fotos y PDF</strong> (facturas, cédulas, pólizas). Cada activo lleva su historial de <strong>mantenimientos</strong> con alertas por fecha o por kilómetros/horas, y el sistema te avisa cuando se acerca un service o vence un seguro. El valor neto de amortización se suma solo al <strong>Estado de situación patrimonial</strong>.</p>
+<p>En <strong>Patrimonio y contratos → Activos y maquinaria</strong> cargás tus bienes de uso (tractores, camionetas, sembradoras, instalaciones). De cada activo guardás valor de compra, fecha, vida útil y su <strong>amortización</strong>, el <strong>seguro</strong> (aseguradora, tipo, número de póliza, vigencia y contacto) y podés <strong>adjuntar fotos y PDF</strong> (facturas, cédulas, pólizas). Cada activo lleva su historial de <strong>mantenimientos</strong> con alertas por fecha o por kilómetros/horas, y el sistema te avisa cuando se acerca un service o vence un seguro. El valor neto de amortización se suma solo al <strong>Estado de situación patrimonial</strong>.</p>
 
+<<<<<<< Updated upstream
           <h4 id="mod-rodeos">Rodeos y Hacienda <span class="badge-new">Nuevo</span></h4>
 <p>En <strong>Stock y depósitos → Rodeos y Hacienda</strong> creás <strong>lotes de engorde o cría</strong> (feedlot, engorde a campo, recría o cría) y cargás sus eventos: <strong>ingreso</strong> de hacienda (cabezas, kg y precio de compra + fletes), <strong>alimentación</strong> (rollos, fardos o grano descontados del galpón a su costo, o pastoreo directo), <strong>sanidad</strong>, <strong>labores</strong>, <strong>pesajes</strong>, <strong>bajas</strong> y <strong>ventas</strong>. El sistema calcula automáticamente los kg producidos y dos métricas clave: <strong>$/kg producido</strong> (eficiencia del engorde) y <strong>$/kg terminado</strong> (costo real del kilo para la venta), además de la ganancia diaria de peso y el margen.</p>
+=======
+          <h4 id="mod-rodeos">Rodeos y costo de hacienda <span class="badge-new">Nuevo</span></h4>
+<p>En <strong>Ganadería y Haras → Rodeos y Hacienda</strong> creás <strong>lotes de engorde o cría</strong> (feedlot, engorde a campo, recría o cría) y cargás sus eventos: <strong>ingreso</strong> de hacienda (cabezas, kg y precio de compra + fletes), <strong>alimentación</strong> (rollos, fardos o grano descontados del galpón a su costo, o pastoreo directo), <strong>sanidad</strong>, <strong>labores</strong>, <strong>pesajes</strong>, <strong>bajas</strong> y <strong>ventas</strong>. El sistema calcula automáticamente los kg producidos y dos métricas clave: <strong>$/kg producido</strong> (eficiencia del engorde) y <strong>$/kg terminado</strong> (costo real del kilo para la venta), además de la ganancia diaria de peso y el margen.</p>
+>>>>>>> Stashed changes
 <p><strong>Hacienda de terceros (capitalización / hotelería de engorde):</strong> si recibís animales de un tercero para engordarlos y cobrarle el servicio, tildá <em>“Hacienda de terceros”</em> al crear el lote e indicá el <strong>propietario</strong>. Cargás los costos reales del engorde como siempre (para tu control) y, aparte, los <strong>cargos a cobrar al dueño</strong> con eventos <strong>🏨 Capitalización</strong> o <strong>🛠️ Servicio</strong> (por cabeza/mes). El botón <strong>🏨 Hotelería / capitalización (terceros)</strong> arma el <strong>resumen por propietario</strong> —unificado con los caballos en pensión de Fichas de animales— listo para facturar, con export a Excel.</p>
 <p><strong>Caravana electrónica / collar → pesaje automático del lote:</strong> si los animales llevan caravana electrónica o collar, creá su <strong>Ficha de animal</strong> y vinculala al lote (campo “Lote / rodeo”). El peso individual (por balanza en la manga, caravana con pesaje o pesaje manual en la ficha) se guarda en cada animal, y con el botón <strong>⚖️ Pesaje desde balanzas</strong> del lote se arma el pesaje total sumando esas fichas — sin pesar la tropa entera a mano.</p>
 
@@ -717,7 +723,7 @@
 </ul>
 
           <h4 id="mod-fichas-animales">Fichas de animales (ficha individual 360°) <span class="badge-new">Nuevo</span></h4>
-<p>En <strong>Stock y depósitos → Fichas de animales</strong> seguís cada animal como <strong>activo individual</strong> (además del stock por cabezas de Hacienda). Sirve para <strong>caballos (haras/polo)</strong>, <strong>vacas madre / toros de cabaña</strong>, porcinos y más.</p>
+<p>En <strong>Ganadería y Haras → Fichas de animales</strong> seguís cada animal como <strong>activo individual</strong> (además del stock por cabezas de Hacienda). Sirve para <strong>caballos (haras/polo)</strong>, <strong>vacas madre / toros de cabaña</strong>, porcinos y más.</p>
 <ul>
   <li><strong>Ficha:</strong> nombre, especie, sexo, categoría, estado, pelaje, raza y fecha de nacimiento.</li>
   <li><strong>Identificadores:</strong> microchip, caravana RFID (para collares/sensores), N° de registro (SRA/AACCP/RP) y pasaporte.</li>
@@ -753,7 +759,7 @@
 <p><strong>Si sobra o falta plata:</strong> cuando la suma de los medios no coincide con las facturas tildadas, el sistema te avisa y te deja resolverlo: si <strong>sobra</strong>, registra la operación y el excedente queda como <strong>saldo a favor</strong> para aplicar a otra factura; si <strong>falta</strong>, hace el <strong>pago/cobro parcial</strong> aplicando de la factura <strong>más vieja a la más nueva</strong> y deja el saldo pendiente en la última.</p>
 
           <h4 id="mod-guias-hacienda">Guías de hacienda (DT-e) — mover el stock antes de la factura <span class="badge-new">Nuevo</span></h4>
-<p>El movimiento físico de los animales (con su <strong>guía DT-e / DTe-DUT</strong>) siempre pasa <em>antes</em> que el comprobante fiscal (liquidación o factura), que suele demorar. El módulo <strong>Stock y depósitos → Guías de hacienda (DT-e)</strong> resuelve esto: la guía <strong>mueve el stock al instante</strong> y arma una <strong>cuenta corriente provisoria</strong> (estimada a cobrar o a pagar), y después se <strong>vincula</strong> con el comprobante fiscal.</p>
+<p>El movimiento físico de los animales (con su <strong>guía DT-e / DTe-DUT</strong>) siempre pasa <em>antes</em> que el comprobante fiscal (liquidación o factura), que suele demorar. El módulo <strong>Ganadería y Haras → Guías de hacienda (DT-e)</strong> resuelve esto: la guía <strong>mueve el stock al instante</strong> y arma una <strong>cuenta corriente provisoria</strong> (estimada a cobrar o a pagar), y después se <strong>vincula</strong> con el comprobante fiscal.</p>
 <p><strong>1) Cargar la guía.</strong> Tocás <strong>+ Nueva guía</strong> o <strong>📷 Importar guía (foto/PDF)</strong> para leer el DT-e con IA (detecta N° de DT-e, fecha, RENSPA y las categorías con sus cabezas). Elegís el <strong>motivo</strong> (venta, compra, faena/servicio, invernada, traslado) —el sentido ingreso/egreso se sugiere solo—, el <strong>campo</strong>, el <strong>contacto</strong> (cliente, proveedor o frigorífico) y cargás los <strong>renglones</strong>: categoría y cabezas (lo que trae la guía), más <strong>kilos y precios estimados</strong> opcionales. Podés poner <strong>varias filas por calidad</strong> (fila 1, 2, 3) con distinto precio, como cuando el cliente separa la tropa.</p>
 <p><strong>2) Impacto inmediato.</strong> Al guardar, la guía <strong>suma o resta las cabezas</strong> del campo (stock al día) y genera una <strong>cuenta estimada</strong> a cobrar (venta) o a pagar (compra).</p>
 <p><strong>3) Pagos / cobros a cuenta.</strong> Con el botón <strong>💵</strong> registrás adelantos vinculados a la guía antes de tener el comprobante fiscal; el módulo te muestra el <strong>saldo estimado</strong> (total − pagos).</p>
@@ -995,7 +1001,7 @@
           <h3>Flujo 1 — Cargar una compra de fertilizante</h3>
           <ol>
             <li><strong>Contactos → Proveedores → Nuevo</strong> (si no existe). CUIT, razón social, condición IVA.</li>
-            <li><strong>Finanzas → Compras → Nueva factura de compra</strong>. Proveedor, tipo A, número, fecha, ítem (Urea Granulada × 5000 kg).</li>
+            <li><strong>Comercial → Movimientos de compras → Nueva factura de compra</strong>. Proveedor, tipo A, número, fecha, ítem (Urea Granulada × 5000 kg).</li>
             <li>Forma de pago: cuenta corriente. Confirmás.</li>
             <li><strong>Resultado automático:</strong> stock de Urea sube 5000 kg, cuenta corriente del proveedor con saldo deudor, aparece en flujo de caja, IVA registrado en libro IVA Compras.</li>
           </ol>
