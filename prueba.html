@@ -58,6 +58,11 @@
           <label class="block text-sm font-medium mb-1">Campo / empresa *</label>
           <input id="empresa" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="Establecimiento La Esperanza"/>
         </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">CUIT *</label>
+          <input id="cuit" required inputmode="numeric" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="20-12345678-3"/>
+          <p class="text-[11px] text-slate-400 mt-1">Con tu CUIT vas a poder ingresar al sistema.</p>
+        </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-sm font-medium mb-1">Email *</label>
@@ -99,6 +104,7 @@
     const data = {
       nombre: document.getElementById('nombre').value.trim(),
       empresa: document.getElementById('empresa').value.trim(),
+      cuit: document.getElementById('cuit').value.trim(),
       email: document.getElementById('email').value.trim(),
       telefono: document.getElementById('telefono').value.trim() || null,
       actividad: document.getElementById('actividad').value || null,
