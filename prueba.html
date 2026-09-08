@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Probá AgroCore gratis 30 días</title>
+<meta name="description" content="Creá tu prueba gratuita de AgroCore por 30 días. Sin tarjeta, sin instalación. Ordená los números de tu campo en un solo lugar."/>
+<link rel="icon" href="img/favicon.png"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: {
+    agro: { 900:'#0e2c12', 800:'#143C19', 700:'#1c5a2a', 200:'#a7d3ad', 100:'#e6f0e7' },
+    gold: { 500:'#E8AC1E', 600:'#c9901a', 400:'#F6D67B' },
+    cream: '#F4F3EA'
+  } } } };
+  // ⚙️ URL de la instancia de prueba (donde corre el backend del trial).
+  const TRIAL_API = 'https://trial.agrocore.ar';
+</script>
+</head>
+<body class="bg-cream text-agro-900" style="font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif">
+
+  <header class="bg-agro-800 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-3">
+      <img src="img/logo-white-96.png" alt="AgroCore" class="w-10 h-10 object-contain"/>
+      <div class="flex items-baseline gap-1.5">
+        <span class="text-xl font-extrabold">AgroCore</span>
+        <span class="text-[10px] font-bold text-gold-400 uppercase tracking-wider">Argentina</span>
+      </div>
+      <a href="index.html" class="ml-auto text-sm text-agro-200 hover:text-white">← Volver al inicio</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols-2 gap-10 items-start">
+    <!-- Pitch -->
+    <div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-agro-800 leading-tight">Probá AgroCore <span class="text-gold-600">gratis 30 días</span></h1>
+      <p class="mt-4 text-lg text-agro-900/80">Creá tu cuenta ahora y empezá a ordenar tu campo en minutos. Sin tarjeta, sin instalación, sin compromiso.</p>
+      <ul class="mt-6 space-y-3 text-agro-900/90">
+        <li class="flex gap-3"><span class="text-gold-600 font-bold">✓</span> Producción, hacienda, stock y finanzas en un solo lugar.</li>
+        <li class="flex gap-3"><span class="text-gold-600 font-bold">✓</span> Multiempresa y multiusuario con permisos.</li>
+        <li class="flex gap-3"><span class="text-gold-600 font-bold">✓</span> Facturación ARCA, cheques, cuentas corrientes y flujo de fondos.</li>
+        <li class="flex gap-3"><span class="text-gold-600 font-bold">✓</span> Tus datos son tuyos. Al terminar la prueba, los conservás si contratás.</li>
+      </ul>
+      <p class="mt-6 text-sm text-agro-900/60">¿Preferís que te lo mostremos? Escribinos por
+        <a class="underline text-agro-700" target="_blank" rel="noopener" href="https://wa.me/5493582408884?text=Hola!%20Quiero%20una%20demo%20de%20AgroCore.">WhatsApp</a>.</p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="bg-white rounded-2xl shadow-xl border border-agro-100 p-6">
+      <h2 class="text-xl font-bold text-agro-800 mb-1">Creá tu prueba gratuita</h2>
+      <p class="text-sm text-slate-500 mb-4">Te enviamos un email para confirmar tu cuenta.</p>
+      <form id="f" class="space-y-3">
+        <div>
+          <label class="block text-sm font-medium mb-1">Nombre y apellido *</label>
+          <input id="nombre" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="Juan Pérez"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Campo / empresa *</label>
+          <input id="empresa" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="Establecimiento La Esperanza"/>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm font-medium mb-1">Email *</label>
+            <input id="email" type="email" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="juan@correo.com"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Teléfono / WhatsApp</label>
+            <input id="telefono" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="+54 9 ..."/>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Tu actividad</label>
+          <select id="actividad" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none">
+            <option value="">— Elegí —</option>
+            <option value="agricola">Agrícola</option>
+            <option value="ganadera">Ganadera</option>
+            <option value="mixta">Mixta</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Contraseña *</label>
+          <input id="password" type="password" required minlength="6" class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-agro-700 outline-none" placeholder="Mínimo 6 caracteres"/>
+        </div>
+        <button id="btn" type="submit" class="w-full bg-agro-700 hover:bg-agro-800 text-white font-bold rounded-lg py-3 transition">Crear mi prueba gratis →</button>
+        <p id="msg" class="text-sm mt-2"></p>
+        <p class="text-[11px] text-slate-400 text-center">Al registrarte aceptás recibir el email de activación. No compartimos tus datos.</p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="text-center text-xs text-slate-500 py-8">© <span id="yr"></span> AgroCore Argentina · agrocore.ar</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const f = document.getElementById('f'), msg = document.getElementById('msg'), btn = document.getElementById('btn');
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = ''; msg.className = 'text-sm mt-2';
+    const data = {
+      nombre: document.getElementById('nombre').value.trim(),
+      empresa: document.getElementById('empresa').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefono: document.getElementById('telefono').value.trim() || null,
+      actividad: document.getElementById('actividad').value || null,
+      password: document.getElementById('password').value,
+    };
+    btn.disabled = true; btn.textContent = 'Creando tu cuenta…';
+    try {
+      const r = await fetch(TRIAL_API + '/api/public/trial/signup', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
+      });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) throw new Error(j.error || 'No pudimos crear la cuenta. Probá de nuevo.');
+      f.style.display = 'none';
+      msg.className = 'text-base mt-2 text-agro-800';
+      msg.innerHTML = '✅ <b>¡Casi listo!</b> Te enviamos un email a <b>' + data.email + '</b> para confirmar tu cuenta y activar la prueba. Revisá tu bandeja (y el spam).';
+    } catch (err) {
+      msg.className = 'text-sm mt-2 text-red-600';
+      msg.textContent = '⚠️ ' + err.message;
+      btn.disabled = false; btn.textContent = 'Crear mi prueba gratis →';
+    }
+  });
+</script>
+</body>
+</html>
