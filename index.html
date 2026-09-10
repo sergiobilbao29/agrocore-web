@@ -202,7 +202,6 @@
           <a href="mercado.html" class="nav-link">Mercado</a>
           <a href="clima.html" class="nav-link">Clima</a>
           <a href="herramientas.html" class="nav-link">Herramientas</a>
-          <a href="recursos.html" class="nav-link">Guía</a>
           <a href="#faq" class="nav-link">Preguntas</a>
           <a href="#contacto" class="nav-link">Contacto</a>
         </div>
@@ -397,11 +396,12 @@
           <div class="text-2xl mb-2">🚚</div>
           <h3 class="font-bold text-agro-900 mb-2">Logística y Viajes</h3>
           <ul class="text-sm text-slate-600 space-y-1.5">
-            <li>• <strong>Viajes con CTG y carta de porte</strong>: kg carga / descarga, diferencia, tarifa $/ton</li>
+            <li>• <strong>Viajes con CTG y carta de porte</strong>: peso neto, diferencia origen/destino, tarifa $/ton</li>
+            <li>• <strong>Merma y neto a liquidar</strong>: el flete se cobra por el peso neto transportado; la merma solo afecta la liquidación y los kg acopiados</li>
             <li>• Estado automático: pendiente → cargado → descargado → facturado → pagado</li>
             <li>• <strong>Verificación de CTGs en ARCA</strong> en vivo y completado del kg descargado</li>
             <li>• Solicitar camión a logística por WhatsApp con plantilla armada</li>
-            <li>• Destino del cereal vinculado a cerealera o venta directa</li>
+            <li>• <strong>Comprador y cerealera por separado</strong> (a quién le vendés vs. dónde descargás) + cuadro de <strong>cereal vendido</strong> por peso neto</li>
           </ul>
         </div>
 
@@ -545,6 +545,7 @@
             <div class="max-w-[80%] ml-auto bg-gold-500 text-agro-900 rounded-2xl rounded-br-sm px-4 py-2 font-medium">¿A cuánto cerró la soja hoy?</div>
             <div class="max-w-[85%] bg-white/10 rounded-2xl rounded-bl-sm px-4 py-2">🌱 Soja Rosario cerró a <strong>$510.000</strong> la tonelada. Te lo digo también por voz si querés.</div>
           </div>
+          <p class="text-[11px] text-agro-200/70 mt-3">💬 Probalo de verdad: abrí el chat del botón verde abajo a la derecha.</p>
         </div>
       </div>
     </div>
@@ -576,7 +577,6 @@
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Carga inicial de datos maestros</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Manual de usuario sectorizado por módulo</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> URL pública con HTTPS</li>
-            <li class="flex gap-2"><span class="text-gold-400">✓</span> Garantía 30 días</li>
             <li class="flex gap-2"><span class="text-gold-400">✓</span> Acuerdo de Confidencialidad (NDA)</li>
           </ul>
           <a href="#contacto" class="block mt-6 px-5 py-3 bg-gold-500 hover:bg-gold-600 text-agro-900 text-center font-bold rounded-lg transition">
@@ -600,6 +600,7 @@
             <li class="flex gap-2"><span class="text-agro-600">✓</span> Actualizaciones legales ARCA</li>
             <li class="flex gap-2"><span class="text-agro-600">✓</span> Resguardo de backups</li>
             <li class="flex gap-2"><span class="text-agro-600">✓</span> Monitoreo del servidor 24/7</li>
+            <li class="flex gap-2"><span class="text-agro-600">✓</span> Subdominio propio <b>.agrocore.ar</b></li>
             <li class="flex gap-2"><span class="text-agro-600">✓</span> 3 hs/mes de ajustes menores</li>
           </ul>
           <div class="mt-6 px-5 py-3 bg-slate-100 text-slate-600 text-center text-sm rounded-lg">
@@ -618,7 +619,7 @@
           <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-3">
             <div class="flex justify-between items-center mb-2">
               <div class="text-sm font-bold text-blue-900">☁️ Cloud (AWS)</div>
-              <div class="text-sm font-bold text-blue-700">USD 50–80/mes</div>
+              <div class="text-sm font-bold text-blue-700">≈ USD 100/mes</div>
             </div>
             <ul class="space-y-1 text-xs text-slate-700">
               <li class="flex gap-1.5"><span class="text-blue-600">✓</span> Cuenta AWS a tu nombre</li>
@@ -650,7 +651,7 @@
       </div>
 
       <p class="text-center text-xs text-slate-500 mt-8 max-w-2xl mx-auto">
-        💡 Inversión inicial estimada: <b>USD 999,99</b> (pago único) + infraestructura a elección (<b>USD 50–80/mes</b> en Cloud AWS o <b>sin costo recurrente</b> en servidor propio) + <b>USD 100/mes</b> de mantenimiento si lo tomás. Si no querés mantenimiento, el sistema sigue funcionando perfectamente.
+        💡 Inversión inicial estimada: <b>USD 999,99</b> (pago único) + infraestructura a elección (<b>≈ USD 100/mes</b> en Cloud AWS o <b>sin costo recurrente</b> en servidor propio) + <b>USD 100/mes</b> de mantenimiento si lo tomás. Si no querés mantenimiento, el sistema sigue funcionando perfectamente.
       </p>
 
       <div class="flex flex-wrap justify-center gap-3 mt-8">

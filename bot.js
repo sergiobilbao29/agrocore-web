@@ -119,20 +119,25 @@
   function fmtIA(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>'); }
   async function askIA(q){
     try{
-      var r=await fetch(AGRO_BOT_API+'/api/bot-web',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:q})});
+      var r=await fetch(AGRO_BOT_API+'/api/public/bot-web',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:q})});
       var j=await r.json();
       if(j && j.ok && j.respuesta) return { texto:j.respuesta, fuente:j.fuente||'ia' };
     }catch(e){}
     return null;
   }
+  // Registro de solo-lectura en el servidor para las respuestas locales (las que
+  // NO pasan por IA; esas ya se registran en /api/public/bot-web). Fire-and-forget.
+  function logSrv(q, resp, fuente){
+    try{ fetch(AGRO_BOT_API+'/api/public/bot-web-log',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:String(q||'').slice(0,400),respuesta:String(resp||'').replace(/<[^>]+>/g,'').slice(0,2000),fuente:fuente||'base'})}); }catch(e){}
+  }
   async function responder(q){
     add(esc(q),'u'); input.value='';
     var st=smalltalk(q);
-    if(st){ log(q,{tipo:'charla',titulo:q}); add(st,'b'); return; }
+    if(st){ log(q,{tipo:'charla',titulo:q}); logSrv(q, st, 'charla'); add(st,'b'); return; }
     var hits=buscar(q);
     // 1) Match local fuerte → respuesta instantánea (gratis)
     if(hits.length && confiable(q, hits[0])){
-      log(q, hits[0]); add(hits[0].resp,'b');
+      log(q, hits[0]); logSrv(q, hits[0].resp, 'base'); add(hits[0].resp,'b');
       var rel=relacionados(hits[0],3);
       if(rel.length){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(rel); }
       return;
@@ -148,8 +153,8 @@
       return;
     }
     // 3) Fallback: mejor resultado local, o mensaje de ayuda
-    if(hits.length){ log(q,hits[0]); add(hits[0].resp,'b'); var rel2=relacionados(hits[0],3); if(rel2.length){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(rel2); } return; }
-    log(q,null); add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b');
+    if(hits.length){ log(q,hits[0]); logSrv(q, hits[0].resp, 'base'); add(hits[0].resp,'b'); var rel2=relacionados(hits[0],3); if(rel2.length){ add('¿Querés saber más sobre alguno de estos temas?','b'); chips(rel2); } return; }
+    log(q,null); logSrv(q, '', 'sin_resultado'); add('No encontré algo puntual. Probá con: una calculadora (ej. "densidad de siembra", "urea"), un principio activo del vademécum (ej. "glifosato"), o una función del sistema (ej. "costo del kilo", "flujo de fondos").','b');
   }
   function saludo(){
     if(msgs.childElementCount) return;

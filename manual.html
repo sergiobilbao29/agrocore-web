@@ -791,9 +791,10 @@
           <h4>Viajes — operativa completa de fletes <span class="badge-new">Nuevo</span></h4>
           <p>Registra los viajes de transporte cuando se trasladan granos a destino (acopio, exportadora, planta de proceso) o entre campos propios. El formulario tiene toda la información operativa que cargan los responsables de logística:</p>
           <ul>
-            <li><strong>Viaje:</strong> fecha, producto / carga, origen, destino, km recorridos y <strong>tarifa por tonelada</strong>.</li>
-            <li><strong>Carga / descarga:</strong> kg de carga y kg de descarga con cálculo automático de <strong>diferencia</strong> (resaltada en rojo si supera los 500 kg de merma).</li>
-            <li><strong>Documentos:</strong> carta de porte, <strong>CTG separado</strong> y CDP.</li>
+            <li><strong>Datos del viaje:</strong> fecha, producto / grano, origen, destino, km recorridos y <strong>tarifa por tonelada</strong>. El formulario está ordenado en secciones (Datos, Pesos, Destino/venta, Documentos, Transporte, Gastos).</li>
+            <li><strong>Pesos (Carta de Porte):</strong> cargás el <strong>Peso Neto</strong> (o Tara y Bruto, que lo calculan solo). Ese peso neto es lo que viaja y por lo que se cobra el flete. Se calcula la <strong>diferencia</strong> origen/destino (resaltada si supera los 500 kg).</li>
+            <li><strong>Merma y Neto a liquidar:</strong> cargás la <strong>Merma (kg)</strong> y el sistema calcula el <strong>Neto a liquidar = Peso Neto − Merma</strong>. La merma <strong>no afecta el flete</strong>: solo baja los kg que liquida/acopia el comprador. Si el acopio ya te da el neto con las mermas incluidas, dejás la merma en 0.</li>
+            <li><strong>Documentos:</strong> carta de porte, <strong>CTG separado</strong> y pagador del flete.</li>
             <li><strong>Transporte:</strong> nombre y CUIT del transportista, nombre y CUIT del chofer, tipo de camión (chasis, semi, bitren, jaula, tolva, cisterna…), patente del camión y <strong>patente del acoplado</strong>.</li>
             <li><strong>Gastos del viaje:</strong> combustible, peajes, comida, varios y total flete pagado.</li>
             <li><strong>Estado del viaje y vinculación a factura del transportista</strong> (ver más abajo).</li>
@@ -806,6 +807,7 @@
             <li><strong>💰 Venta directa:</strong> el viaje queda con badge 💰. Desde el botón <strong>🧾</strong> de la fila se abre el modal de "Nueva liquidación de cereal" con kg brutos, fecha y producto precargados.</li>
             <li><strong>📦 Otro / Sin aplica:</strong> destino texto libre, sin trazabilidad de stock.</li>
           </ul>
+          <p><strong>Comprador vs. Cerealera/Destino:</strong> en el viaje cargás por separado <strong>a quién le vendés</strong> (el <em>Comprador</em>, ej. Serros) y <strong>dónde descargás</strong> el camión (la <em>Cerealera/Destino</em>, ej. Promaíz), que pueden ser distintos. Podés crear cualquiera de los dos con el botón <strong>"+ nuevo"</strong> sin salir del viaje. La lista de viajes muestra una columna <strong>"Vendido a / Comprador"</strong>, y arriba de la lista hay un cuadro de <strong>cereal vendido</strong> (venta directa) por peso neto, filtrable por comprador y por grano.</p>
 
           <h4>Estado del viaje (automático)</h4>
           <p>El estado del viaje progresa solo a medida que se cargan los datos:</p>
