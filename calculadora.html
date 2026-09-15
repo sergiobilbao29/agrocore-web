@@ -152,7 +152,10 @@
     }
 
     function leadEvent(dest) {
-      try { gtag('event', 'generate_lead', { source: 'calculadora', destino: dest }); } catch(e) {}
+      try { gtag('event', 'generate_lead', { source: 'calculadora', destino: dest });
+        var AW_ID='AW-18358928255', AW_LEAD_LABEL=''; // TODO: label de conversion Google Ads
+        if (AW_LEAD_LABEL) gtag('event','conversion',{send_to:AW_ID+'/'+AW_LEAD_LABEL});
+        if (typeof fbq==='function') fbq('track','Lead'); } catch(e) {}
     }
 
     document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calc));

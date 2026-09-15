@@ -174,6 +174,14 @@
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xmye67pyx1");
+  </script>
 </head>
 <body class="text-slate-800 antialiased">
 
@@ -766,7 +774,7 @@
         <a href="gestion-ganadera.html" class="group p-7 bg-white border border-slate-200 rounded-2xl hover:border-agro-500 hover:shadow-lg transition">
           <div class="text-4xl mb-3">🐄</div>
           <h3 class="font-extrabold text-xl text-agro-900 mb-1">Gestión ganadera</h3>
-          <p class="text-sm text-slate-600 mb-3">Stock de hacienda por categoría, rodeos, costo por kilo, liquidaciones, faena y capitalización de hacienda de terceros.</p>
+          <p class="text-sm text-slate-600 mb-3">Rodeos por campo/lote/corral, alimentación que descuenta stock, costo por kilo con tablero de eficiencia, mapa de hacienda, guías y liquidaciones, y el panel Ganadería 360 con todo el circuito.</p>
           <span class="text-agro-700 font-semibold text-sm group-hover:underline">Ver más →</span>
         </a>
         <a href="sistema-gestion-campo.html" class="group p-7 bg-white border border-slate-200 rounded-2xl hover:border-agro-500 hover:shadow-lg transition">
@@ -929,7 +937,8 @@
       window.open(url, '_blank', 'noopener');
     }
     // Helper de eventos GA4 / Google Ads (no falla si gtag aún no cargó).
-    function ev(name, params) { try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (_) {} }
+    var AW_ID='AW-18358928255', AW_LEAD_LABEL=''; // TODO: pegar aqui el label de la conversion de Google Ads
+    function ev(name, params) { try { if (typeof gtag === 'function') { gtag('event', name, params || {}); if (AW_LEAD_LABEL && /lead|demo|contacto|whatsapp/i.test(name)) gtag('event','conversion',{send_to:AW_ID+'/'+AW_LEAD_LABEL}); } if (typeof fbq === 'function' && /lead|demo|contacto|whatsapp/i.test(name)) fbq('track','Lead'); } catch (_) {} }
 
     // Engancha todos los links con data-wa-text para usar el helper + registra la conversión.
     // data-evento="probar_demo" en los CTA de demo; el resto cae en "contacto_whatsapp".

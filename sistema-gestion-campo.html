@@ -70,6 +70,14 @@
   <style> body { font-family:'Inter',system-ui,sans-serif; } html { scroll-behavior:smooth; }
     .hero-bg { background: radial-gradient(ellipse at top, rgba(34,197,94,.18), transparent 60%), linear-gradient(180deg,#14532d 0%,#166534 100%); }
   </style>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xmye67pyx1");
+  </script>
 </head>
 <body class="bg-white text-slate-800">
 
@@ -162,7 +170,8 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
     const WA_NUMERO='5493582408884';
-    function ev(n,p){ try{ if(typeof gtag==='function') gtag('event',n,p||{}); }catch(_){} }
+    var AW_ID='AW-18358928255', AW_LEAD_LABEL=''; // TODO: pegar aqui el label de la conversion de Google Ads (ej: 'abcDEfgh123')
+    function ev(n,p){ try{ if(typeof gtag==='function'){ gtag('event',n,p||{}); if(AW_LEAD_LABEL && /lead|demo|contacto|whatsapp/i.test(n)) gtag('event','conversion',{send_to:AW_ID+'/'+AW_LEAD_LABEL}); } if(typeof fbq==='function' && /lead|demo|contacto|whatsapp/i.test(n)) fbq('track','Lead'); }catch(_){} }
     function waOpen(t){ const d=WA_NUMERO.replace(/\D/g,''); const m=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||''); const q=t?encodeURIComponent(t):''; const u=m?('https://wa.me/'+d+(q?'?text='+q:'')):('https://web.whatsapp.com/send?phone='+d+(q?'&text='+q:'')); window.open(u,'_blank','noopener'); }
     document.querySelectorAll('a[data-wa-text]').forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); ev(a.getAttribute('data-evento')||'contacto_whatsapp',{metodo:'whatsapp'}); waOpen(a.getAttribute('data-wa-text')); }); });
   </script>

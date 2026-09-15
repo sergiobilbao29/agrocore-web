@@ -83,6 +83,23 @@
       @page { margin: 1.5cm; }
     }
   </style>
+  <!-- Google tag (gtag.js) - GA4 + Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TLTNL3NJ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0TLTNL3NJ0');
+    gtag('config', 'AW-18358928255');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xmye67pyx1");
+  </script>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -402,6 +419,7 @@
             <li><strong>Cheques vencidos sin cobrar</strong></li>
             <li><strong>Saldo de efectivo y flujo de caja</strong> (consolidado)</li>
             <li><strong>Desglose por empresa</strong>: tabla con una fila por empresa y sus totales individuales.</li>
+            <li><strong>Cheques físicos en cartera (detalle) <span class="badge-new">Nuevo</span></strong>: debajo de la tabla, un recuadro que lista los cheques físicos (no e-cheq) <strong>uno por uno</strong> de las empresas seleccionadas — N°, banco, librador / de quién vino, en poder de quién está, tipo, vencimiento e importe, con el total al pie. Los vencidos se marcan en rojo. Así ves exactamente qué cheques componen el total en cartera, no solo el monto.</li>
           </ul>
 
           <h4>Filtro de empresas</h4>
@@ -458,6 +476,17 @@
           <p><strong>Cálculo en vivo:</strong> el form muestra base de cálculo (ha × precio o precio total), ganancia del empleado (base × %) y el mes en que aparecerá en su planilla.</p>
           <p><strong>Al guardar:</strong> se descuentan los insumos del stock <strong>y</strong>, si el empleado cobra porcentaje, se crea automáticamente un movimiento "ganancia" tipo "labor" en su planilla del mes con el concepto de la labor (tipo, hectáreas y %). No hay que ir a la planilla a cargarlo aparte.</p>
           <p><strong>Reporte por lote:</strong> todas las aplicaciones de un lote en una campaña, con costo acumulado vs presupuesto.</p>
+
+          <h4 id="mod-sociedades">Sociedades / UTE — negocio en participación entre empresas <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando armás un negocio de campaña en conjunto con otras firmas o socios (una <strong>sociedad de hecho o UTE</strong>), en <strong>Producción → Sociedades / UTE</strong> podés llevar toda la cuenta en un solo lugar, <strong>sin cambiar la facturación</strong>: las cartas de porte siguen saliendo del titular real de cada campo (Del Pistrin, DLL, Gerardo o el socio que corresponda). La sociedad solo <strong>consolida</strong> la cosecha y los costos para saber cómo viene el negocio y liquidar la participación de cada uno.</p>
+          <ul>
+            <li><strong>Crear la sociedad:</strong> nombre (ej. "SPL — 2026/27"), campaña/ciclo y los socios con qué aporta cada uno (campos, maquinaria, líquidos, empleados).</li>
+            <li><strong>Asignar campos:</strong> podés sumar campos de <strong>cualquiera de tus empresas</strong> del grupo y también <strong>campos externos</strong> de los socios (con su titular/CUIT). A los campos externos el sistema les crea automáticamente un campo interno "sombra" bajo la empresa dueña de la sociedad, así también se les pueden cargar labores e insumos (sin cambiar la titularidad fiscal de las cartas de porte).</li>
+            <li><strong>Cargar labores e insumos desde la sociedad (sin cambiar de empresa):</strong> con el botón <strong>"➕ Cargar labor / insumo"</strong> elegís cualquier campo de la sociedad (de la empresa que sea, o externo) y lo cargás desde una sola pantalla. El dato queda guardado en la <strong>empresa dueña del campo</strong> (se ve también en su producción) y <strong>no se duplica</strong>. En insumos podés elegir <strong>descontar del stock</strong> de esa empresa o registrar <strong>solo el costo</strong>.</li>
+            <li><strong>Tablero consolidado:</strong> por cada campo muestra hectáreas, cultivo, <strong>kg cosechados</strong> (de las cartas de porte) y <strong>costo estimado</strong> (labores + insumos), con totales, cruzando todas las empresas. Solo consolida las campañas del <strong>ciclo de la sociedad</strong> que <strong>no estén cerradas</strong> (por eso conviene cargarle el ciclo, ej. 26/27, para que no se cuele una campaña vieja del campo).</li>
+            <li><strong>Cartas de porte de un socio:</strong> si una CP sale de otra empresa/socio, al cargar el <em>viaje</em> elegí la Sociedad en el selector "Sociedad / UTE" para que sume a la cosecha del negocio.</li>
+            <li><strong>Liquidación (botón 💰):</strong> ponés el <strong>precio $/tn</strong> (valoriza la cosecha = ingreso), cargás <strong>gastos comunes</strong> y los <strong>aportes de cada socio</strong>, y el <strong>% de participación</strong> (con "Sugerir % por aporte"). El sistema calcula <strong>ingreso − gastos = resultado</strong> y el reparto por socio: su % del ingreso, su ganancia y el <strong>neto a cobrar o poner</strong>. Se puede imprimir/PDF para pasarle a cada socio.</li>
+          </ul>
         </section>
 
         <section id="mod-stock">
@@ -538,6 +567,7 @@
 <p>En <strong>Patrimonio y contratos → Activos y maquinaria</strong> cargás tus bienes de uso (tractores, camionetas, sembradoras, instalaciones). De cada activo guardás valor de compra, fecha, vida útil y su <strong>amortización</strong>, el <strong>seguro</strong> (aseguradora, tipo, número de póliza, vigencia y contacto) y podés <strong>adjuntar fotos y PDF</strong> (facturas, cédulas, pólizas). Cada activo lleva su historial de <strong>mantenimientos</strong> con alertas por fecha o por kilómetros/horas, y el sistema te avisa cuando se acerca un service o vence un seguro. El valor neto de amortización se suma solo al <strong>Estado de situación patrimonial</strong>.</p>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           <h4 id="mod-rodeos">Rodeos y Hacienda <span class="badge-new">Nuevo</span></h4>
 <p>En <strong>Stock y depósitos → Rodeos y Hacienda</strong> creás <strong>lotes de engorde o cría</strong> (feedlot, engorde a campo, recría o cría) y cargás sus eventos: <strong>ingreso</strong> de hacienda (cabezas, kg y precio de compra + fletes), <strong>alimentación</strong> (rollos, fardos o grano descontados del galpón a su costo, o pastoreo directo), <strong>sanidad</strong>, <strong>labores</strong>, <strong>pesajes</strong>, <strong>bajas</strong> y <strong>ventas</strong>. El sistema calcula automáticamente los kg producidos y dos métricas clave: <strong>$/kg producido</strong> (eficiencia del engorde) y <strong>$/kg terminado</strong> (costo real del kilo para la venta), además de la ganancia diaria de peso y el margen.</p>
 =======
@@ -561,6 +591,20 @@
 =======
 >>>>>>> Stashed changes
 =======
+>>>>>>> Stashed changes
+=======
+          <h4 id="mod-rodeos">Rodeos y Hacienda (costo por kg de carne) <span class="badge-new">Nuevo</span></h4>
+<p>En <strong>Ganadería y Haras → Rodeos y Hacienda</strong> creás <strong>lotes de engorde o cría</strong> (feedlot, engorde a campo, recría, cría o capitalización de terceros). Cada lote se <strong>ubica en Campo + Lote/potrero + Corral</strong> (el corral para feedlot) y su <strong>categoría se elige del catálogo de animales</strong> (Ternero, Novillito, Novillo, Vaca…), y se puede cambiar cuando recategorizan. Cargás sus eventos: <strong>ingreso</strong> (cabezas, kg y precio de compra + fletes), <strong>alimentación</strong>, <strong>sanidad</strong>, <strong>labores</strong>, <strong>pesajes</strong>, <strong>bajas</strong> y <strong>ventas</strong>. El sistema calcula los kg producidos y dos métricas clave: <strong>$/kg producido</strong> (eficiencia del engorde) y <strong>$/kg terminado</strong> (costo real del kilo para la venta), además de la ganancia diaria de peso (GPD) y el margen.</p>
+<p><strong>Alimentación con descuento de stock e imputar pastura:</strong> al cargar una <strong>Alimentación</strong> elegís el <strong>depósito</strong> de donde sale el alimento y el sistema <strong>descuenta ese stock</strong>; si el producto es una <strong>mezcla/ración</strong>, descuenta cada componente. También podés <strong>imputar la pastura</strong> de una <strong>campaña forrajera</strong> al lote (por porcentaje), sumando su costo como alimentación.</p>
+<p><strong>Factura desde el evento:</strong> al cargar una <strong>compra, venta o sanidad</strong> con proveedor/cliente, sin salir de la ficha podés <strong>crear la factura nueva</strong> (tipo, punto de venta, número, IVA) —genera el comprobante y su cuenta a pagar/cobrar— o <strong>vincular</strong> una factura existente, o dejar solo la cuenta corriente.</p>
+<p><strong>Tablero de eficiencia (dentro del módulo):</strong> con el selector <strong>📋 Lista / 📊 Tablero de eficiencia</strong> pasás de la tabla a las <strong>tarjetas por lote</strong> con GPD, $/kg y margen y un <strong>semáforo</strong> contra el objetivo de cada lote (🟢 dentro, 🔴 fuera, ⚪ sin objetivo). Ya no es un ítem de menú aparte.</p>
+<p><strong>Hacienda de terceros (capitalización / hotelería de engorde):</strong> si recibís animales de un tercero para engordarlos y cobrarle el servicio, tildá <em>“Hacienda de terceros”</em> al crear el lote e indicá el <strong>propietario</strong>. Cargás los costos reales del engorde (para tu control) y, aparte, los <strong>cargos a cobrar al dueño</strong> con eventos <strong>🏨 Capitalización</strong> o <strong>🛠️ Servicio</strong>. El botón <strong>🏨 Hotelería / capitalización (terceros)</strong> arma el <strong>resumen por propietario</strong> —unificado con los caballos en pensión de Fichas de animales— listo para facturar, con export a Excel.</p>
+
+          <h4 id="mod-ganaderia-360">Ganadería 360 (panel resumen de la hacienda) <span class="badge-new">Nuevo</span></h4>
+<p>En <strong>Ganadería y Haras → Ganadería 360</strong> tenés el panel del dueño: junta toda la hacienda de un vistazo. Arriba, los totales de los lotes activos (<strong>cabezas</strong>, <strong>kg producidos</strong>, <strong>$/kg producido promedio</strong> ponderado y <strong>margen total</strong>). Después, la <strong>plata invertida por rubro</strong> (compra, alimentación, sanidad, labores, otros) y el <strong>rendimiento por lote</strong> ordenado por margen. Abajo, el <strong>circuito comercial del período</strong> (mes / año / todo): ventas por liquidación y lo que queda por cobrar, y las guías DT-e con lo que falta vincular o pagar.</p>
+
+          <h4 id="mod-traslado-hacienda">Traslado de hacienda y mapa <span class="badge-new">Nuevo</span></h4>
+<p><strong>Traslado de hacienda:</strong> en <strong>Ganadería y Haras → Traslado de hacienda</strong> ves cada campo con su stock por categoría; <strong>arrastrás</strong> (o tocás, en el celular) una categoría de un campo a otro y se abre el traslado ya prellenado, que ejecuta el movimiento. <strong>Mapa:</strong> en <strong>Mapa de lotes</strong>, con la vista <em>Hacienda</em>, cada potrero con un rodeo muestra una <strong>tarjeta</strong> sobre el lote con cabezas, peso promedio, kilos y carga (cab/ha), y los botones <strong>↔ Mover</strong> (reubica el rodeo en otro campo/lote/corral) y <strong>Ver ficha</strong>.</p>
 >>>>>>> Stashed changes
 <p><strong>Hacienda de terceros (capitalización / hotelería de engorde):</strong> si recibís animales de un tercero para engordarlos y cobrarle el servicio, tildá <em>“Hacienda de terceros”</em> al crear el lote e indicá el <strong>propietario</strong>. Cargás los costos reales del engorde como siempre (para tu control) y, aparte, los <strong>cargos a cobrar al dueño</strong> con eventos <strong>🏨 Capitalización</strong> o <strong>🛠️ Servicio</strong> (por cabeza/mes). El botón <strong>🏨 Hotelería / capitalización (terceros)</strong> arma el <strong>resumen por propietario</strong> —unificado con los caballos en pensión de Fichas de animales— listo para facturar, con export a Excel.</p>
 <p><strong>Caravana electrónica / collar → pesaje automático del lote:</strong> si los animales llevan caravana electrónica o collar, creá su <strong>Ficha de animal</strong> y vinculala al lote (campo “Lote / rodeo”). El peso individual (por balanza en la manga, caravana con pesaje o pesaje manual en la ficha) se guarda en cada animal, y con el botón <strong>⚖️ Pesaje desde balanzas</strong> del lote se arma el pesaje total sumando esas fichas — sin pesar la tropa entera a mano.</p>
@@ -776,6 +820,9 @@
 <p>En <strong>Cuentas a pagar</strong> (y <strong>Cuentas a cobrar</strong>), al pagar/cobrar podés tildar <strong>"Pagar con varios medios"</strong> y combinar efectivo, cheque, transferencia, tarjeta y <strong>producto</strong> en la misma operación.</p>
 <p><strong>Pago/cobro con producto (en especie):</strong> agregás un medio <strong>🌾 Producto</strong>, elegís el producto del stock (maíz, soja, lechón faenado…), la cantidad y el precio, y el importe se calcula solo. En el <strong>pago</strong>, la casilla <strong>"Descontar del stock"</strong> saca la mercadería entregada (destildala si no la entregás, ej. el fletero se queda el grano); en el <strong>cobro</strong>, <strong>"Ingresar al stock"</strong> suma el producto que te entrega el cliente. Así podés saldar una factura con, por ejemplo, una parte en efectivo y otra en grano o hacienda.</p>
 <p><strong>Si sobra o falta plata:</strong> cuando la suma de los medios no coincide con las facturas tildadas, el sistema te avisa y te deja resolverlo: si <strong>sobra</strong>, registra la operación y el excedente queda como <strong>saldo a favor</strong> para aplicar a otra factura; si <strong>falta</strong>, hace el <strong>pago/cobro parcial</strong> aplicando de la factura <strong>más vieja a la más nueva</strong> y deja el saldo pendiente en la última.</p>
+
+          <h4 id="mod-compensacion">Compensación de cuentas (cliente que también es proveedor) <span class="badge-new">Nuevo</span></h4>
+<p>Cuando la misma persona <strong>te compra y te vende</strong>, mantenés su ficha de <strong>Cliente</strong> y su ficha de <strong>Proveedor</strong> por separado (cada una con su circuito fiscal) pero las <strong>vinculás</strong> para tratarlas juntas. En <strong>Compensación de cuentas</strong> ves el saldo de ambos lados y el <strong>neto</strong>: al compensar, el sistema hace un <strong>asiento cruzado</strong> (un haber en la cuenta del cliente y otro en la del proveedor) por el monto elegido, <strong>sin mover plata</strong>, y después pagás o cobrás solo la diferencia. La compensación se puede <strong>deshacer</strong>.</p>
 
           <h4 id="mod-guias-hacienda">Guías de hacienda (DT-e) — mover el stock antes de la factura <span class="badge-new">Nuevo</span></h4>
 <p>El movimiento físico de los animales (con su <strong>guía DT-e / DTe-DUT</strong>) siempre pasa <em>antes</em> que el comprobante fiscal (liquidación o factura), que suele demorar. El módulo <strong>Ganadería y Haras → Guías de hacienda (DT-e)</strong> resuelve esto: la guía <strong>mueve el stock al instante</strong> y arma una <strong>cuenta corriente provisoria</strong> (estimada a cobrar o a pagar), y después se <strong>vincula</strong> con el comprobante fiscal.</p>

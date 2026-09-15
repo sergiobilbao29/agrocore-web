@@ -70,6 +70,14 @@
   <style> body { font-family:'Inter',system-ui,sans-serif; } html { scroll-behavior:smooth; }
     .hero-bg { background: radial-gradient(ellipse at top, rgba(34,197,94,.18), transparent 60%), linear-gradient(180deg,#14532d 0%,#166534 100%); }
   </style>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xmye67pyx1");
+  </script>
 </head>
 <body class="bg-white text-slate-800">
 
@@ -116,7 +124,7 @@
       <p class="text-slate-600 text-center max-w-2xl mx-auto mb-12">AgroCore une el movimiento de hacienda con los números de tu empresa.</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">🐄</div><h3 class="font-bold text-agro-900 mb-1">Stock de hacienda</h3><p class="text-sm text-slate-600">Existencias por especie y categoría, con altas, bajas, cambios de categoría y kilos.</p></div>
-        <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">📊</div><h3 class="font-bold text-agro-900 mb-1">Costo por kilo</h3><p class="text-sm text-slate-600">Armá rodeos de engorde o cría y conocé el costo real por kilo producido.</p></div>
+        <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">📊</div><h3 class="font-bold text-agro-900 mb-1">Costo por kilo y Ganadería 360</h3><p class="text-sm text-slate-600">Rodeos por campo/lote/corral con alimentación que descuenta stock; costo real por kilo con tablero de eficiencia, mapa de hacienda y el panel Ganadería 360.</p></div>
         <div class="p-6 bg-white border border-slate-200 rounded-xl"><div class="w-11 h-11 bg-agro-100 text-agro-700 rounded-lg flex items-center justify-center text-2xl mb-3">📄</div><h3 class="font-bold text-agro-900 mb-1">Liquidaciones y faena</h3><p class="text-sm text-slate-600">Importá liquidaciones de hacienda y faena en PDF y llevá la cuenta corriente al día.</p></div>
       </div>
     </div>
@@ -126,7 +134,7 @@
   <section class="py-14 bg-slate-50 border-y border-slate-200">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose-slate">
       <h2 class="text-2xl md:text-3xl font-extrabold text-agro-900 mb-4">Por qué usar un software de gestión ganadera</h2>
-      <p class='text-slate-700 leading-relaxed mb-4'>La <strong>gestión ganadera</strong> exige saber en todo momento cuántos animales hay, de qué categoría, cuánto pesan y cuánto cuesta producir cada kilo. Sin un sistema, esa información queda en la cabeza del encargado o en planillas que nunca cierran con la administración.</p><p class='text-slate-700 leading-relaxed mb-4'>Con AgroCore cargás los movimientos de hacienda (compras, ventas, nacimientos, muertes, cambios de categoría) y el stock se actualiza solo, en cabezas y en kilos. Podés armar rodeos, imputar el consumo de alimento y ver el costo por kilo de cada lote. Las liquidaciones de hacienda y la faena se importan desde el PDF y quedan vinculadas a la cuenta corriente del cliente o la consignataria.</p><p class='text-slate-700 leading-relaxed'>Es un sistema pensado para empresas ganaderas y mixtas de Argentina, multi-empresa y multi-usuario.</p>
+      <p class='text-slate-700 leading-relaxed mb-4'>La <strong>gestión ganadera</strong> exige saber en todo momento cuántos animales hay, de qué categoría, cuánto pesan y cuánto cuesta producir cada kilo. Sin un sistema, esa información queda en la cabeza del encargado o en planillas que nunca cierran con la administración.</p><p class='text-slate-700 leading-relaxed mb-4'>Con AgroCore cargás los movimientos de hacienda (compras, ventas, nacimientos, muertes, cambios de categoría) y el stock se actualiza solo, en cabezas y en kilos. Podés armar rodeos, imputar el consumo de alimento y ver el costo por kilo de cada lote. Las liquidaciones de hacienda y la faena se importan desde el PDF y quedan vinculadas a la cuenta corriente del cliente o la consignataria.</p><p class='text-slate-700 leading-relaxed mb-4'>Además, el panel <strong>Ganadería 360</strong> resume toda la hacienda de un vistazo (cabezas, kilos, costo por kilo promedio, margen y la plata invertida por rubro), el <strong>tablero de eficiencia</strong> compara cada lote contra su objetivo con semáforo, y el <strong>mapa de hacienda</strong> muestra sobre cada potrero qué rodeo está, con cuántas cabezas y qué carga, permitiendo moverlos con un clic.</p><p class='text-slate-700 leading-relaxed'>Es un sistema pensado para empresas ganaderas y mixtas de Argentina, multi-empresa y multi-usuario.</p>
     </div>
   </section>
 
@@ -162,7 +170,8 @@
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
     const WA_NUMERO='5493582408884';
-    function ev(n,p){ try{ if(typeof gtag==='function') gtag('event',n,p||{}); }catch(_){} }
+    var AW_ID='AW-18358928255', AW_LEAD_LABEL=''; // TODO: pegar aqui el label de la conversion de Google Ads (ej: 'abcDEfgh123')
+    function ev(n,p){ try{ if(typeof gtag==='function'){ gtag('event',n,p||{}); if(AW_LEAD_LABEL && /lead|demo|contacto|whatsapp/i.test(n)) gtag('event','conversion',{send_to:AW_ID+'/'+AW_LEAD_LABEL}); } if(typeof fbq==='function' && /lead|demo|contacto|whatsapp/i.test(n)) fbq('track','Lead'); }catch(_){} }
     function waOpen(t){ const d=WA_NUMERO.replace(/\D/g,''); const m=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||''); const q=t?encodeURIComponent(t):''; const u=m?('https://wa.me/'+d+(q?'?text='+q:'')):('https://web.whatsapp.com/send?phone='+d+(q?'&text='+q:'')); window.open(u,'_blank','noopener'); }
     document.querySelectorAll('a[data-wa-text]').forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); ev(a.getAttribute('data-evento')||'contacto_whatsapp',{metodo:'whatsapp'}); waOpen(a.getAttribute('data-wa-text')); }); });
   </script>
