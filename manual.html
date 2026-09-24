@@ -198,11 +198,11 @@
             </div>
             <div>
               <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000">
-                <iframe src="https://www.youtube.com/embed/xwzjHYBQuH4" title="AgroCore — Manejo integral de la hacienda" loading="lazy"
+                <iframe src="https://www.youtube.com/embed/xwzjHYBQuH4" title="AgroCore — Circuito de una campaña de cereal" loading="lazy"
                   style="position:absolute;inset:0;width:100%;height:100%;border:0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
-              <p style="margin-top:8px"><strong>🐄 Manejo integral de la hacienda.</strong> Rodeos, alimentación con descuento de stock, gastos, compras/ventas, guías y costo por kilo con la ganancia.</p>
+              <p style="margin-top:8px"><strong>🌾 Circuito de una campaña de cereal.</strong> De la carga del camión a la venta: cartas de porte, entrega en el acopio, venta al comprador y liquidación agrupando los camiones.</p>
             </div>
           </div>
         </section>
@@ -892,6 +892,12 @@
             <li><strong>Facturado</strong> → cuando se vincula la factura de compra del transportista (botón 🔗 en cada fila del listado).</li>
             <li><strong>Pagado</strong> → cuando se le salda la cuenta corriente al transportista. El sistema lo cambia <em>solo</em> al registrar el pago. También hay un botón manual 💵 por si querés forzarlo.</li>
           </ul>
+          <p>Además hay dos estados <strong>manuales</strong> que elegís vos desde el campo <strong>Estado</strong> del formulario del viaje (o desde el filtro de la lista):</p>
+          <ul>
+            <li><strong>🛬 Arribada</strong> → el camión llegó a destino (todavía sin registrar la descarga).</li>
+            <li><strong>↩️ Volvió a destino</strong> → para las cartas de porte de <strong>campo a campo</strong> que se hacen para mover cereal y que <strong>no descargan en ningún lado</strong>. Sirve para <strong>cerrar</strong> esa CP. No mueve stock; y si la CP tenía stock cargado, al pasarla a este estado ese movimiento se revierte solo.</li>
+          </ul>
+          <p><strong>¿Campo a campo con o sin descarga?</strong> Si en la CP de campo a campo el cereal <em>sí</em> se bajó en el otro campo, dejala en <strong>Descargado</strong> eligiendo el <strong>depósito destino</strong> (el grano viaja de un campo al otro en el stock). Usá <strong>Volvió a destino</strong> solo cuando el grano <em>no</em> se descargó y volvió.</p>
           <p>El listado muestra una columna <strong>Diferencia</strong> (kg carga − kg descarga), badges de colores por estado y atajos por fila: editar, vincular factura, marcar pagado, borrar.</p>
 
           <h4>Solicitar Camión Logística por WhatsApp</h4>
