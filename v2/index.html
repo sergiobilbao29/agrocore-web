@@ -23,6 +23,17 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdro
 footer{background:#0d3012;color:#b7c8b9;padding:42px 0}.footer{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}.footer .brand-copy strong{color:#fff}.footer p{font-size:12px;max-width:340px}.footer h4{color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 12px}.footer a{display:block;font-size:12.5px;margin:7px 0;color:#c7d5c8}.legal{border-top:1px solid rgba(255,255,255,.1);margin-top:30px;padding-top:20px;font-size:11px;color:#8fa392}
 @media(max-width:980px){.links,.nav>.btn{display:none}.menu{display:block}.hero-grid,.cap-head,.ai-grid,.price-layout{grid-template-columns:1fr}.hero-grid{min-height:auto;padding:54px 0}.hero-visual{max-width:720px}.float-card{left:18px}.cap-head,.ai-grid,.price-layout{gap:38px}.worlds{grid-template-columns:1fr}.world{height:390px}.steps{grid-template-columns:1fr 1fr}.product-tabs{grid-template-columns:1fr 1fr}.footer{grid-template-columns:1fr 1fr}.footer>div:first-child{grid-column:1/-1}}
 @media(max-width:620px){.wrap{width:min(100% - 32px,var(--max))}.section{padding:70px 0}.preview{font-size:10px}.nav{height:68px}.brand img{width:39px;height:39px}.hero-grid{gap:32px;padding-top:42px}.hero-copy .lead{font-size:17px}.hero-photo{border-radius:20px;aspect-ratio:1/1}.float-card{position:relative;left:auto;bottom:auto;width:100%;margin-top:12px}.proof{gap:12px}.trust-in{padding:18px 0;display:block}.trust-items{margin-top:12px;gap:12px 22px}.product-head{display:block}.text-link{display:inline-block;margin-top:16px}.product-stage{padding:12px;border-radius:20px}.product-tabs{grid-template-columns:1fr}.cap-grid{grid-template-columns:1fr}.world{height:350px}.steps{grid-template-columns:1fr}.step{border-left:1px solid var(--line);padding:0 0 30px 25px}.step:before{top:0;left:-6px}.included{grid-template-columns:1fr}.price-card{padding:24px}.price-value{font-size:38px}.price-notes{flex-direction:column}.final-copy{padding:36px 25px}.footer{grid-template-columns:1fr}.footer>div:first-child{grid-column:auto}}
+
+/* Mercado en vivo */
+.market-bar{background:#0f3414;color:#eef6ef;border-top:1px solid rgba(255,255,255,.06);height:38px;display:flex;align-items:center;font-size:12px}
+.market-inner{width:min(var(--max),calc(100% - 48px));margin:auto;display:flex;align-items:center;min-width:0;height:100%}
+.market-label{display:flex;align-items:center;gap:8px;color:#f3c64e;font-weight:850;letter-spacing:.04em;white-space:nowrap;padding-right:16px}
+.market-live{width:7px;height:7px;border-radius:50%;background:#63b66b;box-shadow:0 0 0 4px rgba(99,182,107,.12)}
+.market-window{overflow:hidden;white-space:nowrap;flex:1;min-width:0;mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}
+.market-track{display:inline-flex;width:max-content;animation:marketMove 48s linear infinite;will-change:transform}.market-bar:hover .market-track{animation-play-state:paused}
+.market-set{display:inline-flex;align-items:center;gap:20px;padding-right:20px}.market-item{display:inline-flex;align-items:baseline;gap:6px;color:#bcd0bf}.market-item b{color:#fff;font-weight:800}.market-item em{font-style:normal;color:#f3c64e;font-weight:760}.market-sep{color:#56735b}.market-more{color:#f3c64e;font-weight:800;white-space:nowrap;padding-left:16px;margin-left:8px;border-left:1px solid rgba(255,255,255,.12)}
+@keyframes marketMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:620px){.market-inner{width:calc(100% - 24px)}.market-label{padding-right:10px}.market-more{display:none}.market-bar{height:36px;font-size:11px}}
 </style>
 </head>
 <body>
@@ -31,7 +42,15 @@ footer{background:#0d3012;color:#b7c8b9;padding:42px 0}.footer{display:grid;grid
 <a class="brand" href="#top"><img src="img/logo-icon-128.png" alt="AgroCore"><span class="brand-copy"><strong>AgroCore</strong><span>El corazón del negocio agrícola</span></span></a>
 <nav class="links"><a href="#producto">Producto</a><a href="#soluciones">Soluciones</a><a href="#como">Cómo funciona</a><a href="#precio">Precio</a><a href="#contacto">Contacto</a></nav>
 <a class="btn gold" href="https://demo.agrocore.ar/" target="_blank" rel="noopener">Probar AgroCore <span class="arrow">→</span></a><button class="menu" aria-label="Menú" onclick="document.querySelector('.links').style.display=document.querySelector('.links').style.display==='flex'?'none':'flex'">≡</button>
-</div></header>
+</div>
+<div class="market-bar" id="market-bar" aria-label="Cotizaciones de mercado en vivo">
+  <div class="market-inner">
+    <a class="market-label" href="/mercado.html"><span class="market-live"></span>Mercado en vivo</a>
+    <div class="market-window"><div class="market-track" id="market-track"><span class="market-set" id="market-items">Cargando cotizaciones…</span><span class="market-set" id="market-items-copy" aria-hidden="true"></span></div></div>
+    <a class="market-more" href="/mercado.html">Ver mercado →</a>
+  </div>
+</div>
+</header>
 <main id="top">
 <section class="hero"><div class="wrap hero-grid"><div class="hero-copy">
 <div class="kicker">AgroCore · Hecho para el agro argentino</div><h1>Todo tu campo,<br>en un solo lugar.</h1>
@@ -62,4 +81,27 @@ footer{background:#0d3012;color:#b7c8b9;padding:42px 0}.footer{display:grid;grid
 <section class="final" id="contacto"><div class="wrap"><div class="final-box"><img class="final-bg" src="img/hero.jpg" alt="Campo argentino"><div class="final-copy"><div class="kicker" style="color:var(--gold)">AgroCore</div><h2 style="margin-top:10px">Conocé el sistema con tus propios datos en mente.</h2><p>Entrá a la demo o contanos cómo trabaja tu empresa rural. Te mostramos qué módulos aplicarían a tu operación.</p><div class="final-actions"><a class="btn gold" href="https://demo.agrocore.ar/" target="_blank" rel="noopener">Probar la demo <span class="arrow">→</span></a><a class="btn light" href="https://wa.me/5493582408884" target="_blank" rel="noopener">Hablar por WhatsApp</a></div></div></div></div></section>
 </main>
 <footer><div class="wrap"><div class="footer"><div><a class="brand" href="#top"><img src="img/logo-icon-128.png" alt="AgroCore"><span class="brand-copy"><strong>AgroCore</strong><span>El corazón del negocio agrícola</span></span></a><p>Sistema de gestión integral para empresas rurales argentinas. Multi-empresa, multi-usuario, Cloud o servidor propio.</p></div><div><h4>Producto</h4><a href="#producto">Conocer AgroCore</a><a href="#soluciones">Funcionalidades</a><a href="#como">Implementación</a><a href="#precio">Precio</a></div><div><h4>Recursos</h4><a href="https://agrocore.ar/manual.html" target="_blank">Manual</a><a href="https://agrocore.ar/mercado.html" target="_blank">Mercado</a><a href="https://agrocore.ar/clima.html" target="_blank">Clima</a><a href="https://demo.agrocore.ar/" target="_blank">Demo</a></div></div><div class="legal">© AgroCore Argentina · agrocore.ar · Hecho para el campo argentino.</div></div></footer>
+
+<script>
+(() => {
+  const API = 'https://demo.agrocore.ar';
+  const fmt = n => Number(n || 0).toLocaleString('es-AR', {maximumFractionDigits: 0});
+  async function cargarMercado(){
+    const a=document.getElementById('market-items'), b=document.getElementById('market-items-copy');
+    if(!a) return;
+    try{
+      const r=await fetch(API + '/api/cotizaciones',{cache:'no-store'});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const j=await r.json(), cer=(j.cereales&&j.cereales.items)||{}, dol=j.dolar||{};
+      const items=[];
+      const add=(label,value)=>{if(value!=null)items.push(`<span class="market-item"><b>${label}</b><em>$${fmt(value)}</em></span>`)};
+      add('Soja',cer.soja); add('Maíz',cer.maiz); add('Trigo',cer.trigo); add('Sorgo',cer.sorgo); add('Girasol',cer.girasol);
+      add('Dólar oficial',dol.oficial&&dol.oficial.venta); add('Blue',dol.blue&&dol.blue.venta);
+      const html=items.length?items.join('<span class="market-sep">·</span>'):'Cotizaciones temporalmente no disponibles.';
+      a.innerHTML=html; b.innerHTML=html;
+    }catch(e){a.textContent='Cotizaciones temporalmente no disponibles.';b.textContent='';}
+  }
+  cargarMercado(); setInterval(cargarMercado,10*60*1000);
+})();
+</script>
 </body></html>
