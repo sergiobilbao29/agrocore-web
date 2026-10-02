@@ -1122,6 +1122,17 @@
             <li><strong>Resultado automático:</strong> stock de Urea sube 5000 kg, cuenta corriente del proveedor con saldo deudor, aparece en flujo de caja, IVA registrado en libro IVA Compras.</li>
           </ol>
 
+          <h3>Flujo 1b — Circuito con remito: recepción → factura (sin duplicar stock)</h3>
+          <p>Cuando la mercadería llega <strong>antes</strong> que la factura, usá el <strong>Remito de compra</strong> para que el stock entre al recibirla y la factura solo genere la deuda después.</p>
+          <ol>
+            <li><strong>Comercial → Remitos de compra → + Nuevo remito</strong>. Proveedor, fecha, depósito y los artículos con la cantidad recibida (precio estimado, opcional). Al guardar, el <strong>stock sube al instante</strong> y el remito queda <em>⏳ Pendiente de facturar</em>.</li>
+            <li>Cuando llega la factura del proveedor: <strong>Movimientos de compras → Nueva factura de compra</strong> y tocá <strong>“📦 Vincular desde remito”</strong>. Elegí los renglones a facturar (podés facturar parcial). La factura <strong>genera la deuda pero NO vuelve a sumar stock</strong>.</li>
+            <li><strong>Parciales:</strong> un remito se puede facturar en varias facturas, o varios remitos en una sola. El remito pasa a <em>◐ Parcial</em> o <em>🧾 Facturado</em>.</li>
+            <li><strong>Devolución a proveedor:</strong> en el remito, botón ↩️, elegís qué devolver; se genera un remito de devolución que <strong>saca del stock</strong>. Después, si corresponde, cargás la Nota de Crédito del proveedor (baja la deuda).</li>
+            <li><strong>Reporte “Recibido no facturado”:</strong> lista los remitos pendientes valorizados, para el cierre contable.</li>
+          </ol>
+          <p class="text-sm">La factura de compra <strong>directa</strong> (sin remito) sigue funcionando igual que siempre: suma stock y genera la deuda en un solo paso. El remito es opcional, para cuando necesitás separar la recepción de la facturación.</p>
+
           <h3>Flujo 2 — Aplicar el fertilizante a una campaña (con hectáreas parciales)</h3>
           <ol>
             <li><strong>Producción → Insumos y labores → + Insumo</strong>.</li>
@@ -1246,6 +1257,7 @@
           <h3>Primeros pasos</h3>
           <ul>
             <li><a href="instructivos/Instructivo-Inicio-1Pagina.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Inicio rápido (1 página)</a> — lo esencial para empezar.</li>
+            <li><a href="instructivos/Instructivo-Puesta-en-Marcha.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Puesta en marcha (paso a paso)</a> — configurar la empresa y cargar los datos iniciales.</li>
             <li><a href="instructivos/Instructivo-Acomodar-Cuentas-Bancarias.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Acomodar cuentas bancarias</a> — cargar saldos iniciales y ordenar tus bancos.</li>
           </ul>
 
@@ -1254,20 +1266,30 @@
             <li><a href="instructivos/Instructivo-Pagos-y-Cobros.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Pagos y cobros</a></li>
             <li><a href="instructivos/Instructivo-Pago-Dividido-Producto-y-Cheque.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Pago dividido (producto y cheque)</a></li>
             <li><a href="instructivos/Instructivo-Cheques-Propios-y-Terceros.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Cheques propios y de terceros</a></li>
+            <li><a href="instructivos/Instructivo-Caja-por-Tenedor.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Caja por tenedor</a> — controlar efectivo por persona que lo tiene a cargo.</li>
             <li><a href="instructivos/Instructivo-Sueldos-Cuenta-Corriente.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Sueldos por cuenta corriente</a></li>
             <li><a href="instructivos/Instructivo-Compensacion-Cliente-Proveedor.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Compensación de cuentas (cliente que también es proveedor)</a> — netear lo que te debe contra lo que le debés.</li>
           </ul>
 
+          <h3>Producción</h3>
+          <ul>
+            <li><a href="instructivos/Instructivo-Ordenes-de-Trabajo.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Órdenes de trabajo</a> — indicarle al contratista qué labor hacer y qué insumos usar, entregarla y después facturar el servicio.</li>
+          </ul>
+
           <h3>Cereal</h3>
           <ul>
+            <li><a href="instructivos/Instructivo-Sociedades-UTE.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Sociedades / UTE (negocio en participación)</a></li>
             <li><a href="instructivos/Instructivo-Circuito-Campana-Cereal.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Circuito de campaña de cereal</a></li>
             <li><a href="instructivos/Instructivo-Contratos-de-Cereal.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Contratos de cereal</a></li>
+            <li><a href="instructivos/Instructivo-Cartas-de-Porte-y-Liquidaciones.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Cartas de porte y liquidaciones</a></li>
             <li><a href="instructivos/Instructivo-Liquidacion-Cereal-Comprador-y-Camiones.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Liquidación de cereal, comprador y camiones</a></li>
+            <li><a href="instructivos/Instructivo-Liquidacion-Cereal-Paso-a-Paso.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Liquidación de cereal (paso a paso)</a></li>
           </ul>
 
           <h3>Forrajera y hacienda</h3>
           <ul>
             <li><a href="instructivos/Instructivo-Circuito-Campana-Forrajera-Multicorte.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Campaña forrajera multicorte</a></li>
+            <li><a href="instructivos/Instructivo-Manejo-Integral-Hacienda.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Manejo integral de la hacienda</a></li>
             <li><a href="instructivos/Instructivo-Circuito-Rodeos.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Circuito de rodeos</a></li>
             <li><a href="instructivos/Instructivo-Manejo-de-Animales.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Manejo de animales</a></li>
             <li><a href="instructivos/Instructivo-Guias-Hacienda.pdf" target="_blank" rel="noopener" class="text-agro-700 underline">Guías de hacienda</a></li>
