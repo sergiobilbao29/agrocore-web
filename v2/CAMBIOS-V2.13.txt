@@ -1,0 +1,10 @@
+AgroCore V2.13
+- Nueva sección “AgroCore en acción” en la home.
+- Nueva página videos.html.
+- Video Campaña de cereal integrado en Software Agrícola.
+- Video Hacienda integrado en Gestión Ganadera.
+- Video Haras integrado en Haras y Caballos.
+- Reproductores con youtube-nocookie.com y carga diferida.
+- Acceso a Videos en navegación y footer de la home.
+- Guía del Agrónomo conserva nomenclatura unificada.
+- Versionado actualizado a V2.13 / ?v=213.
