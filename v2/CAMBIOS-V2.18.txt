@@ -1,0 +1,19 @@
+AGROCORE V2.18 — PULIDO TRANSVERSAL
+
+Base: V2.17 estable.
+
+Cambios:
+- Versionado general actualizado a V2.18 / ?v=218.
+- Navegación interna de la versión de prueba corregida para Mercado, Clima, Herramientas, Presupuesto, Recursos y páginas comerciales.
+- CTAs antiguos de “demo” normalizados a “Probar AgroCore” y dirigidos a /prueba.
+- SEO técnico preparado: canonical, Open Graph básico y descripciones existentes preservadas.
+- Toda /v2/ queda explícitamente noindex,nofollow mientras siga siendo versión de trabajo.
+- Accesibilidad: enlace “Saltar al contenido”, foco visible, scroll-padding y objetivos táctiles en mobile.
+- Rendimiento: lazy-loading/decoding asíncrono en imágenes secundarias e iframes; imagen principal priorizada.
+- Cache busting actualizado a v=218.
+- Se preservan los heroes fotográficos, orden de videos, pantallas reales y cierres aprobados en V2.17.
+
+Antes de pasar V2 a producción raíz:
+- retirar noindex,nofollow;
+- actualizar canonical/og:image a las URLs finales si cambia la estructura;
+- retirar la franja “Versión de trabajo”.
