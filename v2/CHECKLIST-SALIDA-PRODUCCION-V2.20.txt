@@ -1,0 +1,30 @@
+CHECKLIST AGROCORE — SALIDA A PRODUCCIÓN
+
+PREPUBLICACIÓN
+[ ] Backup de la web oficial actual.
+[ ] Verificar /v2/ en Chrome desktop y celular.
+[ ] Probar menú desktop/mobile y navegación por teclado.
+[ ] Probar Probar AgroCore -> https://agrocore.ar/prueba.
+[ ] Probar WhatsApp, Mercado, Clima, Herramientas, Videos, Manual y Guía del Agrónomo.
+[ ] Probar Agricultura, Ganadería y Haras.
+[ ] Confirmar API de cotizaciones.
+[ ] Confirmar reproducción de los 3 videos oficiales.
+
+MIGRACIÓN
+[ ] Quitar banner de versión de trabajo.
+[ ] Reemplazar rutas de preview por rutas finales.
+[ ] robots: index,follow.
+[ ] Canonical finales.
+[ ] Open Graph finales.
+[ ] sitemap.xml y robots.txt.
+[ ] Redirecciones 301 de URLs antiguas que cambien.
+[ ] Página 404.
+
+POSTPUBLICACIÓN
+[ ] Recorrer enlaces principales en producción.
+[ ] Probar formulario/prueba y WhatsApp.
+[ ] Verificar indexabilidad y canonical.
+[ ] Revisar consola del navegador por errores.
+[ ] Revisar Cloudflare/HTTPS.
+[ ] Activar HSTS sólo después de confirmar HTTPS en todo el dominio/subdominios necesarios.
+[ ] Revisar SPF/DKIM/DMARC del correo por separado.
