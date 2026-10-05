@@ -1,0 +1,10 @@
+AgroCore V2.11 — Recursos y acabado visual
+
+- Mercado, Clima y Herramientas pasan a funcionar como un conjunto visual coherente.
+- Nuevo selector de recursos con estado activo y descripciones.
+- Tarjetas, formularios, tablas y gráficos con tratamiento visual unificado.
+- Herramientas: se eliminaron emojis decorativos para mantener el lenguaje premium de V2.
+- Mejoras de legibilidad y densidad en desktop y mobile.
+- Estados hover/focus más claros y accesibles.
+- Versión visible actualizada a V2.11 y cache-busting v=211.
+- Se preservó la lógica existente de cotizaciones, clima, mapas y calculadoras.

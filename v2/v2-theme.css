@@ -32,3 +32,27 @@ table{border-collapse:separate;border-spacing:0}thead th{background:#f2f6f0!impo
 #contacto{scroll-margin-top:132px}.final{position:relative;isolation:isolate}.final-box{box-shadow:0 28px 70px rgba(20,60,25,.13)}
 @media(max-width:900px){section[id],#contacto{scroll-margin-top:104px}}
 @media(max-width:640px){.v2-version{min-height:28px;padding:6px 10px}.final{padding-top:58px;padding-bottom:58px}.final-box{min-height:0}.final-copy h2{font-size:clamp(32px,10vw,44px)}main table{font-size:12px}}
+
+/* V2.11 — Mercado, Clima y Herramientas */
+.resource-switch{background:#fff;border-bottom:1px solid var(--v2line);position:relative;z-index:3}
+.resource-switch-inner{max-width:1120px;margin:auto;padding:14px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.resource-switch a{display:flex;flex-direction:column;gap:2px;padding:13px 16px;border:1px solid #dfe7dc;border-radius:15px;background:#fafcf9;text-decoration:none!important;color:#143c19;min-width:0}
+.resource-switch a span{font-weight:850;font-size:14px;letter-spacing:-.01em}.resource-switch a small{color:#6b786d;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.resource-switch a:hover{border-color:#9db79f;background:#f4f8f2;transform:translateY(-1px)}
+.resource-switch a[aria-current="page"]{background:#143c19;border-color:#143c19;color:#fff;box-shadow:0 10px 24px rgba(20,60,25,.12)}
+.resource-switch a[aria-current="page"] small{color:#d7e5d5}
+/* calmer, more editorial resource heroes */
+body>header.hero-bg{min-height:180px;display:flex;align-items:center}body>header.hero-bg h1{font-size:clamp(2.2rem,4vw,3.7rem)!important;line-height:1.02;max-width:850px}body>header.hero-bg p{font-size:clamp(.95rem,1.5vw,1.12rem);max-width:760px;margin-top:12px!important;line-height:1.55}
+/* unify legacy Tailwind cards without changing their JS hooks */
+body .bg-white.rounded-2xl.border{border:1px solid #e0e8df!important;box-shadow:0 12px 34px rgba(20,60,25,.055)!important}body .bg-white.rounded-2xl.border:hover{border-color:#cbdacb!important}
+body .bg-slate-50.rounded-2xl{background:#f7f9f5!important;border-color:#dfe7dc!important}
+/* Resource page section rhythm */
+body>section.py-10{padding-top:44px!important;padding-bottom:44px!important}body>div.max-w-6xl{padding-top:46px!important;padding-bottom:58px!important}
+/* Form controls: product-like rather than generic */
+.inp,input[type="number"],input[type="text"],select{border-radius:10px!important;background:#fff!important;min-height:42px}label.lbl{color:#506052!important;font-weight:650!important;letter-spacing:.005em}
+/* CTA band */
+body>section.bg-agro-900.text-white.text-center{margin-top:16px;padding-top:58px!important;padding-bottom:58px!important;background:linear-gradient(135deg,#103816,#174d1d)!important}
+body>section.bg-agro-900.text-white.text-center h2{letter-spacing:-.035em}
+/* Better mobile navigation and resource switching */
+@media(max-width:760px){.resource-switch-inner{display:flex;overflow-x:auto;padding:10px 14px;scroll-snap-type:x mandatory;scrollbar-width:none}.resource-switch-inner::-webkit-scrollbar{display:none}.resource-switch a{min-width:170px;scroll-snap-align:start}body>header.hero-bg{min-height:150px}body>header.hero-bg>div{padding-top:32px!important;padding-bottom:34px!important}body>header.hero-bg h1{font-size:2.25rem!important}.resource-switch a small{white-space:normal}}
+@media(max-width:520px){body>section.py-10{padding-top:34px!important;padding-bottom:34px!important}.resource-switch a{min-width:155px;padding:11px 13px}}

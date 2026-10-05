@@ -41,10 +41,10 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xmye67pyx1");
   </script>
-  <link rel="stylesheet" href="v2-theme.css?v=210">
+  <link rel="stylesheet" href="v2-theme.css?v=211">
 </head>
 <body class="text-slate-800 antialiased bg-gradient-to-b from-agro-100 via-agro-50 to-agro-50">
-<div class="v2-version">Versión de trabajo <b>V2.10</b> · Navegación de prueba</div>
+<div class="v2-version">Versión de trabajo <b>V2.11</b> · Navegación de prueba</div>
 
   <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
@@ -69,12 +69,20 @@
       <p class="text-agro-100 mt-1">Calculadoras rápidas y gratis. El precio del grano se completa solo con la pizarra de hoy.</p>
     </div>
   </header>
+  <div class="resource-switch" aria-label="Recursos AgroCore">
+    <div class="resource-switch-inner">
+      <a href="mercado.html" data-resource="mercado"><span>Mercado</span><small>Granos y dólar en vivo</small></a>
+      <a href="clima.html" data-resource="clima"><span>Clima</span><small>Radar y pronóstico</small></a>
+      <a href="herramientas.html" data-resource="herramientas" aria-current="page"><span>Herramientas</span><small>Calculadoras productivas</small></a>
+    </div>
+  </div>
+
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 
     <!-- CALCULADORA DE CAMPAÑA -->
     <section>
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🎯 Calculadora de campaña</h2>
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">Calculadora de campaña</h2>
       <p class="text-slate-500 text-sm mb-4">Cargá todos los costos y te decimos el <b>rinde de indiferencia</b> (para no perder) y el <b>margen esperado</b>.</p>
       <div class="grid lg:grid-cols-5 gap-5">
         <div class="lg:col-span-3 bg-white rounded-2xl border border-slate-200 p-5 md:p-6 shadow-sm">
@@ -117,7 +125,7 @@
     <section class="grid md:grid-cols-3 gap-5">
       <!-- Densidad de siembra -->
       <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-        <h3 class="font-bold text-agro-900 mb-1">🌱 Densidad de siembra</h3>
+        <h3 class="font-bold text-agro-900 mb-1">Densidad de siembra</h3>
         <p class="text-xs text-slate-500 mb-3">Kilos de semilla por hectárea.</p>
         <label class="lbl">Plantas objetivo (pl/m²)</label><input id="ds-pl" type="number" value="30" class="inp mb-2" oninput="calcDensidad()"/>
         <label class="lbl">Poder germinativo (%)</label><input id="ds-pg" type="number" value="90" class="inp mb-2" oninput="calcDensidad()"/>
@@ -126,7 +134,7 @@
       </div>
       <!-- Dosis y tanque -->
       <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-        <h3 class="font-bold text-agro-900 mb-1">🛢️ Dosis y mezcla de tanque</h3>
+        <h3 class="font-bold text-agro-900 mb-1">Dosis y mezcla de tanque</h3>
         <p class="text-xs text-slate-500 mb-3">Producto total y hectáreas por tanque.</p>
         <label class="lbl">Superficie (ha)</label><input id="dt-ha" type="number" value="100" class="inp mb-2" oninput="calcDosis()"/>
         <label class="lbl">Dosis del producto (l o kg /ha)</label><input id="dt-dosis" type="number" step="0.1" value="2.5" class="inp mb-2" oninput="calcDosis()"/>
@@ -141,7 +149,7 @@
       </div>
       <!-- Relación insumo / grano -->
       <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-        <h3 class="font-bold text-agro-900 mb-1">⚖️ Relación insumo / grano</h3>
+        <h3 class="font-bold text-agro-900 mb-1">Relación insumo / grano</h3>
         <p class="text-xs text-slate-500 mb-3">Cuántos kilos de grano "cuesta" un insumo.</p>
         <label class="lbl">Precio del insumo ($/unidad)</label><input id="ri-ins" type="number" value="15000" class="inp mb-2" oninput="calcRelacion()"/>
         <label class="lbl">Precio del grano ($/tn)</label><input id="ri-precio" type="number" value="" class="inp mb-3" oninput="calcRelacion()"/>
@@ -151,13 +159,13 @@
 
     <!-- MÁS CALCULADORAS (12) -->
     <section>
-      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">🌾 Más calculadoras agronómicas</h2>
+      <h2 class="text-2xl font-extrabold text-agro-900 mb-1">Más calculadoras agronómicas</h2>
       <p class="text-slate-500 text-sm mb-4">Siembra, fertilización, aplicación y rinde. Valores orientativos: ajustá a tu lote, análisis de suelo y al marbete del producto.</p>
-      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3">🌱 Siembra e implantación</h3>
+      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3">Siembra e implantación</h3>
       <div class="grid md:grid-cols-2 gap-5">
 
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <div class="font-bold text-agro-800 mb-1">🌱 Densidad — forrajeras (valor cultural)</div>
+          <div class="font-bold text-agro-800 mb-1">Densidad — forrajeras (valor cultural)</div>
           <p class="text-xs text-slate-500 mb-3">Semilla comercial ajustada por pureza y poder germinativo.</p>
           <div class="grid grid-cols-3 gap-2 mb-3">
             <div><label class="lbl">Dosis viable (kg/ha)</label><input id="df-dpv" type="number" value="12" class="inp" oninput="calcForr()"/></div>
@@ -168,7 +176,7 @@
         </div>
 
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <div class="font-bold text-agro-800 mb-1">⚙️ Engranajes de sembradora <span class="text-[10px] text-slate-400">(orientativo)</span></div>
+          <div class="font-bold text-agro-800 mb-1">Engranajes de sembradora <span class="text-[10px] text-slate-400">(orientativo)</span></div>
           <p class="text-xs text-slate-500 mb-3">Relación aproximada disco/rueda para la densidad buscada.</p>
           <div class="grid grid-cols-3 gap-2 mb-3">
             <div><label class="lbl">Semillas/m</label><input id="eg-sem" type="number" value="18" class="inp" oninput="calcEngr()"/></div>
@@ -181,7 +189,7 @@
         </div>
 
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <div class="font-bold text-agro-800 mb-1">🧪 Curado de semilla</div>
+          <div class="font-bold text-agro-800 mb-1">Curado de semilla</div>
           <p class="text-xs text-slate-500 mb-3">Caldo total y por carga (cc por 100 kg).</p>
           <div class="grid grid-cols-3 gap-2 mb-3">
             <div><label class="lbl">Semilla (kg)</label><input id="cu-kg" type="number" value="4200" class="inp" oninput="calcCurado()"/></div>
@@ -195,7 +203,7 @@
         </div>
       </div>
 
-      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3 mt-8">🧪 Fertilización y suelo</h3>
+      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3 mt-8">Fertilización y suelo</h3>
       <div class="grid md:grid-cols-2 gap-5">
 
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
@@ -250,11 +258,11 @@
         </div>
       </div>
 
-      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3 mt-8">💦 Aplicación</h3>
+      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3 mt-8">Aplicación</h3>
       <div class="grid md:grid-cols-2 gap-5">
 
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <div class="font-bold text-agro-800 mb-1">💦 Pulverizadora (volumen)</div>
+          <div class="font-bold text-agro-800 mb-1">Pulverizadora (volumen)</div>
           <p class="text-xs text-slate-500 mb-3">Litros por hectárea según caudal, picos, ancho y velocidad.</p>
           <div class="grid grid-cols-2 gap-2 mb-3">
             <div><label class="lbl">Caudal/pico (L/min)</label><input id="pu-caudal" type="number" step="0.1" value="1.2" class="inp" oninput="calcPulver()"/></div>
@@ -266,11 +274,11 @@
         </div>
       </div>
 
-      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3 mt-8">🌾 Rinde y conversión</h3>
+      <h3 class="text-lg font-extrabold text-agro-900 border-b-2 border-agro-100 pb-1 mb-3 mt-8">Rinde y conversión</h3>
       <div class="grid md:grid-cols-2 gap-5">
 
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
-          <div class="font-bold text-agro-800 mb-1">🌱 Rinde estimado — soja</div>
+          <div class="font-bold text-agro-800 mb-1">Rinde estimado — soja</div>
           <p class="text-xs text-slate-500 mb-3">A partir de componentes del rendimiento.</p>
           <div class="grid grid-cols-2 gap-2 mb-3">
             <div><label class="lbl">Plantas/m²</label><input id="rs-pl" type="number" value="30" class="inp" oninput="calcRindeSoja()"/></div>
