@@ -1,0 +1,11 @@
+AGROCORE V2.19 — MANTENIMIENTO ESCALABLE
+
+- Precio del sistema se mantiene en USD 999,99 pago único.
+- Mantenimiento pasa a comunicarse como opcional desde USD 100/mes.
+- Plan Base: USD 100/mes para operaciones estándar.
+- Plan Empresa: consultar, para múltiples usuarios o mayor demanda de soporte.
+- Plan Corporativo: a medida para grupos multiempresa/equipos numerosos.
+- Se aclara que los módulos no se bloquean según plan: cambia el nivel de acompañamiento.
+- Se diferencia soporte/mantenimiento de desarrollos e integraciones a medida.
+- Presupuesto y base de conocimiento del asistente actualizados con el mismo criterio.
+- Versionado actualizado a V2.19 / ?v=219.

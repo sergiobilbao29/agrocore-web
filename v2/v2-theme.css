@@ -65,7 +65,7 @@ body>section.bg-agro-900.text-white.text-center h2{letter-spacing:-.035em}
 @media(max-width:820px){.v214-quick-inner{grid-template-columns:repeat(2,1fr)}.rp-grid{grid-template-columns:1fr;gap:24px}.v214-budget-strip{margin:16px 14px 0;align-items:flex-start;flex-direction:column}.v214-budget-strip>a{width:100%;text-align:center}}
 @media(max-width:520px){.v214-quick-inner{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.v214-quick a{min-width:210px;scroll-snap-align:start}.real-product{padding:52px 16px}.rp-shot{padding:7px;border-radius:17px}.rp-shot img{border-radius:11px}}
 
-/* V2.18 — transversal polish, accessibility and performance */
+/* V2.19 — transversal polish, accessibility and performance */
 :root{--v218-focus:#e8ac1e;--v218-header-offset:116px}
 html{scroll-padding-top:var(--v218-header-offset)}
 body{overflow-x:hidden}
