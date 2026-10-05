@@ -1,0 +1,7 @@
+AgroCore V2.15
+
+- Corrige el orden de las páginas Agricultura, Ganadería/Feedlot y Haras: el CTA final vuelve a ser el cierre real de la página, después de las pantallas y videos.
+- Agricultura incorpora fotografía de fondo rural en el hero, con overlay verde de marca.
+- Ganadería/Feedlot incorpora fotografía de hacienda en el hero, con overlay verde de marca.
+- Haras conserva su hero fotográfico y ahora mantiene la misma secuencia visual que las otras soluciones.
+- Actualiza identificador visible a V2.15 y assets a ?v=215.
