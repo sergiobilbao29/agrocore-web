@@ -11,10 +11,24 @@ footer{background:#102f15!important;color:#fff!important}footer a{color:#eef6ec!
 .v2-version{background:#0f3414;color:#fff;text-align:center;padding:7px 12px;font:600 12px/1.2 system-ui,sans-serif;letter-spacing:.02em}.v2-version b{color:#f0bc31}.v2-version a{color:#fff;text-decoration:underline}
 @media(max-width:700px){.v2-version{font-size:11px}}
 
-/* V2.9 secondary-page polish */
+/* V2.10 secondary-page polish */
 body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;-webkit-font-smoothing:antialiased}
 a{transition:color .18s ease,background .18s ease,transform .18s ease}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid rgba(232,172,30,.7);outline-offset:3px}
 .v2-version{position:relative;z-index:70}.v2-version b{font-weight:900}
 nav.sticky{top:0!important}.hero-bg{position:relative}.hero-bg:after{content:"";position:absolute;inset:auto -10% -60% 50%;height:260px;background:radial-gradient(circle,rgba(232,172,30,.12),transparent 65%);pointer-events:none}
 main,section{scroll-margin-top:82px}.rounded-2xl{border-radius:20px!important}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* V2.10 — cohesion, responsive and production-readiness */
+:root{--v2line:#dfe7dc;--v2muted:#647269}
+img{height:auto}.v2-version{min-height:30px;display:flex;align-items:center;justify-content:center}
+main{overflow:clip}section[id]{scroll-margin-top:118px}
+/* Make legacy internal pages feel like the same product family */
+body>main{min-height:60vh} main h1,main h2,main h3{letter-spacing:-.025em} main p{line-height:1.65}
+main a:not(.btn):not([class*="bg-"]){text-underline-offset:3px}
+input,select,textarea{border-color:#d7e2d6!important}input:focus,select:focus,textarea:focus{border-color:#2e7d32!important;box-shadow:0 0 0 3px rgba(46,125,50,.10)!important}
+table{border-collapse:separate;border-spacing:0}thead th{background:#f2f6f0!important;color:#24462a!important}tbody tr:hover{background:#f7faf6}
+/* Prevent the sticky navigation from visually eating anchored content */
+#contacto{scroll-margin-top:132px}.final{position:relative;isolation:isolate}.final-box{box-shadow:0 28px 70px rgba(20,60,25,.13)}
+@media(max-width:900px){section[id],#contacto{scroll-margin-top:104px}}
+@media(max-width:640px){.v2-version{min-height:28px;padding:6px 10px}.final{padding-top:58px;padding-bottom:58px}.final-box{min-height:0}.final-copy h2{font-size:clamp(32px,10vw,44px)}main table{font-size:12px}}
