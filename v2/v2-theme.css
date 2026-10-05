@@ -10,3 +10,11 @@ a.bg-agro-700:hover,a.bg-agro-800:hover,button.bg-agro-700:hover,button.bg-agro-
 footer{background:#102f15!important;color:#fff!important}footer a{color:#eef6ec!important}
 .v2-version{background:#0f3414;color:#fff;text-align:center;padding:7px 12px;font:600 12px/1.2 system-ui,sans-serif;letter-spacing:.02em}.v2-version b{color:#f0bc31}.v2-version a{color:#fff;text-decoration:underline}
 @media(max-width:700px){.v2-version{font-size:11px}}
+
+/* V2.9 secondary-page polish */
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;-webkit-font-smoothing:antialiased}
+a{transition:color .18s ease,background .18s ease,transform .18s ease}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid rgba(232,172,30,.7);outline-offset:3px}
+.v2-version{position:relative;z-index:70}.v2-version b{font-weight:900}
+nav.sticky{top:0!important}.hero-bg{position:relative}.hero-bg:after{content:"";position:absolute;inset:auto -10% -60% 50%;height:260px;background:radial-gradient(circle,rgba(232,172,30,.12),transparent 65%);pointer-events:none}
+main,section{scroll-margin-top:82px}.rounded-2xl{border-radius:20px!important}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
