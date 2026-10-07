@@ -1,0 +1,12 @@
+OPCIONES DE HERO — AGROCORE
+
+index-opcion-a.html — CAMPO INMERSIVO
+Foto rural a pantalla completa con overlay verde, mensaje emocional y dashboard real flotante. Movimiento sutil de fondo y efecto 3D al pasar el mouse.
+
+index-opcion-b.html — PRODUCTO PRIMERO
+Hero claro y tecnológico. Dashboard real grande como protagonista. Selector interactivo Resumen / Campañas / Ganadería / Finanzas que cambia la pantalla sin recargar la página.
+
+index-opcion-c.html — ACTIVIDAD INTERACTIVA
+Hero fotográfico con selector Agricultura / Ganadería / Haras. Al elegir actividad cambia la fotografía y el mensaje en el mismo hero. Mantiene una pantalla real de AgroCore visible.
+
+El index.html original se conserva sin cambios para poder comparar.

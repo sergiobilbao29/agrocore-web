@@ -303,7 +303,7 @@
               <tr><td><strong>(Arriba, fijo)</strong></td><td>Inicio · Mensajes y asistente — siempre visibles, sin sección.</td></tr>
               <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Flujo de Fondos · Flujo de caja · Resumen multi-empresa · Balance Patrimonial · Agenda y recordatorios</td></tr>
               <tr><td><strong>💼 COMERCIAL</strong></td><td>Clientes · Movimientos de ventas · Liquidaciones cereal · Liquidaciones animales · Cuentas a cobrar · Proveedores · Movimientos de compras · Cuentas a pagar</td></tr>
-              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes · Campañas · Historial de campañas · Insumos y labores · Servicios a terceros · Reporte de margen · Calculadoras agronómicas · Vademécum</td></tr>
+              <tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes · Campañas · Historial de campañas · Presupuesto de campaña · Insumos y labores · Servicios a terceros · Reporte de margen · Calculadoras agronómicas · Vademécum</td></tr>
               <tr><td><strong>🐎 GANADERÍA Y HARAS</strong></td><td>Movimientos de animales · Fichas de animales · Rodeos y Hacienda · Guías de hacienda (DT-e)</td></tr>
               <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos de stock · Remitos internos · Depósitos y cerealeras · Posición de granos · Contratos de cereal</td></tr>
               <tr><td><strong>🚚 LOGÍSTICA Y TRANSPORTE</strong></td><td>Viajes y fletes · Transportistas · Choferes · Camiones (chasis) · Acoplados</td></tr>
@@ -1177,6 +1177,17 @@
             <li>Marcás campaña como <strong>Cosechada</strong>.</li>
             <li><strong>Resultado:</strong> stock sube, reporte de margen completo (ingresos - insumos - labores - arrendamiento si aplica).</li>
           </ol>
+
+          <h3>Presupuesto de campaña (presupuestado vs. ejecutado)</h3>
+          <p>En <strong>Producción → Presupuesto de campaña</strong> planificás cuánto vas a gastar en la campaña y controlás los desvíos mientras producís. Flujo típico:</p>
+          <ol>
+            <li>Con la vista en <strong>"Una campaña"</strong>, elegís la campaña y tocás <strong>"Generar presupuesto estimado"</strong>: el sistema <strong>propone un plan automáticamente</strong> con el promedio de las campañas anteriores del mismo lote/cultivo.</li>
+            <li>Ajustás el <strong>plan por hectárea</strong> por rubro (semillas, herbicidas, fertilizantes, fungicidas/insecticidas, labores, cosecha): cargás <strong>cant/ha × $/unidad</strong> o el <strong>costo/ha</strong> directo, en US$ o pesos. Sumás los <strong>costos fijos</strong> (arrendamiento, seguro, agrónomo) y definís la <strong>tolerancia de desvío (%)</strong>.</li>
+            <li>Guardás: obtenés la <strong>previsión total</strong> (presupuesto/ha × hectáreas), que es la plata a reservar.</li>
+            <li>Durante la campaña, el <strong>ejecutado</strong> se completa solo desde los insumos y labores reales. La tabla compara <strong>Presupuestado vs. Ejecutado</strong> por rubro con el desvío en $/% y un <strong>semáforo</strong> (verde = bajo presupuesto, amarillo = en regla dentro de la tolerancia, rojo = sobrepasado).</li>
+            <li>La vista <strong>"Consolidado"</strong> muestra la <strong>previsión financiera total del año</strong> sumando todas las campañas del ciclo.</li>
+          </ol>
+          <p>Es <strong>multimoneda</strong> (US$/pesos) y el presupuesto es un plan aparte: no modifica insumos, labores ni stock. Con <strong>"Copiar de otra campaña"</strong> reutilizás un presupuesto previo o los costos reales del año anterior.</p>
 
           <h3>Flujo 6 — Pago de cuota de arrendamiento</h3>
           <ol>
