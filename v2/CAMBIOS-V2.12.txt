@@ -1,9 +1,0 @@
-AgroCore V2.12
-
-- "Guía" / "Recursos" unificado como "Guía del Agrónomo" en navegación y cabecera.
-- Página de la guía mantiene su contenido "Del Diploma al Campo" pero ahora queda correctamente identificada como Guía del Agrónomo.
-- Agricultura incorpora captura real de Campañas.
-- Ganadería incorpora captura real de Ganadería 360°.
-- Haras incorpora captura real de Fichas de Animales.
-- Nuevo bloque visual "AgroCore real" en las tres páginas comerciales.
-- Versionado de assets actualizado a V2.12 / ?v=212.

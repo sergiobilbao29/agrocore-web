@@ -1,9 +1,0 @@
-V228
-- Hero aprobado convertido de PNG a WebP optimizado.
-- PNG original: 3.43 MB.
-- WebP nuevo: 0.25 MB.
-- preload + fetchpriority=high para acelerar el primer render.
-- Nueva sección Hablemos antes del footer.
-- WhatsApp: enlace directo al número comercial existente.
-- Email/formulario: prepara un correo a consultas@agrocore.ar sin introducir backend nuevo.
-- Asistente virtual NO modificado; queda para integración posterior con el proyecto completo.

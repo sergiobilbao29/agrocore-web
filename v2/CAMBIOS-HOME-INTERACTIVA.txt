@@ -1,8 +1,0 @@
-HOME INTERACTIVA
-- Hero basado en Opción A: fotografía inmersiva + dashboard real flotante.
-- Movimiento sutil del dashboard con puntero en desktop y zoom cinematográfico de fondo.
-- Se eliminó el bloque inmediato repetitivo "Conocé AgroCore por dentro".
-- Se reemplazó por una experiencia interactiva con 5 vistas reales: Dashboard, Campañas, Ganadería 360, Finanzas y Multiempresa.
-- Microinteracciones hover en tarjetas, soluciones, videos y pasos.
-- Respeta prefers-reduced-motion y responsive.
-- Resto de contenido, precios y páginas conservados.

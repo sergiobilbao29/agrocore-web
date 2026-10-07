@@ -1,9 +1,0 @@
-AgroCore V2.10
-- Unifica versión visible V2.10 en las páginas V2.
-- Corrige offsets de navegación/anclas para header sticky y CTA final.
-- Mejora responsive, formularios, tablas, foco y consistencia visual de páginas internas.
-- Ajusta el CTA final: ya no habla de “entrar a la demo”; deriva a la prueba gratuita.
-- Incorpora bot.js y bot-kb.js dentro de /v2 para eliminar dependencias heredadas.
-- Incorpora /v2/instructivos con los PDF originales para que Manual sea autocontenido.
-- Cache-busting actualizado a v=210 para assets modificados.
-- No modifica la web oficial en /; todo queda dentro de /v2.

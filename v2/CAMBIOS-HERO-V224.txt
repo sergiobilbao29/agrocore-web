@@ -1,6 +1,0 @@
-Hero V224
-- Se mantiene el fondo de hacienda sin marcas de terceros.
-- Se incorpora una captura REAL del AgroCore móvil suministrada por el usuario.
-- Desktop y celular aparecen como dos dispositivos distintos, sin inventar interfaz móvil.
-- Badge reposicionado para no superponerse con el teléfono.
-- El resto de la web se conserva.

@@ -1,5 +1,0 @@
-V226
-CORRECCIÓN ESTRUCTURAL:
-hero-rural-clean-v226.jpg es SOLO fotografía.
-No contiene textos, logo, menú, notebook, celular ni interfaz.
-Los textos y las capturas de AgroCore se renderizan por separado en HTML.

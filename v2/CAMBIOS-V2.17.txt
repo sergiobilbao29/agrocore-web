@@ -1,7 +1,0 @@
-AgroCore V2.17
-
-- Corrige el orden de cierre en Agricultura, Ganadería/Feedlot y Haras: Seguí explorando AgroCore aparece antes del CTA final.
-- Corrige definitivamente los fondos fotográficos de los heroes de Agricultura y Ganadería.
-- La causa era una regla global .hero-bg con !important en v2-theme.css que pisaba los fondos definidos en cada página.
-- Se agregaron reglas específicas de mayor prioridad sólo al hero principal; los CTA finales conservan el fondo verde.
-- Actualiza versión visible y cache busting a V2.17 / ?v=217.

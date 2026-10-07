@@ -57,8 +57,8 @@
 
   function el(html){ var d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
   var st=document.createElement('style'); st.textContent=CSS; document.head.appendChild(st);
-  var btn=el('<button id="agb-btn">💬 Asistente</button>');
-  var panel=el('<div id="agb-panel"><div id="agb-head"><div>Asistente AgroCore<small>Sistema · calculadoras · vademécum · Guía del Ing. Agrónomo</small></div><button id="agb-x" title="Cerrar">×</button></div><div id="agb-msgs"></div><div id="agb-foot"><input id="agb-in" placeholder="Escribí tu consulta…" autocomplete="off"/><button id="agb-send">➤</button></div></div>');
+  var btn=el('<button id="agb-btn">💬 Hablar con Cora</button>');
+  var panel=el('<div id="agb-panel"><div id="agb-head"><div>Cora · Asistente de AgroCore<small>Sistema · calculadoras · vademécum · Guía del Ing. Agrónomo</small></div><button id="agb-x" title="Cerrar">×</button></div><div id="agb-msgs"></div><div id="agb-foot"><input id="agb-in" placeholder="Escribí tu consulta…" autocomplete="off"/><button id="agb-send">➤</button></div></div>');
   document.body.appendChild(btn); document.body.appendChild(panel);
   var msgs=panel.querySelector('#agb-msgs'), input=panel.querySelector('#agb-in');
 
@@ -92,7 +92,10 @@
       return '¡De nada! Si querés, preguntame otra cosa.'; }
     // Saludos
     if(/^(hola|buenas|buen dia|buen día|buenos dias|buenos días|buenas tardes|buenas noches|hey|ey|que tal|qué tal|holis)\b/.test(n)){
-      return '¡Hola! ¿En qué te ayudo? Puedo con el sistema, calculadoras agronómicas, vademécum y la Guía del Ing. Agrónomo.'; }
+      return '¡Hola! Soy Cora 🌱 ¿En qué te ayudo? Puedo con el sistema, calculadoras agronómicas, vademécum y la Guía del Ing. Agrónomo.'; }
+    // Quién es / su nombre
+    if(/\b(qui[eé]n (sos|eres)|tu nombre|c[oó]mo te llam|como te llamas)\b/.test(n)){
+      return 'Soy <b>Cora</b> 🌱, la asistente virtual de AgroCore. Te ayudo con el <b>sistema</b>, <b>calculadoras agronómicas</b>, el <b>vademécum</b> y la <b>Guía del Ing. Agrónomo</b>.'; }
     // Afirmaciones sueltas
     if(IN(['si','sí','dale','ok','oka','okey','bueno','claro','obvio','sip','sisi','de una'])){
       return '¡Bien! Contame el tema y te amplío (ej. "densidad de siembra", "glifosato", "costo del kilo").'; }
@@ -158,7 +161,7 @@
   }
   function saludo(){
     if(msgs.childElementCount) return;
-    add('¡Hola! Soy el asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Guía del Ing. Agrónomo</b>. ¿Qué querés saber?','b');
+    add('¡Hola! Soy <b>Cora</b> 🌱, la asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Guía del Ing. Agrónomo</b>. ¿Qué querés saber?','b');
     chips(['¿Qué es AgroCore?','¿Cuánto sale?','Densidad de siembra','Dosis de glifosato','Costo del kilo de carne','Rinde de indiferencia']);
   }
   function open(){ panel.style.display='flex'; saludo(); setTimeout(function(){input.focus();},80); }

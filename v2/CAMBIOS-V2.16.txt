@@ -1,9 +1,0 @@
-AgroCore V2.16
-
-- "Seguí explorando AgroCore" movido al final, después del video y CTA, antes del pie, en Agricultura y Ganadería.
-- Agregado el mismo bloque al final de Haras para mantener consistencia.
-- Heroes de Agricultura y Ganadería usan rutas absolutas /v2/img/... para evitar fallos de fondo en URLs sin .html.
-- Hero de Haras también normalizado a ruta absoluta.
-- Mayor visibilidad fotográfica del hero manteniendo overlay verde para legibilidad.
-- Corrección del solapamiento de la barra V2 con navegaciones fijas.
-- Assets actualizados a ?v=216.

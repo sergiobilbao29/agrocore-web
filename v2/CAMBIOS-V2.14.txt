@@ -1,9 +1,0 @@
-AgroCore V2.14 — Manual, Presupuesto y páginas comerciales
-
-- Versionado visual y cache actualizado a V2.14 / ?v=214.
-- Manual: accesos rápidos a Primeros pasos, Módulos, Videos y Prueba.
-- Presupuesto: franja de lectura rápida que aclara inversión única y mantenimiento opcional; acceso directo al detalle de inversión.
-- Sistema de gestión para el campo: nueva prueba visual con captura real de Resumen MultiEmpresa.
-- Unificación del tratamiento visual de capturas reales en páginas SEO/comerciales.
-- Mejoras responsive de estos nuevos componentes.
-- Se preservó el contenido funcional y técnico existente; no se alteraron lógicas de Mercado, Clima, Herramientas ni calculadoras.

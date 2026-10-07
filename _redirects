@@ -1,7 +1,6 @@
 # Redirecciones 301 (Cloudflare Pages)
-# La calculadora se movio a /herramientas.
-/calculadora        /herramientas   301
-/calculadora.html   /herramientas   301
+# Calculadora de rinde de indiferencia (pagina propia).
+/calculadora.html   /calculadora    301
 
 # .html -> URL limpia (canonica) para evitar contenido duplicado en Google
 /index.html         /               301
@@ -14,3 +13,9 @@
 /software-agricola.html      /software-agricola      301
 /gestion-ganadera.html       /gestion-ganadera       301
 /sistema-gestion-campo.html  /sistema-gestion-campo  301
+/videos.html         /videos         301
+/recursos.html       /recursos       301
+/haras-caballos.html /haras-caballos 301
+
+# La web nueva (v2) paso a la raiz: lo que estaba en /v2/* ahora vive en la raiz
+/v2/*                /:splat         301

@@ -1,5 +1,0 @@
-Hero V223
-- Eliminada del hero la fotografía con maquinaria/marca visible.
-- Fondo reemplazado por una escena de hacienda del propio set visual de AgroCore.
-- Overlay verde notablemente más liviano para recuperar detalle, luz y profundidad.
-- Se conserva una sola pantalla real de AgroCore como protagonista tecnológico.

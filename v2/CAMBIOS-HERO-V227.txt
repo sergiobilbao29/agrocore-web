@@ -1,5 +1,0 @@
-V227
-- Fondo del hero reemplazado por la imagen aprobada por el usuario: “Amanecer dorado en el campo”.
-- La imagen se incorpora completa como asset independiente, sin agregar textos ni interfaces dentro de ella.
-- Texto y capturas de AgroCore continúan como capas HTML separadas.
-- Gradiente limitado principalmente al sector izquierdo para legibilidad.
