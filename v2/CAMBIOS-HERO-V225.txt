@@ -1,0 +1,7 @@
+V225 — Hero por capas
+- Nuevo fondo fotográfico luminoso: campo abierto + hacienda + atardecer.
+- Sin maquinaria ni marcas de terceros.
+- El fondo ya no es la fotografía anterior de vacas en primer plano.
+- Dashboard desktop permanece como captura real separada.
+- Captura mobile real suministrada por el usuario incluida como asset separado.
+- Overlay verde reducido para mostrar mejor el paisaje.
