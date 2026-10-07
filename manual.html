@@ -795,6 +795,16 @@
           <p><strong>Clasificación de cada gasto / ingreso:</strong> "De empresa" o "Propio" — esto permite separar lo que es del negocio de lo personal (por ej., gastos de los hijos). Hay una tabla "Gastos e ingresos por caja — empresa vs propios" con la comparación.</p>
           <p><strong>Filtros:</strong> por caja, por tipo, por clasificación y por rango de fechas.</p>
           <p><strong>Datos por movimiento:</strong> fecha, tipo, caja (origen y destino en transferencias), concepto, monto, clasificación, observaciones.</p>
+
+          <h4>Caja por tenedor — efectivo unificado entre empresas <span class="badge-new">Nuevo</span></h4>
+          <p>Pensado para grupos que manejan <strong>una sola caja física por persona</strong> (Oficina, Lucas, Luciano) aunque la plata sea de varias empresas. Con este modo, en vez de pensar "caja de tal empresa", se trabaja por <strong>quién tiene la plata</strong> y el sistema, por detrás, mantiene bien los números de cada firma.</p>
+          <ul>
+            <li><strong>Activarlo (una vez):</strong> en <strong>Administración → Empresas</strong>, editá cada empresa del grupo y tildá <strong>"Caja por tenedor"</strong>. Activalo en todas las que comparten la caja. Cargá las personas en <strong>Catálogos → Caja</strong>.</li>
+            <li><strong>Día a día:</strong> en Control de efectivo y en todos los cobros/pagos con efectivo (cuentas a cobrar/pagar, guías, liquidaciones, pago a proveedor, movimientos diarios) el campo "Caja" pasa a llamarse <strong>"Tenedor"</strong>: se elige quién tiene o recibe la plata. La operativa diaria no tiene que pensar en la empresa.</li>
+            <li><strong>Ver el total de cada uno:</strong> en <strong>Tablero → Resumen multi-empresa</strong> aparece el recuadro <strong>"🧑‍💼 Efectivo por tenedor (consolidado)"</strong>: cuánto tiene cada persona sumando todas las empresas, con el detalle de qué empresa es cada parte.</li>
+            <li><strong>Cerrar los números por empresa (tarea del admin/contador, no de la operativa):</strong> botón <strong>"⚖️ Saldar entre empresas"</strong> en ese recuadro. Cuando una empresa puso el efectivo y otra lo usó, registra en un paso que una le <strong>prestó</strong> a la otra: acomoda los saldos y deja la <strong>deuda entre empresas</strong> en cuenta corriente. El total en mano del tenedor no cambia y no se duplican movimientos.</li>
+            <li><strong>Es opcional:</strong> las empresas sin el modo tildado siguen con la caja por empresa de siempre.</li>
+          </ul>
         </section>
 
         <section id="mod-logistica">
