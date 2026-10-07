@@ -1,0 +1,5 @@
+V229
+- Eliminado el botón/tarjeta Email de la sección Hablemos.
+- WhatsApp ocupa ahora todo el ancho del bloque de contacto.
+- Reparada la imagen de Campañas: el problema era el nombre de archivo con ñ mal codificado al comprimir/descomprimir.
+- Se creó img/screens/campanas.png con nombre ASCII seguro y la sección interactiva apunta a ese archivo.
