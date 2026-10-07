@@ -198,8 +198,13 @@ linear-gradient(0deg,rgba(5,35,13,.16),transparent 58%)!important}
 </div>
 </header>
 <main id="main-content">
+<style>
+.hero-bg-media .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease, transform 9s ease}
+.hero-bg-media .hero-slide.active{opacity:1}
+@media(prefers-reduced-motion:reduce){.hero-bg-media .hero-slide{transition:opacity .01s linear}}
+</style>
 <section class="hero hero-immersive" id="top">
-<div class="hero-bg-media"><img src="img/hero-amanecer-campo-v228.webp" fetchpriority="high" decoding="async" alt="Campo argentino con hacienda al atardecer" fetchpriority="high" decoding="async"/></div>
+<div class="hero-bg-media" id="heroBgMedia"><img class="hero-slide active" src="img/hero-slide-1.jpg" fetchpriority="high" decoding="async" alt="Estancia argentina al atardecer"/><img class="hero-slide" src="img/hero-slide-2.jpg" loading="lazy" decoding="async" alt=""/><img class="hero-slide" src="img/hero-slide-3.jpg" loading="lazy" decoding="async" alt=""/><img class="hero-slide" src="img/hero-slide-4.jpg" loading="lazy" decoding="async" alt=""/><img class="hero-slide" src="img/hero-slide-5.jpg" loading="lazy" decoding="async" alt=""/><img class="hero-slide" src="img/hero-slide-6.jpg" loading="lazy" decoding="async" alt=""/></div>
 <div class="hero-shade"></div><div class="wrap hero-immersive-grid">
 <div class="hero-copy hero-copy-light"><div class="kicker">AgroCore · Gestión integral para el agro argentino</div>
 <h1>El campo cambia.<br/><em>Tu gestión también.</em></h1>
@@ -389,6 +394,18 @@ document.getElementById('contactFormV228')?.addEventListener('submit',async func
 {"@type":"Question","name":"¿De quién es el código? ¿Qué pasa si me peleo con el desarrollador?","acceptedAnswer":{"@type":"Answer","text":"El código fuente y la infraestructura (cuenta AWS o servidor propio) son tuyos. Si en algún momento decidís cambiar de proveedor, te llevás todo intacto. Sin lock-in."}},
 {"@type":"Question","name":"¿Puedo pedir nuevas funcionalidades a futuro?","acceptedAnswer":{"@type":"Answer","text":"Sí. Funcionalidades nuevas (app móvil, integraciones, módulos a medida) se presupuestan aparte. Cambios pequeños o reportes simples están cubiertos por el mantenimiento mensual (3 hs/mes)."}}
 ]}
+</script>
+<script>
+(function(){
+  var imgs=document.querySelectorAll('#heroBgMedia .hero-slide');
+  if(imgs.length<2) return;
+  var i=0;
+  setInterval(function(){
+    imgs[i].classList.remove('active');
+    i=(i+1)%imgs.length;
+    imgs[i].classList.add('active');
+  },5000);
+})();
 </script>
 <script defer src="bot-kb.js"></script>
 <script defer src="bot.js"></script>
