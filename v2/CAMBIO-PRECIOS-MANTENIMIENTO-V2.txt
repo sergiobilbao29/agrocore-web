@@ -1,0 +1,5 @@
+Cambio solicitado:
+- Los beneficios de Base, Empresa y Corporativo se muestran en UNA sola columna.
+- Cada beneficio ocupa todo el ancho disponible de su tarjeta.
+- Se eliminó el comportamiento responsive que volvía a dividirlos en dos columnas.
+- El resto de la web no fue modificado.

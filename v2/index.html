@@ -81,7 +81,21 @@ footer{background:#0d3012;color:#b7c8b9;padding:42px 0}.footer{display:grid;grid
 @media(max-width:900px){.pricing-box.maintenance .support-tier ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.pricing-box.maintenance .support-tier ul{grid-template-columns:1fr}}
 </style>
-<link href="https://agrocore.ar/" rel="canonical"/><meta content="AgroCore — El corazón del negocio agrícola" property="og:title"/><meta content="Sistema integral para empresas rurales argentinas. Agricultura, hacienda, granos, finanzas, empleados y logística en una sola plataforma." property="og:description"/><meta content="website" property="og:type"/><meta content="https://agrocore.ar/" property="og:url"/><meta content="https://agrocore.ar/img/hero-main.jpg" property="og:image"/><link href="v2-theme.css?v=220" rel="stylesheet"/></head>
+<link href="https://agrocore.ar/" rel="canonical"/><meta content="AgroCore — El corazón del negocio agrícola" property="og:title"/><meta content="Sistema integral para empresas rurales argentinas. Agricultura, hacienda, granos, finanzas, empleados y logística en una sola plataforma." property="og:description"/><meta content="website" property="og:type"/><meta content="https://agrocore.ar/" property="og:url"/><meta content="https://agrocore.ar/img/hero-main.jpg" property="og:image"/><link href="v2-theme.css?v=220" rel="stylesheet"/>
+<style id="maintenance-single-column-v2">
+/* Mantenimiento: beneficios siempre uno debajo de otro para aprovechar todo el ancho */
+.pricing-box.maintenance .support-tier ul{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:4px !important;
+}
+.pricing-box.maintenance .support-tier li{
+  width:100%;
+  font-size:11px;
+  line-height:1.32;
+}
+</style>
+</head>
 <body><a class="skip-link" href="#main-content">Saltar al contenido</a>
 <header id="site-header"><div class="wrap nav">
 <a class="brand" href="#top"><img alt="AgroCore" decoding="async" src="img/logo-icon-128.png"/><span class="brand-copy"><strong>AgroCore</strong><span>El corazón del negocio agrícola</span></span></a>
