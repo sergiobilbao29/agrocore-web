@@ -185,10 +185,10 @@ linear-gradient(0deg,rgba(5,35,13,.16),transparent 58%)!important}
 <body><a class="skip-link" href="#main-content">Saltar al contenido</a>
 <header id="site-header"><div class="wrap nav">
 <a class="brand" href="#top"><img alt="AgroCore" decoding="async" src="img/logo-icon-128.png"/><span class="brand-copy"><strong>AgroCore</strong><span>El corazón del negocio agrícola</span></span></a>
-<nav class="links"><a href="#experiencia">Producto</a><a href="#soluciones">Soluciones</a><a href="#precio">Precio</a><a href="mercado.html">Mercado</a><a href="clima.html">Clima</a><a href="herramientas.html">Herramientas</a><a href="videos.html">Videos</a></nav>
+<nav class="links"><a href="#experiencia">Producto</a><a href="#soluciones">Soluciones</a><a href="#precio">Precio</a><a href="mercado.html">Mercado</a><a href="clima.html">Clima</a><a href="herramientas.html">Herramientas</a><a href="videos.html">Videos</a><a href="#contacto">Contacto</a></nav>
 <a class="btn gold" href="https://agrocore.ar/prueba" rel="noopener" target="_blank">Probar AgroCore <span class="arrow">→</span></a><button aria-controls="mobile-panel" aria-expanded="false" aria-label="Abrir menú" class="menu" id="menu-toggle">≡</button>
 </div>
-<div class="mobile-panel" id="mobile-panel"><a href="#experiencia">Producto</a><a href="#soluciones">Soluciones</a><a href="mercado.html">Mercado</a><a href="clima.html">Clima</a><a href="herramientas.html">Herramientas</a><a href="videos.html">Videos</a><a href="#precio">Precio</a><a class="btn gold" href="https://agrocore.ar/prueba">Probar AgroCore →</a></div>
+<div class="mobile-panel" id="mobile-panel"><a href="#experiencia">Producto</a><a href="#soluciones">Soluciones</a><a href="mercado.html">Mercado</a><a href="clima.html">Clima</a><a href="herramientas.html">Herramientas</a><a href="videos.html">Videos</a><a href="#precio">Precio</a><a href="#contacto">Contacto</a><a class="btn gold" href="https://agrocore.ar/prueba">Probar AgroCore →</a></div>
 <div aria-label="Cotizaciones de mercado en vivo" class="market-bar" id="market-bar">
 <div class="market-inner">
 <a class="market-label" href="mercado.html"><span class="market-live"></span>Mercado en vivo</a>
@@ -255,6 +255,29 @@ linear-gradient(0deg,rgba(5,35,13,.16),transparent 58%)!important}
 <div class="pricing-box maintenance"><div class="pricing-badge">Opcional</div><div class="pricing-k">Mantenimiento y soporte</div><div class="pricing-amount"><span class="currency">Desde USD</span><span class="number">100</span><span class="period">/mes</span></div><div class="pricing-lead">cancelable cuando quieras · elegís el nivel de acompañamiento</div><div class="support-tiers"><div class="support-tier base"><div class="tier-head"><span class="tier-name">Base</span><strong>USD 100/mes</strong></div><p>Para operaciones con soporte estándar.</p><ul><li>Soporte por WhatsApp y mail</li><li>Actualizaciones y cambios legales ARCA</li><li>Hasta 3 responsables de soporte</li><li>Hasta 3 h/mes de ajustes menores</li></ul></div><div class="support-tier company"><div class="tier-head"><span class="tier-name">Empresa</span><strong>Consultar</strong></div><p>Para equipos con mayor demanda de soporte.</p><ul><li>Atención prioritaria</li><li>Más horas mensuales</li><li>Capacitación y seguimiento</li></ul></div><div class="support-tier corporate"><div class="tier-head"><span class="tier-name">Corporativo</span><strong>A medida</strong></div><p>Para grupos y operaciones complejas.</p><ul><li>SLA y soporte acordado</li><li>Capacitación</li><li>Infraestructura e integraciones</li></ul></div></div><div class="pricing-note"><strong>AgroCore es el mismo en todos los planes.</strong> Lo que cambia es el nivel de acompañamiento y soporte que necesita tu empresa.</div></div>
 <div class="pricing-box infrastructure"><div class="pricing-badge">A elección</div><div class="pricing-k">Infraestructura</div><div class="pricing-choice">Cloud o Servidor Propio</div><div class="pricing-lead">elegís dónde corre tu sistema</div><div class="infra-option"><b><span>Cloud (AWS)</span><span>costo AWS según uso</span></b><ul><li>Cuenta AWS a tu nombre</li><li>Backups automáticos diarios</li><li>Acceso desde cualquier lugar</li><li>Pago directo a Amazon</li></ul></div><div class="infra-option local"><b><span>Servidor Propio</span><span>sin costo recurrente</span></b><ul><li>Instalación on-premise</li><li>Datos siempre en tu oficina</li><li>Puede operar en red local sin internet</li><li>Backups a tu cargo</li></ul></div><div class="pricing-note">Vos elegís dónde corre AgroCore.</div></div>
 </div><div class="pricing-more"><strong>¿Tu empresa necesita soporte intensivo, más usuarios de soporte o integraciones?</strong> Tenemos planes Empresa y Corporativo a medida. <a href="presupuesto.html">Ver propuesta completa →</a></div></div></section>
+<style>
+.faq{background:var(--cream)}
+.faq-head{text-align:center;max-width:720px;margin:0 auto 28px}
+.faq-list{max-width:840px;margin:0 auto;display:grid;gap:12px}
+.faq-list details{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
+.faq-list details[open]{box-shadow:0 10px 28px rgba(20,60,25,.07)}
+.faq-list summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:750;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:15.5px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:after{content:'⌄';color:var(--green);font-weight:900;font-size:18px;transition:transform .2s;flex:none}
+.faq-list details[open] summary:after{transform:rotate(180deg)}
+.faq-list details>div{padding:0 20px 18px;color:#52606b;line-height:1.65;font-size:14.5px}
+</style>
+<section class="section faq" id="faq"><div class="wrap">
+<div class="faq-head"><div class="kicker">Preguntas frecuentes</div><h2 style="margin-top:10px">Lo que más nos preguntan</h2></div>
+<div class="faq-list">
+<details><summary>¿Mi negocio puede usar AgroCore?</summary><div>Sí. AgroCore está pensado para productores agropecuarios, empresas familiares del campo, contratistas rurales, acopiadores, haras y feedlots. Si tu negocio es del agro, AgroCore aplica. En la primera conversación validamos juntos los detalles de tu operatoria.</div></details>
+<details><summary>¿Y si en algún momento no quiero pagar mantenimiento?</summary><div>Lo dejás cuando quieras. El sistema sigue funcionando con normalidad. Si más adelante necesitás soporte o un cambio, lo retomás sin penalidad. No hay contrato de permanencia.</div></details>
+<details><summary>¿Cómo accedo desde mi celular o desde otro lugar?</summary><div>Con la URL pública que recibís al implementar. Funciona desde cualquier dispositivo con internet — celular, tablet, PC. La interfaz es 100% responsive y se adapta sola.</div></details>
+<details><summary>¿Mis datos están seguros?</summary><div>Aplicamos los mismos estándares que usan los bancos: HTTPS/TLS 1.3, encriptación AES-256, hash bcrypt para contraseñas, backups diarios con retención de 30 días, auditoría completa, y cumplimos OWASP Top 10. Firmamos NDA y los datos nunca salen de tu infraestructura (sea tu cuenta AWS o tu servidor propio).</div></details>
+<details><summary>¿Cuánto tarda la implementación?</summary><div>Entre 4 y 6 semanas desde la confirmación, dependiendo del volumen de datos a migrar de tus sistemas actuales y la cantidad de usuarios.</div></details>
+<details><summary>¿De quién es el código? ¿Qué pasa si me peleo con el desarrollador?</summary><div>El código fuente y la infraestructura (cuenta AWS o servidor propio) son tuyos. Si en algún momento decidís cambiar de proveedor, te llevás todo intacto. Sin lock-in, sin sorpresas.</div></details>
+<details><summary>¿Puedo pedir nuevas funcionalidades a futuro?</summary><div>Sí. Funcionalidades nuevas (app móvil, integraciones, módulos a medida) se presupuestan aparte. Cambios pequeños o reportes simples están cubiertos por el mantenimiento mensual (3 hs/mes).</div></details>
+</div></div></section>
 <section class="final" id="contacto"><div class="wrap"><div class="final-box"><img alt="Campo argentino" class="final-bg" decoding="async" loading="lazy" src="img/hero.jpg"/><div class="final-copy"><div class="kicker" style="color:var(--gold)">AgroCore</div><h2 style="margin-top:10px">Conocé el sistema con tus propios datos en mente.</h2><p>Probá AgroCore gratis o contanos cómo trabaja tu empresa rural. Te mostramos qué módulos aplicarían a tu operación.</p><div class="final-actions"><a class="btn gold" href="https://agrocore.ar/prueba" rel="noopener" target="_blank">Probar AgroCore gratis <span class="arrow">→</span></a><a class="btn light" href="https://wa.me/5493582408884" rel="noopener" target="_blank">Hablar por WhatsApp</a></div></div></div></div></section>
 </main>
 <section class="contact-v228" id="contacto" aria-labelledby="contact-title">
@@ -283,7 +306,7 @@ linear-gradient(0deg,rgba(5,35,13,.16),transparent 58%)!important}
     </form>
   </div>
 </section>
-<footer><div class="wrap"><div class="footer"><div><a class="brand" href="#top"><img alt="AgroCore" decoding="async" src="img/logo-icon-128.png"/><span class="brand-copy"><strong>AgroCore</strong><span>El corazón del negocio agrícola</span></span></a><p>Sistema de gestión integral para empresas rurales argentinas. Multi-empresa, multi-usuario, Cloud o servidor propio.</p></div><div><h4>Producto</h4><a href="#experiencia">Conocer AgroCore</a><a href="#soluciones">Funcionalidades</a><a href="#como">Implementación</a><a href="#precio">Precio</a></div><div><h4>Recursos</h4><a href="manual.html">Manual</a><a href="mercado.html">Mercado</a><a href="clima.html">Clima</a><a href="herramientas.html">Herramientas</a><a href="videos.html">Videos</a><a href="recursos.html">Guía del Agrónomo</a></div></div><div class="legal">© AgroCore Argentina · agrocore.ar · Hecho para el campo argentino. · Conexión HTTPS protegida por Cloudflare.</div></div></footer>
+<footer><div class="wrap"><div class="footer"><div><a class="brand" href="#top"><img alt="AgroCore" decoding="async" src="img/logo-icon-128.png"/><span class="brand-copy"><strong>AgroCore</strong><span>El corazón del negocio agrícola</span></span></a><p>Sistema de gestión integral para empresas rurales argentinas. Multi-empresa, multi-usuario, Cloud o servidor propio.</p></div><div><h4>Producto</h4><a href="#experiencia">Conocer AgroCore</a><a href="#soluciones">Funcionalidades</a><a href="#como">Implementación</a><a href="#precio">Precio</a><a href="#faq">Preguntas frecuentes</a><a href="#contacto">Contacto</a></div><div><h4>Recursos</h4><a href="manual.html">Manual</a><a href="mercado.html">Mercado</a><a href="clima.html">Clima</a><a href="herramientas.html">Herramientas</a><a href="videos.html">Videos</a><a href="recursos.html">Guía del Agrónomo</a></div></div><div class="legal">© AgroCore Argentina · agrocore.ar · Hecho para el campo argentino. · Conexión HTTPS protegida por Cloudflare.<br/>AgroCore se encuentra verificado como Software de Gestión Agropecuaria en Argentina.</div></div></footer>
 <script>
 (() => {
   const mt=document.getElementById('menu-toggle'), mp=document.getElementById('mobile-panel');
@@ -355,6 +378,17 @@ document.getElementById('contactFormV228')?.addEventListener('submit',async func
  }catch(err){ waFallback(); }
  finally{ btn.disabled=false; if(btn.textContent==='Enviando…') btn.textContent=oldTxt; }
 });
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"¿Mi negocio puede usar AgroCore?","acceptedAnswer":{"@type":"Answer","text":"Sí. AgroCore está pensado para productores agropecuarios, empresas familiares del campo, contratistas rurales, acopiadores, haras y feedlots. Si tu negocio es del agro, AgroCore aplica."}},
+{"@type":"Question","name":"¿Y si en algún momento no quiero pagar mantenimiento?","acceptedAnswer":{"@type":"Answer","text":"Lo dejás cuando quieras. El sistema sigue funcionando con normalidad. Si más adelante necesitás soporte o un cambio, lo retomás sin penalidad. No hay contrato de permanencia."}},
+{"@type":"Question","name":"¿Cómo accedo desde mi celular o desde otro lugar?","acceptedAnswer":{"@type":"Answer","text":"Con la URL pública que recibís al implementar. Funciona desde cualquier dispositivo con internet — celular, tablet, PC. La interfaz es 100% responsive y se adapta sola."}},
+{"@type":"Question","name":"¿Mis datos están seguros?","acceptedAnswer":{"@type":"Answer","text":"Sí. AgroCore usa HTTPS/TLS 1.3, encriptación AES-256, contraseñas con hash bcrypt, backups diarios con 30 días de retención, auditoría completa y cumple OWASP Top 10. Firmamos NDA y los datos quedan en tu infraestructura."}},
+{"@type":"Question","name":"¿Cuánto tarda la implementación?","acceptedAnswer":{"@type":"Answer","text":"Entre 4 y 6 semanas desde la confirmación, dependiendo del volumen de datos a migrar y la cantidad de usuarios."}},
+{"@type":"Question","name":"¿De quién es el código? ¿Qué pasa si me peleo con el desarrollador?","acceptedAnswer":{"@type":"Answer","text":"El código fuente y la infraestructura (cuenta AWS o servidor propio) son tuyos. Si en algún momento decidís cambiar de proveedor, te llevás todo intacto. Sin lock-in."}},
+{"@type":"Question","name":"¿Puedo pedir nuevas funcionalidades a futuro?","acceptedAnswer":{"@type":"Answer","text":"Sí. Funcionalidades nuevas (app móvil, integraciones, módulos a medida) se presupuestan aparte. Cambios pequeños o reportes simples están cubiertos por el mantenimiento mensual (3 hs/mes)."}}
+]}
 </script>
 <script defer src="bot-kb.js"></script>
 <script defer src="bot.js"></script>
