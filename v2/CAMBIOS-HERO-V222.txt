@@ -1,0 +1,6 @@
+Hero V222
+- Fondo cambiado: ya no usa una escena con notebook/pantalla de AgroCore.
+- Nuevo fondo rural de agricultura para evitar duplicar pantallas.
+- Se mantiene una sola pantalla de AgroCore como protagonista tecnológico.
+- Corregido el badge “Datos reales · en tiempo real”: ahora queda dentro del dashboard y no se pisa/corta.
+- Ajustado degradado para mantener legibilidad del título.
