@@ -275,7 +275,7 @@
 <tr><td><strong>(Arriba, fijo)</strong></td><td>Inicio · Mensajes y asistente — siempre visibles, sin sección.</td></tr>
 <tr><td><strong>📊 TABLERO</strong></td><td>Dashboard · Flujo de Fondos · Flujo de caja · Resumen multi-empresa · Balance Patrimonial · Agenda y recordatorios</td></tr>
 <tr><td><strong>💼 COMERCIAL</strong></td><td>Clientes · Movimientos de ventas · Liquidaciones cereal · Liquidaciones animales · Cuentas a cobrar · Proveedores · Movimientos de compras · Cuentas a pagar</td></tr>
-<tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes · Campañas · Historial de campañas · Insumos y labores · Servicios a terceros · Reporte de margen · Calculadoras agronómicas · Vademécum</td></tr>
+<tr><td><strong>🌱 PRODUCCIÓN</strong></td><td>Campos y lotes · Mapa de lotes · Campañas · Historial de campañas · Presupuesto de campaña · Insumos y labores · Servicios a terceros · Sociedades / UTE · Reporte de margen · Calculadoras agronómicas · Vademécum</td></tr>
 <tr><td><strong>🐎 GANADERÍA Y HARAS</strong></td><td>Movimientos de animales · Fichas de animales · Rodeos y Hacienda · Guías de hacienda (DT-e)</td></tr>
 <tr><td><strong>📦 STOCK Y DEPÓSITOS</strong></td><td>Stock · Movimientos de stock · Remitos internos · Depósitos y cerealeras · Posición de granos · Contratos de cereal</td></tr>
 <tr><td><strong>🚚 LOGÍSTICA Y TRANSPORTE</strong></td><td>Viajes y fletes · Transportistas · Choferes · Camiones (chasis) · Acoplados</td></tr>
@@ -462,6 +462,13 @@
 <li><strong>Cartas de porte de un socio:</strong> si una CP sale de otra empresa/socio, al cargar el <em>viaje</em> elegí la Sociedad en el selector "Sociedad / UTE" para que sume a la cosecha del negocio.</li>
 <li><strong>Liquidación (botón 💰):</strong> ponés el <strong>precio $/tn</strong> (valoriza la cosecha = ingreso), cargás <strong>gastos comunes</strong> y los <strong>aportes de cada socio</strong>, y el <strong>% de participación</strong> (con "Sugerir % por aporte"). El sistema calcula <strong>ingreso − gastos = resultado</strong> y el reparto por socio: su % del ingreso, su ganancia y el <strong>neto a cobrar o poner</strong>. Se puede imprimir/PDF para pasarle a cada socio.</li>
 </ul>
+<h4 id="mod-presupuesto">Presupuesto de campaña <span class="badge-new">Nuevo</span></h4>
+<p><strong>Qué hace:</strong> en <strong>Producción → Presupuesto de campaña</strong> armás el presupuesto <strong>a futuro</strong> de una campaña (cuánto pensás gastar por rubro) y después, a medida que avanza, comparás lo <strong>presupuestado contra lo realmente gastado</strong> para saber si vas dentro de lo previsto o te estás pasando.</p>
+<p><strong>Propuesta automática:</strong> el sistema <strong>mira las campañas anteriores</strong> y propone un presupuesto estimado por rubro (semillas, fertilizantes, agroquímicos, labores, arrendamiento, etc.) como punto de partida. Esa propuesta es <strong>de referencia y totalmente editable</strong>: ajustás los montos, agregás o sacás rubros y lo guardás.</p>
+<p><strong>Seguimiento:</strong> cada rubro muestra el <strong>presupuesto</strong>, el <strong>gasto real acumulado</strong> (de los insumos, labores y costos cargados en la campaña) y un <strong>semáforo</strong> (verde/amarillo/rojo) según cuánto llevás ejecutado. Abajo ves el total presupuestado, el total gastado y la diferencia. Sirve para prever cuánta plata vas a necesitar y controlar el gasto durante la campaña.</p>
+<p><strong>Copiar de otra campaña:</strong> con el botón de copiar podés traer el presupuesto de una campaña anterior y usarlo como base para la nueva.</p>
+<h4 id="mod-empaque">Empaque / clasificación de hortícolas <span class="badge-new">Nuevo</span></h4>
+<p>Para producciones hortícolas (cebolla, etc.) podés registrar el <strong>empaque y la clasificación por calibre</strong> en el galpón: cuánto entró en bruto, cuánto salió clasificado por categoría/calibre y el <strong>descarte</strong>, para conocer el <strong>rendimiento real</strong> del empaque y el costo por unidad empacada. El detalle paso a paso está en el instructivo <em>Empaque / clasificación de hortícolas (cebolla)</em> de la sección 10.</p>
 </section>
 <section id="mod-stock">
 <h4 id="mod-forrajeras">Campañas forrajeras (multicorte) <span class="badge-new">Nuevo</span></h4>
@@ -541,6 +548,11 @@
 <p><strong>Traslado de hacienda:</strong> en <strong>Ganadería y Haras → Traslado de hacienda</strong> ves cada campo con su stock por categoría; <strong>arrastrás</strong> (o tocás, en el celular) una categoría de un campo a otro y se abre el traslado ya prellenado, que ejecuta el movimiento. <strong>Mapa:</strong> en <strong>Mapa de lotes</strong>, con la vista <em>Hacienda</em>, cada potrero con un rodeo muestra una <strong>tarjeta</strong> sobre el lote con cabezas, peso promedio, kilos y carga (cab/ha), y los botones <strong>↔ Mover</strong> (reubica el rodeo en otro campo/lote/corral) y <strong>Ver ficha</strong>.</p>
 <p><strong>Hacienda de terceros (capitalización / hotelería de engorde):</strong> si recibís animales de un tercero para engordarlos y cobrarle el servicio, tildá <em>“Hacienda de terceros”</em> al crear el lote e indicá el <strong>propietario</strong>. Cargás los costos reales del engorde como siempre (para tu control) y, aparte, los <strong>cargos a cobrar al dueño</strong> con eventos <strong>🏨 Capitalización</strong> o <strong>🛠️ Servicio</strong> (por cabeza/mes). El botón <strong>🏨 Hotelería / capitalización (terceros)</strong> arma el <strong>resumen por propietario</strong> —unificado con los caballos en pensión de Fichas de animales— listo para facturar, con export a Excel.</p>
 <p><strong>Caravana electrónica / collar → pesaje automático del lote:</strong> si los animales llevan caravana electrónica o collar, creá su <strong>Ficha de animal</strong> y vinculala al lote (campo “Lote / rodeo”). El peso individual (por balanza en la manga, caravana con pesaje o pesaje manual en la ficha) se guarda en cada animal, y con el botón <strong>⚖️ Pesaje desde balanzas</strong> del lote se arma el pesaje total sumando esas fichas — sin pesar la tropa entera a mano.</p>
+<h4 id="mod-caravanas-rfid">Caravanas electrónicas (RFID) — feedlot y rodeos grandes <span class="badge-new">Nuevo</span></h4>
+<p>Para lotes grandes donde no se lleva ficha por animal, AgroCore trabaja directo con el <strong>archivo del bastón lector</strong> (importador universal: Allflex, Tru-Test, Gallagher, Datamars). El circuito tiene dos partes:</p>
+<p><strong>1) Importar caravanas al rodeo:</strong> desde el lote, con <strong>🏷️ Importar caravanas</strong> subís el archivo del bastón y el sistema da de alta cada RFID como animal del rodeo (alta masiva liviana). Si una caravana ya existía en otro lote, la <strong>mueve</strong> a este; te informa cuántas se crearon, cuántas se movieron y los duplicados del propio archivo.</p>
+<p><strong>2) Pesaje por caravana:</strong> con <strong>📡 Pesaje por caravana</strong> subís el archivo del bastón con los pesos y el sistema <strong>auto-mapea cada RFID a su rodeo</strong>, actualiza el peso de cada animal, guarda el pesaje en su historial y arma el pesaje total del lote. Avisa las <strong>caravanas faltantes</strong> (las que no se pesaron) para marcarlas <strong>muerto/extraviado</strong> (dan de baja) o <strong>pendiente</strong>, y las <strong>caravanas desconocidas</strong> (leídas pero no registradas).</p>
+<p><strong>3) Evolución de peso y GDP en la ficha:</strong> en la <strong>Ficha del animal</strong>, la sección <strong>“Evolución de peso y GDP”</strong> muestra con <strong>gráfico y tabla</strong> todos los pesajes del animal (manuales, por balanza o por caravana) y calcula la <strong>ganancia diaria de peso (GDP)</strong> entre pesadas. El <strong>buscador de fichas</strong> también encuentra por <strong>caravana (RFID)</strong> o número visual, para llegar al animal tras leerlo con el bastón.</p>
 <h4 id="mod-liq-hacienda">Liquidaciones de hacienda <span class="badge-new">Nuevo</span></h4>
 <p>Cargás las liquidaciones de venta de hacienda a mano o <strong>importando el PDF</strong> del consignatario/frigorífico: el sistema detecta las categorías, los kg, el importe y las <strong>retenciones</strong>, arma el movimiento real, ajusta el <strong>stock SENASA</strong> y registra la <strong>cuenta corriente</strong>. Incluye el <strong>Asistente de Faena</strong> para cuando mandás animales a faenar: liquidación de los vivos y factura del faenado.</p>
 <h4 id="mod-contratos-cereal">Contratos de cereal <span class="badge-new">Nuevo</span></h4>
@@ -1083,6 +1095,8 @@
 <h3>Producción</h3>
 <ul>
 <li><a class="text-agro-700 underline" href="instructivos/Instructivo-Ordenes-de-Trabajo.pdf" rel="noopener" target="_blank">Órdenes de trabajo</a> — indicarle al contratista qué labor hacer y qué insumos usar, entregarla y después facturar el servicio.</li>
+<li><a class="text-agro-700 underline" href="instructivos/Instructivo-Presupuesto-de-Campana.pdf" rel="noopener" target="_blank">Presupuesto de campaña</a> — armar el presupuesto a futuro (el sistema lo propone con las campañas anteriores) y controlar durante la campaña lo presupuestado contra lo realmente gastado.</li>
+<li><a class="text-agro-700 underline" href="instructivos/Instructivo-Empaque-Horticolas-Cebolla.pdf" rel="noopener" target="_blank">Empaque / clasificación de hortícolas (cebolla)</a> — registrar el empaque, la clasificación por calibre y el rendimiento del galpón.</li>
 </ul>
 <h3>Cereal</h3>
 <ul>
@@ -1102,6 +1116,7 @@
 <li><a class="text-agro-700 underline" href="instructivos/Instructivo-Guias-Hacienda.pdf" rel="noopener" target="_blank">Guías de hacienda</a></li>
 <li><a class="text-agro-700 underline" href="instructivos/Instructivo-Costo-Kilo-Carne.pdf" rel="noopener" target="_blank">Costo por kilo de carne</a></li>
 <li><a class="text-agro-700 underline" href="instructivos/Instructivo-Haras-Caballos.pdf" rel="noopener" target="_blank">Haras / caballos</a></li>
+<li><a class="text-agro-700 underline" href="instructivos/Instructivo-Caravanas-Electronicas-RFID.pdf" rel="noopener" target="_blank">Caravanas electrónicas (RFID)</a> — importar caravanas a un rodeo, pesar por caravana con auto-mapeo al rodeo, avisar las faltantes y seguir la evolución de peso y GDP en la ficha del animal.</li>
 </ul>
 <h3>Otros</h3>
 <ul>
