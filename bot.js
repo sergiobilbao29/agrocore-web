@@ -37,7 +37,7 @@
     return res.slice(0,4).map(function(x){return x.it;});
   }
 
-  var CSS = '#agb-btn{position:fixed;right:18px;bottom:18px;z-index:99999;background:#166534;color:#fff;border:none;border-radius:999px;padding:12px 18px;font-weight:700;font-family:Inter,system-ui,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;font-size:14px}'+
+  var CSS = '#agb-btn{position:fixed;right:18px;bottom:18px;z-index:99999;background:#166534;color:#fff;border:none;border-radius:999px;padding:9px 18px 9px 10px;font-weight:700;font-family:Inter,system-ui,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:9px}'+'#agb-btn img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #fff}'+
   '#agb-btn:hover{background:#14532d}'+
   '#agb-panel{position:fixed;right:18px;bottom:74px;z-index:99999;width:360px;max-width:calc(100vw - 36px);height:520px;max-height:calc(100vh - 110px);background:#fff;border:1px solid #d1d5db;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.28);display:none;flex-direction:column;overflow:hidden;font-family:Inter,system-ui,sans-serif}'+
   '#agb-head{background:#166534;color:#fff;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;align-items:center}'+
@@ -57,8 +57,8 @@
 
   function el(html){ var d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild; }
   var st=document.createElement('style'); st.textContent=CSS; document.head.appendChild(st);
-  var btn=el('<button id="agb-btn">💬 Hablar con Cora</button>');
-  var panel=el('<div id="agb-panel"><div id="agb-head"><div>Cora · Asistente de AgroCore<small>Sistema · calculadoras · vademécum · Guía del Ing. Agrónomo</small></div><button id="agb-x" title="Cerrar">×</button></div><div id="agb-msgs"></div><div id="agb-foot"><input id="agb-in" placeholder="Escribí tu consulta…" autocomplete="off"/><button id="agb-send">➤</button></div></div>');
+  var btn=el('<button id="agb-btn"><img src="img/cora-avatar.png" alt="" onerror="this.remove()"/>Hablar con Cora</button>');
+  var panel=el('<div id="agb-panel"><div id="agb-head"><div style="display:flex;align-items:center;gap:10px"><img src="img/cora-avatar.png" alt="Cora" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #fff;flex:none"/><div>Cora · Asistente de AgroCore<small>Sistema · calculadoras · vademécum · Guía del Ing. Agrónomo</small></div></div><button id="agb-x" title="Cerrar">×</button></div><div id="agb-msgs"></div><div id="agb-foot"><input id="agb-in" placeholder="Escribí tu consulta…" autocomplete="off"/><button id="agb-send">➤</button></div></div>');
   document.body.appendChild(btn); document.body.appendChild(panel);
   var msgs=panel.querySelector('#agb-msgs'), input=panel.querySelector('#agb-in');
 
@@ -161,6 +161,7 @@
   }
   function saludo(){
     if(msgs.childElementCount) return;
+    msgs.appendChild(el('<div style="text-align:center;margin:2px 0 6px"><img src="img/cora-full.png" alt="Cora" style="height:190px;max-width:92%;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))" onerror="this.parentNode.remove()"/></div>'));
     add('¡Hola! Soy <b>Cora</b> 🌱, la asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Guía del Ing. Agrónomo</b>. ¿Qué querés saber?','b');
     chips(['¿Qué es AgroCore?','¿Cuánto sale?','Densidad de siembra','Dosis de glifosato','Costo del kilo de carne','Rinde de indiferencia']);
   }
