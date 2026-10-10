@@ -161,8 +161,11 @@
   }
   function saludo(){
     if(msgs.childElementCount) return;
-    msgs.appendChild(el('<div style="text-align:center;margin:2px 0 6px"><img src="img/cora-full.png" alt="Cora" style="height:190px;max-width:92%;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))" onerror="this.parentNode.remove()"/></div>'));
-    add('¡Hola! Soy <b>Cora</b> 🌱, la asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Guía del Ing. Agrónomo</b>. ¿Qué querés saber?','b');
+    var saludoTxt='¡Hola! Soy <b>Cora</b> 🌱, la asistente de AgroCore. Puedo ayudarte con el <b>sistema</b>, las <b>calculadoras agronómicas</b>, el <b>vademécum de insumos</b> y la <b>Gu&iacute;a del Ing. Agr&oacute;nomo</b>. ¿Qué querés saber?';
+    msgs.appendChild(el('<div style="display:flex;align-items:flex-end;gap:6px;margin:4px 2px 12px 0">'
+      +'<img src="img/cora-full.png" alt="Cora" style="width:140px;flex:none;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))" onerror="this.remove()"/>'
+      +'<div class="agb-m agb-b" style="margin:0;flex:1 1 0;min-width:0"><span style="display:inline-block;max-width:100%">'+saludoTxt+'</span></div>'
+      +'</div>'));
     chips(['¿Qué es AgroCore?','¿Cuánto sale?','Densidad de siembra','Dosis de glifosato','Costo del kilo de carne','Rinde de indiferencia']);
   }
   function open(){ panel.style.display='flex'; saludo(); setTimeout(function(){input.focus();},80); }
