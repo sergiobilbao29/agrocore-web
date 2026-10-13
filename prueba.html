@@ -6,6 +6,15 @@
 <title>Probá AgroCore gratis 30 días</title>
 <meta name="description" content="Creá tu prueba gratuita de AgroCore por 30 días. Sin tarjeta, sin instalación. Ordená los números de tu campo en un solo lugar."/>
 <link rel="icon" href="img/favicon.png"/>
+<!-- Google tag (gtag.js) - Google Ads + GA4 AgroCore -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18358928255"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0TLTNL3NJ0');
+    gtag('config', 'AW-18358928255');
+  </script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: {
@@ -181,6 +190,7 @@
       });
       const j = await r.json().catch(() => ({}));
       if (!r.ok || !j.ok) throw new Error(j.error || 'No pudimos crear la cuenta. Probá de nuevo.');
+      try{ if(typeof acTrack==='function') acTrack('trial_signup',{ actividad: data.actividad||'', provincia: data.provincia||'' }); }catch(_){}
       f.style.display = 'none';
       msg.className = 'text-base mt-2 text-agro-800';
       msg.innerHTML = '✅ <b>¡Casi listo!</b> Te enviamos un email a <b>' + data.email + '</b> para confirmar tu cuenta y activar la prueba. Revisá tu bandeja (y el spam).';
@@ -191,5 +201,6 @@
     }
   });
 </script>
+<script src="track.js"></script>
 </body>
 </html>
