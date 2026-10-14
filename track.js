@@ -16,9 +16,9 @@
 (function(){
   window.AC_ADS_ID = 'AW-18358928255';
   window.AC_ADS_LABELS = window.AC_ADS_LABELS || {
-    trial_signup: '',      // pega aca la etiqueta de la conversion "Prueba gratis" (opcion B)
-    contact_whatsapp: '',  // pega aca la etiqueta de la conversion "WhatsApp" (opcion B)
-    generate_lead: ''      // pega aca la etiqueta de la conversion "Consulta" (opcion B)
+    trial_signup: 'WzIOCMWm3JsdEP-GnLJE',   // "Registro" (alta de prueba gratis)
+    contact_whatsapp: 'alZICOCg9tscEP-GnLJE', // "Clic WhatsApp"
+    generate_lead: 'n3pPCJbo9dscEP-GnLJE'   // "Enviar formulario de clientes potenciales"
   };
   function ads(key){
     try{
