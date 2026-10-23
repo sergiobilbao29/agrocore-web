@@ -490,6 +490,7 @@
 <p>Cada evento vinculado muestra un chip de enlace; si se borra el evento, se revierten los movimientos financieros que generó.</p>
 <h4 id="mod-mapa">Geolocalización de lotes en el mapa <span class="badge-new">Nuevo</span></h4>
 <p>A cada lote le podés cargar su <strong>geolocalización</strong> y verlo en el <strong>mapa</strong>. Acepta coordenadas en <strong>grados decimales</strong> (ej. -32.123, -63.456) o en <strong>grados, minutos y segundos (GMS/DMS)</strong> (ej. 32°07'22"S 63°27'21"O); el sistema las interpreta y ubica el lote solo.</p>
+<<<<<<< Updated upstream
 <h3>6.5 Stock</h3>
 <p>Maneja todo lo que se compra, almacena, consume o vende.</p>
 <h4>Stock (Productos y existencias)</h4>
@@ -546,6 +547,64 @@
 <p>En <strong>Ganadería y Haras → Ganadería 360</strong> tenés el panel del dueño: junta toda la hacienda de un vistazo. Arriba, los totales de los lotes activos (<strong>cabezas</strong>, <strong>kg producidos</strong>, <strong>$/kg producido promedio</strong> ponderado y <strong>margen total</strong>). Después, la <strong>plata invertida por rubro</strong> (compra, alimentación, sanidad, labores, otros) y el <strong>rendimiento por lote</strong> ordenado por margen. Abajo, el <strong>circuito comercial del período</strong> (mes / año / todo): ventas por liquidación y lo que queda por cobrar, y las guías DT-e con lo que falta vincular o pagar.</p>
 <h4 id="mod-traslado-hacienda">Traslado de hacienda y mapa <span class="badge-new">Nuevo</span></h4>
 <p><strong>Traslado de hacienda:</strong> en <strong>Ganadería y Haras → Traslado de hacienda</strong> ves cada campo con su stock por categoría; <strong>arrastrás</strong> (o tocás, en el celular) una categoría de un campo a otro y se abre el traslado ya prellenado, que ejecuta el movimiento. <strong>Mapa:</strong> en <strong>Mapa de lotes</strong>, con la vista <em>Hacienda</em>, cada potrero con un rodeo muestra una <strong>tarjeta</strong> sobre el lote con cabezas, peso promedio, kilos y carga (cab/ha), y los botones <strong>↔ Mover</strong> (reubica el rodeo en otro campo/lote/corral) y <strong>Ver ficha</strong>.</p>
+=======
+
+          <h3>6.5 Stock</h3>
+          <p>Maneja todo lo que se compra, almacena, consume o vende.</p>
+
+          <h4>Stock (Productos y existencias)</h4>
+          <p>Listado del inventario actual: cada producto con cantidad disponible, valorizado a precio de última compra o promedio ponderado.</p>
+          <p><strong>Tipos de productos:</strong> insumos agrícolas, granos, combustible, repuestos y consumibles, otros.</p>
+          <p><strong>Información por producto:</strong> nombre, código, categoría, unidad, stock actual (con alerta de mínimo), valorización, ubicación, histórico de movimientos.</p>
+
+          <h4>Movimientos</h4>
+          <p>Cada vez que entra o sale algo del stock, se registra un movimiento. Trazabilidad completa.</p>
+          <p><strong>Tipos:</strong> entrada por compra, entrada por cosecha, salida por venta, salida por consumo interno, ajuste de inventario, transferencia entre depósitos, entrega a cerealera, liquidación.</p>
+          <p><strong>Cada movimiento registra:</strong> fecha, tipo, producto y cantidad, origen/destino, comprobante asociado, depósito y <strong>usuario que lo cargó</strong> (columna "Cargado por" visible en la lista — auditoría completa, incluso para movimientos automáticos generados por facturas, entregas a cerealera, liquidaciones y labores avanzadas).</p>
+          <p><strong>Integración:</strong> los movimientos generados por compras o ventas tienen un botón que abre la factura origen. En facturas de venta, el sistema avisa antes de vender más de lo que hay en stock.</p>
+
+          <h4>Reporte de margen</h4>
+          <p>Análisis económico que cruza compras vs ventas calculando costo promedio, precio promedio, % de margen y ganancia. Filtros por producto, campaña, cliente / proveedor o período. Exportable a Excel.</p>
+
+          <h4>Hacienda — stock por campo, declarado vs real <span class="badge-new">Nuevo</span></h4>
+          <p>Módulo dedicado al manejo del ganado. La gran diferencia con el stock de productos es que cada categoría se rastrea <strong>por campo</strong> y se compara lo que está <strong>declarado en SENASA / ARCA</strong> con el <strong>stock real</strong> que hay en el campo.</p>
+          <p><strong>Cómo se ve:</strong> por cada campo se muestra una tabla con sus categorías (Vacas, Vaquillonas, Terneros, Terneras, Novillos, Toros, Crías o las que cada empresa configure) y tres columnas clave:</p>
+          <ul>
+            <li><strong>Declarado (SENASA):</strong> lo que figura registrado oficialmente. Se carga manualmente cuando se actualiza en ARCA.</li>
+            <li><strong>Real (en campo):</strong> se calcula automáticamente sumando los movimientos cargados (nacimientos, muertes, compras, ventas, traslados, ajustes).</li>
+            <li><strong>Diferencia:</strong> destacada en rojo o verde. Es el aviso de qué falta registrar en ARCA.</li>
+          </ul>
+          <p><strong>Tipos de movimientos:</strong> Nacimiento, Muerte, Compra (entró), Venta (salió), Traslado entre campos (genera salida en el origen y entrada en el destino en una sola operación) y Ajuste / Conteo (puede ser positivo o negativo para corregir diferencias).</p>
+          <p><strong>Modo offline:</strong> esta sección funciona <strong>sin conexión</strong>. La gente que está en el campo puede cargar nacimientos, muertes o ajustes desde el celular, sin señal. Los cambios se guardan en el dispositivo y se sincronizan solos cuando vuelve internet.</p>
+          <p><strong>Ejemplo típico:</strong> en el campo Higueras hay 200 terneros y en Holmberg 11. Cada campo aparece con su propia tabla. Si nacen 3 terneros en Higueras, se carga "Nacimiento, Terneros, 3" y el real pasa a 203, mientras el declarado sigue en 200 — el sistema muestra "+3 de diferencia" hasta que se actualiza en ARCA y se sube el declarado a 203.</p>
+          <p><strong>📄 Instructivo:</strong> <a href="/instructivos/Instructivo-Stock-Hacienda.pdf" target="_blank" rel="noopener">Stock de hacienda: declarado (SENASA) vs real</a> — guía paso a paso para no confundir los dos números: cómo cargar el <strong>Declarado</strong> a mano y el <strong>Real</strong> con un movimiento de <strong>Ajuste / Conteo</strong>, el día a día, cómo leer la diferencia y cómo corregir si se cargó mal.</p>
+
+          <h4>Cerealeras y depósitos — cereal en planta sin perder trazabilidad</h4>
+          <p>Sección dedicada a registrar las cerealeras / acopiadoras y depósitos propios donde se almacena el cereal. El concepto clave: cuando entregás cereal a una cerealera, el grano <strong>sigue siendo tuyo</strong> — solo cambia de ubicación física. Después decidís cuándo venderlo.</p>
+          <p><strong>Carga de cerealeras:</strong> nombre, CUIT, contacto comercial, teléfono, email, dirección, localidad, provincia. Si es una cerealera, también podés cargar los <strong>costos operativos</strong>: <em>$/tn por mes de estadía</em> y <em>$/tn de secada</em>.</p>
+          <p><strong>🌐 Compartido entre empresas</strong> <span class="badge-new">Nuevo</span>: el formulario tiene un check para marcar el depósito como compartido. Si lo activás, el depósito es visible y usable desde cualquiera de las empresas que tengas asociadas en tu cuenta — pensado para cerealeras o silos que usás con varias razones sociales del mismo grupo. Si lo dejás desactivado, sigue siendo privado a la empresa actual. En la lista aparece un badge "🌐 Compartido" para distinguirlos.</p>
+          <p><strong>Entregar cereal:</strong> botón "📤 Entregar cereal" que abre un formulario para seleccionar producto, cantidad, fecha, cerealera destino y remito. Al guardar, el sistema mueve la cantidad del campo (tu depósito implícito) al depósito de la cerealera elegida — todo en una operación atómica.</p>
+          <p><strong>Stock por depósito:</strong> el panel muestra cuánto cereal hay en cada cerealera y en cada depósito propio. Cuando hay cereal en una cerealera, también aparece como stock total — solo separado por ubicación.</p>
+
+          <h4>Liquidaciones de cereal — cuando vendés lo que tenés en la cerealera <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando decidís vender el cereal que dejaste en una cerealera, cargás una <strong>liquidación</strong>. El formulario reproduce la planilla típica del comprobante:</p>
+          <ul>
+            <li><strong>Cabecera:</strong> cerealera, producto, cliente comprador (opcional), fecha y nro de liquidación.</li>
+            <li><strong>Cálculo del bruto:</strong> kilos brutos, % merma (humedad/calidad), kilos netos calculados, precio por tonelada → bruto $.</li>
+            <li><strong>Conceptos:</strong> agregás los descuentos (flete, paritarios, secada, estadía) e impuestos (IVA, IIBB, ret. ganancias) que aparecen en la liquidación real. Cada uno con tipo, concepto e importe.</li>
+            <li><strong>Resultado:</strong> bruto, descuentos totales, impuestos totales y <strong>neto a cobrar</strong> destacado en verde.</li>
+            <li><strong>Fecha estimada de cobro:</strong> entra al Estado de situación para anticipar el ingreso.</li>
+          </ul>
+          <p>Al registrar la liquidación, el sistema <strong>descuenta el cereal del depósito de la cerealera</strong> (kilos netos a toneladas) y, si hay cliente, crea el movimiento de cuenta corriente con el neto a cobrar. Después podés marcarla como cobrada con un botón.</p>
+        </section>
+
+        <section id="mod-contactos">
+          <h4 id="mod-activos">Activos fijos y maquinaria <span class="badge-new">Nuevo</span></h4>
+<p>En <strong>Stock y depósitos → Activos / Maquinaria</strong> cargás tus bienes de uso (tractores, camionetas, sembradoras, instalaciones). De cada activo guardás valor de compra, fecha, vida útil y su <strong>amortización</strong>, el <strong>seguro</strong> (aseguradora, tipo, número de póliza, vigencia y contacto) y podés <strong>adjuntar fotos y PDF</strong> (facturas, cédulas, pólizas). Cada activo lleva su historial de <strong>mantenimientos</strong> con alertas por fecha o por kilómetros/horas, y el sistema te avisa cuando se acerca un service o vence un seguro. El valor neto de amortización se suma solo al <strong>Estado de situación patrimonial</strong>.</p>
+
+          <h4 id="mod-rodeos">Rodeos y costo de hacienda <span class="badge-new">Nuevo</span></h4>
+<p>En <strong>Stock y depósitos → Costo de hacienda</strong> creás <strong>lotes de engorde o cría</strong> (feedlot, engorde a campo, recría o cría) y cargás sus eventos: <strong>ingreso</strong> de hacienda (cabezas, kg y precio de compra + fletes), <strong>alimentación</strong> (rollos, fardos o grano descontados del galpón a su costo, o pastoreo directo), <strong>sanidad</strong>, <strong>labores</strong>, <strong>pesajes</strong>, <strong>bajas</strong> y <strong>ventas</strong>. El sistema calcula automáticamente los kg producidos y dos métricas clave: <strong>$/kg producido</strong> (eficiencia del engorde) y <strong>$/kg terminado</strong> (costo real del kilo para la venta), además de la ganancia diaria de peso y el margen.</p>
+>>>>>>> Stashed changes
 <p><strong>Hacienda de terceros (capitalización / hotelería de engorde):</strong> si recibís animales de un tercero para engordarlos y cobrarle el servicio, tildá <em>“Hacienda de terceros”</em> al crear el lote e indicá el <strong>propietario</strong>. Cargás los costos reales del engorde como siempre (para tu control) y, aparte, los <strong>cargos a cobrar al dueño</strong> con eventos <strong>🏨 Capitalización</strong> o <strong>🛠️ Servicio</strong> (por cabeza/mes). El botón <strong>🏨 Hotelería / capitalización (terceros)</strong> arma el <strong>resumen por propietario</strong> —unificado con los caballos en pensión de Fichas de animales— listo para facturar, con export a Excel.</p>
 <p><strong>Caravana electrónica / collar → pesaje automático del lote:</strong> si los animales llevan caravana electrónica o collar, creá su <strong>Ficha de animal</strong> y vinculala al lote (campo “Lote / rodeo”). El peso individual (por balanza en la manga, caravana con pesaje o pesaje manual en la ficha) se guarda en cada animal, y con el botón <strong>⚖️ Pesaje desde balanzas</strong> del lote se arma el pesaje total sumando esas fichas — sin pesar la tropa entera a mano.</p>
 <h4 id="mod-caravanas-rfid">Caravanas electrónicas (RFID) — feedlot y rodeos grandes <span class="badge-new">Nuevo</span></h4>
