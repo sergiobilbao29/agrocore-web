@@ -163,10 +163,16 @@ Probar AgroCore</a>
 <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
     const WA_NUMERO='5493582408884';
+<<<<<<< Updated upstream
     var AW_ID='AW-18358928255', AW_LEAD_LABEL=''; // TODO: pegar aqui el label de la conversion de Google Ads (ej: 'abcDEfgh123')
     function ev(n,p){ try{ if(typeof gtag==='function'){ gtag('event',n,p||{}); if(AW_LEAD_LABEL && /lead|demo|contacto|whatsapp/i.test(n)) gtag('event','conversion',{send_to:AW_ID+'/'+AW_LEAD_LABEL}); } if(typeof fbq==='function' && /lead|demo|contacto|whatsapp/i.test(n)) fbq('track','Lead'); }catch(_){} }
+=======
+    function ev(n,p){ try{ if(typeof gtag==='function') gtag('event',n,p||{}); }catch(_){} }
+    const ADS_ID='AW-18358928255'; const ADS_LABEL={ reg:'WzIOCMWm3JsdEP-GnLJE', wa:'alZICOCg9tscEP-GnLJE', form:'n3pPCJbo9dscEP-GnLJE' };
+    function adsConv(k,x){ try{ if(typeof gtag==='function'&&ADS_LABEL[k]) gtag('event','conversion',Object.assign({send_to:ADS_ID+'/'+ADS_LABEL[k]},x||{})); }catch(_){} }
+>>>>>>> Stashed changes
     function waOpen(t){ const d=WA_NUMERO.replace(/\D/g,''); const m=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||''); const q=t?encodeURIComponent(t):''; const u=m?('https://wa.me/'+d+(q?'?text='+q:'')):('https://web.whatsapp.com/send?phone='+d+(q?'&text='+q:'')); window.open(u,'_blank','noopener'); }
-    document.querySelectorAll('a[data-wa-text]').forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); ev(a.getAttribute('data-evento')||'contacto_whatsapp',{metodo:'whatsapp'}); waOpen(a.getAttribute('data-wa-text')); }); });
+    document.querySelectorAll('a[data-wa-text]').forEach(a=>{ a.addEventListener('click',e=>{ e.preventDefault(); const evt=a.getAttribute('data-evento')||'contacto_whatsapp'; ev(evt,{metodo:'whatsapp'}); adsConv(evt==='probar_demo'?'reg':'wa'); waOpen(a.getAttribute('data-wa-text')); }); });
   </script>
 <script defer src="track.js"></script>
 <script defer="" src="bot-kb.js"></script>
