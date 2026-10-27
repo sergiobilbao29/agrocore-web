@@ -620,6 +620,7 @@
 <p>En <strong>Comercial → Posición de granos</strong> ves un tablero con tu <strong>posición por grano</strong>: lo que tenés físico, lo entregado a cerealera (por carta de porte), lo liquidado y lo pendiente. Registrás <strong>entregas</strong> que mueven el grano del depósito a la cerealera y quedan vinculadas a su <strong>liquidación</strong>; también podés importar liquidaciones desde PDF.</p>
 <h4 id="mod-remitos-internos">Remitos internos <span class="badge-new">Nuevo</span></h4>
 <p>En <strong>Stock y depósitos → Remitos internos</strong> movés mercadería <strong>sin venta</strong>. <strong>(1) Salida de insumo al campo:</strong> hacés el remito eligiendo depósito de origen y productos; el stock sale al emitir y el remito queda <strong>"en tránsito"</strong>; cuando confirmás "sí se usó", recién ahí se imputa a la campaña. <strong>(2) Transferencia entre depósitos:</strong> descuenta del origen al emitir y suma al destino al <strong>confirmar la recepción</strong>. Todo remito se puede <strong>imprimir/PDF</strong> con firmas de entrega y recepción, y se puede <strong>anular</strong> (revierte los movimientos).</p>
+<<<<<<< Updated upstream
 <h3>6.6 Contactos</h3>
 <h4>Clientes</h4>
 <p>Carga y gestión de clientes a quienes les vendés.</p>
@@ -747,6 +748,155 @@
 </section>
 <section id="mod-logistica">
 <h4 id="mod-import-resumen">Importar el resumen del banco <span class="badge-new">Nuevo</span></h4>
+=======
+
+          <h4 id="mod-molienda">Molienda / Fábrica <span class="badge-new">Nuevo</span></h4>
+<p>En <strong>Stock y depósitos → Molienda / Fábrica</strong> gestionás una planta procesadora de granos (por ejemplo, molienda de soja). Primero definís una <strong>fórmula</strong> con el grano de origen y sus coproductos por porcentaje (ej. Expeller 88%, Aceite 10%, Merma 2%). Después, en cada <strong>parte de molienda</strong>, cargás solo los <strong>kilos procesados</strong> y el sistema <strong>descuenta la soja del silo e ingresa expeller, aceite y merma</strong> a sus depósitos automáticamente. Además calcula el <strong>costo de fabricación por kilo</strong> (costo del grano + costos de producción, repartidos entre los coproductos) y, cargando un <strong>% de ganancia</strong>, te sugiere el <strong>precio de venta</strong>. El parte se puede anular (revierte el stock). También incluye el <strong>Plan canje</strong>: entregás un producto y recibís grano (o al revés) según una <strong>paridad fija</strong>, moviendo el stock en especie.</p>
+
+          <h3>6.6 Contactos</h3>
+
+          <h4>Clientes</h4>
+          <p>Carga y gestión de clientes a quienes les vendés.</p>
+          <p><strong>Datos:</strong> razón social, CUIT, condición IVA, domicilio, contacto, condiciones comerciales, observaciones internas.</p>
+          <p><strong>Filtros:</strong> por nombre, CUIT, email, localidad, y por <strong>Condición de IVA</strong> (Responsable Inscripto, Monotributista, Exento, Consumidor Final, No Inscripto). El filtro normaliza valores legacy automáticamente.</p>
+          <p><strong>Información derivada:</strong> saldo cuenta corriente, última factura, total facturado en el año, cheques pendientes.</p>
+
+          <h4>Proveedores</h4>
+          <p>Espejo de Clientes pero para vendedores de insumos, contratistas, transportistas, etc. Mismos campos. Información derivada de saldo a pagar y cheques entregados pendientes.</p>
+        </section>
+
+        <section id="mod-finanzas">
+          <h3>6.7 Finanzas</h3>
+          <p>La sección más amplia del sistema. Agrupa toda la gestión económica y financiera.</p>
+
+          <h4>Flujo de caja</h4>
+          <p><strong>Qué hace:</strong> proyección financiera consolidada a partir de cobros esperados, pagos comprometidos, vencimientos de cheques, pagos de arrendamientos y otros compromisos cargados en el sistema.</p>
+          <p><strong>Salida:</strong> gráfico y tabla diaria/semanal/mensual con saldo proyectado a 30/60/90 días. Anticipa baches financieros antes de que ocurran.</p>
+
+          <h4>Estado de situación — flujo proyectado consolidado <span class="badge-new">Nuevo</span></h4>
+          <p>Dashboard cronológico que junta en una sola vista <strong>todo lo que vas a cobrar y todo lo que tenés que pagar</strong> en los próximos días, ordenado por proximidad. Suma desde varios módulos:</p>
+          <ul>
+            <li><strong>Cheques a depositar</strong> (terceros en cartera) y <strong>cheques propios a pagar</strong>.</li>
+            <li><strong>Cuentas corrientes</strong> con vencimiento próximo, no pagadas.</li>
+            <li><strong>Cuotas de créditos bancarios</strong> pendientes.</li>
+            <li><strong>Liquidaciones de cereal</strong> con fecha estimada de cobro.</li>
+            <li><strong>Arrendamientos</strong> con vencimiento próximo.</li>
+          </ul>
+          <p><strong>Cómo se ve:</strong> filtros de horizonte (30 / 90 / 180 / 365 días), tres KPIs arriba (A ingresar, A pagar, Saldo neto) y cards mensuales con + ingresos / - egresos / saldo. Cada evento individual muestra concepto, fecha, "en X días" y urgencia visual: rojo si vence en menos de 7 días, ámbar dentro de 30, gris el resto.</p>
+
+          <h4>Bancos — cuentas, movimientos y conciliación automática <span class="badge-new">Nuevo</span></h4>
+          <p>Sección que centraliza todas las cuentas bancarias y sus movimientos. Cada cuenta muestra su saldo en vivo y los totales por moneda (ARS y USD) arriba.</p>
+          <p><strong>Cargar una cuenta bancaria:</strong> banco, sucursal, tipo (cta. corriente / caja de ahorro / cuenta USD / otro), moneda (ARS / USD / EUR), número de cuenta, CBU / CVU, alias, titular, saldo de apertura (cuando arrancás a usar el sistema) y observaciones.</p>
+          <p><strong>Movimientos por cuenta:</strong> al hacer clic en una cuenta se abre su extracto con saldo corriente fila a fila. Tipos de movimiento:</p>
+          <ul>
+            <li><strong>Depósito</strong> / <strong>Extracción</strong> — entradas y salidas manuales (efectivo, dep. cheque, etc.).</li>
+            <li><strong>Transferencia in / out</strong> — entre cuentas propias: si elegís cuenta destino, el sistema crea automáticamente el movimiento espejo en la otra cuenta. Si borrás uno, borra los dos.</li>
+            <li><strong>Cheque cobrado / Cheque pagado</strong> — generados automáticamente desde el módulo de Cheques (ver más abajo).</li>
+            <li><strong>Crédito acreditado / Cuota de crédito</strong> — desembolso del préstamo y cuotas pagadas por transferencia o débito automático.</li>
+            <li><strong>Comisión / Impuesto / Interés / Otro</strong> — los típicos cargos del banco.</li>
+          </ul>
+          <p>Cada movimiento queda firmado con el <strong>usuario que lo cargó</strong>. Filtros por fecha y tipo.</p>
+
+          <h4>Créditos bancarios — plan de cuotas y alertas</h4>
+          <p>Cargás los préstamos bancarios con su plan de cuotas y el sistema te avisa los vencimientos próximos.</p>
+          <p><strong>Cargar un crédito:</strong> banco, número de operación, monto solicitado, tasa anual (TNA), cantidad de cuotas, periodicidad (mensual / bimestral / trimestral / semestral), fecha de la primer cuota y destino. Al guardar, el sistema genera automáticamente <strong>todas las cuotas</strong> con sistema francés (cuota total constante), discriminando capital, interés y total por cuota.</p>
+          <p><strong>Marcar cuotas como pagadas:</strong> botón "💸 Pagar" por cuota. Modal con medio de pago (efectivo, cheque, transferencia, débito automático) y — si elegís <em>transferencia</em> o <em>débito automático</em> — un selector de <strong>cuenta bancaria de origen</strong>. Al confirmar, la cuota queda pagada y se registra automáticamente el egreso en el extracto de esa cuenta bancaria.</p>
+          <p><strong>Card de alertas:</strong> arriba aparece "Cuotas a vencer en los próximos 30 días" con la lista completa cruzando todos tus créditos. KPIs: cantidad de créditos activos, deuda pendiente total y cuotas próximas.</p>
+
+          <h4>Facturación (ventas)</h4>
+          <p><strong>Qué hace:</strong> emite facturas electrónicas (A, B, C, M) directamente vía web service de ARCA, con CAE en el momento.</p>
+          <p><strong>Cómo emitir:</strong></p>
+          <ol>
+            <li><strong>Finanzas → Facturación → Nueva factura.</strong></li>
+            <li>Seleccionar cliente.</li>
+            <li>El sistema sugiere el tipo de comprobante según condición IVA tuya/del cliente.</li>
+            <li>Cargar ítems (producto, cantidad, precio, IVA). Si es producto del stock, se descuenta automáticamente.</li>
+            <li>El dropdown muestra el stock disponible y avisa si querés vender más de lo que hay.</li>
+            <li>Verificar total, agregar observaciones.</li>
+            <li><strong>Emitir</strong> → conexión a ARCA, CAE, PDF generado.</li>
+            <li>Listo para enviar por email al cliente.</li>
+          </ol>
+          <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
+          <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
+
+          <h4>Cargar factura emitida directamente en ARCA <span class="badge-new">Nuevo</span></h4>
+          <p>Cuando un socio o el contador emite una factura por afuera del sistema (directamente en el portal de ARCA), podés cargarla manualmente para que aparezca en los listados, descuente stock y mueva la cuenta corriente del cliente.</p>
+          <p>En Facturación, botón <strong>"📥 Cargar factura ARCA"</strong>. El formulario es igual al de emitir, pero pide dos datos extras: el <strong>CAE real de 14 dígitos</strong> que devolvió ARCA y su <strong>fecha de vencimiento</strong>. La factura queda marcada con un badge "📥 ARCA ext." en la lista para que se distinga visualmente. El sistema <strong>no la reenvía a ARCA</strong> — solo registra el dato para mantener la trazabilidad fiscal.</p>
+
+          <h4>Compras</h4>
+          <p><strong>Qué hace:</strong> registra las facturas que <strong>te emiten</strong> los proveedores, para control de gastos, IVA crédito fiscal, cuentas corrientes y vencimientos.</p>
+          <p><strong>Datos:</strong> proveedor, tipo y número, fechas, ítems con cantidades/precios/IVA, forma de pago, adjunto del comprobante físico (opcional).</p>
+          <p><strong>Importación masiva:</strong> desde Excel o desde el portal "Mis Comprobantes" de ARCA.</p>
+
+          <h4>Libro IVA</h4>
+          <p><strong>Qué hace:</strong> consolida todas las operaciones gravadas del período (ventas + compras) discriminadas por alícuota, listo para presentación de DDJJ de IVA.</p>
+          <ul>
+            <li><strong>Libro IVA Ventas:</strong> facturas emitidas del mes, con base imponible y débito fiscal por alícuota (10.5%, 21%, 27%, exento).</li>
+            <li><strong>Libro IVA Compras:</strong> facturas recibidas del mes, con base y crédito fiscal por alícuota.</li>
+            <li><strong>Resumen mensual:</strong> débito fiscal, crédito fiscal y saldo a pagar / favor.</li>
+          </ul>
+          <p><strong>Exportación:</strong> archivos compatibles con AFIP/ARCA (CITI o Mis Comprobantes), Excel, PDF.</p>
+
+          <h4>Cheques</h4>
+          <p>Registra cheques recibidos y emitidos, con estados: <strong>En cartera → Endosado / Depositado → Acreditado / Rechazado</strong>.</p>
+          <p><strong>Datos:</strong> número, banco, sucursal, importe, fechas (emisión y pago), cliente/proveedor, cuenta corriente afectada, CUIT del librador.</p>
+          <p><strong>Formato físico o electrónico (e-cheq):</strong> cada cheque se marca como físico o electrónico, con filtro y badge en la lista. Atajo "Ver disponibles" muestra los cheques en cartera listos para usar.</p>
+          <p><strong>Alertas proactivas:</strong> el sistema avisa cuando un cheque está próximo a vencer en los <strong>próximos 15 días</strong> — no esperás a que venza, lo gestionás antes. Aparece tanto en el Dashboard como en la campanita de notificaciones.</p>
+          <p><strong>Acreditar / pagar cheque vinculado a cuenta bancaria</strong> <span class="badge-new">Nuevo</span>: cada fila tiene un botón 💰 (terceros) o 💸 (propios) para cambiar el estado del cheque y, opcionalmente, registrarlo en una cuenta bancaria. Modal con selector de cuenta y fecha. Al confirmar:</p>
+          <ul>
+            <li>Terceros depositado / cobrado → se genera un <strong>ingreso</strong> en la cuenta bancaria elegida (tipo "cheque cobrado") con el monto del cheque.</li>
+            <li>Propio pagado / cobrado → se genera un <strong>egreso</strong> en la cuenta bancaria elegida (tipo "cheque pagado") con el monto del cheque.</li>
+            <li>Si después cambiás el estado o la cuenta, el movimiento se actualiza solo.</li>
+            <li>Si volvés el cheque a "en cartera", el movimiento bancario se elimina automáticamente — sin descuadrar saldos.</li>
+          </ul>
+
+          <h4>Cuentas corrientes</h4>
+          <p>Tres vistas separadas y bien diferenciadas:</p>
+          <ul>
+            <li><strong>A cobrar:</strong> saldo por cliente, alimentado automáticamente por las facturas de venta. Botón "Registrar cobro" para descontar el saldo cuando el cliente paga.</li>
+            <li><strong>A pagar:</strong> saldo por proveedor, alimentado por las facturas de compra. Botón "Registrar pago".</li>
+            <li><strong>Otros / Manuales</strong> <span class="badge-new">Nuevo</span>: sección aparte con sus <strong>propios totales</strong>, totalmente independientes de los de clientes y proveedores. Ideal para alquileres, impuestos, servicios y cualquier obligación que no venga de una factura cargada.</li>
+          </ul>
+          <p><strong>Cada movimiento manual lleva:</strong></p>
+          <ul>
+            <li><strong>Categoría</strong> (Arrendamiento, Servicio, Impuesto, Otro — o la que cargues a mano).</li>
+            <li><strong>Fecha de vencimiento</strong> con badges visuales: "Vence en X días" en amarillo si está a 15 días o menos, "Vencido Xd" en rojo si ya pasó.</li>
+            <li><strong>Dirección</strong>: a cobrar o a pagar, con su monto único.</li>
+            <li><strong>Estado:</strong> pendiente / pagado. Un botón "Marcar pagado / Desmarcar" lo cierra cuando se salda.</li>
+          </ul>
+          <p><strong>Tres tarjetas resumen en el tab Otros:</strong> "A cobrar manuales", "A pagar manuales" y "Vencen en 15 días" (con cuántos están vencidos). Filtros por categoría, estado y dirección.</p>
+          <p><strong>Ejemplo:</strong> el alquiler de octubre por $1.000.000 se carga como manual con dirección "A pagar", categoría "Arrendamiento", vencimiento 05/10, detalle "Alquiler octubre 2026". Queda solo en "A pagar manuales", con su alerta cuando se acerca, sin ensuciar el total de proveedores.</p>
+
+          <h4>Arrendamientos</h4>
+          <p><strong>Qué hace:</strong> registra los contratos de arrendamiento de campos cuando explotás campos que no son propios.</p>
+          <p><strong>Datos por contrato:</strong></p>
+          <ul>
+            <li>Arrendador (CUIT, datos de contacto)</li>
+            <li>Campo arrendado (vinculado al módulo Producción → Campos)</li>
+            <li>Plazo del contrato (fecha inicio, fecha fin)</li>
+            <li>Modalidad de pago: pesos, dólares, quintales fijos de soja/maíz, % del rinde</li>
+            <li>Cantidad acordada</li>
+            <li>Vencimientos (uno o varios pagos a lo largo del contrato)</li>
+          </ul>
+          <p><strong>Integración:</strong> los vencimientos aparecen automáticamente en el flujo de caja como pagos comprometidos. Si el contrato es en quintales, el sistema valoriza la cuota al precio BCR del día y calcula el equivalente en pesos / dólares.</p>
+          <p><strong>Alertas:</strong> vencimientos próximos, contratos por terminar, renovaciones a evaluar.</p>
+
+          <h4>Control de efectivo — multi-caja <span class="badge-new">Nuevo</span></h4>
+          <p>El control de efectivo maneja <strong>varias cajas físicas</strong> en paralelo (Oficina, los nombres de quienes manejan dinero, sucursales — las que cada empresa cargue en Catálogos → Cajas). Cada caja tiene su propio saldo y arriba se ve la <strong>"Caja general"</strong>: el total de efectivo de la empresa, sin importar quién lo tenga.</p>
+          <p><strong>Tres tipos de movimiento:</strong></p>
+          <ul>
+            <li><strong>Ingreso:</strong> entra plata a una caja (cobranza, retiro de banco, etc.).</li>
+            <li><strong>Egreso / gasto:</strong> sale plata de una caja (combustible, mercado, sueldos, etc.).</li>
+            <li><strong>Transferencia entre cajas:</strong> mueve plata de una caja a otra en una sola operación (por ej., "Luciano le entrega $500.000 a Oficina"). El total de la empresa no cambia.</li>
+          </ul>
+          <p><strong>Clasificación de cada gasto / ingreso:</strong> "De empresa" o "Propio" — esto permite separar lo que es del negocio de lo personal (por ej., gastos de los hijos). Hay una tabla "Gastos e ingresos por caja — empresa vs propios" con la comparación.</p>
+          <p><strong>Filtros:</strong> por caja, por tipo, por clasificación y por rango de fechas.</p>
+          <p><strong>Datos por movimiento:</strong> fecha, tipo, caja (origen y destino en transferencias), concepto, monto, clasificación, observaciones.</p>
+        </section>
+
+        <section id="mod-logistica">
+          <h4 id="mod-import-resumen">Importar el resumen del banco <span class="badge-new">Nuevo</span></h4>
+>>>>>>> Stashed changes
 <p>En vez de cargar los movimientos del banco a mano, importás el <strong>resumen de la cuenta</strong> y AgroCore los carga solos. Está en <strong>Bancos → abrí la cuenta → "📄 Importar resumen"</strong>.</p>
 <ul>
 <li><strong>Acepta PDF, Excel (.xlsx/.xls), CSV y hasta una FOTO</strong> del resumen en papel (se lee con IA).</li>
