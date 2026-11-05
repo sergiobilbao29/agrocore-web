@@ -677,7 +677,16 @@
 <li>Listo para enviar por email al cliente.</li>
 </ol>
 <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
-<p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
+<p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos con CAE simulado (no válido ante ARCA) pero con el mismo formato.</p>
+          <h4>Requisito en ARCA: Punto de Venta "Web Services" <span class="badge-new">Importante</span></h4>
+          <p>Para que AgroCore facture solo (por web service) ARCA exige un <strong>Punto de Venta del tipo "Web Services"</strong>, además del certificado. El Punto de Venta de <strong>"Comprobantes en línea"</strong> (el que usás para facturar a mano en la web de ARCA) <strong>no sirve</strong> para esto, y ARCA no deja usar el mismo número para los dos: hay que <strong>crear uno nuevo</strong>.</p>
+          <ol>
+            <li>En ARCA (clave fiscal) → <strong>"Administración de puntos de venta y domicilios"</strong> → elegí tu empresa → <strong>"A/B/M de puntos de venta"</strong> → <strong>Agregar</strong>.</li>
+            <li>En <strong>Sistema</strong> elegí la opción de Web Services: <em>"Factura Electrónica - Monotributo - Web Services"</em> (Monotributo) o <em>"RECE / Factura Electrónica - Web Services"</em> (Responsable Inscripto). Completá los datos y Aceptá.</li>
+            <li>ARCA te asigna un <strong>número nuevo</strong> (por ej. 00003). Usá <strong>ese número</strong> en AgroCore al emitir.</li>
+          </ol>
+          <p><strong>Error [10005] "El punto de venta debe ser del tipo RECE":</strong> significa que ese Punto de Venta no está dado de alta como Web Services. Creá el Punto de Venta Web Services como arriba y usá el número nuevo.</p>
+          <p><strong>Verificar en ARCA:</strong> si una factura muestra "CAE sin confirmar" o no la ves todavía en "Mis Comprobantes" de ARCA (ese portal puede demorar horas), abrí la factura en AgroCore y tocá <strong>"🔍 Verificar en ARCA"</strong>: consulta en el momento si ARCA la tiene autorizada y confirma el CAE real.</p>
 <h4>Cargar factura emitida directamente en ARCA <span class="badge-new">Nuevo</span></h4>
 <p>Cuando un socio o el contador emite una factura por afuera del sistema (directamente en el portal de ARCA), podés cargarla manualmente para que aparezca en los listados, descuente stock y mueva la cuenta corriente del cliente.</p>
 <p>En Facturación, botón <strong>"📥 Cargar factura ARCA"</strong>. El formulario es igual al de emitir, pero pide dos datos extras: el <strong>CAE real de 14 dígitos</strong> que devolvió ARCA y su <strong>fecha de vencimiento</strong>. La factura queda marcada con un badge "📥 ARCA ext." en la lista para que se distinga visualmente. El sistema <strong>no la reenvía a ARCA</strong> — solo registra el dato para mantener la trazabilidad fiscal.</p>
@@ -839,7 +848,16 @@
             <li>Listo para enviar por email al cliente.</li>
           </ol>
           <p><strong>Tipos soportados:</strong> Facturas A/B/C/M, Notas de crédito y débito, Recibos, Remitos, Comprobantes de cobro.</p>
-          <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos sin CAE pero con el mismo formato.</p>
+          <p><strong>Modo informal:</strong> si tu empresa no factura por ARCA, el sistema genera comprobantes internos con CAE simulado (no válido ante ARCA) pero con el mismo formato.</p>
+          <h4>Requisito en ARCA: Punto de Venta "Web Services" <span class="badge-new">Importante</span></h4>
+          <p>Para que AgroCore facture solo (por web service) ARCA exige un <strong>Punto de Venta del tipo "Web Services"</strong>, además del certificado. El Punto de Venta de <strong>"Comprobantes en línea"</strong> (el que usás para facturar a mano en la web de ARCA) <strong>no sirve</strong> para esto, y ARCA no deja usar el mismo número para los dos: hay que <strong>crear uno nuevo</strong>.</p>
+          <ol>
+            <li>En ARCA (clave fiscal) → <strong>"Administración de puntos de venta y domicilios"</strong> → elegí tu empresa → <strong>"A/B/M de puntos de venta"</strong> → <strong>Agregar</strong>.</li>
+            <li>En <strong>Sistema</strong> elegí la opción de Web Services: <em>"Factura Electrónica - Monotributo - Web Services"</em> (Monotributo) o <em>"RECE / Factura Electrónica - Web Services"</em> (Responsable Inscripto). Completá los datos y Aceptá.</li>
+            <li>ARCA te asigna un <strong>número nuevo</strong> (por ej. 00003). Usá <strong>ese número</strong> en AgroCore al emitir.</li>
+          </ol>
+          <p><strong>Error [10005] "El punto de venta debe ser del tipo RECE":</strong> significa que ese Punto de Venta no está dado de alta como Web Services. Creá el Punto de Venta Web Services como arriba y usá el número nuevo.</p>
+          <p><strong>Verificar en ARCA:</strong> si una factura muestra "CAE sin confirmar" o no la ves todavía en "Mis Comprobantes" de ARCA (ese portal puede demorar horas), abrí la factura en AgroCore y tocá <strong>"🔍 Verificar en ARCA"</strong>: consulta en el momento si ARCA la tiene autorizada y confirma el CAE real.</p>
 
           <h4>Cargar factura emitida directamente en ARCA <span class="badge-new">Nuevo</span></h4>
           <p>Cuando un socio o el contador emite una factura por afuera del sistema (directamente en el portal de ARCA), podés cargarla manualmente para que aparezca en los listados, descuente stock y mueva la cuenta corriente del cliente.</p>
@@ -1033,6 +1051,7 @@
 <li><strong>🔧 Externo:</strong> contratista, fasonero, monotributista que factura sus servicios.</li>
 </ul>
 <p>Cualquiera de los dos puede tener activado <strong>"Cobra % por labor"</strong>: en ese caso, cargás el porcentaje por defecto. Cuando ese empleado figura como responsable de una <strong>Labor avanzada</strong>, el sistema calcula automáticamente la ganancia (precio referencia × hectáreas × %) y la suma sola a su planilla del mes con categoría "labor". Pensado especialmente para fasoneros de siembra/cosecha y contratistas que cobran un porcentaje del ingreso.</p>
+          <p><strong>🤝 Empleados compartidos (jornaleros del grupo)</strong> <span class="badge-new">Nuevo</span>: si un jornalero trabaja en <strong>varias empresas</strong> del grupo, en su ficha podés tildar <strong>"Compartir con todo el grupo"</strong>. Con eso queda un <strong>solo legajo</strong> disponible en todas las empresas (las aisladas no lo ven; en la nómina aparece el chip <strong>Grupo</strong>): le cargás labores/jornales desde cualquier empresa y <strong>el costo queda en la empresa donde se hizo</strong> (flujo de fondos y centros de costo). A fin de mes, en su ficha, el botón <strong>"Liquidación única (grupo)"</strong> junta los movimientos del mes de todas las empresas, muestra el <strong>neto total con desglose por empresa</strong> y lo pagás desde la <strong>empresa pagadora</strong> que elijas (efectivo, transferencia o cheque). Es una vista de gestión: para AFIP cada razón social puede necesitar su propio recibo, por eso se muestra el desglose para el contador. Los empleados que no marques siguen 100% privados de su empresa.</p>
 <p>Pero al <strong>hacer clic en un empleado</strong> se entra a su <strong>planilla personal</strong> de gastos y ganancias, donde se carga todo lo que le pasó al empleado mes a mes y se hace la liquidación de sueldo.</p>
 <h4>Planilla mensual del empleado</h4>
 <p>Cada empleado tiene su planilla dividida por mes. Un selector de mes/año libre permite cargar o editar movimientos de <strong>cualquier período</strong>, pasado o futuro.</p>
@@ -1063,10 +1082,13 @@
 <section id="mod-admin">
 <h3>6.9 Administración</h3>
 <p>Sección al pie de la barra lateral, agrupa los parámetros del sistema.</p>
-<h4>Catálogos</h4>
-<p>Master data que alimenta a todos los módulos.</p>
+<h4>Catálogo de artículos y Organización de artículos</h4>
+<p>Todo lo que tu empresa compra, vende, consume, fabrica o tiene en stock es un <strong>artículo</strong>, y se organiza en un árbol de <strong>Categoría → Familia → Subfamilias</strong> (podés anidar las subfamilias que quieras, sin límite). El árbol se arma en <strong>Administración → Organización de artículos</strong> y los artículos se cargan en <strong>Catálogo de artículos</strong>.</p>
 <ul>
-<li><strong>Productos:</strong> insumos, granos, combustible, repuestos. Con código, categoría, unidad, alícuota IVA, stock mínimo.</li>
+<li><strong>Un artículo por producto físico:</strong> la misma soja se compra, se vende <em>y</em> se consume en la molienda sin crear copias. En la ficha marcás sus <strong>capacidades combinables</strong>: 🛒 se compra, 💵 se vende, 📦 controla stock, 🌱 se consume en producción, 🏭 se obtiene por producción, 🚜 es servicio. <span class="badge-new">Nuevo</span></li>
+            <li><strong>Ruta completa y buscador:</strong> cada artículo muestra su ubicación en el árbol (ej. <em>Agroindustria / Soja / Derivados</em>) y hay un buscador global que lo encuentra sin importar en qué subfamilia esté.</li>
+            <li><strong>Diagnóstico de artículos:</strong> botón que detecta (sin cambiar nada) lo que quedó en el formato viejo y no aparece en stock, los artículos sin clasificar y los posibles duplicados; con "Pasar a artículo" convertís lo viejo en artículos reales (no borra nada). <span class="badge-new">Nuevo</span></li>
+            <li><strong>Ejemplos:</strong> Fábrica → Agroindustria / Soja / Derivados → Expeller, Aceite. Comercio → Lubricantes / Aceites de motor / 15W40 → Bidón x4 L, x20 L.</li>
 <li><strong>Cultivos:</strong> soja, maíz, trigo, etc., con tipo (gruesa/fina) y datos agronómicos.</li>
 <li><strong>Bancos:</strong> lista para usar al cargar cheques y cuentas corrientes.</li>
 <li><strong>Cajas:</strong> las cajas físicas que se usan en Control de Efectivo (Oficina, nombres de personas, sucursales).</li>
@@ -1221,6 +1243,7 @@
             <li><strong>🔧 Externo:</strong> contratista, fasonero, monotributista que factura sus servicios.</li>
           </ul>
           <p>Cualquiera de los dos puede tener activado <strong>"Cobra % por labor"</strong>: en ese caso, cargás el porcentaje por defecto. Cuando ese empleado figura como responsable de una <strong>Labor avanzada</strong>, el sistema calcula automáticamente la ganancia (precio referencia × hectáreas × %) y la suma sola a su planilla del mes con categoría "labor". Pensado especialmente para fasoneros de siembra/cosecha y contratistas que cobran un porcentaje del ingreso.</p>
+          <p><strong>🤝 Empleados compartidos (jornaleros del grupo)</strong> <span class="badge-new">Nuevo</span>: si un jornalero trabaja en <strong>varias empresas</strong> del grupo, en su ficha podés tildar <strong>"Compartir con todo el grupo"</strong>. Con eso queda un <strong>solo legajo</strong> disponible en todas las empresas (las aisladas no lo ven; en la nómina aparece el chip <strong>Grupo</strong>): le cargás labores/jornales desde cualquier empresa y <strong>el costo queda en la empresa donde se hizo</strong> (flujo de fondos y centros de costo). A fin de mes, en su ficha, el botón <strong>"Liquidación única (grupo)"</strong> junta los movimientos del mes de todas las empresas, muestra el <strong>neto total con desglose por empresa</strong> y lo pagás desde la <strong>empresa pagadora</strong> que elijas (efectivo, transferencia o cheque). Es una vista de gestión: para AFIP cada razón social puede necesitar su propio recibo, por eso se muestra el desglose para el contador. Los empleados que no marques siguen 100% privados de su empresa.</p>
           <p>Pero al <strong>hacer clic en un empleado</strong> se entra a su <strong>planilla personal</strong> de gastos y ganancias, donde se carga todo lo que le pasó al empleado mes a mes y se hace la liquidación de sueldo.</p>
 
           <h4>Planilla mensual del empleado</h4>
@@ -1257,10 +1280,13 @@
           <h3>6.9 Administración</h3>
           <p>Sección al pie de la barra lateral, agrupa los parámetros del sistema.</p>
 
-          <h4>Catálogos</h4>
-          <p>Master data que alimenta a todos los módulos.</p>
+          <h4>Catálogo de artículos y Organización de artículos</h4>
+          <p>Todo lo que tu empresa compra, vende, consume, fabrica o tiene en stock es un <strong>artículo</strong>, y se organiza en un árbol de <strong>Categoría → Familia → Subfamilias</strong> (podés anidar las subfamilias que quieras, sin límite). El árbol se arma en <strong>Administración → Organización de artículos</strong> y los artículos se cargan en <strong>Catálogo de artículos</strong>.</p>
           <ul>
-            <li><strong>Productos:</strong> insumos, granos, combustible, repuestos. Con código, categoría, unidad, alícuota IVA, stock mínimo.</li>
+            <li><strong>Un artículo por producto físico:</strong> la misma soja se compra, se vende <em>y</em> se consume en la molienda sin crear copias. En la ficha marcás sus <strong>capacidades combinables</strong>: 🛒 se compra, 💵 se vende, 📦 controla stock, 🌱 se consume en producción, 🏭 se obtiene por producción, 🚜 es servicio. <span class="badge-new">Nuevo</span></li>
+            <li><strong>Ruta completa y buscador:</strong> cada artículo muestra su ubicación en el árbol (ej. <em>Agroindustria / Soja / Derivados</em>) y hay un buscador global que lo encuentra sin importar en qué subfamilia esté.</li>
+            <li><strong>Diagnóstico de artículos:</strong> botón que detecta (sin cambiar nada) lo que quedó en el formato viejo y no aparece en stock, los artículos sin clasificar y los posibles duplicados; con "Pasar a artículo" convertís lo viejo en artículos reales (no borra nada). <span class="badge-new">Nuevo</span></li>
+            <li><strong>Ejemplos:</strong> Fábrica → Agroindustria / Soja / Derivados → Expeller, Aceite. Comercio → Lubricantes / Aceites de motor / 15W40 → Bidón x4 L, x20 L.</li>
             <li><strong>Cultivos:</strong> soja, maíz, trigo, etc., con tipo (gruesa/fina) y datos agronómicos.</li>
             <li><strong>Bancos:</strong> lista para usar al cargar cheques y cuentas corrientes.</li>
             <li><strong>Cajas:</strong> las cajas físicas que se usan en Control de Efectivo (Oficina, nombres de personas, sucursales).</li>
