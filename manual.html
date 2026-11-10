@@ -916,11 +916,13 @@
             <li>Arrendador (CUIT, datos de contacto)</li>
             <li>Campo arrendado (vinculado al módulo Producción → Campos)</li>
             <li>Plazo del contrato (fecha inicio, fecha fin)</li>
-            <li>Modalidad de pago: pesos, dólares, quintales fijos de soja/maíz, % del rinde</li>
+            <li>Modalidad de pago: efectivo ($/ha), quintales de grano (blanco/negro), Kg Novillo, % del rinde, o <strong>kilos de grano con venta mensual a pizarra</strong></li>
             <li>Cantidad acordada</li>
-            <li>Vencimientos (uno o varios pagos a lo largo del contrato)</li>
+            <li>Vencimientos / cuotas (uno o varios pagos a lo largo del contrato)</li>
           </ul>
-          <p><strong>Integración:</strong> los vencimientos aparecen automáticamente en el flujo de caja como pagos comprometidos. Si el contrato es en quintales, el sistema valoriza la cuota al precio BCR del día y calcula el equivalente en pesos / dólares.</p>
+          <p><strong>Integración:</strong> los vencimientos aparecen automáticamente en el flujo de caja como pagos comprometidos. Si el contrato es en quintales o Kg Novillo, el sistema valoriza la cuota al precio del día (pizarra BCR / Cañuelas) y calcula el equivalente en pesos. Cada pago de cuota (📅) queda en Movimientos diarios con su medio real (efectivo, cheque, banco).</p>
+          <p><strong>Modalidad kilos de grano (venta mensual a pizarra) <span class="badge-new">Nuevo</span>:</strong> para el arreglo típico donde el dueño tiene un total en kilos de soja que va <strong>vendiendo por mes</strong> y cada venta se paga a <strong>precio pizarra del día</strong>. Se carga el total en kilos, los kilos por mes y el mes de inicio, y el sistema arma el <strong>plan de meses</strong>. En el botón <strong>🌾 Ventas</strong>, por cada mes se cargan los kilos reales vendidos y el precio pizarra ($/tonelada) y el sistema calcula cuánto corresponde pagar. El pago se hace en <strong>entregas parciales</strong>: cada entrega (💵) registra un importe (y opcionalmente los kilos entregados), mueve la plata real a Movimientos diarios y descuenta del saldo hasta saldar la venta.</p>
+          <p><strong>Pago Intercompany <span class="badge-new">Nuevo</span>:</strong> tanto en las <strong>cuotas</strong> como en las <strong>entregas</strong>, se puede elegir el método <strong>🔄 Intercompany</strong> para que <strong>otra firma del grupo ponga los fondos</strong>. Elegís la empresa que paga y cómo lo hace (solo deuda entre firmas, efectivo de una caja de esa firma, cheque de esa firma o transferencia de una cuenta de esa firma). El sistema arma los asientos espejo en <strong>Cuentas Intercompany</strong> (esta empresa queda debiendo, la otra con saldo a favor) y mueve el recurso real de la firma que financia. Requiere el permiso <em>finanzas:intercompany</em> y tener acceso a más de una empresa.</p>
           <p><strong>Alertas:</strong> vencimientos próximos, contratos por terminar, renovaciones a evaluar.</p>
 
           <h4>Control de efectivo — multi-caja <span class="badge-new">Nuevo</span></h4>
