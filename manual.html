@@ -566,6 +566,17 @@
           <p><strong>Tipos de productos:</strong> insumos agrícolas, granos, combustible, repuestos y consumibles, otros.</p>
           <p><strong>Información por producto:</strong> nombre, código, categoría, unidad, stock actual (con alerta de mínimo), valorización, ubicación, histórico de movimientos.</p>
 
+          <h4>Herramientas de la barra de Stock (administrador) <span class="badge-new">Nuevo</span></h4>
+          <p>Arriba de la lista, un administrador tiene botones para mantener el inventario prolijo:</p>
+          <ul>
+            <li><strong>🧩 Unificar artículos:</strong> deja <strong>una sola lista</strong> de insumos/cereales. Migra los artículos del catálogo viejo al stock y <strong>apaga la duplicación</strong>. Se hace una vez por empresa (el sistema guarda un respaldo antes).</li>
+            <li><strong>🔗 Fusionar artículos:</strong> une dos artículos cargados con <strong>nombres distintos</strong> (ej. "2,4-D" y "2,4-D Etil Hexil"): pasa stock, movimientos y referencias de uno al otro. No se pierde ningún movimiento.</li>
+            <li><strong>🧹 Depurar duplicados:</strong> une automáticamente los <strong>duplicados exactos</strong> (mismo nombre) y corrige familias. En empresas ya unificadas, no borra artículos por no estar en el catálogo viejo.</li>
+            <li><strong>♻️ Recuperar artículos:</strong> vuelve a mostrar un insumo/cereal que quedó <strong>desactivado</strong> pero tiene historial (ej. uno cargado desde una factura).</li>
+            <li><strong>🗄️ Recuperar desde backup:</strong> si un artículo se <strong>borró del todo</strong>, lo trae de vuelta tomándolo del <strong>último respaldo del servidor</strong>. Elegís el respaldo (por defecto el más reciente, conviene uno anterior al borrado) y con un clic vuelven los artículos faltantes. Es <strong>no destructivo</strong>: no toca los que ya existen ni ningún otro dato (movimientos, facturas, etc.), y los artículos vuelven a la lista única con su clasificación.</li>
+          </ul>
+          <p>Para encontrar artículos sin familia, usá el filtro <strong>Estado → "⚠️ Sin clasificar"</strong> y después <strong>🔀 Reubicar categoría</strong> para asignarles su familia.</p>
+
           <h4>Movimientos</h4>
           <p>Cada vez que entra o sale algo del stock, se registra un movimiento. Trazabilidad completa.</p>
           <p><strong>Tipos:</strong> entrada por compra, entrada por cosecha, salida por venta, salida por consumo interno, ajuste de inventario, transferencia entre depósitos, entrega a cerealera, liquidación.</p>
